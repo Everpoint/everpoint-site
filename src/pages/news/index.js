@@ -103,19 +103,23 @@ class NewsBase extends PureComponent {
               </Column>
             ))}
           </Section>
-          <PaginationFull
-            className={styles.paginationFull}
-            currentPage={currentPage}
-            pageCount={pageCount}
-            slots={7}
-            onPageChange={this.onPageChange}
-          />
-          <PaginationSimple
-            pageCount={pageCount}
-            currentPage={currentPage}
-            onPageChange={this.onPageChange}
-            className={styles.paginationSimple}
-          />
+          {pageCount > 1 && (
+            <>
+              <PaginationFull
+                className={styles.paginationFull}
+                currentPage={currentPage}
+                pageCount={pageCount}
+                slots={7}
+                onPageChange={this.onPageChange}
+              />
+              <PaginationSimple
+                pageCount={pageCount}
+                currentPage={currentPage}
+                onPageChange={this.onPageChange}
+                className={styles.paginationSimple}
+              />
+            </>
+          )}
         </Main>
       </>
     );
