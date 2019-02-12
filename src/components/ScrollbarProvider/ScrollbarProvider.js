@@ -101,7 +101,6 @@ export class ScrollbarProvider extends Component {
             <NativeScrollbar onScroll={this.onNativeScroll}>{children}</NativeScrollbar>
           ) : (
             <Scrollbar
-              renderByPixels={false}
               withScrollbarY={withScrollbarY}
               onScrollbarRef={this.onScrollBarRef}
               onScroll={this.onScroll}

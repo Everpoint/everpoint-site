@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { PureComponent } from "react";
 import PropTypes from "prop-types";
 import cn from "classnames";
 
@@ -19,7 +19,7 @@ import { DesktopMenu } from "./DesktopMenu";
 import { MobileMenu } from "./MobileMenu";
 import { routes } from "../../routes";
 
-export class Navbar extends Component {
+class NavbarBase extends PureComponent {
   static getDerivedStateFromProps(nextProps, prevState) {
     const { data } = nextProps;
     const { normalizeData } = prevState;
@@ -52,86 +52,84 @@ export class Navbar extends Component {
 
   render() {
     const { additionalMenuIsOpenId, normalizeData } = this.state;
-    const { location } = this.props;
+    const {
+      location,
+      scrollTop,
+      coloredNav,
+      onNavLinkClick,
+      currentRoute,
+      mobileMenuIsOpen,
+      toggleMobileMenu,
+      selectedSectionIndex,
+      sections,
+      onSectionChange,
+      transitionEnd,
+    } = this.props;
+
+    const transform = `translateY(${scrollTop}px)`;
+    const section = sections[selectedSectionIndex];
 
     return (
-      <MainLayoutConsumer>
-        {({
-          scrollTop,
-          coloredNav,
-          direction,
-          onNavLinkClick,
-          currentRoute,
-          mobileMenuIsOpen,
-          toggleMobileMenu,
-          selectedSectionIndex,
-          sections,
-          onSectionChange,
-          transitionEnd,
-        }) => {
-          const transform = `translateY(${scrollTop}px)`;
-          const section = sections[selectedSectionIndex];
-
-          return (
-            <NavbarContainer
-              style={{ transform }}
-              className={cn({
-                [styles.coloredNav]: coloredNav || additionalMenuIsOpenId,
-              })}
-              onMouseLeave={this.onCloseAdditionalMenu}
-              mobileMenuIsOpen={mobileMenuIsOpen}
+      <NavbarContainer
+        style={{ transform }}
+        className={cn({
+          [styles.coloredNav]: coloredNav || additionalMenuIsOpenId,
+        })}
+        onMouseLeave={this.onCloseAdditionalMenu}
+        mobileMenuIsOpen={mobileMenuIsOpen}
+      >
+        <Nav className={common.container} mobileMenuIsOpen={mobileMenuIsOpen}>
+          <LeftSide>
+            <LogoLink
+              onClick={event =>
+                onNavLinkClick({
+                  index: 0,
+                  transitionEnd: false,
+                  id: "index",
+                  event,
+                })
+              }
+              to="/"
             >
-              <Nav className={common.container} mobileMenuIsOpen={mobileMenuIsOpen}>
-                <LeftSide>
-                  <LogoLink
-                    onClick={event =>
-                      onNavLinkClick({
-                        index: 0,
-                        transitionEnd: false,
-                        id: "index",
-                        event,
-                      })
-                    }
-                    to="/"
-                  >
-                    <Logo as="img" src={logo} alt="logo" />
-                  </LogoLink>
-                  <LanguageSwitch>
-                    <LanguageLink isActive>ru</LanguageLink>
-                    <LanguageLink>en</LanguageLink>
-                  </LanguageSwitch>
-                  <Hamburger
-                    isOpen={mobileMenuIsOpen}
-                    onClick={toggleMobileMenu}
-                    className={styles.hamburger}
-                  />
-                </LeftSide>
-                <DesktopMenu
-                  data={normalizeData}
-                  transitionEnd={transitionEnd}
-                  routes={routes}
-                  selectedId={typeof section === "object" ? section.id : undefined}
-                  location={location}
-                  additionalMenuIsOpenId={additionalMenuIsOpenId}
-                  currentRoute={currentRoute}
-                  onSectionChange={onSectionChange}
-                  onNavLinkClick={onNavLinkClick}
-                  onOpenAdditionalMenu={this.onOpenAdditionalMenu}
-                  onCloseAdditionalMenu={this.onCloseAdditionalMenu}
-                />
-                {mobileMenuIsOpen && (
-                  <MobileMenu
-                    data={normalizeData}
-                    routes={routes}
-                    location={location}
-                    onNavLinkClick={onNavLinkClick}
-                  />
-                )}
-              </Nav>
-            </NavbarContainer>
-          );
-        }}
-      </MainLayoutConsumer>
+              <Logo as="img" src={logo} alt="logo" />
+            </LogoLink>
+            <LanguageSwitch>
+              <LanguageLink isActive>ru</LanguageLink>
+              <LanguageLink>en</LanguageLink>
+            </LanguageSwitch>
+            <Hamburger
+              isOpen={mobileMenuIsOpen}
+              onClick={toggleMobileMenu}
+              className={styles.hamburger}
+            />
+          </LeftSide>
+          <DesktopMenu
+            data={normalizeData}
+            transitionEnd={transitionEnd}
+            routes={routes}
+            selectedId={typeof section === "object" ? section.id : undefined}
+            location={location}
+            additionalMenuIsOpenId={additionalMenuIsOpenId}
+            currentRoute={currentRoute}
+            onSectionChange={onSectionChange}
+            onNavLinkClick={onNavLinkClick}
+            onOpenAdditionalMenu={this.onOpenAdditionalMenu}
+            onCloseAdditionalMenu={this.onCloseAdditionalMenu}
+          />
+          {mobileMenuIsOpen && (
+            <MobileMenu
+              data={normalizeData}
+              routes={routes}
+              location={location}
+              onNavLinkClick={onNavLinkClick}
+            />
+          )}
+        </Nav>
+      </NavbarContainer>
     );
   }
 }
+
+export const Navbar = data => (
+  <MainLayoutConsumer>{props => <NavbarBase {...props} {...data} />}</MainLayoutConsumer>
+);
