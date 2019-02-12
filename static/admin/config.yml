@@ -2,6 +2,7 @@ backend:
   name: github
   repo: kre1z0/kre1z0.github.io
   branch: ES-128
+  site_domain: everpoint.netlify.com
 
 media_folder: static/img
 public_folder: /img
