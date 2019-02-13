@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import cn from "classnames";
 
 import { isMobile } from "../utils/browser";
 import { getProject, getBackRouteByLocationPathName } from "../routes";
@@ -50,7 +51,7 @@ class LongredLayout extends Component {
       >
         <Helmet
           bodyAttributes={{
-            class: styles.londreadBody,
+            class: cn({ [styles.londreadBodyMobile]: isMobile }),
           }}
         />
         <ViewportHeight />

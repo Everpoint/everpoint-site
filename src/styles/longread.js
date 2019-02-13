@@ -6,7 +6,7 @@ const styles = css`
     height: 100vh;
     height: calc(var(--vh, 1vh) * 100);
   }
-  .londreadBody {
+  .londreadBodyMobile {
     overflow-y: auto;
   }
 `;

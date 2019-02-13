@@ -98,7 +98,7 @@ export class HeaderBase extends Component {
           >
             {type && <Badge>{type}</Badge>}
             <Title>{title || text}</Title>
-            <Description big>{description}</Description>
+            <Description>{description}</Description>
             {link && (
               <OutsideLink className={styles.projectLink} href={link}>
                 {link}
