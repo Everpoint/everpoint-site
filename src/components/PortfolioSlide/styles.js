@@ -20,7 +20,7 @@ export const SliderBackground = styled("div")`
   will-change: top, background;
   transition: all 200ms ease-in;
   &.disableTransition {
-    transition: none;
+    transition-property: top, width, height;
   }
   @media (hover: hover) {
     &.hovered {
