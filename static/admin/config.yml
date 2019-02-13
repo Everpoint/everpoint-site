@@ -1,7 +1,7 @@
 backend:
   name: github
-  repo: kre1z0/kre1z0.github.io
-  branch: ES-128
+  repo: everadmin/everpoint-admin-panel
+  branch: master
   site_domain: everpoint.netlify.com
 
 media_folder: static/img
