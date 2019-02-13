@@ -5,7 +5,9 @@ export const format = date => {
     const monthIndex = d.getMonth();
     const year = d.getFullYear();
     const zeroToMonth = monthIndex + 1 < 10 ? "0" : "";
-    return `${day}.${zeroToMonth}${monthIndex + 1}.${year}`;
+    const zeroToDay = day < 10 ? `0${day}` : day;
+
+    return `${zeroToDay}.${zeroToMonth}${monthIndex + 1}.${year}`;
   } else {
     return "Invalid date";
   }
