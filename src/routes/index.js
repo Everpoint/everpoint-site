@@ -18,7 +18,6 @@ export const routes = [
     id: "jobs",
     text: "Работа у нас",
     route: "/jobs",
-    additionalMenuWidth: "7rem",
     additionalMenu: [
       {
         id: "team",

@@ -21,7 +21,7 @@ export class IndexPage extends PureComponent {
             <BigH1>
               Геосервисы для <br /> принятия решений
             </BigH1>
-            <GoNextLink to="/company" gatsby>
+            <GoNextLink to="/company" gatsby big>
               О компании
             </GoNextLink>
           </>

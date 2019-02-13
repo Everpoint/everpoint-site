@@ -166,7 +166,7 @@ export const LinkContainer = styled("li")`
     font-weight: 600;
     font-size: 1rem;
     @media (min-width: 1200px) {
-      font-size: 1.0714rem;
+      font-size: 1.2857rem;
     }
   }
   @media (max-width: ${mobileMenu}px) {
@@ -205,13 +205,18 @@ export const LinkContainer = styled("li")`
       font-size: 1rem;
     }
   }
-  &.jobs {
+  &:nth-child(4) {
+    display: flex;
     menu {
+      margin-top: 2.4rem;
       justify-content: flex-end;
       > ul {
         text-align: right;
       }
     }
+  }
+  menu {
+    width: 0;
   }
 `;
 

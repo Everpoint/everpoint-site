@@ -49,13 +49,12 @@ export class DesktopMenu extends Component {
       selectedId,
       onNavLinkClick,
       onSectionChange,
-      transitionEnd,
       data,
     } = this.props;
 
     return (
       <Menu>
-        {routes.map(({ text, id, route, outsideLink, additionalMenu, additionalMenuWidth }) => {
+        {routes.map(({ text, id, route, outsideLink, additionalMenu }) => {
           const item = data.find(item => item.id === id);
           const title = item ? item.title : text;
 
@@ -68,19 +67,9 @@ export class DesktopMenu extends Component {
               </LinkContainer>
             );
 
-          const listIdentifiersWithoutSpecialStyles = ["portfolio"];
-
-          const className =
-            additionalMenu && !listIdentifiersWithoutSpecialStyles.includes(id)
-              ? {
-                  [id]: true,
-                }
-              : {};
-
           return (
-            <LinkContainer key={id} {...className} style={{ width: additionalMenuWidth }}>
+            <LinkContainer key={id}>
               <Link
-                style={{ willChange: transitionEnd && "color" }}
                 onMouseOver={
                   additionalMenu ? () => onOpenAdditionalMenu(id) : onCloseAdditionalMenu
                 }

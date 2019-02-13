@@ -34,11 +34,12 @@ export const Name = styled("div")`
 
 export const Position = styled("div")`
   font-weight: 400;
-  font-size: 0.8571rem;
+  font-size: 1rem;
   color: rgba(33, 34, 36, 0.25);
   margin-bottom: 1rem;
   @media (max-width: 812px) and (orientation: landscape),
     (max-width: 767px) and (orientation: portrait) {
+    font-size: 0.8571rem;
     margin-bottom: 0.6rem;
   }
 `;

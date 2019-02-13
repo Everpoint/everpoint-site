@@ -44,7 +44,6 @@ export default {
   id: "portfolio",
   text: "Продукты и Решения",
   route: "/portfolio",
-  additionalMenuWidth: "12rem",
   additionalMenu: [
     {
       id: "products",

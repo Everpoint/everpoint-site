@@ -110,7 +110,6 @@ const styles = css`
   }
   .whatIsHeDoing {
     background-color: #ebf1f9;
-    font-style: italic;
   }
   .telegramBtn {
     right: 3.4285rem;
@@ -132,7 +131,7 @@ const styles = css`
       }
     }
     @media (max-width: 812px) and (orientation: landscape),
-    (max-width: 767px) and (orientation: portrait) {
+      (max-width: 767px) and (orientation: portrait) {
       width: 1.7142rem;
       height: 1.7142rem;
       svg {

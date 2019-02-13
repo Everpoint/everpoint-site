@@ -68,7 +68,7 @@ class MobileMsp extends PureComponent {
         <Section withoutPaddingBottom>
           <Article>
             <H2>Мобильный бизнес-навигатор</H2>
-            <Paragraph big>
+            <Paragraph>
               Когда нужно срочно предоставить краткую информацию о запланированном бизнесе
               потенциальным бизнес-партнерам и инвесторам, на помощь придут мобильные приложения,
               разработанные Everpoint совместно с{" "}

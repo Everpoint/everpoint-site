@@ -85,7 +85,7 @@ export class About extends Component {
               leftSide={
                 <>
                   <H2 as="h1">{markdownRemark && markdownRemark.frontmatter.title}</H2>
-                  <GoNextLink to="/news" gatsby>
+                  <GoNextLink to="/news" gatsby big>
                     Все комментарии
                   </GoNextLink>
                 </>

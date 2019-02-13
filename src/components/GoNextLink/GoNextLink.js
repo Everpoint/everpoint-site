@@ -38,20 +38,37 @@ const styles = css`
       font-size: 0.9285rem;
     }
     @media (max-width: 812px) and (orientation: landscape),
-    (max-width: 767px) and (orientation: portrait) {
+      (max-width: 767px) and (orientation: portrait) {
       font-size: 0.7857rem;
       svg {
         width: 0.71428rem;
       }
     }
   }
+  .big {
+    font-size: 1.2857rem;
+    @media (max-width: 991px) {
+      font-size: 1.2142rem;
+    }
+    @media (max-width: 812px) and (orientation: landscape),
+      (max-width: 767px) and (orientation: portrait) {
+      font-size: 1.0714rem;
+    }
+  }
 `;
 
-export const GoNextLink = ({ children, withArrow = true, gatsby = false, className, ...props }) => {
+export const GoNextLink = ({
+  children,
+  withArrow = true,
+  gatsby = false,
+  className,
+  big = false,
+  ...props
+}) => {
   const Container = gatsby ? GatsbyLink : NativeLink;
 
   return (
-    <Container className={cn(className, styles.goNextLink)} {...props}>
+    <Container className={cn(className, styles.goNextLink, { [styles.big]: big })} {...props}>
       {children}
       {withArrow && <ArrowNext />}
     </Container>

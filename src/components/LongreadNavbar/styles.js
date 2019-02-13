@@ -10,6 +10,7 @@ export const LongreadNavbarContainer = styled("nav")`
   will-change: transform;
   transition: background 200ms linear;
   a {
+    font-size: 1.0714rem;
     padding: 0.4rem;
     position: absolute;
     display: flex;
@@ -45,17 +46,9 @@ export const LongreadNavbarContainer = styled("nav")`
 
   @media (max-width: 812px) and (orientation: landscape),
     (max-width: 767px) and (orientation: portrait) {
-    height: 3.2857rem;
-  }
-  @media (max-width: 812px) and (orientation: landscape) {
-    a {
-      font-size: 0.8571rem;
-    }
-  }
-  @media (max-width: 812px) and (orientation: landscape),
-    (max-width: 767px) and (orientation: portrait) {
     height: 3.5rem;
     a {
+      font-size: 0.9285rem;
       svg {
         max-width: 0.8rem;
         max-height: 0.8rem;
