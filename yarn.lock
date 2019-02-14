@@ -1135,9 +1135,18 @@ ajv-keywords@^3.1.0:
   version "3.3.0"
   resolved "https://registry.yarnpkg.com/ajv-keywords/-/ajv-keywords-3.3.0.tgz#cb6499da9b83177af8bc1732b2f0a1a1a3aacf8c"
 
-ajv@^6.1.0, ajv@^6.4.0, ajv@^6.5.3, ajv@^6.5.5, ajv@^6.6.1:
+ajv@^6.1.0, ajv@^6.5.3, ajv@^6.5.5, ajv@^6.6.1:
   version "6.8.1"
   resolved "https://registry.yarnpkg.com/ajv/-/ajv-6.8.1.tgz#0890b93742985ebf8973cd365c5b23920ce3cb20"
+  dependencies:
+    fast-deep-equal "^2.0.1"
+    fast-json-stable-stringify "^2.0.0"
+    json-schema-traverse "^0.4.1"
+    uri-js "^4.2.2"
+
+ajv@^6.4.0:
+  version "6.9.1"
+  resolved "https://registry.yarnpkg.com/ajv/-/ajv-6.9.1.tgz#a4d3683d74abc5670e75f0b16520f70a20ea8dc1"
   dependencies:
     fast-deep-equal "^2.0.1"
     fast-json-stable-stringify "^2.0.0"
@@ -7714,9 +7723,9 @@ netlify-cms-backend-test@^2.0.6:
   dependencies:
     uuid "^3.3.2"
 
-netlify-cms-core@^2.5.1:
-  version "2.5.1"
-  resolved "https://registry.yarnpkg.com/netlify-cms-core/-/netlify-cms-core-2.5.1.tgz#8db2cc9663fdf87e52d7384c65b978b669b5b80d"
+netlify-cms-core@^2.6.0:
+  version "2.6.0"
+  resolved "https://registry.yarnpkg.com/netlify-cms-core/-/netlify-cms-core-2.6.0.tgz#a2eb745ceccd05ada6f1ab9beb56178ccb137e15"
   dependencies:
     ajv "^6.4.0"
     ajv-errors "^1.0.0"
@@ -7861,9 +7870,9 @@ netlify-cms-widget-markdown@^2.1.1:
     unist-builder "^1.0.2"
     unist-util-visit-parents "^1.1.1"
 
-netlify-cms-widget-number@^2.1.0:
-  version "2.1.0"
-  resolved "https://registry.yarnpkg.com/netlify-cms-widget-number/-/netlify-cms-widget-number-2.1.0.tgz#e505eb174beb4273171c33be27eaf278c5106f8e"
+netlify-cms-widget-number@^2.1.1:
+  version "2.1.1"
+  resolved "https://registry.yarnpkg.com/netlify-cms-widget-number/-/netlify-cms-widget-number-2.1.1.tgz#cff3b54369c9c153f9fb94baddc5d0f4861b5e40"
 
 netlify-cms-widget-object@^2.0.6:
   version "2.0.6"
@@ -7891,9 +7900,9 @@ netlify-cms-widget-text@^2.0.6:
   dependencies:
     react-textarea-autosize "^7.0.0"
 
-netlify-cms@^2.1.1:
-  version "2.4.1"
-  resolved "https://registry.yarnpkg.com/netlify-cms/-/netlify-cms-2.4.1.tgz#4907998c5ab117e30933cb6c42d86f3417e795ee"
+netlify-cms@2.4.2:
+  version "2.4.2"
+  resolved "https://registry.yarnpkg.com/netlify-cms/-/netlify-cms-2.4.2.tgz#fa5d0176a01f97ad5bdf8f8fcde5201d2cb3d034"
   dependencies:
     create-react-class "^15.6.0"
     emotion "^9.2.6"
@@ -7902,7 +7911,7 @@ netlify-cms@^2.1.1:
     netlify-cms-backend-github "^2.2.0"
     netlify-cms-backend-gitlab "^2.1.1"
     netlify-cms-backend-test "^2.0.6"
-    netlify-cms-core "^2.5.1"
+    netlify-cms-core "^2.6.0"
     netlify-cms-editor-component-image "^2.2.0"
     netlify-cms-media-library-uploadcare "^0.3.3"
     netlify-cms-widget-boolean "^2.0.5"
@@ -7913,7 +7922,7 @@ netlify-cms@^2.1.1:
     netlify-cms-widget-list "^2.1.1"
     netlify-cms-widget-map "^1.1.0"
     netlify-cms-widget-markdown "^2.1.1"
-    netlify-cms-widget-number "^2.1.0"
+    netlify-cms-widget-number "^2.1.1"
     netlify-cms-widget-object "^2.0.6"
     netlify-cms-widget-relation "^2.0.6"
     netlify-cms-widget-select "^2.1.1"
@@ -9594,7 +9603,15 @@ promise@^7.1.1:
   dependencies:
     asap "~2.0.3"
 
-prop-types@^15.0.0, prop-types@^15.5.10, prop-types@^15.5.4, prop-types@^15.5.6, prop-types@^15.5.7, prop-types@^15.5.8, prop-types@^15.6.0, prop-types@^15.6.1, prop-types@^15.6.2:
+prop-types@^15.0.0, prop-types@^15.5.10, prop-types@^15.5.6, prop-types@^15.5.7:
+  version "15.7.2"
+  resolved "https://registry.yarnpkg.com/prop-types/-/prop-types-15.7.2.tgz#52c41e75b8c87e72b9d9360e0206b99dcbffa6c5"
+  dependencies:
+    loose-envify "^1.4.0"
+    object-assign "^4.1.1"
+    react-is "^16.8.1"
+
+prop-types@^15.5.4, prop-types@^15.5.8, prop-types@^15.6.0, prop-types@^15.6.1, prop-types@^15.6.2:
   version "15.6.2"
   resolved "https://registry.yarnpkg.com/prop-types/-/prop-types-15.6.2.tgz#05d5ca77b4453e985d60fc7ff8c859094a497102"
   dependencies:
@@ -9933,7 +9950,7 @@ react-input-autosize@^2.2.1:
   dependencies:
     prop-types "^15.5.8"
 
-react-is@^16.6.0, react-is@^16.6.3, react-is@^16.7.0:
+react-is@^16.6.0, react-is@^16.6.3, react-is@^16.7.0, react-is@^16.8.1:
   version "16.8.1"
   resolved "https://registry.yarnpkg.com/react-is/-/react-is-16.8.1.tgz#a80141e246eb894824fb4f2901c0c50ef31d4cdb"
 
@@ -12511,8 +12528,8 @@ warning@^3.0.0:
     loose-envify "^1.0.0"
 
 warning@^4.0.1:
-  version "4.0.2"
-  resolved "https://registry.yarnpkg.com/warning/-/warning-4.0.2.tgz#aa6876480872116fa3e11d434b0d0d8d91e44607"
+  version "4.0.3"
+  resolved "https://registry.yarnpkg.com/warning/-/warning-4.0.3.tgz#16e9e077eb8a86d6af7d64aa1e05fd85b4678ca3"
   dependencies:
     loose-envify "^1.0.0"
 
