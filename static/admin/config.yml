@@ -2,7 +2,6 @@ backend:
   name: github
   repo: Everpoint/everpoint-site
   branch: master
-  site_domain: https://kre1z0.github.io/
 
 media_folder: static/img
 public_folder: /img
