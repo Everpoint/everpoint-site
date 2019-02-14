@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+    <g fill="none" fill-rule="evenodd" opacity=".5">
+        <circle cx="12" cy="12" r="11" stroke="#D2E3EE" stroke-width="2"/>
+        <text fill="#D2E3EE" font-family="Montserrat-Medium, Montserrat" font-size="16" font-weight="400" letter-spacing="-.784">
+            <tspan x="6.5" y="18">₽</tspan>
+        </text>
+    </g>
+</svg>

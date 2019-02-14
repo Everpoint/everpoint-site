@@ -1,45 +1,45 @@
 backend:
-  name: git-gateway
+  name: github
+  repo: everadmin/everpoint-admin-panel
   branch: master
+  site_domain: everpoint.netlify.com
 
 media_folder: static/img
 public_folder: /img
 
 collections:
-  - name: "blog"
-    label: "Blog"
-    folder: "src/pages/blog"
-    create: true
+  - name: "about"
+    label: "Сми о нас"
+    widget: "string"
+    folder: "src/data/about"
     slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    create: true
     fields:
-      - {label: "Template Key", name: "templateKey", widget: "hidden", default: "blog-post"}
-      - {label: "Title", name: "title", widget: "string"}
-      - {label: "Publish Date", name: "date", widget: "datetime"}
-      - {label: "Description", name: "description", widget: "text"}
-      - {label: "Body", name: "body", widget: "markdown"}
-      - {label: "Tags", name: "tags", widget: "list"}
-
+      - {label: "Template Key", name: "templateKey", widget: "hidden", default: "about"}
+      - {label: "Заголовок", name: "title", widget: "string", pattern: ["^.{1,100}$", "Не больше 100 символов"]}
+      - {label: "Дата публикации", name: "date", widget: "datetime"}
+      - {label: "Краткое описание", name: "description", widget: "text", pattern: ["^.{1,250}$", "Не больше 250 символов"] }
+      - {label: "Ссылка", name: "link", widget: "string"}
+      - {label: "Логотип", name: "logo", widget: image}
+      - {label: "Отображать на главной", name: "isVisible", widget: "boolean", default: false}
   - name: "pages"
-    label: "Pages"
+    label: "Страницы"
     files:
-      - file: "src/pages/about/index.md"
-        label: "About"
-        name: "about"
+      - file: "src/data/pages/about-page.md"
+        label: "Новостная страница, родительский маршрут /about"
+        name: "about-page"
         fields:
           - {label: "Template Key", name: "templateKey", widget: "hidden", default: "about-page"}
-          - {label: "Title", name: "title", widget: "string"}
-          - {label: "Body", name: "body", widget: "markdown"}
-      - file: "src/pages/products/index.md"
-        label: "Products Page"
-        name: "products"
+          - {label: "page Id", name: "id", widget: "hidden"}
+          - {label: "Новостной блок /about", name: "title", widget: "string"}
+      - file: "src/data/pages/contact-page.md"
+        label: "Страница контактов, родительский маршрут /contacts"
+        name: "contact-page"
         fields:
-          - {label: "Template Key", name: "templateKey", widget: "hidden", default: "product-page"}
-          - {label: Title, name: title, widget: string}
-          - {label: Image, name: image, widget: image}
-          - {label: Heading, name: heading, widget: string}
-          - {label: Description, name: description, widget: string}
-          - {label: Intro, name: intro, widget: object, fields: [{label: Heading, name: heading, widget: string}, {label: Description, name: description, widget: text}, {label: Blurbs, name: blurbs, widget: list, fields: [{label: Image, name: image, widget: image}, {label: Text, name: text, widget: text}]}]}
-          - {label: Main, name: main, widget: object, fields: [{label: Heading, name: heading, widget: string}, {label: Description, name: description, widget: text}, {label: Image1, name: image1, widget: object, fields: [{label: Image, name: image, widget: image}, {label: Alt, name: alt, widget: string}]}, {label: Image2, name: image2, widget: object, fields: [{label: Image, name: image, widget: image}, {label: Alt, name: alt, widget: string}]}, {label: Image3, name: image3, widget: object, fields: [{label: Image, name: image, widget: image}, {label: Alt, name: alt, widget: string}]}]}
-          - {label: Testimonials, name: testimonials, widget: list, fields: [{label: Quote, name: quote, widget: string}, {label: Author, name: author, widget: string}]}
-          - {label: Full_image, name: full_image, widget: image}
-          - {label: Pricing, name: pricing, widget: object, fields: [{label: Heading, name: heading, widget: string}, {label: Description, name: description, widget: string}, {label: Plans, name: plans, widget: list, fields: [{label: Plan, name: plan, widget: string}, {label: Price, name: price, widget: string}, {label: Description, name: description, widget: string}, {label: Items, name: items, widget: list}]}]}
+            - {label: "Template Key", name: "templateKey", widget: "hidden", default: "contact-page"}
+            - {label: "page Id", name: "id", widget: "hidden"}
+            - {label: "Заголовок", name: "title", widget: "string"}
+            - {label: "Адрес", name: "address", widget: "string"}
+            - {label: "Телефон", name: "phone", widget: "string"}
+            - {label: "Email", name: "email", widget: "string"}
+
