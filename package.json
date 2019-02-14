@@ -74,7 +74,7 @@
     "clean": "rimraf .cache public",
     "build": "npm run clean && gatsby build",
     "develop": "npm run clean && gatsby develop",
-    "deploy": "git remote set-url origin https://github.com/everadmin/everpoint-admin-panel.git && gatsby build && gh-pages -d public -b master && git remote set-url origin https://github.com/Everpoint/everpoint-site.git",
+    "deploy": "git remote set-url origin https://github.com/kre1z0/kre1z0.github.io.git && gatsby build && gh-pages -d public -b master && git remote set-url origin https://github.com/Everpoint/everpoint-site.git",
     "serve": "gatsby serve",
     "format": "prettier --trailing-comma es5 --no-semi --single-quote --write \"{gatsby-*.js,src/**/*.js}\"",
     "test": "echo \"Error: no test specified\" && exit 1"
