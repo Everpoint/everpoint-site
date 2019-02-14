@@ -59,6 +59,7 @@ export class MainLayoutProviderComponent extends Component {
   }
 
   componentWillUnmount() {
+    clearTimeout(this.timer);
     window.removeEventListener("resize", this.onResize);
     window.removeEventListener("keydown", this.onKeyDown);
   }
