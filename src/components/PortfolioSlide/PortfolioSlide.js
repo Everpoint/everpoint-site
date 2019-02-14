@@ -4,14 +4,7 @@ import PropTypes from "prop-types";
 import { getPixelRatioPropName } from "../../utils/utils";
 import { ImagesDownloadListener } from "../../components/ImagesDownloadListener/ImagesDownloadListener";
 import { Swiper } from "../../components/Swiper/Swiper";
-import {
-  PortfolioSlideContainer,
-  SliderBackground,
-  ControlBlock,
-  PrevBtn,
-  NextBtn,
-  LongreadBackground,
-} from "./styles";
+import { PortfolioSlideContainer, SliderBackground, LongreadBackground } from "./styles";
 import { Content } from "./Content";
 import { Screenshot } from "./Screenshot";
 import { BackendComponent } from "../Backend/Backend";
@@ -107,7 +100,6 @@ export class PortfolioSlide extends PureComponent {
       projectBackgroundColor,
       text,
       description,
-      onSectionChange,
       selectedSectionIndex,
       sections,
       id,
@@ -151,25 +143,6 @@ export class PortfolioSlide extends PureComponent {
             text={text}
             description={description}
           />
-          <ControlBlock
-            onMouseOver={e => e.stopPropagation()}
-            onMouseOut={e => e.stopPropagation()}
-          >
-            <PrevBtn
-              disabled={selectedSectionIndex === 0}
-              onClick={e => {
-                e.stopPropagation();
-                onSectionChange({ value: -1 });
-              }}
-            />
-            <NextBtn
-              disabled={sections.length === selectedSectionIndex + 1}
-              onClick={e => {
-                e.stopPropagation();
-                onSectionChange({ value: 1 });
-              }}
-            />
-          </ControlBlock>
         </PortfolioSlideContainer>
         <PaginationSimple
           pageCount={sections.length}

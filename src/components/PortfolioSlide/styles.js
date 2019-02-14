@@ -1,8 +1,6 @@
 import styled, { css } from "astroturf";
 import { TransitionGroup } from "react-transition-group";
 
-import { Button } from "../../components/Buttons/Buttons";
-
 export const PortfolioSlideContainer = styled("div")`
   cursor: pointer;
   display: flex;
@@ -130,21 +128,6 @@ export const Content = styled("div")`
   }
 `;
 
-export const ControlBlock = styled("div")`
-  z-index: 2;
-  position: absolute;
-  height: 4rem;
-  right: 0;
-  bottom: -1rem;
-  transform: translate(1.1428rem, 1.1428rem);
-  @media (max-width: 1199px) {
-    bottom: -1.4rem;
-  }
-  @media (max-width: 991px) {
-    display: none;
-  }
-`;
-
 export const MobileTitle = styled("h1")`
   color: #262c37;
   font-size: 1.2857rem;
@@ -157,55 +140,6 @@ export const MobileTitle = styled("h1")`
   }
   @media (max-width: 812px) and (max-height: 320px) {
     margin-top: -1rem;
-  }
-`;
-
-const ControlBtn = styled(Button)`
-  position: relative;
-  width: 4rem;
-  height: 4rem;
-  transition: all 100ms ease;
-  background-color: #262c37;
-
-  &:after {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    content: "";
-    background-size: 34% 34%;
-    background-repeat: no-repeat;
-    background-position: center center;
-    background-image: url("../../assets/img/icons/arrow.svg");
-  }
-
-  @media (hover: hover) {
-    &:hover {
-      background-color: #90c53d;
-    }
-  }
-
-  &.disabled {
-    background-color: #262c37;
-    cursor: default;
-    &:after {
-      opacity: 0.25;
-    }
-  }
-  @media (max-width: 1199px) {
-    width: 2.8571rem;
-    height: 2.8571rem;
-  }
-`;
-
-export const PrevBtn = styled(ControlBtn)`
-  margin-right: 0.5rem;
-`;
-
-export const NextBtn = styled(ControlBtn)`
-  &:after {
-    transform: rotate(180deg);
   }
 `;
 
