@@ -1,11 +1,25 @@
-import halfPhoneX1 from "../../assets/img/portfolio/mobileMsp/msp/half-phone.png";
-import halfPhoneX2 from "../../assets/img/portfolio/mobileMsp/msp/half-phone@2x.png";
-import halfPhoneX3 from "../../assets/img/portfolio/mobileMsp/msp/half-phone@3x.png";
+import top1X1 from "../../assets/img/portfolio/mobileMsp/mobiles/top1/top1.png";
+import top1X2 from "../../assets/img/portfolio/mobileMsp/mobiles/top1/top1@2x.png";
+import top1X3 from "../../assets/img/portfolio/mobileMsp/mobiles/top1/top1@3x.png";
 
-import phoneRightX1 from '../../assets/img/portfolio/mobileMsp/mobiles/mobile-mockup.png';
-import phoneRightX2 from '../../assets/img/portfolio/mobileMsp/mobiles/mobile-mockup@2x.png';
-import phoneRightX3 from '../../assets/img/portfolio/mobileMsp/mobiles/mobile-mockup@3x.png';
+import footerLeftPhoneX1 from "../../assets/img/portfolio/mobileMsp/footer/left.png";
+import footerLeftPhoneX2 from "../../assets/img/portfolio/mobileMsp/footer/left@2x.png";
+import footerLeftPhoneX3 from "../../assets/img/portfolio/mobileMsp/footer/left@3x.png";
 
-export const halfPhone = { x1: halfPhoneX1, x2: halfPhoneX2, x3: halfPhoneX3 };
+import footerRightPhoneX1 from "../../assets/img/portfolio/mobileMsp/footer/right.png";
+import footerRightPhoneX2 from "../../assets/img/portfolio/mobileMsp/footer/right@2x.png";
+import footerRightPhoneX3 from "../../assets/img/portfolio/mobileMsp/footer/right@3x.png";
 
-export const phoneRight = { x1: phoneRightX1, x2: phoneRightX2, x3: phoneRightX3 };
+export const halfPhoneTop1 = { x1: top1X1, x2: top1X2, x3: top1X3 };
+
+export const footerPhoneLeft = {
+  x1: footerLeftPhoneX1,
+  x2: footerLeftPhoneX2,
+  x3: footerLeftPhoneX3,
+};
+
+export const footerPhoneRight = {
+  x1: footerRightPhoneX1,
+  x2: footerRightPhoneX2,
+  x3: footerRightPhoneX3,
+};

@@ -5,10 +5,10 @@ import { isMobile } from "../../utils/browser";
 import { SectionWithIcon } from "../../components/MobileMspLongread/SectionWithIcon/SectionWithIcon";
 import phones from "../../assets/img/portfolio/mobileMsp/phones.jpg";
 import { Header } from "../../components/PortfolioLongreadHeader/Header";
-import { Section } from '../../components/Elements/Section';
-import { Article } from '../../components/Elements/Article';
+import { Section } from "../../components/Elements/Section";
+import { Article } from "../../components/Elements/Article";
 import { H2 } from "../../components/Typography/Headlines";
-import { Paragraph } from '../../components/Typography/Paragraph';
+import { Paragraph } from "../../components/Typography/Paragraph";
 import { AndroidStoreLink, IosStoreLink } from "../../components/StoreLinks/StoreLinks";
 import { OutsideLink } from "../../components/OutsideLink/OutsideLink";
 import { BnSection } from "../../components/MobileMspLongread/BnSection/BnSection";
@@ -52,7 +52,6 @@ class MobileMsp extends PureComponent {
           projectId={projectId}
           location={location}
           {...mobileMsp}
-          lightNavy
           containerClassName={styles.mobileMspHeader}
           leftSideClassName={styles.mobileMspHeaderLeftSide}
           rightSideClassName={styles.mobileMspHeaderRightSide}

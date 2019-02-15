@@ -119,7 +119,6 @@ export class TransitionSlide extends Component {
           status={status}
           disableTransition={disableTransition || scrollEvent}
           direction={sectionDirection}
-          id={id}
           title={title}
           text={text}
           description={description}

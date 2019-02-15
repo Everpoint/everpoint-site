@@ -112,37 +112,15 @@ const color = css`
       }
     }
   }
-  .mobileMsp {
-    a {
-      color: rgba(10, 35, 66, 0.5);
-      svg path {
-        fill: rgba(10, 35, 66, 0.5);
-        stroke: rgba(10, 35, 66, 0.5);
-        opacity: 1;
-      }
-      @media (hover: hover) {
-        &:hover {
-          color: #0a2342;
-          svg {
-            path {
-              opacity: 1;
-              fill: #0a2342;
-              stroke: #0a2342;
-            }
-          }
-        }
-      }
-    }
-  }
   .mobileMspFixed {
     a {
       @media (hover: hover) {
         &:hover {
-          color: #67bcdc;
+          color: #44c3f8;
           svg {
             path {
-              fill: #67bcdc;
-              stroke: #67bcdc;
+              fill: #44c3f8;
+              stroke: #44c3f8;
             }
           }
         }

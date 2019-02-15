@@ -13,15 +13,11 @@ export class Content extends Component {
     description: PropTypes.string,
     direction: PropTypes.number,
     title: PropTypes.string,
-    id: PropTypes.string,
     status: PropTypes.string,
   };
 
   render() {
-    const { status, direction, disableTransition, id, description, title, text } = this.props;
-    const isMobileMsp = id === "mobileMsp";
-
-    const color = isMobileMsp ? "#0a2342" : "#fff";
+    const { status, direction, disableTransition, description, title, text } = this.props;
 
     return (
       <ContentBlock
@@ -32,16 +28,12 @@ export class Content extends Component {
           transition[status],
         )}
       >
-        <Title as="h2" style={{ color }}>
-          {title || text}
-        </Title>
-        <Description style={{ color }}>
+        <Title as="h2">{title || text}</Title>
+        <Description>
           {description ||
             "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aperiam eaque eligendi iusto labore nisi quas."}
         </Description>
-        <GoNextLink className={cn(isMobileMsp ? styles.mobileMsp : styles.white)}>
-          Подробнее
-        </GoNextLink>
+        <GoNextLink className={styles.white}>Подробнее</GoNextLink>
       </ContentBlock>
     );
   }

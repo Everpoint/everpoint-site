@@ -5,8 +5,6 @@ import cn from "classnames";
 import { BnIconsParallax } from "../../../components/MobileMspLongread/IconsParallax/BnIconsParallax/BnIconsParallax";
 import { SupportIconsParallax } from "../../../components/MobileMspLongread/IconsParallax/SupportIconsParallax/SupportIconsParallax";
 import { VideoInMobileMockup } from "../VideoInMobileMockup/VideoInMobileMockup";
-import bnMobileTestVideo from "../../../videos/mobileMsp/BN_mobile_3.mp4";
-import bnMobileTestVideoPoster from "../../../videos/mobileMsp/posters/BN_mobile_3_000.jpg";
 import { OutsideLink } from "../../../components/OutsideLink/OutsideLink";
 import { Article } from "../../../components/Elements/Article";
 import { Section } from "../../../components/Elements/Section";
@@ -15,6 +13,15 @@ import { Paragraph } from "../../Typography/Paragraph";
 import { UnorderedList } from "../../Typography/UnorderedList";
 import { msp, support } from "../SectionWithIcon/SectionWithIcon";
 import { Top1 } from "../Top1/Top1";
+
+import poster1 from "../../../videos/mobileMsp/posters/BN_mobile_1_000.jpg";
+import poster2 from "../../../videos/mobileMsp/posters/BN_mobile_2_000.jpg";
+import poster3 from "../../../videos/mobileMsp/posters/MP_mobile1_000.jpg";
+import poster4 from "../../../videos/mobileMsp/posters/MP_mobile2_000.jpg";
+import video1 from "../../../videos/mobileMsp/BN_mobile_1.mp4";
+import video2 from "../../../videos/mobileMsp/BN_mobile_2.mp4";
+import video3 from "../../../videos/mobileMsp/MP_mobile1.mp4";
+import video4 from "../../../videos/mobileMsp/MP_mobile2.mp4";
 
 import styles, { BnBlock, WithVideoContent } from "./styles";
 
@@ -53,15 +60,8 @@ export class BnSection extends Component {
             </Paragraph>
           </Article>
         </Section>
-        <BnIconsParallax>
-          <Section
-            className={cn(
-              styles.bnWithVideo,
-              styles.bnWithVideoLeft,
-              styles.gradient,
-              styles.gradientToTop,
-            )}
-          >
+        <BnIconsParallax className={styles.firstBlockWithVideos}>
+          <Section className={cn(styles.bnWithVideo, styles.bnWithVideoLeft)}>
             <Article>
               <H3>Минимум исходных данных</H3>
               <WithVideoContent className={styles.mobilePortraitOrder2}>
@@ -89,27 +89,15 @@ export class BnSection extends Component {
               <VideoInMobileMockup
                 className={styles.mobilePortraitOrder1}
                 ratio={ratio}
-                video={bnMobileTestVideo}
-                poster={bnMobileTestVideoPoster}
+                video={video1}
+                poster={poster1}
               />
             </Article>
           </Section>
-          <Section
-            className={cn(
-              styles.bnWithVideo,
-              styles.bnWithVideoRight,
-              styles.gradient,
-              styles.gradientToBottom,
-            )}
-          >
+          <Section className={cn(styles.bnWithVideo, styles.bnWithVideoRight)}>
             <Article>
               <H3>Детальный бизнес-план</H3>
-              <VideoInMobileMockup
-                mockUpLeft
-                ratio={ratio}
-                video={bnMobileTestVideo}
-                poster={bnMobileTestVideoPoster}
-              />
+              <VideoInMobileMockup mockUpLeft ratio={ratio} video={video2} poster={poster2} />
               <WithVideoContent>
                 <H3>Детальный бизнес-план</H3>
                 <Paragraph>
@@ -182,8 +170,8 @@ export class BnSection extends Component {
             </WithVideoContent>
             <VideoInMobileMockup
               ratio={ratio}
-              video={bnMobileTestVideo}
-              poster={bnMobileTestVideoPoster}
+              video={video3}
+              poster={poster3}
               className={styles.mobilePortraitOrder1}
             />
           </Article>
@@ -192,12 +180,7 @@ export class BnSection extends Component {
           <Section className={cn(styles.bnWithVideo, styles.bnWithVideoLeft)}>
             <Article>
               <H3>Каталог франшиз</H3>
-              <VideoInMobileMockup
-                mockUpLeft
-                ratio={ratio}
-                video={bnMobileTestVideo}
-                poster={bnMobileTestVideoPoster}
-              />
+              <VideoInMobileMockup mockUpLeft ratio={ratio} video={video4} poster={poster4} />
               <WithVideoContent>
                 <H3>Каталог франшиз</H3>
                 <Paragraph>

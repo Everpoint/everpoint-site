@@ -2,10 +2,10 @@ import React, { PureComponent } from "react";
 import PropTypes from "prop-types";
 
 import { IosStoreLink, AndroidStoreLink } from "../../../components/StoreLinks/StoreLinks";
-import { Article } from '../../../components/Elements/Article';
-import {  H3 } from "../../../components/Typography/Headlines";
-import { Paragraph } from '../../../components/Typography/Paragraph';
-import { halfPhone, phoneRight } from "../images";
+import { Article } from "../../../components/Elements/Article";
+import { H3 } from "../../../components/Typography/Headlines";
+import { Paragraph } from "../../../components/Typography/Paragraph";
+import { footerPhoneLeft, footerPhoneRight } from "../images";
 
 import { FooterContainer, Store, Mobiles, LeftSide, RightSide } from "./styles";
 
@@ -36,7 +36,7 @@ export class Footer extends PureComponent {
                 <IosStoreLink />
                 <AndroidStoreLink />
               </Store>
-              <img src={halfPhone[ratio]} alt="phone-left" />
+              <img src={footerPhoneLeft[ratio]} alt="phone-left" />
             </Article>
           </LeftSide>
           <RightSide isMobilePlatform={mobilePlatform}>
@@ -46,7 +46,7 @@ export class Footer extends PureComponent {
                 <IosStoreLink />
                 <AndroidStoreLink />
               </Store>
-              <img src={phoneRight[ratio]} alt="phone-right" />
+              <img src={footerPhoneRight[ratio]} alt="phone-right" />
             </Article>
           </RightSide>
         </Mobiles>

@@ -151,8 +151,7 @@ export default {
           type: "Малый бизнес",
           // groupName: "Малый бизнес",
           text: "Мобильный бизнес-навигатор",
-          projectBackgroundColor: "#e0f0f6",
-          textColor: "#0a2342",
+          projectBackgroundColor: "#44C3F8",
           screenshots: [
             {
               x1: mobileFirstX1,

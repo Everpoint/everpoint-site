@@ -56,6 +56,7 @@ export const SliderBackground = styled("div")`
 `;
 
 export const Title = styled("h2")`
+  color: #fff;
   font-size: 1.4285rem;
   font-weight: 600;
   margin-bottom: 0.84rem;
@@ -285,20 +286,6 @@ const styles = css`
         color: rgba(255, 255, 255, 1);
         svg {
           fill: rgba(255, 255, 255, 1);
-        }
-      }
-    }
-  }
-  a.mobileMsp {
-    color: rgba(10, 35, 66, 0.5);
-    > svg {
-      fill: rgba(10, 35, 66, 0.5);
-    }
-    @media (hover: hover) {
-      &:hover {
-        color: #0a2342;
-        svg {
-          fill: #0a2342;
         }
       }
     }

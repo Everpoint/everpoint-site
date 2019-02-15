@@ -1,6 +1,7 @@
 import styled from "astroturf";
 
 export const FooterContainer = styled("div")`
+  color: #fff;
   overflow: hidden;
   position: relative;
   > article:first-child {
@@ -84,7 +85,7 @@ export const Store = styled("div")`
 
 const Side = styled("div")`
   transition: background-color 200ms ease-in;
-  background-color: #e0f0f6;
+  background-color: #44c3f8;
   width: 50%;
   display: flex;
   height: calc(40.7142rem + 17.8571rem);
@@ -106,11 +107,17 @@ const Side = styled("div")`
       left: 50%;
       max-width: 30.5714rem;
       transition: transform 200ms ease-in;
+      transform: translate(-50%, 59%);
     }
   }
   @media (hover: hover) {
     &:hover {
-      background-color: #d2e6ed;
+      background-color: #31aee2;
+      > article {
+        img {
+          transform: translate(-50%, calc(59% - 5.7142rem));
+        }
+      }
     }
   }
   @media (max-width: 1199px) {
@@ -131,6 +138,7 @@ const Side = styled("div")`
       }
       img {
         max-width: 19.5714rem;
+        transform: translate(-50%, calc(59% - 5.7142rem));
       }
     }
     height: calc(26.7142rem + 17.8571rem);
@@ -154,6 +162,9 @@ const Side = styled("div")`
   @media (max-width: 812px) and (orientation: landscape) {
     > article {
       padding-top: 9rem;
+      img {
+        transform: translate(-50%, calc(66% - 5.7142rem));
+      }
     }
     height: calc(25rem + 9rem);
   }
@@ -163,36 +174,17 @@ const Side = styled("div")`
       h3 {
         height: auto;
       }
+      img {
+        transform: translate(-50%, calc(66% - 5.7142rem));
+      }
     }
   }
 `;
 
 export const LeftSide = styled(Side)`
   justify-content: flex-end;
-  img {
-    transform: translate(-50%, 28%);
-  }
-  @media (hover: hover) {
-    &:hover {
-      img {
-        transform: translate(-50%, calc(28% - 5.7142rem));
-      }
-    }
-  }
-  @media (max-width: 991px) {
-    img {
-      transform: translate(-50%, 0);
-    }
-    @media (hover: hover) {
-      &:hover {
-        img {
-          transform: translate(-50%, 0);
-        }
-      }
-    }
-  }
   &.isMobilePlatform {
-    background-color: #e0f0f6;
+    background-color: #44c3f8;
   }
   @media (max-width: 767px) and (orientation: portrait) {
     > article {
@@ -209,40 +201,18 @@ export const LeftSide = styled(Side)`
 
 export const RightSide = styled(Side)`
   justify-content: flex-start;
-  img {
-    transform: translate(-50%, 59%);
-  }
-  @media (hover: hover) {
-    &:hover {
-      img {
-        transform: translate(-50%, calc(59% - 5.7142rem));
-      }
-    }
-  }
   @media (max-width: 991px) {
     h3 {
       max-width: 17rem;
     }
-    img {
-      transform: translate(-50%, calc(59% - 5.7142rem));
-    }
   }
   &.isMobilePlatform {
-    background-color: #d2e6ed;
-  }
-  @media (max-width: 812px) and (orientation: landscape),
-    (max-width: 767px) and (orientation: portrait) {
-    img {
-      transform: translate(-50%, calc(66% - 5.7142rem));
-    }
+    background-color: #31aee2;
   }
   @media (max-width: 767px) and (orientation: portrait) {
     height: 24.4rem;
     > article {
       padding-top: 2rem;
-      img {
-        transform: translate(calc(-50% - 0.8rem), calc(66% - 5.7142rem));
-      }
     }
   }
 `;

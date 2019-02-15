@@ -62,7 +62,6 @@ const styles = css`
       width: 34.4rem;
       animation-delay: 0ms;
       z-index: 4;
-      color: #0a2342;
       align-self: flex-end;
       padding-bottom: 6rem;
       @media (max-width: 1199px) {
@@ -79,9 +78,6 @@ const styles = css`
         h1 {
           max-width: 15rem;
         }
-      }
-      label {
-        background-color: rgba(67, 127, 163, 0.25);
       }
       @media (max-width: 767px) and (orientation: portrait) {
         width: auto;
