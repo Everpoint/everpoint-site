@@ -3,30 +3,6 @@ import { css } from "astroturf";
 export const enterTimeout = 200;
 export const exitTimeout = 400;
 
-export const scaleIn = css`
-  .entering {
-    transform: scale(0.5);
-  }
-  .entered {
-    transform: scale(1);
-  }
-  .exiting {
-    transform: scale(1.5);
-  }
-`;
-
-export const scaleOut = css`
-  .entering {
-    transform: scale(1.5);
-  }
-  .entered {
-    transform: scale(1);
-  }
-  .exiting {
-    transform: scale(0.5);
-  }
-`;
-
 export const transition = css`
   .entered {
     transition-duration: ${enterTimeout}ms;
@@ -37,18 +13,6 @@ export const transition = css`
     transition-duration: ${exitTimeout}ms;
     transition-timing-function: ease-out;
     transition-property: transform, opacity;
-  }
-`;
-
-export const slideUp = css`
-  .entering {
-    transform: translateY(100%);
-  }
-  .entered {
-    transform: translateY(0px);
-  }
-  .exiting {
-    transform: translateY(-100%);
   }
 `;
 

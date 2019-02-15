@@ -7,7 +7,7 @@ import { format } from "../../utils/date";
 import { OutsideLink } from "../../components/OutsideLink/OutsideLink";
 import { Swiper } from "../../components/Swiper/Swiper";
 import styles, { AboutCardContainer, Title, Date as DateBlock, Description, Logo } from "./styles";
-import { slideDown, slideLeft, slideRight, slideUp, transition } from "../PortfolioSlide/styles";
+import { slideDown, slideLeft, slideRight, slideUp, transition } from "../../styles/transition";
 import { fade } from "../../components/Transition/animation";
 
 export class News extends PureComponent {
@@ -80,7 +80,7 @@ export class NewsCard extends PureComponent {
 
     return (
       <Swiper onSwiped={this.onSwiped}>
-        <TransitionGroup appear>
+        <TransitionGroup>
           <Transition
             key={`${id}-news-${direction}`}
             timeout={{

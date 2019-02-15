@@ -35,7 +35,7 @@ export class MspVideo extends PureComponent {
               <span>Шаг 1</span>Выбор территории для ведения бизнеса
             </Step>
             <VideoContainer className={styles.mspVideoWithControl}>
-              <TransitionGroup appear>
+              <TransitionGroup>
                 <Transition
                   key={`${selectedVideoIndex}-msp-video`}
                   timeout={{

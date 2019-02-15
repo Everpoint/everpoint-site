@@ -1,13 +1,12 @@
 import React, { PureComponent } from "react";
 import PropTypes from "prop-types";
+import { Transition } from "react-transition-group";
 
 import { getPixelRatioPropName } from "../../utils/utils";
 import { ImagesDownloadListener } from "../../components/ImagesDownloadListener/ImagesDownloadListener";
 import { Swiper } from "../../components/Swiper/Swiper";
-import { PortfolioSlideContainer, SliderBackground, LongreadBackground } from "./styles";
-import { Content } from "./Content";
-import { Screenshot } from "./Screenshot";
-import { BackendComponent } from "../Backend/Backend";
+import { ContainerTransitionGroup, LongreadBackground } from "./styles";
+import { TransitionSlide } from "./TransitionSlide";
 import { PaginationSimple } from "../../components/Pagination/Simple/PaginationSimple";
 import { Portal } from "../../components/Portal/Portal";
 
@@ -26,12 +25,14 @@ export class PortfolioSlide extends PureComponent {
     sectionDirection: PropTypes.number,
     navigate: PropTypes.func,
     disableTransition: PropTypes.bool,
+    isSwipeEvent: PropTypes.bool,
   };
 
   state = {
-    hovered: false,
     goToLongread: false,
     top: 0,
+    up: 0,
+    down: 0,
     left: 0,
     width: 0,
     height: 0,
@@ -50,8 +51,15 @@ export class PortfolioSlide extends PureComponent {
 
   onResize = () => {
     if (this.slide) {
-      const { top, left, width, height } = this.slide.getBoundingClientRect();
-      this.setState({ top, left, width, height });
+      const { top, bottom, left, width, height } = this.slide.getBoundingClientRect();
+      this.setState({
+        top,
+        left,
+        width,
+        height,
+        up: top + height,
+        down: window.innerHeight - bottom + height,
+      });
     }
   };
 
@@ -59,9 +67,9 @@ export class PortfolioSlide extends PureComponent {
     const { onSectionChange } = this.props;
 
     if (isLeft && xRatio > 25) {
-      onSectionChange({ value: 1 });
+      onSectionChange({ value: 1, isSwipeEvent: true });
     } else if (isRight && xRatio > 25) {
-      onSectionChange({ value: -1 });
+      onSectionChange({ value: -1, isSwipeEvent: true });
     }
   };
 
@@ -95,18 +103,14 @@ export class PortfolioSlide extends PureComponent {
   };
 
   render() {
-    const { hovered, top, left, width, height, goToLongread, ratio } = this.state;
+    const { top, down, up, left, width, height, goToLongread, ratio } = this.state;
     const {
       projectBackgroundColor,
-      text,
-      description,
       selectedSectionIndex,
       sections,
       id,
-      title,
       screenshots,
-      sectionDirection,
-      disableTransition,
+      isSwipeEvent,
     } = this.props;
 
     const images = Array.isArray(screenshots)
@@ -116,34 +120,27 @@ export class PortfolioSlide extends PureComponent {
     return (
       <Swiper onSwiped={this.onSwiped}>
         <ImagesDownloadListener images={images} />
-        <PortfolioSlideContainer
-          onClick={this.goToLongread}
-          ref={this.onContainerRef}
-          onMouseOver={() => this.setState({ hovered: true })}
-          onMouseOut={() => this.setState({ hovered: false })}
-        >
-          <BackendComponent sections={sections} selectedSectionIndex={selectedSectionIndex} />
-          <SliderBackground
-            disableTransition={disableTransition}
-            hovered={hovered}
-            style={{ background: projectBackgroundColor }}
-          />
-          <Screenshot
-            disableTransition={disableTransition}
-            direction={sectionDirection}
-            id={id}
-            text={text}
-            screenshots={images}
-          />
-          <Content
-            disableTransition={disableTransition}
-            direction={sectionDirection}
-            id={id}
-            title={title}
-            text={text}
-            description={description}
-          />
-        </PortfolioSlideContainer>
+        <ContainerTransitionGroup>
+          <Transition
+            key={`${id}-portfolio-slide-animation`}
+            timeout={{
+              enter: 0,
+              exit: isSwipeEvent ? 200 : 400,
+            }}
+          >
+            {status => (
+              <TransitionSlide
+                status={status}
+                onContainerRef={this.onContainerRef}
+                goToLongread={this.goToLongread}
+                images={images}
+                up={up}
+                down={down}
+                {...this.props}
+              />
+            )}
+          </Transition>
+        </ContainerTransitionGroup>
         <PaginationSimple
           pageCount={sections.length}
           currentPage={selectedSectionIndex + 1}

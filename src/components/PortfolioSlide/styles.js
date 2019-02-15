@@ -1,12 +1,26 @@
 import styled, { css } from "astroturf";
 import { TransitionGroup } from "react-transition-group";
 
+export const ContainerTransitionGroup = styled(TransitionGroup)`
+  width: 100%;
+  height: 100%;
+  position: relative;
+`;
+
 export const PortfolioSlideContainer = styled("div")`
   cursor: pointer;
   display: flex;
   flex-direction: column;
   width: 100%;
   height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  &.disableTransition {
+    opacity: 1;
+    transition: none;
+    transform: none;
+  }
 `;
 
 export const SliderBackground = styled("div")`
@@ -84,7 +98,7 @@ export const Description = styled("p")`
 
 export const Content = styled("div")`
   will-change: opacity, transform;
-  z-index: 1;
+  z-index: 44;
   padding: 0 3.5714rem 3.5714rem 3.5714rem;
   position: absolute;
   left: 0;
@@ -125,6 +139,8 @@ export const Content = styled("div")`
   }
   &.disableTransition {
     transition: none;
+    opacity: 1;
+    transform: none;
   }
 `;
 
@@ -143,7 +159,7 @@ export const MobileTitle = styled("h1")`
   }
 `;
 
-export const ScreenshotTransitionGroup = styled(TransitionGroup)`
+export const ScreenshotTransitionGroup = styled("div")`
   display: flex;
   align-items: center;
   position: relative;
@@ -174,6 +190,7 @@ export const ScreenshotTransitionGroup = styled(TransitionGroup)`
 `;
 
 export const Screenshot = styled("img")`
+  z-index: 44;
   will-change: opacity, transform;
   position: absolute;
   top: 16%;
@@ -203,7 +220,9 @@ export const Screenshot = styled("img")`
     top: 8%;
   }
   &.disableTransition {
+    opacity: 1;
     transition: none;
+    transform: none;
   }
 `;
 
@@ -218,72 +237,40 @@ export const LongreadBackground = styled("div")`
   }
 `;
 
-export const transition = css`
+export const transitionScroll = css`
   .entered {
-    transition-duration: 200ms;
-    transition-timing-function: linear;
+    transition-duration: 400ms;
+    transition-timing-function: ease-in;
     transition-property: transform, opacity;
   }
   .exiting {
-    transition-duration: 200ms;
-    transition-timing-function: linear;
+    transition-duration: 400ms;
+    transition-timing-function: ease-in;
     transition-property: transform, opacity;
   }
 `;
 
-export const slideUp = css`
+export const slideUpScroll = css`
   .entering {
     pointer-events: none;
-    transform: translateY(40%);
   }
   .entered {
     transform: translateY(0px);
   }
   .exiting {
     pointer-events: none;
-    transform: translateY(-40%);
   }
 `;
 
-export const slideDown = css`
+export const slideDownScroll = css`
   .entering {
     pointer-events: none;
-    transform: translateY(-40%);
   }
   .entered {
     transform: translateY(0px);
   }
   .exiting {
     pointer-events: none;
-    transform: translateY(40%);
-  }
-`;
-
-export const slideLeft = css`
-  .entering {
-    pointer-events: none;
-    transform: translateX(20%);
-  }
-  .entered {
-    transform: translateX(0px);
-  }
-  .exiting {
-    pointer-events: none;
-    transform: translateX(-20%);
-  }
-`;
-
-export const slideRight = css`
-  .entering {
-    pointer-events: none;
-    transform: translateX(-20%);
-  }
-  .entered {
-    transform: translateX(0px);
-  }
-  .exiting {
-    pointer-events: none;
-    transform: translateX(20%);
   }
 `;
 

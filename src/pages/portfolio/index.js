@@ -1,4 +1,4 @@
-import React, { PureComponent } from "react";
+import React, { Component } from "react";
 
 import { MainLayoutConsumer } from "../../components/MainLayoutProvider/MainLayoutProvider";
 import { MainAnimation } from "../../components/MainAnimation/MainAnimation";
@@ -8,7 +8,7 @@ import { PortfolioSlide } from "../../components/PortfolioSlide/PortfolioSlide";
 import styles from "../../styles/portfolio";
 import { MobileTitle } from "../../components/PortfolioSlide/styles";
 
-class Portfolio extends PureComponent {
+class Portfolio extends Component {
   render() {
     const { location, navigate, disableTransition } = this.props;
     const currentRoute = getRouteByLocation(location);
@@ -16,7 +16,7 @@ class Portfolio extends PureComponent {
 
     return (
       <MainLayoutConsumer>
-        {({ selectedSectionIndex, onSectionChange, sectionDirection }) => {
+        {({ selectedSectionIndex, onSectionChange, sectionDirection, isSwipeEvent }) => {
           const section = sections[selectedSectionIndex];
 
           return (
@@ -40,6 +40,7 @@ class Portfolio extends PureComponent {
               containerClassName={styles.portfolioContainer}
               rightSide={
                 <PortfolioSlide
+                  isSwipeEvent={isSwipeEvent}
                   disableTransition={disableTransition}
                   sectionDirection={sectionDirection}
                   sections={sections}

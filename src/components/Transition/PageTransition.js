@@ -12,7 +12,7 @@ export class PageTransition extends PureComponent {
     return (
       <MainLayoutConsumer>
         {({ onExited, disableTransition }) => (
-          <TransitionGroup appear>
+          <TransitionGroup>
             <ReactTransition
               key={location.pathname}
               timeout={{

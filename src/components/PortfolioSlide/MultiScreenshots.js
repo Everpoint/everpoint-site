@@ -7,6 +7,7 @@ import { ImagesDownloadListener } from "../../components/ImagesDownloadListener/
 const MultiScreenshotsContainer = styled("div")`
   display: flex;
   align-items: center;
+  z-index: 44;
   > img {
     position: relative;
     margin-top: 14%;
@@ -30,7 +31,8 @@ const MultiScreenshotsContainer = styled("div")`
     }
   }
   &.startAnimation,
-  &.disableTransition {
+  &.disableTransition,
+  &.scrollEvent {
     > img {
       transition: transform 500ms cubic-bezier(0.2, 1, 0.6, 1) 0s;
       &:nth-child(2) {
@@ -139,6 +141,7 @@ const MultiScreenshotsContainer = styled("div")`
 export class MultiScreenshots extends Component {
   static propTypes = {
     screenshots: PropTypes.arrayOf(PropTypes.string),
+    scrollEvent: PropTypes.bool,
   };
 
   state = {
@@ -148,11 +151,12 @@ export class MultiScreenshots extends Component {
 
   render() {
     const { imagesIsLoaded, startAnimation } = this.state;
-    const { screenshots } = this.props;
+    const { screenshots, scrollEvent } = this.props;
 
     return (
       <MultiScreenshotsContainer
         {...this.props}
+        scrollEvent={scrollEvent}
         startAnimation={startAnimation}
         onTransitionEnd={() => this.setState({ startAnimation: true })}
       >
