@@ -1,4 +1,5 @@
 module.exports = {
+  pathPrefix: "site.everpoint.ru",
   siteMetadata: {
     title: "Everpoint-side",
   },
