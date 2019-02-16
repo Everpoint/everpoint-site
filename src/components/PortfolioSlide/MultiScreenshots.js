@@ -8,26 +8,27 @@ const MultiScreenshotsContainer = styled("div")`
   display: flex;
   align-items: center;
   z-index: 44;
+  top: 0;
+  left: 0;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  margin: 2rem 0 0 -2rem;
   > img {
     position: relative;
-    margin-top: 14%;
-    height: auto;
+    max-height: 100%;
     &:nth-child(1) {
       z-index: 3;
-      max-height: 54vh;
-      max-height: calc(var(--vh, 1vh) * 54);
     }
     &:nth-child(2) {
-      transform: translateX(-101%);
+      transform: translateX(-91%);
       z-index: 2;
-      max-height: calc(54vh - 5rem);
-      max-height: calc(var(--vh, 1vh) * 54 - 5rem);
+      max-height: 90%;
     }
     &:nth-child(3) {
-      max-height: calc(54vh - 7rem);
-      max-height: calc(var(--vh, 1vh) * 54 - 7rem);
       z-index: 1;
-      transform: translateX(-217%);
+      transform: translateX(-171%);
+      max-height: 80%;
     }
   }
   &.startAnimation,
@@ -36,55 +37,22 @@ const MultiScreenshotsContainer = styled("div")`
     > img {
       transition: transform 500ms cubic-bezier(0.2, 1, 0.6, 1) 0s;
       &:nth-child(2) {
-        transform: translateX(-30%);
+        transform: translateX(-18%);
       }
       &:nth-child(3) {
-        transform: translateX(-68%);
+        transform: translateX(-52%);
       }
     }
   }
-  @media (max-width: 1199px) {
-    > img {
-      &:nth-child(1) {
-        max-width: 38%;
-      }
-      &:nth-child(2) {
-        max-width: calc(38% - 2rem);
-      }
-      &:nth-child(3) {
-        max-width: calc(38% - 3rem);
-      }
-    }
-  }
-  @media (max-width: 991px) {
-    > img {
-      margin-top: 7rem;
-      &:nth-child(1) {
-        max-width: 44%;
-      }
-      &:nth-child(2) {
-        max-width: calc(44% - 2rem);
-      }
-      &:nth-child(3) {
-        max-width: calc(44% - 3rem);
-      }
-    }
+  @media (min-width: 1200px) and (orientation: landscape) {
+    margin: 1rem 0 0 -2rem;
   }
   @media (max-width: 812px) and (orientation: landscape) {
-    margin-top: 4%;
     width: 100%;
     height: 100%;
     flex-direction: row-reverse;
+    margin: 0;
     > img {
-      &:nth-child(-n + 3) {
-        margin-top: 0;
-        width: 100%;
-        max-height: none;
-        left: 5%;
-      }
-      &:nth-child(1) {
-        max-width: 40%;
-      }
       &:nth-child(2) {
         transform: translateX(101%);
       }
@@ -109,31 +77,13 @@ const MultiScreenshotsContainer = styled("div")`
     }
   }
   @media (max-width: 767px) and (orientation: portrait) {
-    > img {
-      &:nth-child(-n + 3) {
-        margin-top: 14%;
-      }
-    }
+    margin: 3rem 0 0 -0.7rem;
   }
-  @media (max-height: 700px) and (min-width: 1200px) and (orientation: landscape) {
-    > img {
-      margin-top: 4%;
-    }
-  }
+
   &.disableTransition {
     transition: none;
     > img {
       transition: none;
-    }
-  }
-  @media (max-width: 767px) and (max-height: 460px) and (orientation: portrait) {
-    > img {
-      &:nth-child(-n + 3) {
-        margin-top: 34%;
-      }
-      &:nth-child(1) {
-        max-width: 40%;
-      }
     }
   }
 `;

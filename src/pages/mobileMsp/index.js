@@ -71,8 +71,14 @@ class MobileMsp extends PureComponent {
               Когда нужно срочно предоставить краткую информацию о запланированном бизнесе
               потенциальным бизнес-партнерам и инвесторам, на помощь придут мобильные приложения,
               разработанные Everpoint совместно с{" "}
-              <OutsideLink href="https://mobileup.ru/business-navigator">MobileUp</OutsideLink> по
-              заказу Корпорации по развитию малого и среднего предпринимательства.
+              <OutsideLink
+                className={styles.outsideLinkColor}
+                style={{ color: "#67bcdc" }}
+                href="https://mobileup.ru/business-navigator"
+              >
+                MobileUp
+              </OutsideLink>{" "}
+              по заказу Корпорации по развитию малого и среднего предпринимательства.
             </Paragraph>
             <SectionWithIcon ratio={ratio} />
           </Article>

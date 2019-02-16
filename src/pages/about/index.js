@@ -137,32 +137,32 @@ export class About extends Component {
 
 export default About;
 
-// export const aboutPageQuery = graphql`
-//   query LimitNews {
-//     allMarkdownRemark(
-//       sort: { fields: [frontmatter___isVisible, frontmatter___date], order: [DESC, DESC] }
-//       filter: { frontmatter: { templateKey: { eq: "about" } } }
-//       limit: 5
-//     ) {
-//       totalCount
-//       edges {
-//         node {
-//           id
-//           frontmatter {
-//             logo
-//             title
-//             date
-//             description
-//             link
-//             isVisible
-//           }
-//         }
-//       }
-//     }
-//     markdownRemark(frontmatter: { templateKey: { eq: "about-page" } }) {
-//       frontmatter {
-//         title
-//       }
-//     }
-//   }
-// `;
+export const aboutPageQuery = graphql`
+  query LimitNews {
+    allMarkdownRemark(
+      sort: { fields: [frontmatter___isVisible, frontmatter___date], order: [DESC, DESC] }
+      filter: { frontmatter: { templateKey: { eq: "about" } } }
+      limit: 5
+    ) {
+      totalCount
+      edges {
+        node {
+          id
+          frontmatter {
+            logo
+            title
+            date
+            description
+            link
+            isVisible
+          }
+        }
+      }
+    }
+    markdownRemark(frontmatter: { templateKey: { eq: "about-page" } }) {
+      frontmatter {
+        title
+      }
+    }
+  }
+`;

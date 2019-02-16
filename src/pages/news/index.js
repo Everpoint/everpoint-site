@@ -134,30 +134,30 @@ const News = props => (
 
 export default News;
 
-// export const newsPageQuery = graphql`
-//   query AllNews {
-//     allMarkdownRemark(
-//       sort: { fields: [frontmatter___date], order: [DESC] }
-//       filter: { frontmatter: { templateKey: { eq: "about" } } }
-//     ) {
-//       totalCount
-//       edges {
-//         node {
-//           id
-//           frontmatter {
-//             logo
-//             title
-//             date(formatString: "DD.MM.YYYY")
-//             description
-//             link
-//           }
-//         }
-//       }
-//     }
-//     markdownRemark(frontmatter: { templateKey: { eq: "about-page" } }) {
-//       frontmatter {
-//         title
-//       }
-//     }
-//   }
-// `;
+export const newsPageQuery = graphql`
+  query AllNews {
+    allMarkdownRemark(
+      sort: { fields: [frontmatter___date], order: [DESC] }
+      filter: { frontmatter: { templateKey: { eq: "about" } } }
+    ) {
+      totalCount
+      edges {
+        node {
+          id
+          frontmatter {
+            logo
+            title
+            date(formatString: "DD.MM.YYYY")
+            description
+            link
+          }
+        }
+      }
+    }
+    markdownRemark(frontmatter: { templateKey: { eq: "about-page" } }) {
+      frontmatter {
+        title
+      }
+    }
+  }
+`;

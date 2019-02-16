@@ -22,6 +22,7 @@ class Portfolio extends Component {
           return (
             <MainAnimation
               {...this.props}
+              backgroundClassName={styles.zoomRussia}
               disableTransition={disableTransition}
               willChangeLeftSideClassName={styles.portfolioLeftSide}
               leftSide={

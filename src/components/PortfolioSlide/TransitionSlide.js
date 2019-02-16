@@ -21,6 +21,7 @@ export class TransitionSlide extends Component {
     selectedSectionIndex: PropTypes.number,
     sections: PropTypes.arrayOf(PropTypes.object),
     isSwipeEvent: PropTypes.bool,
+    disableTransition: PropTypes.bool,
     up: PropTypes.number,
     down: PropTypes.number,
   };
@@ -104,7 +105,10 @@ export class TransitionSlide extends Component {
         <SliderBackground
           disableTransition={disableTransition}
           hovered={hovered}
-          style={{ background: projectBackgroundColor }}
+          style={{
+            background:
+              isSwipeEvent && !nextSlide ? "rgba(255, 255, 255, 0)" : projectBackgroundColor,
+          }}
         />
         <Screenshoots
           isNext={nextSlide}

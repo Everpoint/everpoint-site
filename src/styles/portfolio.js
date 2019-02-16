@@ -83,6 +83,10 @@ const styles = css`
       }
     }
   }
+  .zoomRussia {
+    background-size: 80%;
+    background-position: right center;
+  }
 `;
 
 export default styles;

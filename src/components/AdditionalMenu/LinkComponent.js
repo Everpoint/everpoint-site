@@ -9,18 +9,32 @@ export class LinkComponent extends Component {
     little: PropTypes.bool,
   };
 
-  shouldComponentUpdate({ selectedId: nextSelectedId }, nextState) {
+  state = {
+    isMobile: false,
+  };
+
+  componentDidMount() {
+    const vw = window.innerWidth;
+    this.setState({ isMobile: vw <= 991 });
+  }
+
+  shouldComponentUpdate({ selectedId: nextSelectedId }, { isMobile: nextIsMobile }) {
+    const { isMobile } = this.state;
     const { selectedId, id } = this.props;
 
-    return selectedId !== nextSelectedId && (nextSelectedId === id || selectedId === id);
+    return (
+      (selectedId !== nextSelectedId && (nextSelectedId === id || selectedId === id)) ||
+      nextIsMobile !== isMobile
+    );
   }
 
   render() {
+    const { isMobile } = this.state;
     const { text, little = false, id, selectedId, onSectionChange } = this.props;
 
     return (
       <Link
-        onClick={() => onSectionChange({ id, isClickEvent: true })}
+        onClick={() => onSectionChange({ id, isClickEvent: !isMobile, isSwipeEvent: isMobile })}
         little={little}
         isActive={selectedId === id}
       >

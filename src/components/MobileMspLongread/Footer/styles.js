@@ -51,7 +51,10 @@ export const FooterContainer = styled("div")`
       top: 0;
       left: 0;
       transform: none;
-      height: 12.8571rem;
+      height: 14rem;
+      @media (max-width: 376px) {
+        height: 16rem;
+      }
     }
   }
 `;
@@ -89,6 +92,7 @@ const Side = styled("div")`
   width: 50%;
   display: flex;
   height: calc(40.7142rem + 17.8571rem);
+  overflow: hidden;
   > article {
     position: relative;
     display: flex;
@@ -188,6 +192,7 @@ export const LeftSide = styled(Side)`
   }
   @media (max-width: 767px) and (orientation: portrait) {
     > article {
+      height: 47rem;
       padding-top: 0;
       justify-content: flex-end;
       img {

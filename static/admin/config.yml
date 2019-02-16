@@ -16,7 +16,7 @@ collections:
     fields:
       - {label: "Template Key", name: "templateKey", widget: "hidden", default: "about"}
       - {label: "Заголовок", name: "title", widget: "string", pattern: ["^.{1,100}$", "Не больше 100 символов"]}
-      - {label: "Дата публикации", name: "date", widget: "datetime"}
+      - {label: "Дата публикации", name: "date", widget: "date"}
       - {label: "Краткое описание", name: "description", widget: "text", pattern: ["^.{1,250}$", "Не больше 250 символов"] }
       - {label: "Ссылка", name: "link", widget: "string"}
       - {label: "Логотип", name: "logo", widget: image}

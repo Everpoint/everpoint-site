@@ -1,6 +1,6 @@
 import { css } from "astroturf";
 
-export const enterTimeout = 200;
+export const enterTimeout = 0;
 export const exitTimeout = 400;
 
 export const scaleIn = css`
@@ -29,12 +29,12 @@ export const scaleOut = css`
 
 export const transition = css`
   .entered {
-    transition-duration: ${enterTimeout}ms;
+    transition-duration: 400ms;
     transition-timing-function: linear;
     transition-property: transform, opacity;
   }
   .exiting {
-    transition-duration: ${exitTimeout}ms;
+    transition-duration: 400ms;
     transition-timing-function: linear;
     transition-property: transform, opacity;
   }

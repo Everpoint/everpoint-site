@@ -20,6 +20,9 @@ export const PortfolioSlideContainer = styled("div")`
     opacity: 1;
     transition: none;
     transform: none;
+    &:not(:first-child) {
+      visibility: hidden;
+    }
   }
 `;
 
@@ -167,13 +170,16 @@ export const ScreenshotTransitionGroup = styled("div")`
   left: -7.1428rem;
   flex-grow: 1;
   flex-shrink: 0;
-  max-height: calc(100% - 14.2857rem);
+  max-height: calc(100% - 13rem);
   @media (max-width: 1199px) {
     left: -3.4rem;
   }
+  @media (max-width: 991px) and (orientation: portrait) {
+    max-height: calc(100% - 11rem);
+  }
   @media (max-width: 812px) and (orientation: landscape) {
     top: 50%;
-    left: -17.4rem;
+    left: -18rem;
     display: flex;
     align-items: center;
     width: 100%;
@@ -194,17 +200,17 @@ export const Screenshot = styled("img")`
   z-index: 44;
   will-change: opacity, transform;
   position: absolute;
-  top: 16%;
+  top: 18%;
   max-width: 46.4285rem;
   max-height: 41vh;
   height: auto;
   box-shadow: 1.1428rem 1.1428rem 2.2857rem 0 rgba(50, 57, 69, 0.25);
   border-radius: 0.2857rem;
-  @media (max-width: 1199px) {
+  @media (max-width: 1199px), (max-height: 768px) {
     max-width: 100%;
     top: 12%;
   }
-  @media (max-width: 991px) {
+  @media (max-width: 991px) and (orientation: portrait) {
     top: 18%;
   }
   @media (max-width: 812px) and (orientation: landscape) {
@@ -216,9 +222,6 @@ export const Screenshot = styled("img")`
   @media (max-width: 767px) and (orientation: portrait) {
     top: auto;
     bottom: 0;
-  }
-  @media (max-height: 700px) and (min-width: 1200px) and (orientation: landscape) {
-    top: 8%;
   }
   &.disableTransition {
     opacity: 1;

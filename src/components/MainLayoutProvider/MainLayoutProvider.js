@@ -38,7 +38,7 @@ export class MainLayoutProviderComponent extends Component {
     disableTransition: true,
 
     // sections
-    isSwipeEvent: null,
+    isSwipeEvent: false,
     selectedSectionIndex: 0,
     sections: [],
     sectionDirection: 1,

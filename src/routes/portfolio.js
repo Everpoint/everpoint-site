@@ -8,15 +8,14 @@ import geomonitoringX3 from "../assets/img/portfolio/slide-screenshots/geomonito
 import evergisOnlineX1 from "../assets/img/portfolio/slide-screenshots/evergisOnline/1-ec-header.png";
 import evergisOnlineX2 from "../assets/img/portfolio/slide-screenshots/evergisOnline/1-ec-header@2x.png";
 import evergisOnlineX3 from "../assets/img/portfolio/slide-screenshots/evergisOnline/1-ec-header@3x.png";
-import mobileFirstX1 from "../assets/img/portfolio/slide-screenshots/mobileMsp/bitmap.png";
-import mobileFirstX2 from "../assets/img/portfolio/slide-screenshots/mobileMsp/bitmap@2x.png";
-import mobileFirstX3 from "../assets/img/portfolio/slide-screenshots/mobileMsp/bitmap@3x.png";
-import mobileSecondX1 from "../assets/img/portfolio/slide-screenshots/mobileMsp/screen-2.png";
-import mobileSecondX2 from "../assets/img/portfolio/slide-screenshots/mobileMsp/screen-2@2x.png";
-import mobileSecondX3 from "../assets/img/portfolio/slide-screenshots/mobileMsp/screen-2@3x.png";
-import mobileThirdX1 from "../assets/img/portfolio/slide-screenshots/mobileMsp/screen-3.png";
-import mobileThirdX2 from "../assets/img/portfolio/slide-screenshots/mobileMsp/screen-3@2x.png";
-import mobileThirdX3 from "../assets/img/portfolio/slide-screenshots/mobileMsp/screen-3@3x.png";
+
+import mobileFirstX1 from "../assets/img/portfolio/slide-screenshots/mobileMsp/phone-1.png";
+import mobileFirstX2 from "../assets/img/portfolio/slide-screenshots/mobileMsp/phone-1@2x.png";
+import mobileSecondX1 from "../assets/img/portfolio/slide-screenshots/mobileMsp/phone-2.png";
+import mobileSecondX2 from "../assets/img/portfolio/slide-screenshots/mobileMsp/phone-2@2x.png";
+import mobileThirdX1 from "../assets/img/portfolio/slide-screenshots/mobileMsp/phone-3.png";
+import mobileThirdX2 from "../assets/img/portfolio/slide-screenshots/mobileMsp/phone-3@2x.png";
+
 
 import eoPic1X1 from "../assets/img/portfolio/evergisOnline/screenshots/pic-1.png";
 import eoPic1X2 from "../assets/img/portfolio/evergisOnline/screenshots/pic-1@2x.png";
@@ -156,17 +155,17 @@ export default {
             {
               x1: mobileFirstX1,
               x2: mobileFirstX2,
-              x3: mobileFirstX3,
+              x3: mobileFirstX2,
             },
             {
               x1: mobileSecondX1,
               x2: mobileSecondX2,
-              x3: mobileSecondX3,
+              x3: mobileSecondX2,
             },
             {
               x1: mobileThirdX1,
               x2: mobileThirdX2,
-              x3: mobileThirdX3,
+              x3: mobileThirdX2,
             },
           ],
           description:

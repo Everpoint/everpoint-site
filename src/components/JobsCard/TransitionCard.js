@@ -62,7 +62,7 @@ export class TransitionCard extends PureComponent {
     const { card, direction } = this.props;
 
     return (
-      <TransitionGroup>
+      <TransitionGroup appear>
         <Transition
           key={`${card.id}-jobs-card-${direction}`}
           timeout={{
