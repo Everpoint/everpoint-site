@@ -45,6 +45,13 @@ export const Container = styled("div")`
       margin-right: 0.8rem;
     }
   }
+  @media (max-width: 812px) and (orientation: landscape),
+    (max-width: 767px) and (orientation: portrait) {
+    video {
+      top: 4.4%;
+      height: 86.2%;
+    }
+  }
 `;
 
 export const MockUp = styled("img")`

@@ -13,6 +13,7 @@ export const injectGlobals = () => {
       text-rendering: optimizeLegibility;
       -webkit-font-smoothing: antialiased;
       letter-spacing: 0;
+      max-width: 100vw;
     }
     body {
       overflow: hidden;

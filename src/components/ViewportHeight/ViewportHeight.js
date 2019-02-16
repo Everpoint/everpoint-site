@@ -21,6 +21,8 @@ export class ViewportHeight extends Component {
   };
 
   timer = 0;
+  interval = 0;
+  vh = 0;
 
   componentDidMount() {
     const { isMobile } = this.state;
@@ -28,10 +30,10 @@ export class ViewportHeight extends Component {
     if (isMobile) {
       window.addEventListener("orientationchange", this.onOrientationChange);
       this.onOrientationChange();
+    } else {
+      this.onResize();
+      window.addEventListener("resize", this.onResize);
     }
-
-    this.onResize();
-    window.addEventListener("resize", this.onResize);
   }
 
   componentWillUnmount() {
@@ -39,24 +41,31 @@ export class ViewportHeight extends Component {
 
     if (isMobile) {
       clearTimeout(this.timer);
+      clearTimeout(this.interval);
       window.removeEventListener("orientationchange", this.onOrientationChange);
+    } else {
+      window.removeEventListener("resize", this.onResize);
     }
-
-    window.removeEventListener("resize", this.onResize);
   }
 
   onOrientationChange = () => {
     clearTimeout(this.timer);
+    clearTimeout(this.interval);
 
-    this.setState({
-      resizeIsPossible: true,
-    });
+    this.setState({ resizeIsPossible: true });
 
-    this.timer = setTimeout(() => {
-      this.setState({
-        resizeIsPossible: false,
-      });
-    }, 1000);
+    this.interval = setInterval(() => {
+      this.onResize();
+    }, 0);
+
+    setTimeout(() => {
+      this.destroyUpdateVh();
+    }, 2000);
+  };
+
+  destroyUpdateVh = () => {
+    this.setState({ resizeIsPossible: false });
+    clearInterval(this.interval);
   };
 
   onResize = () => {
@@ -67,36 +76,21 @@ export class ViewportHeight extends Component {
       },
     } = browser();
 
-    if (!resizeIsPossible && isMobile) {
-      return;
-    }
-
     const vh =
       name !== "Safari" ? document.documentElement.clientHeight * 0.01 : window.innerHeight * 0.01;
 
+    if ((!resizeIsPossible && isMobile) || vh === this.vh) {
+      return;
+    }
+
     const axis = Math.abs(window.orientation);
 
-    if (axis === 90 && name === "Safari") {
+    if (axis === 90 && isMobile) {
       window.scrollTo(0, 1);
     }
 
+    this.vh = vh;
     document.documentElement.style.setProperty("--vh", `${vh}px`);
-
-    const setVhPropertyFromOrientationChanged = () => {
-      const timeout = 120;
-      return new window.Promise(resolve => {
-        const go = (i, height0) => {
-          window.innerHeight !== height0 || i >= timeout
-            ? resolve()
-            : window.requestAnimationFrame(() => go(i + 1, height0));
-        };
-        go(0, window.innerHeight);
-      });
-    };
-
-    setVhPropertyFromOrientationChanged().then(() =>
-      document.documentElement.style.setProperty("--vh", `${window.innerHeight * 0.01}px`),
-    );
   };
 
   render() {
