@@ -7,10 +7,11 @@ import { AdditionalMenu } from "../../components/AdditionalMenu/AdditionalMenu";
 import { PortfolioSlide } from "../../components/PortfolioSlide/PortfolioSlide";
 import styles from "../../styles/portfolio";
 import { MobileTitle } from "../../components/PortfolioSlide/styles";
+import withRouter from "../../hoc/withRouter";
 
-class Portfolio extends Component {
+class PortfolioBase extends Component {
   render() {
-    const { location, navigate, disableTransition } = this.props;
+    const { location, navigate, disableTransition, isPortfolioPage } = this.props;
     const currentRoute = getRouteByLocation(location);
     const sections = sectionsFromAdditionalMenu(currentRoute.additionalMenu);
 
@@ -29,6 +30,7 @@ class Portfolio extends Component {
                 <>
                   <MobileTitle>{section && section.parentTitle}</MobileTitle>
                   <AdditionalMenu
+                    isPortfolioPage={isPortfolioPage()}
                     className={styles.menu}
                     selectedId={section && section.id}
                     onSectionChange={onSectionChange}
@@ -59,4 +61,4 @@ class Portfolio extends Component {
   }
 }
 
-export default Portfolio;
+export default withRouter(PortfolioBase);
