@@ -26,6 +26,7 @@ export class PortfolioSlide extends PureComponent {
     navigate: PropTypes.func,
     disableTransition: PropTypes.bool,
     isSwipeEvent: PropTypes.bool,
+    scrollTop: PropTypes.number,
   };
 
   state = {
@@ -47,6 +48,14 @@ export class PortfolioSlide extends PureComponent {
 
   componentWillUnmount() {
     window.removeEventListener("resize", this.onResize);
+  }
+
+  componentDidUpdate({ scrollTop: prevScrollTop }, prevState) {
+    const { scrollTop } = this.props;
+
+    if (prevScrollTop !== scrollTop) {
+      this.onResize();
+    }
   }
 
   onResize = () => {

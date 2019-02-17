@@ -17,7 +17,7 @@ class PortfolioBase extends Component {
 
     return (
       <MainLayoutConsumer>
-        {({ selectedSectionIndex, onSectionChange, sectionDirection, isSwipeEvent }) => {
+        {({ selectedSectionIndex, onSectionChange, sectionDirection, isSwipeEvent, scrollTop }) => {
           const section = sections[selectedSectionIndex];
 
           return (
@@ -43,6 +43,7 @@ class PortfolioBase extends Component {
               containerClassName={styles.portfolioContainer}
               rightSide={
                 <PortfolioSlide
+                  scrollTop={scrollTop}
                   isSwipeEvent={isSwipeEvent}
                   disableTransition={disableTransition}
                   sectionDirection={sectionDirection}
