@@ -17,13 +17,10 @@ const styles = css`
     background-repeat: no-repeat;
   }
   .earth {
-    background-image: url(../../assets/img/main-slides/earth.svg);
   }
   .europeRussia {
-    background-image: url(../../assets/img/main-slides/russia.svg);
   }
   .moscow {
-    background-image: url(../../assets/img/main-slides/moscow.svg);
     @media (max-width: 767px) and (orientation: portrait) {
       background-size: 344%;
       background-position: 51% 51%;
@@ -31,15 +28,12 @@ const styles = css`
   }
   .busPngPreview {
     background-position: 75% center;
-    background-image: url(../../assets/img/main-slides/bus.png);
   }
   .bus {
     background-position: 75% center;
-    background-image: url(../../assets/img/main-slides/bus.svg);
   }
   .metro {
     background-position: 75% center;
-    background-image: url(../../assets/img/main-slides/metro.svg);
   }
   .bus,
   .metro,

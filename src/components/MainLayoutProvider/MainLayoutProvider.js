@@ -3,7 +3,9 @@ import { Location } from "@reach/router";
 import debounce from "lodash/debounce";
 import throttle from "lodash/throttle";
 
+import { preloadBgImages } from "../../components/Background/getBackground";
 import { ScrollBar } from "./styles";
+import { ImagesDownloadListener } from "../../components/ImagesDownloadListener/ImagesDownloadListener";
 import { Swiper } from "../../components/Swiper/Swiper";
 import { mobileMenu as mobileMenuWidth } from "../../components/Navbar/styles";
 import { navigateTo, getRouteByLocation, getRouteById, routes } from "../../routes";
@@ -561,6 +563,7 @@ export class MainLayoutProviderComponent extends Component {
           disableTransition,
         }}
       >
+        <ImagesDownloadListener images={preloadBgImages} />
         <Swiper
           preventDefaultTouchmoveEvent={preventDefaultTouchmoveEvent}
           onSwiping={this.onSwiping}
