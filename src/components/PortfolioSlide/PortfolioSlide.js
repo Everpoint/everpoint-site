@@ -38,12 +38,13 @@ export class PortfolioSlide extends PureComponent {
     width: 0,
     height: 0,
     ratio: "x1",
+    images: [],
   };
 
   componentDidMount() {
     this.onResize();
+    this.setImages();
     window.addEventListener("resize", this.onResize);
-    this.setState({ ratio: getPixelRatioPropName() });
   }
 
   componentWillUnmount() {
@@ -70,6 +71,23 @@ export class PortfolioSlide extends PureComponent {
         down: window.innerHeight - bottom + height,
       });
     }
+  };
+
+  setImages = () => {
+    const { sections } = this.props;
+
+    const ratio = getPixelRatioPropName();
+    const images = [];
+
+    sections.forEach(({ screenshots }) => {
+      if (Array.isArray(screenshots)) {
+        screenshots.forEach(item => images.push(item[ratio]));
+      } else {
+        images.push(screenshots[ratio]);
+      }
+    });
+
+    this.setState({ ratio, images });
   };
 
   onSwiped = ({ isLeft, isRight, xRatio }) => {
@@ -112,7 +130,7 @@ export class PortfolioSlide extends PureComponent {
   };
 
   render() {
-    const { top, down, up, left, width, height, goToLongread, ratio } = this.state;
+    const { top, down, up, left, width, height, goToLongread, ratio, images } = this.state;
     const {
       projectBackgroundColor,
       selectedSectionIndex,
@@ -122,7 +140,7 @@ export class PortfolioSlide extends PureComponent {
       isSwipeEvent,
     } = this.props;
 
-    const images = Array.isArray(screenshots)
+    const sectionImages = Array.isArray(screenshots)
       ? screenshots.map(img => img[ratio])
       : screenshots[ratio];
 
@@ -142,7 +160,7 @@ export class PortfolioSlide extends PureComponent {
                 status={status}
                 onContainerRef={this.onContainerRef}
                 goToLongread={this.goToLongread}
-                images={images}
+                images={sectionImages}
                 up={up}
                 down={down}
                 {...this.props}

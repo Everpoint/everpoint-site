@@ -20,7 +20,7 @@ export class ViewportHeight extends Component {
     resizeIsPossible: true,
   };
 
-  timer = 0;
+  timeout = 0;
   interval = 0;
   vh = 0;
 
@@ -37,19 +37,14 @@ export class ViewportHeight extends Component {
   }
 
   componentWillUnmount() {
-    const { isMobile } = this.state;
-
-    if (isMobile) {
-      clearTimeout(this.timer);
-      clearTimeout(this.interval);
-      window.removeEventListener("orientationchange", this.onOrientationChange);
-    } else {
-      window.removeEventListener("resize", this.onResize);
-    }
+    clearTimeout(this.timeout);
+    clearTimeout(this.interval);
+    window.removeEventListener("orientationchange", this.onOrientationChange);
+    window.removeEventListener("resize", this.onResize);
   }
 
   onOrientationChange = () => {
-    clearTimeout(this.timer);
+    clearTimeout(this.timeout);
     clearTimeout(this.interval);
 
     this.setState({ resizeIsPossible: true });
@@ -58,7 +53,7 @@ export class ViewportHeight extends Component {
       this.onResize();
     }, 0);
 
-    setTimeout(() => {
+    this.timeout = setTimeout(() => {
       this.destroyUpdateVh();
     }, 2000);
   };

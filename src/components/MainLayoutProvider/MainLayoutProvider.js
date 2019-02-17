@@ -10,7 +10,6 @@ import { navigateTo, getRouteByLocation, getRouteById, routes } from "../../rout
 
 import "../ScrollbarProvider/plugins/disableScrollByDirection";
 import "../ScrollbarProvider/plugins/determineScrollingPlugin";
-import { isMobile } from "../../utils/browser";
 
 const ScrollContext = React.createContext();
 
@@ -62,6 +61,7 @@ export class MainLayoutProviderComponent extends Component {
 
   componentWillUnmount() {
     clearTimeout(this.timer);
+
     window.removeEventListener("resize", this.onResize);
     window.removeEventListener("keydown", this.onKeyDown);
     window.removeEventListener("orientationchange", this.onOrientationChange);
@@ -75,14 +75,6 @@ export class MainLayoutProviderComponent extends Component {
       this.setCurrentRoute();
     }
   }
-
-  hideActionBarsLandscapeMobile = () => {
-    const axis = Math.abs(window.orientation);
-
-    if (axis === 90 && isMobile()) {
-      window.scrollTo(0, 1);
-    }
-  };
 
   onKeyDown = () => {
     const { damping } = this.state;
@@ -152,8 +144,6 @@ export class MainLayoutProviderComponent extends Component {
   setCurrentRoute = () => {
     const { location } = this.props;
     const currentRoute = getRouteByLocation(location);
-
-    this.hideActionBarsLandscapeMobile();
 
     if (currentRoute) {
       const { slider, additionalMenu, scrollable, id } = currentRoute;
