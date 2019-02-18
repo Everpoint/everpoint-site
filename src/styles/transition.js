@@ -94,18 +94,17 @@ export const scrollScreenshotTransition = css`
   }
 `;
 
-
 export const scrollScreenshotTransitionNext = css`
   .entered {
     transition-delay: 400ms;
-    transition-duration: 100ms;
-    transition-timing-function: ease-in;
+    transition-duration: 200ms;
+    transition-timing-function: ease;
     transition-property: transform, opacity;
   }
   .exiting {
     transition-delay: 400ms;
-    transition-duration: 100ms;
-    transition-timing-function: ease-in;
+    transition-duration: 200ms;
+    transition-timing-function: ease;
     transition-property: transform, opacity;
   }
 `;
