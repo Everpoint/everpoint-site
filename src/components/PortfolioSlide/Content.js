@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import cn from "classnames";
 
 import { GoNextLink } from "../../components/GoNextLink/GoNextLink";
-import styles, { Content as ContentBlock, Description, Title } from "./styles";
+import { Content as ContentBlock, Description, Title } from "./styles";
 
 import { transition, slideDown, slideUp, fade } from "../../styles/transition";
 
@@ -33,7 +33,7 @@ export class Content extends Component {
           {description ||
             "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aperiam eaque eligendi iusto labore nisi quas."}
         </Description>
-        <GoNextLink className={styles.white}>Подробнее</GoNextLink>
+        <GoNextLink white>Подробнее</GoNextLink>
       </ContentBlock>
     );
   }

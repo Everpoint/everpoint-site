@@ -41,7 +41,7 @@ class MobileMsp extends PureComponent {
     const { ratio, mobilePlatform, animate } = this.state;
     const { location, projectId } = this.props;
     const mobileMsp = getProject({ projectId });
-    const { ios, android } = mobileMsp;
+    const { ios, android, iosMsp, androidMsp, iosSupport, androidSupport } = mobileMsp;
 
     return (
       <MobileMspContainer>
@@ -84,7 +84,14 @@ class MobileMsp extends PureComponent {
           </Article>
         </Section>
         <BnSection ratio={ratio} />
-        <Footer ratio={ratio} mobilePlatform={mobilePlatform} />
+        <Footer
+          ratio={ratio}
+          mobilePlatform={mobilePlatform}
+          iosMsp={iosMsp}
+          androidMsp={androidMsp}
+          iosSupport={iosSupport}
+          androidSupport={androidSupport}
+        />
       </MobileMspContainer>
     );
   }

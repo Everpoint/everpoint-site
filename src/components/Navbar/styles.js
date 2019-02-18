@@ -155,6 +155,7 @@ export const MobileMenu = styled("ul")`
   }
 `;
 
+// language=LESS
 export const LinkContainer = styled("li")`
   margin-right: 1.4285rem;
   align-self: flex-start;
@@ -216,7 +217,7 @@ export const LinkContainer = styled("li")`
     }
   }
   menu {
-    width: 0;
+    width: 0.0001px;
   }
 `;
 

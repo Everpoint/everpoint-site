@@ -7,7 +7,7 @@ import { GoNextLink } from "../../GoNextLink/GoNextLink";
 import { AndroidStoreLink, IosStoreLink } from "../../StoreLinks/StoreLinks";
 import phones from "../../../assets/img/portfolio/mobileMsp/phones.jpg";
 
-import styles, { PhonesContainer, Phones, Footer, Content, StoreContainer } from "./styles";
+import { PhonesContainer, Phones, Footer, Content, StoreContainer } from "./styles";
 
 export class MspFooter extends PureComponent {
   static propTypes = {
@@ -26,7 +26,7 @@ export class MspFooter extends PureComponent {
             <H1 portfolio>
               Бизнес-навигатор МСП <br /> в вашем телефоне!
             </H1>
-            <GoNextLink to={`/${id}`} gatsby className={styles.goToMobileMspLink}>
+            <GoNextLink to={`/${id}`} gatsby white>
               Подробнее
             </GoNextLink>
             <StoreContainer>

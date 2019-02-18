@@ -277,22 +277,3 @@ export const slideDownScroll = css`
     pointer-events: none;
   }
 `;
-
-const styles = css`
-  a.white {
-    color: rgba(255, 255, 255, 0.5);
-    > svg {
-      fill: rgba(255, 255, 255, 0.5);
-    }
-    @media (hover: hover) {
-      &:hover {
-        color: rgba(255, 255, 255, 1);
-        svg {
-          fill: rgba(255, 255, 255, 1);
-        }
-      }
-    }
-  }
-`;
-
-export default styles;

@@ -55,6 +55,20 @@ const styles = css`
       font-size: 1.0714rem;
     }
   }
+  .white {
+    color: rgba(255, 255, 255, 0.5);
+    > svg {
+      fill: rgba(255, 255, 255, 0.5);
+    }
+    @media (hover: hover) {
+      &:hover {
+        color: rgba(255, 255, 255, 1);
+        svg {
+          fill: rgba(255, 255, 255, 1);
+        }
+      }
+    }
+  }
 `;
 
 export const GoNextLink = ({
@@ -63,12 +77,16 @@ export const GoNextLink = ({
   gatsby = false,
   className,
   big = false,
+  white = false,
   ...props
 }) => {
   const Container = gatsby ? GatsbyLink : NativeLink;
 
   return (
-    <Container className={cn(className, styles.goNextLink, { [styles.big]: big })} {...props}>
+    <Container
+      className={cn(className, styles.goNextLink, { [styles.big]: big, [styles.white]: white })}
+      {...props}
+    >
       {children}
       {withArrow && <ArrowNext />}
     </Container>
@@ -79,4 +97,6 @@ GoNextLink.propTypes = {
   withArrow: PropTypes.bool,
   gatsby: PropTypes.bool,
   className: PropTypes.string,
+  big: PropTypes.bool,
+  white: PropTypes.bool,
 };

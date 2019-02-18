@@ -16,7 +16,7 @@ export class Footer extends PureComponent {
   };
 
   render() {
-    const { ratio, mobilePlatform } = this.props;
+    const { ratio, mobilePlatform, iosMsp, androidMsp, iosSupport, androidSupport } = this.props;
 
     return (
       <FooterContainer>
@@ -33,8 +33,8 @@ export class Footer extends PureComponent {
             <Article>
               <H3>Бизнес-навигатор МСП</H3>
               <Store>
-                <IosStoreLink />
-                <AndroidStoreLink />
+                <IosStoreLink href={iosMsp} target="_blank" />
+                <AndroidStoreLink href={androidMsp} target="_blank" />
               </Store>
               <img src={footerPhoneLeft[ratio]} alt="phone-left" />
             </Article>
@@ -43,8 +43,8 @@ export class Footer extends PureComponent {
             <Article>
               <H3>НавигаторМСП. Меры поддержки</H3>
               <Store>
-                <IosStoreLink />
-                <AndroidStoreLink />
+                <IosStoreLink href={iosSupport} target="_blank" />
+                <AndroidStoreLink href={androidSupport} target="_blank" />
               </Store>
               <img src={footerPhoneRight[ratio]} alt="phone-right" />
             </Article>

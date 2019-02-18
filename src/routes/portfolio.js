@@ -16,7 +16,6 @@ import mobileSecondX2 from "../assets/img/portfolio/slide-screenshots/mobileMsp/
 import mobileThirdX1 from "../assets/img/portfolio/slide-screenshots/mobileMsp/phone-3.png";
 import mobileThirdX2 from "../assets/img/portfolio/slide-screenshots/mobileMsp/phone-3@2x.png";
 
-
 import eoPic1X1 from "../assets/img/portfolio/evergisOnline/screenshots/pic-1.png";
 import eoPic1X2 from "../assets/img/portfolio/evergisOnline/screenshots/pic-1@2x.png";
 import eoPic1X3 from "../assets/img/portfolio/evergisOnline/screenshots/pic-1@3x.png";
@@ -172,6 +171,12 @@ export default {
             "Приложение для расчёта бизнес-планов и справочник мер поддержки предпринимателей",
           ios: "https://itunes.apple.com/ru/developer/корпорация-мсп/id1253348895?mt=8",
           android: "https://play.google.com/store/apps/developer?id=АО+«Корпорация+«МСП»",
+          iosMsp:
+            "https://itunes.apple.com/ru/app/%D0%B1%D0%B8%D0%B7%D0%BD%D0%B5%D1%81-%D0%BD%D0%B0%D0%B2%D0%B8%D0%B3%D0%B0%D1%82%D0%BE%D1%80-%D0%BC%D1%81%D0%BF/id1253348896",
+          androidMsp: "https://play.google.com/store/apps/details?id=ru.mobileup.businessnavigator",
+          iosSupport:
+            "https://itunes.apple.com/ru/app/%D0%BD%D0%B0%D0%B2%D0%B8%D0%B3%D0%B0%D1%82%D0%BE%D1%80-%D0%BC%D1%81%D0%BF-%D0%BC%D0%B5%D1%80%D1%8B-%D0%BF%D0%BE%D0%B4%D0%B4%D0%B5%D1%80%D0%B6%D0%BA%D0%B8/id1264471701",
+          androidSupport: "https://play.google.com/store/apps/details?id=ru.mobileup.referencenavigator",
         },
         {
           title: "Геомониторинг недвижимости",
