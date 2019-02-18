@@ -76,7 +76,6 @@ export class ConstellationPoints extends PureComponent {
 
   render() {
     const { selectedSectionIndex, pointsAmount, x, y, status, disableTransition } = this.props;
-
     return (
       <ConstellationPointsContainer
         disableTransition={disableTransition}

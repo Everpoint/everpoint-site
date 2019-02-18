@@ -2,10 +2,10 @@ import React, { PureComponent } from "react";
 import PropTypes from "prop-types";
 
 import { IosStoreLink, AndroidStoreLink } from "../../../components/StoreLinks/StoreLinks";
-import { Article } from '../../../components/Elements/Article';
-import {  H3 } from "../../../components/Typography/Headlines";
-import { Paragraph } from '../../../components/Typography/Paragraph';
-import { halfPhone, phoneRight } from "../images";
+import { Article } from "../../../components/Elements/Article";
+import { H3 } from "../../../components/Typography/Headlines";
+import { Paragraph } from "../../../components/Typography/Paragraph";
+import { footerPhoneLeft, footerPhoneRight } from "../images";
 
 import { FooterContainer, Store, Mobiles, LeftSide, RightSide } from "./styles";
 
@@ -16,7 +16,7 @@ export class Footer extends PureComponent {
   };
 
   render() {
-    const { ratio, mobilePlatform } = this.props;
+    const { ratio, mobilePlatform, iosMsp, androidMsp, iosSupport, androidSupport } = this.props;
 
     return (
       <FooterContainer>
@@ -33,20 +33,20 @@ export class Footer extends PureComponent {
             <Article>
               <H3>Бизнес-навигатор МСП</H3>
               <Store>
-                <IosStoreLink />
-                <AndroidStoreLink />
+                <IosStoreLink href={iosMsp} target="_blank" />
+                <AndroidStoreLink href={androidMsp} target="_blank" />
               </Store>
-              <img src={halfPhone[ratio]} alt="phone-left" />
+              <img src={footerPhoneLeft[ratio]} alt="phone-left" />
             </Article>
           </LeftSide>
           <RightSide isMobilePlatform={mobilePlatform}>
             <Article>
               <H3>НавигаторМСП. Меры поддержки</H3>
               <Store>
-                <IosStoreLink />
-                <AndroidStoreLink />
+                <IosStoreLink href={iosSupport} target="_blank" />
+                <AndroidStoreLink href={androidSupport} target="_blank" />
               </Store>
-              <img src={phoneRight[ratio]} alt="phone-right" />
+              <img src={footerPhoneRight[ratio]} alt="phone-right" />
             </Article>
           </RightSide>
         </Mobiles>

@@ -2,7 +2,7 @@ import React, { PureComponent, Component } from "react";
 import { Transition, TransitionGroup } from "react-transition-group";
 import cn from "classnames";
 
-import { slideLeft, slideRight, transition } from "../PortfolioSlide/styles";
+import { slideLeft, slideRight, transition } from "../../styles/transition";
 import { JobsCardContainer } from "./styles";
 import { Card } from "./Card";
 import { fade } from "../Transition/animation";

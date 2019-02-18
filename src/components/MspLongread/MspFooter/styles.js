@@ -4,7 +4,7 @@ import { Section } from "../../../components/Elements/Section";
 
 export const Footer = styled(Section)`
   position: relative;
-  background-color: #e0f0f6;
+  background-color: #44c3f8;
   height: 22.9285rem;
   padding-top: 0;
   padding-bottom: 0;
@@ -14,6 +14,7 @@ export const Footer = styled(Section)`
     align-items: center;
     height: 100%;
     h1 {
+      color: #fff;
       margin-bottom: 1.2rem;
     }
     @media (max-width: 320px) {

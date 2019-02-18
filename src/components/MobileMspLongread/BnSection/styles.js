@@ -100,7 +100,7 @@ const styles = css`
     }
     &.bnWithVideoLeft {
       article {
-        padding: 3.4rem 0 6rem 0;
+        padding: 0 0 6rem 0;
       }
     }
     &.bnWithVideoRight {
@@ -110,7 +110,7 @@ const styles = css`
             margin-right: 2.4rem;
           }
         }
-        padding: 6rem 0 0 4.4rem;
+        padding: 0 0 0 4.4rem;
       }
     }
     @media (min-width: 1200px) {
@@ -177,6 +177,19 @@ const styles = css`
       }
     }
   }
+  .firstBlockWithVideos {
+    margin-top: 5.7142rem;
+    padding: 7.4rem 0 0 0;
+    background-color: rgba(203, 229, 240, 0.3);
+    @media (max-width: 991px) {
+      margin-top: 0;
+      padding: 4.4rem 0 0 0;
+    }
+    @media (max-width: 812px) and (orientation: landscape),
+      (max-width: 767px) and (orientation: portrait) {
+      padding: 2.4rem 0 0 0;
+    }
+  }
   .top1Paragraph {
     @media (max-width: 991px) {
       padding-bottom: 3rem;
@@ -184,31 +197,6 @@ const styles = css`
     @media (max-width: 812px) and (orientation: landscape) {
       padding-bottom: 0;
       margin-bottom: 1.44rem;
-    }
-  }
-  .gradient {
-    position: relative;
-    &:before {
-      pointer-events: none;
-      z-index: -1;
-      content: "";
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      width: 100%;
-      height: 100%;
-    }
-  }
-  .gradientToTop {
-    &:before {
-      background-image: linear-gradient(to top, #e0f0f6, #fff);
-    }
-  }
-  .gradientToBottom {
-    &:before {
-      background-image: linear-gradient(to bottom, #e0f0f6, #fff);
     }
   }
   .mobilePortraitOrder1 {

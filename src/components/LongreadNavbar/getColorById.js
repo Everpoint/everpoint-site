@@ -17,7 +17,9 @@ export const getColorById = (id, fixed) => {
         ? cn(color.defaultLight, color.defaultFixed, color.mspFixed)
         : color.defaultLight;
     case "mobileMsp":
-      return fixed ? cn(color.mobileMsp, color.mobileMspFixed) : color.mobileMsp;
+      return fixed
+        ? cn(color.defaultLight, color.defaultFixed, color.mobileMspFixed)
+        : color.defaultLight;
     default:
       return fixed ? cn(color.defaultLight, color.defaultFixed) : color.defaultLight;
   }

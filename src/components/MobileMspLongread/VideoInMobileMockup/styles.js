@@ -4,31 +4,31 @@ export const Container = styled("div")`
   flex-shrink: 0;
   position: relative;
   z-index: 8;
+  width: auto;
+  height: 100%;
+  max-width: 30.5714rem;
+  max-height: 56.7857rem;
   video {
+    width: 76%;
+    height: 87.8%;
     z-index: -1;
-    border-radius: 0.4rem;
-    top: 4.4%;
-    right: 8.6%;
+    border-radius: 1rem;
+    top: 4.2%;
+    left: 15.8%;
     position: absolute;
-    max-height: 80vh;
-    max-height: calc(var(--vh, 1vh) * 80);
   }
   &.mockUpLeft {
     video {
-      top: 4.4%;
-      right: 15.4%;
+      left: 8.4%;
     }
   }
   @media (max-width: 991px) {
     video {
       top: 4%;
       right: 8%;
-      max-width: 76%;
     }
   }
   @media (max-width: 812px) and (orientation: landscape) {
-    max-height: 74vh;
-    max-height: calc(var(--vh, 1vh) * 74);
     &.mockUpLeft {
       margin-right: 1.4rem;
     }
@@ -37,11 +37,19 @@ export const Container = styled("div")`
     }
   }
   @media (max-width: 767px) and (orientation: portrait) {
+    margin-bottom: 1rem;
     &.mockUpLeft {
       margin-left: 0.8rem;
     }
     &:not(.mockUpLeft) {
       margin-right: 0.8rem;
+    }
+  }
+  @media (max-width: 812px) and (orientation: landscape),
+    (max-width: 767px) and (orientation: portrait) {
+    video {
+      top: 4.4%;
+      height: 86.2%;
     }
   }
 `;
@@ -50,7 +58,6 @@ export const MockUp = styled("img")`
   padding-top: 1.5px;
   position: relative;
   width: auto;
-  height: 100%;
   max-height: 93.5vh;
   max-height: calc(var(--vh, 1vh) * 93.5);
   @media (max-width: 991px) {

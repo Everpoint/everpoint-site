@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import PropTypes from 'prop-types';
 
 import { IconsParallax } from "../IconsParallax";
 import { ReactComponent as Ic1 } from "../../../../assets/img/portfolio/mobileMsp/parallaxIcons/bn/ic-1.svg";
@@ -15,11 +16,15 @@ import { ParallaxContainer } from "../styles";
 const icons = [Ic1, Ic2, Ic3, Ic4, Ic5, Ic1, Ic2, Ic3, Ic7, Ic5, Ic8, Ic9, Ic4];
 
 export class BnIconsParallax extends Component {
+  static propTypes = {
+      className: PropTypes.string,
+  };
+
   render() {
-    const { children } = this.props;
+    const { children, className } = this.props;
 
     return (
-      <ParallaxContainer>
+      <ParallaxContainer className={className}>
         <IconsParallax className={styles.bnIconsParallax} icons={icons} />
         {children}
       </ParallaxContainer>

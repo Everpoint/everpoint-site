@@ -5,7 +5,7 @@ import cn from "classnames";
 import { Background as BackgroundBlock } from "../Background/Background";
 import { fade, scaleIn, scaleOut, transition } from "../Transition/animation";
 import styles from "../Background/styles";
-import { getBase64BackgroundByIndex } from "../Background/getBackground";
+import { getBackground, getBackgroundStyle } from "../Background/getBackground";
 import { Resizer } from "../Background/Resizer";
 
 export class Background extends Component {
@@ -67,6 +67,7 @@ export class Background extends Component {
           <BackgroundBlock
             style={{
               ...aboutBgStyle,
+              backgroundImage: `url(${getBackground(props)})`,
             }}
             disableTransition={disableTransition}
             onTransitionEnd={onTransitionEnd}
@@ -75,7 +76,7 @@ export class Background extends Component {
               fade[status],
               transition[status],
               styles.default,
-              base64styles || getBase64BackgroundByIndex({ ...props }),
+              base64styles || getBackgroundStyle(props),
               backgroundClassName,
             )}
           />

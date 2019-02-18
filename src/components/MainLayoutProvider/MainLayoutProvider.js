@@ -3,7 +3,9 @@ import { Location } from "@reach/router";
 import debounce from "lodash/debounce";
 import throttle from "lodash/throttle";
 
+import { preloadBgImages } from "../../components/Background/getBackground";
 import { ScrollBar } from "./styles";
+import { ImagesDownloadListener } from "../../components/ImagesDownloadListener/ImagesDownloadListener";
 import { Swiper } from "../../components/Swiper/Swiper";
 import { mobileMenu as mobileMenuWidth } from "../../components/Navbar/styles";
 import { navigateTo, getRouteByLocation, getRouteById, routes } from "../../routes";
@@ -16,7 +18,6 @@ const ScrollContext = React.createContext();
 export class MainLayoutProviderComponent extends Component {
   constructor(props) {
     super(props);
-    this.onDebouncedNavigateTo = debounce(this.onNavigateTo, 100);
     this.onResize = debounce(this.onResize, 200);
     this.checkBlockIsCenter = throttle(this.checkBlockIsCenter, 100);
     this.checkNavbarIntoContent = throttle(this.checkNavbarIntoContent, 100);
@@ -36,6 +37,7 @@ export class MainLayoutProviderComponent extends Component {
     thresholdIsActive: false,
     preventDefaultTouchmoveEvent: true,
     disableTransition: true,
+    disableNavigation: false,
 
     // sections
     isSwipeEvent: false,
@@ -51,16 +53,22 @@ export class MainLayoutProviderComponent extends Component {
   scrollbar = null;
   scrollable = null;
   lefsideSection = null;
+  timeout = 0;
 
   componentDidMount() {
     this.setCurrentRoute();
     window.addEventListener("resize", this.onResize);
     window.addEventListener("keydown", this.onKeyDown);
+    window.addEventListener("orientationchange", this.onOrientationChange);
   }
 
   componentWillUnmount() {
+    clearTimeout(this.timer);
+    clearTimeout(this.timeout);
+
     window.removeEventListener("resize", this.onResize);
     window.removeEventListener("keydown", this.onKeyDown);
+    window.removeEventListener("orientationchange", this.onOrientationChange);
   }
 
   componentDidUpdate(prevProps) {
@@ -141,6 +149,8 @@ export class MainLayoutProviderComponent extends Component {
     const { location } = this.props;
     const currentRoute = getRouteByLocation(location);
 
+    clearTimeout(this.timeout);
+
     if (currentRoute) {
       const { slider, additionalMenu, scrollable, id } = currentRoute;
 
@@ -168,10 +178,16 @@ export class MainLayoutProviderComponent extends Component {
               sliderDirection: 1,
             };
 
-      this.setState({ currentRoute, coloredNav: false, ...sliderState });
+      this.setState({ currentRoute, coloredNav: false, disableNavigation: true, ...sliderState });
     } else {
-      this.setState({ currentRoute: null, coloredNav: false });
+      this.setState({ currentRoute: null, coloredNav: false, disableNavigation: true });
     }
+
+    this.timeout = setTimeout(() => {
+      this.setState({
+        disableNavigation: false,
+      });
+    }, 100);
   };
 
   checkNavbarIntoContent = () => {
@@ -208,9 +224,23 @@ export class MainLayoutProviderComponent extends Component {
       container: { height },
     } = this.scrollbar.getSize();
 
+    const {
+      currentRoute,
+      scrollTop,
+      limitY,
+      selectedSectionIndex,
+      sections,
+      disableNavigation,
+    } = this.state;
     const { navigate, location } = this.props;
     const { pathname } = location;
-    const { currentRoute, scrollTop, limitY, selectedSectionIndex, sections } = this.state;
+
+    clearTimeout(this.timeout);
+    this.timeout = setTimeout(() => {
+      this.setState({
+        disableNavigation: false,
+      });
+    }, 100);
 
     const scrollable = currentRoute && currentRoute.scrollable;
 
@@ -222,7 +252,7 @@ export class MainLayoutProviderComponent extends Component {
       }
     }
 
-    if (scrollable && scrollTop > 0 && limitY !== scrollTop) {
+    if ((scrollable && scrollTop > 0 && limitY !== scrollTop) || disableNavigation) {
       return;
     }
 
@@ -236,6 +266,7 @@ export class MainLayoutProviderComponent extends Component {
       this.setState({
         disableTransition: false,
         sectionDirection,
+        disableNavigation: true,
         selectedSectionIndex: nextIndex,
       });
     } else {
@@ -246,6 +277,7 @@ export class MainLayoutProviderComponent extends Component {
           disableTransition: false,
           selectedSectionIndex: 0,
           transitionEnd: false,
+          disableNavigation: true,
           direction,
         });
 
@@ -331,27 +363,18 @@ export class MainLayoutProviderComponent extends Component {
 
   onWheel = e => {
     const { thresholdIsActive, scrollTop } = this.state;
-    const isFirefox = navigator.userAgent.toLowerCase().indexOf("firefox") > -1;
-    let deltaY = e.deltaY;
-
-    if (isFirefox) {
-      deltaY = deltaY * 28;
-    }
-
-    let direction = 1;
-
-    if (deltaY < 0) {
-      direction = -1;
-    }
+    const direction = Math.sign(e.deltaY);
+    const normalizeDeltaY = direction > 0 ? 53 : -53;
 
     if (thresholdIsActive || (scrollTop === 0 && direction < 0)) {
-      this.threshold = this.threshold + deltaY;
+      this.threshold = this.threshold + normalizeDeltaY;
     }
 
     this.setState({ direction, isSwipeEvent: false, damping: this.defaultDamping });
 
     this.checkNavbarIntoContent();
-    this.onDebouncedNavigateTo(direction);
+
+    this.onNavigateTo(direction);
   };
 
   onExited = () => {
@@ -557,6 +580,7 @@ export class MainLayoutProviderComponent extends Component {
           disableTransition,
         }}
       >
+        <ImagesDownloadListener images={preloadBgImages} />
         <Swiper
           preventDefaultTouchmoveEvent={preventDefaultTouchmoveEvent}
           onSwiping={this.onSwiping}

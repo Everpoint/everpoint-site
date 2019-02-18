@@ -31,16 +31,8 @@ const styles = css`
         flex-shrink: 0;
         max-width: 20rem;
         height: 14.2857rem;
-        max-height: calc(100vh - 11rem);
-      }
-      @media (max-width: 812px) and (orientation: landscape) and (max-height: 320px) {
-        max-width: 20rem;
-        align-items: flex-start;
-        max-height: calc(100vh - 6.4rem);
-      }
-      @media only screen and (min-device-width: 320px) and (max-device-width: 568px) and (-webkit-min-device-pixel-ratio: 2) and (orientation: landscape) {
-        max-height: 10rem;
-        align-self: center;
+        max-height: calc(100vh - 6rem);
+        max-height: calc(var(--vh, 1vh) * 100 - 6rem);
         margin-bottom: 2rem;
       }
     }
@@ -82,6 +74,10 @@ const styles = css`
         }
       }
     }
+  }
+  .zoomRussia {
+    background-size: 80%;
+    background-position: right center;
   }
 `;
 

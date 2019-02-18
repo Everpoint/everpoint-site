@@ -176,11 +176,6 @@ const styles = css`
       }
     }
   }
-  .lightNavy {
-    svg path {
-      stroke: rgba(24, 62, 107, 0.5);
-    }
-  }
 `;
 
 export default styles;

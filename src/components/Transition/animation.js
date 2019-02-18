@@ -1,6 +1,6 @@
 import { css } from "astroturf";
 
-export const enterTimeout = 200;
+export const enterTimeout = 0;
 export const exitTimeout = 400;
 
 export const scaleIn = css`
@@ -29,13 +29,13 @@ export const scaleOut = css`
 
 export const transition = css`
   .entered {
-    transition-duration: ${enterTimeout}ms;
-    transition-timing-function: ease-in;
+    transition-duration: 400ms;
+    transition-timing-function: linear;
     transition-property: transform, opacity;
   }
   .exiting {
-    transition-duration: ${exitTimeout}ms;
-    transition-timing-function: ease-out;
+    transition-duration: 400ms;
+    transition-timing-function: linear;
     transition-property: transform, opacity;
   }
 `;
@@ -68,7 +68,7 @@ const styles = css`
   .fadeIn {
     animation-name: fadeIn;
     animation-duration: 200ms;
-    animation-timing-function: ease-in;
+    animation-timing-function: linear;
     animation-iteration-count: 1;
     @keyframes fadeIn {
       from {
@@ -82,7 +82,7 @@ const styles = css`
   .fadeOut {
     animation-name: fadeOut;
     animation-duration: 200ms;
-    animation-timing-function: ease-out;
+    animation-timing-function: linear;
     animation-iteration-count: 1;
     @keyframes fadeOut {
       from {

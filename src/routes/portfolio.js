@@ -8,15 +8,13 @@ import geomonitoringX3 from "../assets/img/portfolio/slide-screenshots/geomonito
 import evergisOnlineX1 from "../assets/img/portfolio/slide-screenshots/evergisOnline/1-ec-header.png";
 import evergisOnlineX2 from "../assets/img/portfolio/slide-screenshots/evergisOnline/1-ec-header@2x.png";
 import evergisOnlineX3 from "../assets/img/portfolio/slide-screenshots/evergisOnline/1-ec-header@3x.png";
-import mobileFirstX1 from "../assets/img/portfolio/slide-screenshots/mobileMsp/bitmap.png";
-import mobileFirstX2 from "../assets/img/portfolio/slide-screenshots/mobileMsp/bitmap@2x.png";
-import mobileFirstX3 from "../assets/img/portfolio/slide-screenshots/mobileMsp/bitmap@3x.png";
-import mobileSecondX1 from "../assets/img/portfolio/slide-screenshots/mobileMsp/screen-2.png";
-import mobileSecondX2 from "../assets/img/portfolio/slide-screenshots/mobileMsp/screen-2@2x.png";
-import mobileSecondX3 from "../assets/img/portfolio/slide-screenshots/mobileMsp/screen-2@3x.png";
-import mobileThirdX1 from "../assets/img/portfolio/slide-screenshots/mobileMsp/screen-3.png";
-import mobileThirdX2 from "../assets/img/portfolio/slide-screenshots/mobileMsp/screen-3@2x.png";
-import mobileThirdX3 from "../assets/img/portfolio/slide-screenshots/mobileMsp/screen-3@3x.png";
+
+import mobileFirstX1 from "../assets/img/portfolio/slide-screenshots/mobileMsp/phone-1.png";
+import mobileFirstX2 from "../assets/img/portfolio/slide-screenshots/mobileMsp/phone-1@2x.png";
+import mobileSecondX1 from "../assets/img/portfolio/slide-screenshots/mobileMsp/phone-2.png";
+import mobileSecondX2 from "../assets/img/portfolio/slide-screenshots/mobileMsp/phone-2@2x.png";
+import mobileThirdX1 from "../assets/img/portfolio/slide-screenshots/mobileMsp/phone-3.png";
+import mobileThirdX2 from "../assets/img/portfolio/slide-screenshots/mobileMsp/phone-3@2x.png";
 
 import eoPic1X1 from "../assets/img/portfolio/evergisOnline/screenshots/pic-1.png";
 import eoPic1X2 from "../assets/img/portfolio/evergisOnline/screenshots/pic-1@2x.png";
@@ -151,29 +149,34 @@ export default {
           type: "Малый бизнес",
           // groupName: "Малый бизнес",
           text: "Мобильный бизнес-навигатор",
-          projectBackgroundColor: "#e0f0f6",
-          textColor: "#0a2342",
+          projectBackgroundColor: "#44C3F8",
           screenshots: [
             {
               x1: mobileFirstX1,
               x2: mobileFirstX2,
-              x3: mobileFirstX3,
+              x3: mobileFirstX2,
             },
             {
               x1: mobileSecondX1,
               x2: mobileSecondX2,
-              x3: mobileSecondX3,
+              x3: mobileSecondX2,
             },
             {
               x1: mobileThirdX1,
               x2: mobileThirdX2,
-              x3: mobileThirdX3,
+              x3: mobileThirdX2,
             },
           ],
           description:
             "Приложение для расчёта бизнес-планов и справочник мер поддержки предпринимателей",
           ios: "https://itunes.apple.com/ru/developer/корпорация-мсп/id1253348895?mt=8",
           android: "https://play.google.com/store/apps/developer?id=АО+«Корпорация+«МСП»",
+          iosMsp:
+            "https://itunes.apple.com/ru/app/%D0%B1%D0%B8%D0%B7%D0%BD%D0%B5%D1%81-%D0%BD%D0%B0%D0%B2%D0%B8%D0%B3%D0%B0%D1%82%D0%BE%D1%80-%D0%BC%D1%81%D0%BF/id1253348896",
+          androidMsp: "https://play.google.com/store/apps/details?id=ru.mobileup.businessnavigator",
+          iosSupport:
+            "https://itunes.apple.com/ru/app/%D0%BD%D0%B0%D0%B2%D0%B8%D0%B3%D0%B0%D1%82%D0%BE%D1%80-%D0%BC%D1%81%D0%BF-%D0%BC%D0%B5%D1%80%D1%8B-%D0%BF%D0%BE%D0%B4%D0%B4%D0%B5%D1%80%D0%B6%D0%BA%D0%B8/id1264471701",
+          androidSupport: "https://play.google.com/store/apps/details?id=ru.mobileup.referencenavigator",
         },
         {
           title: "Геомониторинг недвижимости",

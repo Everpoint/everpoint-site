@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import styled from "astroturf";
 
 import { Video } from "../../components/Video/Video";
-import mobileVideo from "../../videos/mobileMsp/BN_mobile_3.mp4";
+import mobileVideo from "../../videos/mobileMsp/BN_mobile_1.mp4";
 
 const DebugContainer = styled("div")`
   padding-top: 4rem;
@@ -36,7 +36,7 @@ export const Background = styled("div")`
   top: 53.74%;
   left: 45.2%;
   transform: translate(-50%, -50%);
-  background-image: url(../../assets/img/portfolio/mobileMsp/mockUp/mockUp-Right.png);
+  background-image: url(../../assets/img/portfolio/mobileMsp/mockUp/mockUp-Right@2x.png);
   background-position: center;
   background-repeat: no-repeat;
   background-size: 100%;

@@ -1,5 +1,6 @@
 import { Component } from "react";
 import PropTypes from "prop-types";
+import isEqual from "lodash/isEqual";
 
 export class ImagesDownloadListener extends Component {
   static propTypes = {
@@ -8,18 +9,21 @@ export class ImagesDownloadListener extends Component {
     onError: PropTypes.func,
   };
 
-  state = {
-    loaded: false,
-  };
-
   componentDidMount() {
     this.loadImages();
   }
 
-  shouldComponentUpdate() {
-    const { loaded } = this.state;
+  shouldComponentUpdate({ images: nextImages }, nextState) {
+    const { images } = this.props;
 
-    return !loaded;
+    return !isEqual(images, nextImages);
+  }
+
+  componentDidUpdate({ images: prevImages }, prevState) {
+    const { images } = this.props;
+    if (!isEqual(prevImages, images)) {
+      this.loadImages();
+    }
   }
 
   loadEachImage(value) {
@@ -52,14 +56,7 @@ export class ImagesDownloadListener extends Component {
 
     Promise.all(promises)
       .then(results => {
-        this.setState(
-          {
-            loaded: true,
-          },
-          () => {
-            onLoad && onLoad(results);
-          },
-        );
+        onLoad && onLoad(results);
       })
       .catch(e => onError && onError(e));
   }

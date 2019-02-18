@@ -29,7 +29,6 @@ export class HeaderBase extends Component {
     scrollbar: PropTypes.object,
     leftSideClassName: PropTypes.string,
     containerClassName: PropTypes.string,
-    lightNavy: PropTypes.bool,
     leftSide: PropTypes.element,
     projectId: PropTypes.string,
     animate: PropTypes.bool,
@@ -78,7 +77,6 @@ export class HeaderBase extends Component {
       leftSideClassName,
       rightSideClassName,
       containerClassName,
-      lightNavy,
       leftSide,
       animate,
       onLoad,
@@ -107,10 +105,7 @@ export class HeaderBase extends Component {
             {leftSide}
           </LeftSide>
           <RightSide className={rightSideClassName}>{rightSide}</RightSide>
-          <ScrollDownButton
-            className={cn(styles.scrollDownButton, { [styles.lightNavy]: lightNavy })}
-            onClick={this.onScrollDown}
-          />
+          <ScrollDownButton className={styles.scrollDownButton} onClick={this.onScrollDown} />
         </HeaderBlock>
         {children}
       </HeaderContainer>

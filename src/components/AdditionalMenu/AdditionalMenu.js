@@ -17,10 +17,20 @@ export class AdditionalMenu extends PureComponent {
     onSectionChange: PropTypes.func,
     className: PropTypes.string,
     leftSide: PropTypes.bool,
+    portfolio: PropTypes.bool,
+    isPortfolioPage: PropTypes.bool,
   };
 
   render() {
-    const { additionalMenu, className, leftSide, fadeIn, selectedId, onSectionChange } = this.props;
+    const {
+      additionalMenu,
+      className,
+      leftSide,
+      fadeIn,
+      selectedId,
+      onSectionChange,
+      isPortfolioPage,
+    } = this.props;
 
     return (
       <Menu leftSide={leftSide} className={cn(className, { [animation.fadeIn]: fadeIn })}>
@@ -45,6 +55,7 @@ export class AdditionalMenu extends PureComponent {
                         <SecondLevelMenu>
                           {grouped[key].map((item, index) => (
                             <LinkComponent
+                              isPortfolioPage={isPortfolioPage}
                               onSectionChange={onSectionChange}
                               key={index}
                               little
@@ -59,6 +70,7 @@ export class AdditionalMenu extends PureComponent {
                     return grouped[key].map((item, index) => (
                       <ListItem key={index}>
                         <LinkComponent
+                          isPortfolioPage={isPortfolioPage}
                           onSectionChange={onSectionChange}
                           selectedId={selectedId}
                           {...item}

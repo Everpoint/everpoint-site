@@ -9,6 +9,7 @@ import { Scrollbar } from "../../components/Scrollbar/Scrollbar";
 
 import "../ScrollbarProvider/plugins/disableScrollByDirection";
 import { getLongreadNavbarHeight } from "../LongreadNavbar/LongreadNavbar";
+import { isMobile } from "../../utils/browser";
 
 const ScrollBarContext = React.createContext();
 
@@ -48,11 +49,14 @@ export class ScrollbarProvider extends Component {
     const { scrollbar } = this.state;
     const { location } = this.props;
 
-    if (prevLocation.pathname !== location.pathname && scrollbar) {
+    if (prevLocation.pathname !== location.pathname) {
       if (scrollbar) {
         scrollbar.scrollTo(0, 0, 0);
       } else {
-        window.scrollTo(0, 0, 0);
+        const axis = Math.abs(window.orientation);
+        const y = axis === 90 && isMobile() ? 1 : 0;
+
+        window.scrollTo(0, y, 0);
       }
     }
   }

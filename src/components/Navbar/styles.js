@@ -9,9 +9,9 @@ export const NavbarContainer = styled("nav")`
   position: fixed;
   top: 0;
   left: 0;
-  will-change: transform, background;
+  will-change: transform;
   background: rgba(255, 255, 255, 0);
-  transition: background 500ms linear;
+  transition: background 200ms ease-in;
   &.mobileMenuIsOpen {
     height: 100%;
   }
@@ -155,6 +155,7 @@ export const MobileMenu = styled("ul")`
   }
 `;
 
+// language=LESS
 export const LinkContainer = styled("li")`
   margin-right: 1.4285rem;
   align-self: flex-start;
@@ -216,7 +217,7 @@ export const LinkContainer = styled("li")`
     }
   }
   menu {
-    width: 0;
+    width: 0.0001px;
   }
 `;
 

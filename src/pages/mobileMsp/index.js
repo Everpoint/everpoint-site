@@ -5,10 +5,10 @@ import { isMobile } from "../../utils/browser";
 import { SectionWithIcon } from "../../components/MobileMspLongread/SectionWithIcon/SectionWithIcon";
 import phones from "../../assets/img/portfolio/mobileMsp/phones.jpg";
 import { Header } from "../../components/PortfolioLongreadHeader/Header";
-import { Section } from '../../components/Elements/Section';
-import { Article } from '../../components/Elements/Article';
+import { Section } from "../../components/Elements/Section";
+import { Article } from "../../components/Elements/Article";
 import { H2 } from "../../components/Typography/Headlines";
-import { Paragraph } from '../../components/Typography/Paragraph';
+import { Paragraph } from "../../components/Typography/Paragraph";
 import { AndroidStoreLink, IosStoreLink } from "../../components/StoreLinks/StoreLinks";
 import { OutsideLink } from "../../components/OutsideLink/OutsideLink";
 import { BnSection } from "../../components/MobileMspLongread/BnSection/BnSection";
@@ -41,7 +41,7 @@ class MobileMsp extends PureComponent {
     const { ratio, mobilePlatform, animate } = this.state;
     const { location, projectId } = this.props;
     const mobileMsp = getProject({ projectId });
-    const { ios, android } = mobileMsp;
+    const { ios, android, iosMsp, androidMsp, iosSupport, androidSupport } = mobileMsp;
 
     return (
       <MobileMspContainer>
@@ -52,7 +52,6 @@ class MobileMsp extends PureComponent {
           projectId={projectId}
           location={location}
           {...mobileMsp}
-          lightNavy
           containerClassName={styles.mobileMspHeader}
           leftSideClassName={styles.mobileMspHeaderLeftSide}
           rightSideClassName={styles.mobileMspHeaderRightSide}
@@ -72,14 +71,27 @@ class MobileMsp extends PureComponent {
               Когда нужно срочно предоставить краткую информацию о запланированном бизнесе
               потенциальным бизнес-партнерам и инвесторам, на помощь придут мобильные приложения,
               разработанные Everpoint совместно с{" "}
-              <OutsideLink href="https://mobileup.ru/business-navigator">MobileUp</OutsideLink> по
-              заказу Корпорации по развитию малого и среднего предпринимательства.
+              <OutsideLink
+                className={styles.outsideLinkColor}
+                style={{ color: "#67bcdc" }}
+                href="https://mobileup.ru/business-navigator"
+              >
+                MobileUp
+              </OutsideLink>{" "}
+              по заказу Корпорации по развитию малого и среднего предпринимательства.
             </Paragraph>
             <SectionWithIcon ratio={ratio} />
           </Article>
         </Section>
         <BnSection ratio={ratio} />
-        <Footer ratio={ratio} mobilePlatform={mobilePlatform} />
+        <Footer
+          ratio={ratio}
+          mobilePlatform={mobilePlatform}
+          iosMsp={iosMsp}
+          androidMsp={androidMsp}
+          iosSupport={iosSupport}
+          androidSupport={androidSupport}
+        />
       </MobileMspContainer>
     );
   }
