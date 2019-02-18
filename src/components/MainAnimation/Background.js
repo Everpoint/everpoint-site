@@ -51,24 +51,24 @@ export class Background extends Component {
       backgroundClassName,
       backgroundImage,
       disableTransition,
-      ...props
+      isAboutPage,
     } = this.props;
     // about page slider
     const transformToPoints = `translate(${x}px, ${y}px)`;
-    const aboutBgStyle = transitionEnd
-      ? {
-          transform: transformToPoints,
-          transition: "transform 500ms cubic-bezier(0.2, 1, 0.6, 1) 0s",
-        }
-      : {};
-    const withBackroundImage = withSvg ? !transitionEnd : true;
-    console.info("--> withBackroundImage ggwp", withBackroundImage);
+    const aboutBgStyle =
+      transitionEnd && isAboutPage()
+        ? {
+            transform: transformToPoints,
+            transition: "transform 500ms cubic-bezier(0.2, 1, 0.6, 1) 0s",
+          }
+        : {};
+
     return (
       <>
         <BackgroundBlock
           style={{
             ...aboutBgStyle,
-            backgroundImage: `url(${backgroundImage || getBackground(props)})`,
+            backgroundImage: `url(${backgroundImage || getBackground(this.props)})`,
           }}
           disableTransition={disableTransition}
           onTransitionEnd={onTransitionEnd}
@@ -77,7 +77,7 @@ export class Background extends Component {
             fade[status],
             transition[status],
             styles.default,
-            getBackgroundStyle(props),
+            getBackgroundStyle(this.props),
             backgroundClassName,
           )}
         />

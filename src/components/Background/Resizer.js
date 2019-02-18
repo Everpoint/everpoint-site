@@ -5,6 +5,10 @@ import { getElementWidthAndHeight } from "../../utils/dom";
 import { getSVGBackgroundByIndex } from "./getBackground";
 
 export class Resizer extends Component {
+  state = {
+    isResized: false,
+  };
+
   componentDidMount() {
     window.addEventListener("resize", this.onResize);
     this.onResize();
@@ -39,6 +43,8 @@ export class Resizer extends Component {
         child.style.width = "100%";
         child.style.height = "auto";
       }
+
+      this.setState({ isResized: true });
     }
   };
 
@@ -49,6 +55,12 @@ export class Resizer extends Component {
   };
 
   render() {
-    return <SvgWrapper ref={this.onRef}>{getSVGBackgroundByIndex()}</SvgWrapper>;
+    const { isResized } = this.state;
+
+    return (
+      <SvgWrapper style={{ visibility: isResized ? "visible" : "hidden" }} ref={this.onRef}>
+        {getSVGBackgroundByIndex()}
+      </SvgWrapper>
+    );
   }
 }
