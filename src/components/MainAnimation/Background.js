@@ -59,7 +59,7 @@ export class Background extends Component {
       transitionEnd && isAboutPage()
         ? {
             transform: transformToPoints,
-            transition: "transform 500ms cubic-bezier(0.2, 1, 0.6, 1) 0s",
+            transition: "transform 500ms ease",
           }
         : {};
 

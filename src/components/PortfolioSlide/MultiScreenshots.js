@@ -35,7 +35,7 @@ const MultiScreenshotsContainer = styled("div")`
   &.disableTransition,
   &.scrollEvent {
     > img {
-      transition: transform 500ms cubic-bezier(0.2, 1, 0.6, 1) 0s;
+      transition: transform 500ms ease;
       &:nth-child(2) {
         transform: translateX(-18%);
       }
@@ -63,7 +63,7 @@ const MultiScreenshotsContainer = styled("div")`
     &.startAnimation,
     &.disableTransition {
       > img {
-        transition: transform 500ms cubic-bezier(0.2, 1, 0.6, 1) 0s;
+        transition: transform 500ms ease;
         &:nth-child(1) {
           transform: translateX(0);
         }

@@ -15,6 +15,7 @@ export class ConstellationPoints extends PureComponent {
     status: PropTypes.string,
     transitionEnd: PropTypes.bool,
     disableTransition: PropTypes.bool,
+    onSectionChange: PropTypes.func,
   };
 
   constructor(props) {
@@ -74,6 +75,12 @@ export class ConstellationPoints extends PureComponent {
     }
   };
 
+  onSectionChange = (index, e) => {
+    const { onSectionChange } = this.props;
+
+    onSectionChange({ value: index, isSwipeEvent: true });
+  };
+
   render() {
     const { selectedSectionIndex, pointsAmount, x, y, status, disableTransition } = this.props;
     return (
@@ -85,6 +92,7 @@ export class ConstellationPoints extends PureComponent {
         <TransformContainer style={{ transform: `translate(${x}px, ${y}px)` }}>
           {Array.from({ length: pointsAmount }, (_, index) => (
             <Point
+              onClick={e => this.onSectionChange(index, e)}
               ref={this.savePointsRef}
               key={`point-${index}`}
               isActive={index === selectedSectionIndex}
