@@ -20,7 +20,7 @@ class MainAnimationBase extends PureComponent {
     rightSideClassName: PropTypes.string,
     scrollable: PropTypes.bool,
     withSvg: PropTypes.bool,
-    base64styles: PropTypes.string,
+    backgroundImage: PropTypes.string,
     containerClassName: PropTypes.string,
     leftSideWillChangeClassName: PropTypes.string,
     willChangeLeftSideClassName: PropTypes.string,
@@ -31,6 +31,7 @@ class MainAnimationBase extends PureComponent {
     withRightSideAnimation: PropTypes.bool,
     onLeftSideSectionRef: PropTypes.func,
     disableTransition: PropTypes.bool,
+    isMobile: PropTypes.bool,
   };
 
   static defaultProps = {
@@ -45,7 +46,7 @@ class MainAnimationBase extends PureComponent {
       rightSide,
       rightSideClassName,
       children,
-      base64styles,
+      backgroundImage,
       containerClassName,
       willChangeLeftSideClassName,
       willChangeRightSideClassName,
@@ -54,6 +55,7 @@ class MainAnimationBase extends PureComponent {
       x,
       y,
       disableTransition,
+      isMobile,
     } = this.props;
 
     return (
@@ -101,8 +103,9 @@ class MainAnimationBase extends PureComponent {
 
                 {rightSide && (
                   <RightSide
+                    isMobile={isMobile}
                     disableTransition={disableTransition}
-                    base64styles={base64styles}
+                    backgroundImage={backgroundImage}
                     x={x}
                     y={y}
                     transitionEnd={transitionEnd}

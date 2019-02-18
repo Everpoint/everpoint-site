@@ -13,7 +13,7 @@ export class Background extends Component {
     x: PropTypes.number,
     y: PropTypes.number,
     direction: PropTypes.number,
-    base64styles: PropTypes.string,
+    backgroundImage: PropTypes.string,
     disableTransition: PropTypes.bool,
   };
 
@@ -22,17 +22,17 @@ export class Background extends Component {
       status: nextStatus,
       x: nextX,
       y: nextY,
-      base64styles: nextBase64styles,
+      backgroundImage: nextBackgroundImage,
       disableTransition: nextDisableTransition,
     },
     nextState,
   ) {
-    const { status, x, y, base64styles, disableTransition } = this.props;
+    const { status, x, y, backgroundImage, disableTransition } = this.props;
     return (
       status !== nextStatus ||
       x !== nextX ||
       y !== nextY ||
-      base64styles !== nextBase64styles ||
+      backgroundImage !== nextBackgroundImage ||
       disableTransition !== nextDisableTransition
     );
   }
@@ -47,7 +47,7 @@ export class Background extends Component {
       withSvg,
       status,
       backgroundClassName,
-      base64styles,
+      backgroundImage,
       disableTransition,
       ...props
     } = this.props;
@@ -67,7 +67,7 @@ export class Background extends Component {
           <BackgroundBlock
             style={{
               ...aboutBgStyle,
-              backgroundImage: `url(${getBackground(props)})`,
+              backgroundImage: `url(${backgroundImage || getBackground(props)})`,
             }}
             disableTransition={disableTransition}
             onTransitionEnd={onTransitionEnd}
@@ -76,7 +76,7 @@ export class Background extends Component {
               fade[status],
               transition[status],
               styles.default,
-              base64styles || getBackgroundStyle(props),
+              getBackgroundStyle(props),
               backgroundClassName,
             )}
           />

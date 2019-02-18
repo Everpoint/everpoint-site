@@ -3,20 +3,20 @@ import React from "react";
 import { ReactComponent as Earth } from "../../assets/img/main-slides/earth.svg";
 import russia from "../../assets/img/main-slides/russia.svg";
 import moscow from "../../assets/img/main-slides/moscow.svg";
-import bus from "../../assets/img/main-slides/bus.png";
+import metro from "../../assets/img/main-slides/metro.svg";
+import bus from "../../assets/img/main-slides/bus.svg";
 import earth from "../../assets/img/main-slides/earth.svg";
 import styles from "./styles";
 
-export const preloadBgImages = [russia, moscow, bus, earth];
+export const preloadBgImages = [russia, moscow, bus, earth, metro];
 
 export const getSVGBackgroundByIndex = ({ isContactsPage, isAboutPage, ...props }) => {
   return <Earth {...props} />;
 };
 
-export const getBackground = ({ isPortfolioPage, isAboutPage, isJobsPage, isContactsPage }) => {
+export const getBackground = ({ isPortfolioPage, isAboutPage, isJobsPage }) => {
   if (isPortfolioPage() || isAboutPage()) return russia;
   else if (isJobsPage()) return moscow;
-  else if (isContactsPage()) return bus;
   else return earth;
 };
 
