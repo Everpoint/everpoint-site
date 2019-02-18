@@ -16,8 +16,9 @@ export class RightSide extends Component {
     transitionEnd: PropTypes.bool,
     x: PropTypes.number,
     y: PropTypes.number,
-    base64styles: PropTypes.string,
+    backgroundImage: PropTypes.string,
     disableTransition: PropTypes.bool,
+    isMobile: PropTypes.bool,
   };
 
   shouldComponentUpdate(
@@ -27,8 +28,9 @@ export class RightSide extends Component {
       transitionEnd: nextTransitionEnd,
       x: nextX,
       y: nextY,
-      base64styles: nextBase64styles,
+      backgroundImage: nextBackgroundImage,
       disableTransition: nextDisableTransition,
+      isMobile: nextIsMobile,
     },
     nextState,
   ) {
@@ -38,8 +40,9 @@ export class RightSide extends Component {
       transitionEnd,
       x,
       y,
-      base64styles,
+      backgroundImage,
       disableTransition,
+      isMobile,
     } = this.props;
 
     return (
@@ -48,8 +51,9 @@ export class RightSide extends Component {
       transitionEnd !== nextTransitionEnd ||
       x !== nextX ||
       y !== nextY ||
-      base64styles !== nextBase64styles ||
-      disableTransition !== nextDisableTransition
+      backgroundImage !== nextBackgroundImage ||
+      disableTransition !== nextDisableTransition ||
+      isMobile !== nextIsMobile
     );
   }
 

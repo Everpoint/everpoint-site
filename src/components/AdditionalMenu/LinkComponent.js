@@ -1,7 +1,15 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
+import { css } from "astroturf";
+import cn from "classnames";
 
 import { Link } from "../Atoms/Atoms";
+
+const styles = css`
+  .isActive {
+    font-weight: 600;
+  }
+`;
 
 export class LinkComponent extends Component {
   static propTypes = {
@@ -43,6 +51,8 @@ export class LinkComponent extends Component {
     const { isMobile } = this.state;
     const { text, little = false, id, selectedId, onSectionChange, isPortfolioPage } = this.props;
 
+    const isActive = selectedId === id;
+
     return (
       <Link
         onClick={() =>
@@ -53,7 +63,8 @@ export class LinkComponent extends Component {
           })
         }
         little={little}
-        isActive={selectedId === id}
+        isActive={isActive}
+        className={cn({ [styles.isActive]: isActive })}
       >
         {text}
       </Link>

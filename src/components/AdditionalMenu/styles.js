@@ -63,7 +63,7 @@ export const MenuList = styled("ul")`
   }
   > li {
     a {
-      transition: color 200ms ease;
+      transition: color 200ms ease, font-weight 200ms ease;
       @media (hover: hover) {
         &:hover {
           color: #90c53d;

@@ -16,18 +16,11 @@ const styles = css`
     background-size: cover;
     background-repeat: no-repeat;
   }
-  .earth {
-  }
-  .europeRussia {
-  }
   .moscow {
     @media (max-width: 767px) and (orientation: portrait) {
       background-size: 344%;
       background-position: 51% 51%;
     }
-  }
-  .busPngPreview {
-    background-position: 75% center;
   }
   .bus {
     background-position: 75% center;
@@ -35,9 +28,13 @@ const styles = css`
   .metro {
     background-position: 75% center;
   }
-  .bus,
-  .metro,
-  .busPngPreview {
+  .default.bus,
+  .default.metro {
+    @media (max-width: 767px) and (orientation: portrait) {
+      height: 117%;
+      width: 111%;
+      top: -14%;
+    }
     @media (max-width: 812px) and (orientation: landscape) {
       background-position: 74% 24%;
       background-size: 130%;
