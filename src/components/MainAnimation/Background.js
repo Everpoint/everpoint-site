@@ -24,11 +24,13 @@ export class Background extends Component {
       y: nextY,
       backgroundImage: nextBackgroundImage,
       disableTransition: nextDisableTransition,
+      transitionEnd: nextTransitionEnd,
     },
     nextState,
   ) {
-    const { status, x, y, backgroundImage, disableTransition } = this.props;
+    const { status, x, y, backgroundImage, disableTransition, transitionEnd } = this.props;
     return (
+      transitionEnd !== nextTransitionEnd ||
       status !== nextStatus ||
       x !== nextX ||
       y !== nextY ||
@@ -59,31 +61,29 @@ export class Background extends Component {
           transition: "transform 500ms cubic-bezier(0.2, 1, 0.6, 1) 0s",
         }
       : {};
-    const withChangeBase64ToSvg = withSvg ? !transitionEnd : true;
-
+    const withBackroundImage = withSvg ? !transitionEnd : true;
+    console.info("--> withBackroundImage ggwp", withBackroundImage);
     return (
       <>
-        {withChangeBase64ToSvg && (
-          <BackgroundBlock
-            style={{
-              ...aboutBgStyle,
-              backgroundImage: `url(${backgroundImage || getBackground(props)})`,
-            }}
-            disableTransition={disableTransition}
-            onTransitionEnd={onTransitionEnd}
-            className={cn(
-              direction > 0 ? scaleIn[status] : scaleOut[status],
-              fade[status],
-              transition[status],
-              styles.default,
-              getBackgroundStyle(props),
-              backgroundClassName,
-            )}
-          />
-        )}
-        {withSvg && (
+        <BackgroundBlock
+          style={{
+            ...aboutBgStyle,
+            backgroundImage: `url(${backgroundImage || getBackground(props)})`,
+          }}
+          disableTransition={disableTransition}
+          onTransitionEnd={onTransitionEnd}
+          className={cn(
+            direction > 0 ? scaleIn[status] : scaleOut[status],
+            fade[status],
+            transition[status],
+            styles.default,
+            getBackgroundStyle(props),
+            backgroundClassName,
+          )}
+        />
+        {withSvg && transitionEnd && (
           <BackgroundBlock>
-            <Resizer transitionEnd={transitionEnd} {...props} />
+            <Resizer />
           </BackgroundBlock>
         )}
       </>
