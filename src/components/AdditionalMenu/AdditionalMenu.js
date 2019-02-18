@@ -55,6 +55,7 @@ export class AdditionalMenu extends PureComponent {
                         <SecondLevelMenu>
                           {grouped[key].map((item, index) => (
                             <LinkComponent
+                              leftSide={leftSide}
                               isPortfolioPage={isPortfolioPage}
                               onSectionChange={onSectionChange}
                               key={index}
@@ -70,6 +71,7 @@ export class AdditionalMenu extends PureComponent {
                     return grouped[key].map((item, index) => (
                       <ListItem key={index}>
                         <LinkComponent
+                          leftSide={leftSide}
                           isPortfolioPage={isPortfolioPage}
                           onSectionChange={onSectionChange}
                           selectedId={selectedId}
