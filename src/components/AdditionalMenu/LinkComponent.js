@@ -16,6 +16,7 @@ export class LinkComponent extends Component {
     text: PropTypes.string,
     little: PropTypes.bool,
     isPortfolioPage: PropTypes.bool,
+    leftSide: PropTypes.bool,
   };
 
   state = {
@@ -49,7 +50,15 @@ export class LinkComponent extends Component {
 
   render() {
     const { isMobile } = this.state;
-    const { text, little = false, id, selectedId, onSectionChange, isPortfolioPage } = this.props;
+    const {
+      text,
+      little = false,
+      id,
+      selectedId,
+      onSectionChange,
+      isPortfolioPage,
+      leftSide,
+    } = this.props;
 
     const isActive = selectedId === id;
 
@@ -64,7 +73,7 @@ export class LinkComponent extends Component {
         }
         little={little}
         isActive={isActive}
-        className={cn({ [styles.isActive]: isActive })}
+        className={cn({ [styles.isActive]: isActive && leftSide })}
       >
         {text}
       </Link>

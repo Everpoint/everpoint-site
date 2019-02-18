@@ -155,7 +155,6 @@ export const MobileMenu = styled("ul")`
   }
 `;
 
-// language=LESS
 export const LinkContainer = styled("li")`
   margin-right: 1.4285rem;
   align-self: flex-start;
@@ -165,10 +164,7 @@ export const LinkContainer = styled("li")`
   > a {
     display: inline-block;
     font-weight: 600;
-    font-size: 1rem;
-    @media (min-width: 1200px) {
-      font-size: 1.2857rem;
-    }
+    font-size: 1.1428rem;
   }
   @media (max-width: ${mobileMenu}px) {
     align-self: center;
