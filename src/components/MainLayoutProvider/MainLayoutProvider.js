@@ -22,6 +22,10 @@ export class MainLayoutProviderComponent extends Component {
     this.checkBlockIsCenter = throttle(this.checkBlockIsCenter, 100);
     this.checkNavbarIntoContent = throttle(this.checkNavbarIntoContent, 100);
     this.scrollToBlock = debounce(this.scrollToBlock, 100);
+    this.onNavigateToDebounced = debounce(this.onNavigateTo, 144, {
+      leading: true,
+      trailing: false,
+    });
   }
 
   state = {
@@ -37,7 +41,6 @@ export class MainLayoutProviderComponent extends Component {
     thresholdIsActive: false,
     preventDefaultTouchmoveEvent: true,
     disableTransition: true,
-    disableNavigation: false,
 
     // sections
     isSwipeEvent: false,
@@ -178,16 +181,10 @@ export class MainLayoutProviderComponent extends Component {
               sliderDirection: 1,
             };
 
-      this.setState({ currentRoute, coloredNav: false, disableNavigation: true, ...sliderState });
+      this.setState({ currentRoute, coloredNav: false, ...sliderState });
     } else {
-      this.setState({ currentRoute: null, coloredNav: false, disableNavigation: true });
+      this.setState({ currentRoute: null, coloredNav: false });
     }
-
-    this.timeout = setTimeout(() => {
-      this.setState({
-        disableNavigation: false,
-      });
-    }, 100);
   };
 
   checkNavbarIntoContent = () => {
@@ -224,35 +221,21 @@ export class MainLayoutProviderComponent extends Component {
       container: { height },
     } = this.scrollbar.getSize();
 
-    const {
-      currentRoute,
-      scrollTop,
-      limitY,
-      selectedSectionIndex,
-      sections,
-      disableNavigation,
-    } = this.state;
+    const { currentRoute, scrollTop, limitY, selectedSectionIndex, sections } = this.state;
     const { navigate, location } = this.props;
     const { pathname } = location;
-
-    clearTimeout(this.timeout);
-    this.timeout = setTimeout(() => {
-      this.setState({
-        disableNavigation: false,
-      });
-    }, 100);
 
     const scrollable = currentRoute && currentRoute.scrollable;
 
     if (scrollable && (scrollTop === 0 || limitY === scrollTop) && !routeSwipeUpAndDown) {
-      const ratio = height / 3;
+      const ratio = height / 4.8;
 
       if (Math.abs(this.threshold) < ratio) {
         return;
       }
     }
 
-    if ((scrollable && scrollTop > 0 && limitY !== scrollTop) || disableNavigation) {
+    if (scrollable && scrollTop > 0 && limitY !== scrollTop) {
       return;
     }
 
@@ -266,7 +249,6 @@ export class MainLayoutProviderComponent extends Component {
       this.setState({
         disableTransition: false,
         sectionDirection,
-        disableNavigation: true,
         selectedSectionIndex: nextIndex,
       });
     } else {
@@ -277,7 +259,6 @@ export class MainLayoutProviderComponent extends Component {
           disableTransition: false,
           selectedSectionIndex: 0,
           transitionEnd: false,
-          disableNavigation: true,
           direction,
         });
 
@@ -363,7 +344,7 @@ export class MainLayoutProviderComponent extends Component {
 
   onWheel = e => {
     const { thresholdIsActive, scrollTop } = this.state;
-    const direction = Math.sign(e.deltaY);
+    const direction = e.deltaY > 0 ? 1 : -1;
     const normalizeDeltaY = direction > 0 ? 53 : -53;
 
     if (thresholdIsActive || (scrollTop === 0 && direction < 0)) {
@@ -373,8 +354,7 @@ export class MainLayoutProviderComponent extends Component {
     this.setState({ direction, isSwipeEvent: false, damping: this.defaultDamping });
 
     this.checkNavbarIntoContent();
-
-    this.onNavigateTo(direction);
+    this.onNavigateToDebounced(direction);
   };
 
   onExited = () => {
