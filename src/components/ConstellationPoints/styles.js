@@ -25,7 +25,6 @@ export const ConstellationPointsContainer = styled("div")`
 
 export const TransformContainer = styled("div")`
   will-change: transform;
-  pointer-events: none;
   position: absolute;
   width: 100%;
   height: 100%;
@@ -33,16 +32,27 @@ export const TransformContainer = styled("div")`
   left: 0;
   right: 0;
   bottom: 0;
-  transition: transform 500ms cubic-bezier(0.2, 1, 0.6, 1) 0s;
+  transition: transform 500ms ease;
 `;
 
 export const PointMain = styled("div")`
   position: absolute;
-  background-color: #212224;
-  width: 0.8571rem;
-  height: 0.8571rem;
+  width: 2.2857rem;
+  height: 2.2857rem;
   border-radius: 50%;
-  box-shadow: 0 0 0 0.7142rem rgba(33, 34, 36, 0.25);
+  border: 0.7142rem solid rgba(33, 34, 36, 0.25);
+  &:before {
+    content: "";
+    width: calc(2.2857rem - 0.7142rem * 2);
+    height: calc(2.2857rem - 0.7142rem * 2);
+    display: block;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 50%;
+    background-color: #212224;
+  }
 `;
 
 export const FakePoint = styled(PointMain)`
@@ -60,9 +70,10 @@ export const FakePoint = styled(PointMain)`
 `;
 
 export const Point = styled(PointMain)`
-  transition-property: background-color, box-shadow;
+  cursor: pointer;
+  transition-property: background-color, border;
   transition-duration: 200ms;
-  transition-timing-function: cubic-bezier(0.2, 1, 0.6, 1);
+  transition-timing-function: ease;
   &:nth-child(1) {
     top: 50%;
     right: 0;
@@ -146,7 +157,10 @@ export const Point = styled(PointMain)`
     }
   }
   &.isActive {
-    background-color: #90c53d;
-    box-shadow: 0 0 0 0.7142rem rgba(144, 197, 61, 0.25);
+    cursor: default;
+    border: 0.7142rem solid rgba(144, 197, 61, 0.25);
+    &:before {
+      background-color: #90c53d;
+    }
   }
 `;

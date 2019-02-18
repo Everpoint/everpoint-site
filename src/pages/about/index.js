@@ -101,6 +101,7 @@ export class About extends Component {
                     y={y}
                     onTransform={this.onTransform}
                     selectedSectionIndex={selectedSectionIndex}
+                    onSectionChange={onSectionChange}
                   />
                   <WillChangeNews
                     disableTransition={disableTransition}

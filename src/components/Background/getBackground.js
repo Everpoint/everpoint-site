@@ -10,8 +10,8 @@ import styles from "./styles";
 
 export const preloadBgImages = [russia, moscow, bus, earth, metro];
 
-export const getSVGBackgroundByIndex = ({ isContactsPage, isAboutPage, ...props }) => {
-  return <Earth {...props} />;
+export const getSVGBackgroundByIndex = () => {
+  return <Earth />;
 };
 
 export const getBackground = ({ isPortfolioPage, isAboutPage, isJobsPage }) => {

@@ -1,25 +1,17 @@
 import React, { Component } from "react";
-import PropTypes from "prop-types";
 
 import { SvgWrapper } from "./styles";
 import { getElementWidthAndHeight } from "../../utils/dom";
 import { getSVGBackgroundByIndex } from "./getBackground";
 
 export class Resizer extends Component {
-  static propTypes = {
-    transitionEnd: PropTypes.bool,
-    isAboutPage: PropTypes.func,
+  state = {
+    isResized: false,
   };
 
   componentDidMount() {
     window.addEventListener("resize", this.onResize);
     this.onResize();
-  }
-
-  shouldComponentUpdate({ transitionEnd: nextSransitionEnd }, nextState) {
-    const { transitionEnd } = this.props;
-
-    return transitionEnd !== nextSransitionEnd;
   }
 
   componentWillUnmount() {
@@ -51,6 +43,8 @@ export class Resizer extends Component {
         child.style.width = "100%";
         child.style.height = "auto";
       }
+
+      this.setState({ isResized: true });
     }
   };
 
@@ -61,14 +55,11 @@ export class Resizer extends Component {
   };
 
   render() {
-    const { transitionEnd, isAboutPage } = this.props;
+    const { isResized } = this.state;
 
     return (
-      <SvgWrapper ref={this.onRef}>
-        {getSVGBackgroundByIndex({
-          isAboutPage,
-          style: { visibility: transitionEnd ? "visible" : "hidden" },
-        })}
+      <SvgWrapper style={{ visibility: isResized ? "visible" : "hidden" }} ref={this.onRef}>
+        {getSVGBackgroundByIndex()}
       </SvgWrapper>
     );
   }
