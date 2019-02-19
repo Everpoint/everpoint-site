@@ -1,6 +1,8 @@
 import React, { PureComponent } from "react";
 import cn from "classnames";
 
+import { ImagesDownloadListener } from "../../components/ImagesDownloadListener/ImagesDownloadListener";
+import busInterlaced from "../../assets/img/main-slides/bus.png";
 import bus from "../../assets/img/main-slides/bus.svg";
 import metro from "../../assets/img/main-slides/metro.svg";
 import { isMobile } from "../../utils/browser";
@@ -41,6 +43,7 @@ class Contacts extends PureComponent {
   state = {
     stope: true,
     isMobile: false,
+    imagesIsLoaded: false,
   };
 
   componentDidMount() {
@@ -50,7 +53,7 @@ class Contacts extends PureComponent {
   render() {
     const { status, location, disableTransition } = this.props;
     const { text } = getRouteByLocation(location);
-    const { stope, isMobile } = this.state;
+    const { stope, isMobile, imagesIsLoaded } = this.state;
 
     const btnGroupProps = {
       stope,
@@ -60,66 +63,72 @@ class Contacts extends PureComponent {
     };
 
     return (
-      <MainAnimation
-        {...this.props}
-        disableTransition={disableTransition}
-        backgroundImage={stope ? bus : metro}
-        rightSideClassName={styles.contactsRightSide}
-        willChangeLeftSideClassName={styles.willChangeContactsLeftSideClassName}
-        willChangeRightSideClassName={styles.willChangeRightSideClassName}
-        isMobile={isMobile}
-        leftSide={
-          <ContactsLeftSide>
-            <H2 as="h1">{text}</H2>
-            <Link as="address" className={styles.address}>
-              127051, Россия, <br /> г. Москва, ул. Трубная, д. 25 к. 1
-            </Link>
-            {isMobile && <AddressLink>Открыть адрес на карте</AddressLink>}
-            <Link href="tel:+74955060774">+7 (495) 506-07-74</Link>
-            <Link href="mailto:info@everpoint.ru">info@everpoint.ru</Link>
-            <SocialBlock>
-              {socials.map(({ img, link, name }) => (
-                <SocialLink
-                  target="_blank"
-                  href={link}
-                  key={`social-${name}`}
-                  style={{ backgroundImage: `url(${img})` }}
-                />
-              ))}
-            </SocialBlock>
-          </ContactsLeftSide>
-        }
-        rightSide={
-          <>
-            <ButtonGroup {...btnGroupProps} />
-            <MainLayoutConsumer>
-              {({ mobileMenuIsOpen }) => (
-                <>
-                  {!mobileMenuIsOpen && isMobile && (
-                    <Portal>
-                      <BtnGroup className={cn(fade[status], transition[status])}>
-                        <ButtonGroup {...btnGroupProps} />
-                      </BtnGroup>
-                    </Portal>
-                  )}
-                </>
-              )}
-            </MainLayoutConsumer>
-          </>
-        }
-      >
-        <TelegramBtnContainer
+      <>
+        <ImagesDownloadListener
+          images={[bus, metro]}
+          onLoad={() => this.setState({ imagesIsLoaded: true })}
+        />
+        <MainAnimation
+          {...this.props}
           disableTransition={disableTransition}
-          className={cn(fade[status], transition[status])}
+          backgroundImage={imagesIsLoaded ? (stope ? bus : metro) : busInterlaced}
+          rightSideClassName={styles.contactsRightSide}
+          willChangeLeftSideClassName={styles.willChangeContactsLeftSideClassName}
+          willChangeRightSideClassName={styles.willChangeRightSideClassName}
+          isMobile={isMobile}
+          leftSide={
+            <ContactsLeftSide>
+              <H2 as="h1">{text}</H2>
+              <Link as="address" className={styles.address}>
+                127051, Россия, <br /> г. Москва, ул. Трубная, д. 25 к. 1
+              </Link>
+              {isMobile && <AddressLink>Открыть адрес на карте</AddressLink>}
+              <Link href="tel:+74955060774">+7 (495) 506-07-74</Link>
+              <Link href="mailto:info@everpoint.ru">info@everpoint.ru</Link>
+              <SocialBlock>
+                {socials.map(({ img, link, name }) => (
+                  <SocialLink
+                    target="_blank"
+                    href={link}
+                    key={`social-${name}`}
+                    style={{ backgroundImage: `url(${img})` }}
+                  />
+                ))}
+              </SocialBlock>
+            </ContactsLeftSide>
+          }
+          rightSide={
+            <>
+              <ButtonGroup {...btnGroupProps} />
+              <MainLayoutConsumer>
+                {({ mobileMenuIsOpen }) => (
+                  <>
+                    {!mobileMenuIsOpen && isMobile && (
+                      <Portal>
+                        <BtnGroup className={cn(fade[status], transition[status])}>
+                          <ButtonGroup {...btnGroupProps} />
+                        </BtnGroup>
+                      </Portal>
+                    )}
+                  </>
+                )}
+              </MainLayoutConsumer>
+            </>
+          }
         >
-          <TelegramButton
-            as="a"
-            className={styles.telegramBtn}
-            target="_blank"
-            href="https://telegram.me/redditr"
-          />
-        </TelegramBtnContainer>
-      </MainAnimation>
+          <TelegramBtnContainer
+            disableTransition={disableTransition}
+            className={cn(fade[status], transition[status])}
+          >
+            <TelegramButton
+              as="a"
+              className={styles.telegramBtn}
+              target="_blank"
+              href="https://telegram.me/redditr"
+            />
+          </TelegramBtnContainer>
+        </MainAnimation>
+      </>
     );
   }
 }

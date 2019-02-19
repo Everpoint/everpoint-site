@@ -16,6 +16,7 @@ export class ConstellationPoints extends PureComponent {
     transitionEnd: PropTypes.bool,
     disableTransition: PropTypes.bool,
     onSectionChange: PropTypes.func,
+    isMobile: PropTypes.bool,
   };
 
   constructor(props) {
@@ -75,14 +76,18 @@ export class ConstellationPoints extends PureComponent {
     }
   };
 
-  onSectionChange = (index, e) => {
-    const { onSectionChange } = this.props;
-
-    onSectionChange({ value: index, isSwipeEvent: true });
-  };
-
   render() {
-    const { selectedSectionIndex, pointsAmount, x, y, status, disableTransition } = this.props;
+    const {
+      selectedSectionIndex,
+      pointsAmount,
+      x,
+      y,
+      status,
+      disableTransition,
+      onSectionChange,
+      isMobile,
+    } = this.props;
+
     return (
       <ConstellationPointsContainer
         disableTransition={disableTransition}
@@ -92,7 +97,8 @@ export class ConstellationPoints extends PureComponent {
         <TransformContainer style={{ transform: `translate(${x}px, ${y}px)` }}>
           {Array.from({ length: pointsAmount }, (_, index) => (
             <Point
-              onClick={e => this.onSectionChange(index, e)}
+              onMouseUp={!isMobile ? () => onSectionChange({ index }) : void 0}
+              onTouchEnd={!isMobile ? () => onSectionChange({ index, isSwipeEvent: true }) : void 0}
               ref={this.savePointsRef}
               key={`point-${index}`}
               isActive={index === selectedSectionIndex}

@@ -13,6 +13,7 @@ import { H2 } from "../../components/Atoms/Atoms";
 import { MainLayoutConsumer } from "../../components/MainLayoutProvider/MainLayoutProvider";
 import { ConstellationPoints } from "../../components/ConstellationPoints/ConstellationPoints";
 import { fade, slideUp, transition } from "../../components/Transition/animation";
+import { browser } from "../../utils/browser";
 import styles, { NewsContainer, WillChangeNews } from "../../styles/about";
 
 export class About extends Component {
@@ -25,7 +26,17 @@ export class About extends Component {
   state = {
     x: 0,
     y: 0,
+    isMobile: false,
   };
+
+  componentDidMount() {
+    const { parsedResult } = browser();
+    const {
+      platform: { type },
+    } = parsedResult;
+
+    this.setState({ isMobile: type === "mobile" });
+  }
 
   onTransform = coordinates => this.setState(coordinates);
 
@@ -43,7 +54,7 @@ export class About extends Component {
     const allMarkdownRemark = data.allMarkdownRemark;
 
     const { status, disableTransition } = this.props;
-    const { x, y } = this.state;
+    const { x, y, isMobile } = this.state;
 
     return (
       <MainLayoutConsumer>
@@ -94,6 +105,7 @@ export class About extends Component {
               rightSide={
                 <NewsContainer>
                   <ConstellationPoints
+                    isMobile={isMobile}
                     disableTransition={disableTransition}
                     transitionEnd={transitionEnd}
                     status={status}

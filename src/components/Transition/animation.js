@@ -30,12 +30,12 @@ export const scaleOut = css`
 export const transition = css`
   .entered {
     transition-duration: 400ms;
-    transition-timing-function: linear;
+    transition-timing-function: ease;
     transition-property: transform, opacity;
   }
   .exiting {
     transition-duration: 400ms;
-    transition-timing-function: linear;
+    transition-timing-function: ease;
     transition-property: transform, opacity;
   }
 `;

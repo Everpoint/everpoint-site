@@ -447,7 +447,14 @@ export class MainLayoutProviderComponent extends Component {
     }
   };
 
-  onSectionChange = ({ value, id, pageId, isSwipeEvent = false, isClickEvent = false }) => {
+  onSectionChange = ({
+    value,
+    id,
+    pageId,
+    isSwipeEvent = false,
+    isClickEvent = false,
+    index = null,
+  }) => {
     const {
       container: { width },
     } = this.scrollbar.getSize();
@@ -458,6 +465,8 @@ export class MainLayoutProviderComponent extends Component {
 
     const nextValue = id
       ? sections.findIndex(item => item.id === id)
+      : index !== null
+      ? index
       : selectedSectionIndex + value;
 
     if (pageIsChanged) {
