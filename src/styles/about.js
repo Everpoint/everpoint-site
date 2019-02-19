@@ -35,7 +35,7 @@ export const WillChangeNews = styled("div")`
 `;
 
 const styles = css`
-  .aboutContainer {
+  main.aboutContainer {
     > section:first-child {
       z-index: 1;
       h1 {

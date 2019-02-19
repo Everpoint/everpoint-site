@@ -509,11 +509,11 @@ export class MainLayoutProviderComponent extends Component {
     const { damping } = this.state;
 
     if (isUp && yRatio > 25 && !this.disableSwipeNavigation) {
-      this.disableSwipeNavigation = true;
       this.onNavigateTo(1, true);
-    } else if (isDown && yRatio > 25 && !this.disableSwipeNavigation) {
       this.disableSwipeNavigation = true;
+    } else if (isDown && yRatio > 25 && !this.disableSwipeNavigation) {
       this.onNavigateTo(-1, true);
+      this.disableSwipeNavigation = true;
     }
 
     if (damping !== this.defaultDamping) {
