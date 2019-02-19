@@ -588,7 +588,10 @@ export class MainLayoutProviderComponent extends Component {
               disableScrollByDirection: {
                 direction: {
                   x: true,
-                  y: mobileMenuIsOpen || (currentRoute && !currentRoute.scrollable),
+                  y:
+                    mobileMenuIsOpen ||
+                    (currentRoute && !currentRoute.scrollable) ||
+                    !transitionEnd,
                 },
               },
               determineScrollingEvent: { callback: this.determineScrollingEvent },
