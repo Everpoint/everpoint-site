@@ -61,6 +61,7 @@ class MainAnimationBase extends Component {
       onTransitionEnd,
       transitionEnd,
       selectedSectionIndex,
+      backgroundClassName,
     } = this.props;
 
     const transform = `translateY(${scrollTop}px)`;
@@ -77,6 +78,7 @@ class MainAnimationBase extends Component {
         >
           <Background
             {...this.props}
+            backgroundClassName={backgroundClassName}
             transitionEnd={transitionEnd}
             onTransitionEnd={onTransitionEnd}
             disableTransition={disableTransition}
