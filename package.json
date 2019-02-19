@@ -13,6 +13,7 @@
     "prop-types": "^15.6.0",
     "react": "^16.2.0",
     "react-dom": "^16.4.1",
+    "react-fastclick": "^3.0.2",
     "react-helmet": "^5.2.0",
     "react-smooth-scrollbar": "^8.0.6",
     "react-swipeable": "^4.3.1",

@@ -57,6 +57,7 @@ export class MainLayoutProviderComponent extends Component {
   scrollable = null;
   lefsideSection = null;
   timeout = 0;
+  disableSwipeNavigation = false;
 
   componentDidMount() {
     this.setCurrentRoute();
@@ -500,16 +501,20 @@ export class MainLayoutProviderComponent extends Component {
     }
   };
 
-  onSwiped = ({ isUp, isDown, yRatio }) => {
-    if (isUp && yRatio > 25) {
-      this.onNavigateTo(1, true);
-    } else if (isDown && yRatio > 25) {
-      this.onNavigateTo(-1, true);
-    }
+  onSwiped = () => {
+    this.disableSwipeNavigation = false;
   };
 
-  onSwiping = () => {
+  onSwiping = ({ isUp, isDown, yRatio }) => {
     const { damping } = this.state;
+
+    if (isUp && yRatio > 25 && !this.disableSwipeNavigation) {
+      this.disableSwipeNavigation = true;
+      this.onNavigateTo(1, true);
+    } else if (isDown && yRatio > 25 && !this.disableSwipeNavigation) {
+      this.disableSwipeNavigation = true;
+      this.onNavigateTo(-1, true);
+    }
 
     if (damping !== this.defaultDamping) {
       this.setState({
