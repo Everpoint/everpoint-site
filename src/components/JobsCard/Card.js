@@ -12,7 +12,7 @@ export const Card = props => {
   const { id, card, className, items } = props;
   const { photo, type, avatar } = card;
 
-  if (id === "vacancy" && items.length === 0) {
+  if (id === "vacancy" && items && items.length === 0) {
     return <NoVacancyCard />;
   }
 

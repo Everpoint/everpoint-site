@@ -134,20 +134,22 @@ export class MainLayoutProviderComponent extends Component {
   getSelectedSectionIndex = (currentRoute, sections) => {
     const { selectedSectionIndex, direction } = this.state;
     const { id } = currentRoute;
+
+    const indexFromDirection = direction < 0 ? sections.length - 1 : 0;
+
     if (id === "portfolio") {
       const idFromLocalstorage = localStorage.getItem(id);
       const selectedSectionIndexFromStorage = sections.findIndex(
         section => section.id === idFromLocalstorage,
       );
+
       localStorage.removeItem(id);
 
-      return selectedSectionIndexFromStorage > 0
-        ? Math.max(+selectedSectionIndexFromStorage, 0)
-        : selectedSectionIndex || direction < 0
-        ? sections.length - 1
-        : 0;
+      const indexFromLocalStorage = Math.max(+selectedSectionIndexFromStorage, 0);
+
+      return indexFromLocalStorage || selectedSectionIndex || indexFromDirection;
     } else {
-      return selectedSectionIndex || direction < 0 ? sections.length - 1 : 0;
+      return selectedSectionIndex || indexFromDirection;
     }
   };
 

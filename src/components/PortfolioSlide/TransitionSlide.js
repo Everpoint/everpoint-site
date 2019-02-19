@@ -71,6 +71,8 @@ export class TransitionSlide extends Component {
     const scrollEvent = !isSwipeEvent;
     const nextSlide = id === nextId;
 
+    const animtionDisabled = disableTransition || !transitionEnd;
+
     const scrollDown = sectionDirection > 0;
 
     const transitionUp = scrollEvent
@@ -95,17 +97,19 @@ export class TransitionSlide extends Component {
 
     return (
       <PortfolioSlideContainer
-        style={{ ...transitionUp[status] }}
+        style={{
+          ...transitionUp[status],
+        }}
         className={cn(...scrollClassNames)}
         onClick={goToLongread}
         ref={onContainerRef}
         onMouseOver={() => this.setState({ hovered: true })}
         onMouseOut={() => this.setState({ hovered: false })}
-        disableTransition={disableTransition || !transitionEnd}
+        disableTransition={animtionDisabled}
       >
         <BackendComponent sections={sections} selectedSectionIndex={selectedSectionIndex} />
         <SliderBackground
-          disableTransition={disableTransition}
+          disableTransition={animtionDisabled}
           hovered={hovered}
           style={{
             background:
@@ -116,14 +120,14 @@ export class TransitionSlide extends Component {
           isNext={nextSlide}
           scrollEvent={scrollEvent}
           status={status}
-          disableTransition={disableTransition || !transitionEnd}
+          disableTransition={animtionDisabled}
           direction={sectionDirection}
           text={text}
           screenshots={images}
         />
         <Content
           status={status}
-          disableTransition={disableTransition || scrollEvent}
+          disableTransition={animtionDisabled || scrollEvent}
           direction={sectionDirection}
           title={title}
           text={text}
