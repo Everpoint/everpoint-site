@@ -27,6 +27,7 @@ export class PortfolioSlide extends PureComponent {
     disableTransition: PropTypes.bool,
     isSwipeEvent: PropTypes.bool,
     scrollTop: PropTypes.number,
+    transitionEnd: PropTypes.bool,
   };
 
   state = {

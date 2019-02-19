@@ -24,6 +24,7 @@ export class TransitionSlide extends Component {
     disableTransition: PropTypes.bool,
     up: PropTypes.number,
     down: PropTypes.number,
+    transitionEnd: PropTypes.bool,
   };
 
   static getDerivedStateFromProps(nextProps, prevState) {
@@ -64,6 +65,7 @@ export class TransitionSlide extends Component {
       isSwipeEvent,
       up,
       down,
+      transitionEnd,
     } = this.props;
 
     const scrollEvent = !isSwipeEvent;
@@ -99,7 +101,7 @@ export class TransitionSlide extends Component {
         ref={onContainerRef}
         onMouseOver={() => this.setState({ hovered: true })}
         onMouseOut={() => this.setState({ hovered: false })}
-        disableTransition={disableTransition}
+        disableTransition={disableTransition || !transitionEnd}
       >
         <BackendComponent sections={sections} selectedSectionIndex={selectedSectionIndex} />
         <SliderBackground
@@ -114,7 +116,7 @@ export class TransitionSlide extends Component {
           isNext={nextSlide}
           scrollEvent={scrollEvent}
           status={status}
-          disableTransition={disableTransition}
+          disableTransition={disableTransition || !transitionEnd}
           direction={sectionDirection}
           text={text}
           screenshots={images}

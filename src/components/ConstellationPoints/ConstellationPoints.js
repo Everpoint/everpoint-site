@@ -41,7 +41,10 @@ export class ConstellationPoints extends PureComponent {
     window.removeEventListener("resize", this.debouncedTransform);
   }
 
-  componentDidUpdate({ selectedSectionIndex: prevSelectedSectionIndex }, prevState) {
+  componentDidUpdate(
+    { selectedSectionIndex: prevSelectedSectionIndex, transitionEnd: prevTransitionEnd },
+    prevState,
+  ) {
     const { selectedSectionIndex, transitionEnd } = this.props;
 
     if (
@@ -50,6 +53,8 @@ export class ConstellationPoints extends PureComponent {
       this.fakePoint &&
       transitionEnd
     ) {
+      this.transform();
+    } else if (prevTransitionEnd !== transitionEnd) {
       this.transform();
     }
   }
