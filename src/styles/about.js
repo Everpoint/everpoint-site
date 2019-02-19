@@ -81,15 +81,12 @@ const styles = css`
         margin-bottom: 2rem;
       }
     }
-    @media (max-width: 812px) and (max-height: 275px) and (orientation: landscape), only screen 
-  and (min-device-width: 320px) 
-  and (max-device-width: 568px)
-  and (-webkit-min-device-pixel-ratio: 2)
-  and (orientation: landscape) {
+    @media (max-width: 812px) and (max-height: 275px) and (orientation: landscape),
+      only screen and (min-device-width: 320px) and (max-device-width: 568px) and (-webkit-min-device-pixel-ratio: 2) and (orientation: landscape) {
       padding-bottom: 0.9rem;
     }
   }
-  .isAboutSlide {
+  div.isAboutSlide {
     will-change: transform;
     bottom: auto;
     right: auto;

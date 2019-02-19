@@ -26,17 +26,28 @@ export class Background extends Component {
       backgroundImage: nextBackgroundImage,
       disableTransition: nextDisableTransition,
       transitionEnd: nextTransitionEnd,
+      backgroundClassName: nextBackgroundClassName,
     },
     nextState,
   ) {
-    const { status, x, y, backgroundImage, disableTransition, transitionEnd } = this.props;
+    const {
+      status,
+      x,
+      y,
+      backgroundImage,
+      disableTransition,
+      transitionEnd,
+      backgroundClassName,
+    } = this.props;
+
     return (
       transitionEnd !== nextTransitionEnd ||
       status !== nextStatus ||
       x !== nextX ||
       y !== nextY ||
       backgroundImage !== nextBackgroundImage ||
-      disableTransition !== nextDisableTransition
+      disableTransition !== nextDisableTransition ||
+      backgroundClassName !== nextBackgroundClassName
     );
   }
 
