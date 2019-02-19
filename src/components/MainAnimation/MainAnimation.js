@@ -1,4 +1,4 @@
-import React, { PureComponent } from "react";
+import React, { Component } from "react";
 import PropTypes from "prop-types";
 import cn from "classnames";
 
@@ -13,7 +13,7 @@ import { RightSide } from "./RightSide";
 import { FullViewportContainer } from "../../styles/main";
 import { common } from "../../styles/common";
 
-class MainAnimationBase extends PureComponent {
+class MainAnimationBase extends Component {
   static propTypes = {
     status: PropTypes.string,
     leftSideClassName: PropTypes.string,
@@ -56,76 +56,76 @@ class MainAnimationBase extends PureComponent {
       y,
       disableTransition,
       isMobile,
+      scrollTop,
+      direction,
+      onTransitionEnd,
+      transitionEnd,
+      selectedSectionIndex,
     } = this.props;
 
+    const transform = `translateY(${scrollTop}px)`;
+
     return (
-      <MainLayoutConsumer>
-        {({ scrollTop, direction, onTransitionEnd, transitionEnd, selectedSectionIndex }) => {
-          const transform = `translateY(${scrollTop}px)`;
+      <FullViewportContainer>
+        <WillChange
+          fullViewport
+          style={{
+            transform,
+            willChange: transitionEnd && "transform",
+            overflow: transitionEnd ? "hidden" : "visible",
+          }}
+        >
+          <Background
+            {...this.props}
+            transitionEnd={transitionEnd}
+            onTransitionEnd={onTransitionEnd}
+            disableTransition={disableTransition}
+            direction={direction}
+          />
+        </WillChange>
+        <Content className={cn(containerClassName, common.container)}>
+          <WillChange
+            className={willChangeLeftSideClassName}
+            left
+            style={{ transform, willChange: transitionEnd && "transform" }}
+          >
+            <LeftSide
+              disableTransition={disableTransition}
+              ref={onLeftSideSectionRef}
+              className={cn(leftSideClassName, slideUp[status], fade[status], transition[status])}
+            >
+              {leftSide}
+            </LeftSide>
+          </WillChange>
 
-          return (
-            <FullViewportContainer>
-              <WillChange
-                fullViewport
-                style={{
-                  transform,
-                  willChange: transitionEnd && "transform",
-                  overflow: transitionEnd ? "hidden" : "visible",
-                }}
-              >
-                <Background
-                  {...this.props}
-                  transitionEnd={transitionEnd}
-                  onTransitionEnd={onTransitionEnd}
-                  disableTransition={disableTransition}
-                  direction={direction}
-                />
-              </WillChange>
-              <Content className={cn(containerClassName, common.container)}>
-                <WillChange
-                  className={willChangeLeftSideClassName}
-                  left
-                  style={{ transform, willChange: transitionEnd && "transform" }}
-                >
-                  <LeftSide
-                    disableTransition={disableTransition}
-                    ref={onLeftSideSectionRef}
-                    className={cn(
-                      leftSideClassName,
-                      slideUp[status],
-                      fade[status],
-                      transition[status],
-                    )}
-                  >
-                    {leftSide}
-                  </LeftSide>
-                </WillChange>
-
-                {rightSide && (
-                  <RightSide
-                    isMobile={isMobile}
-                    disableTransition={disableTransition}
-                    backgroundImage={backgroundImage}
-                    x={x}
-                    y={y}
-                    transitionEnd={transitionEnd}
-                    selectedSectionIndex={selectedSectionIndex}
-                    status={status}
-                    willChangeRightSideClassName={willChangeRightSideClassName}
-                    withRightSideAnimation={withRightSideAnimation}
-                    rightSideClassName={rightSideClassName}
-                  >
-                    {rightSide}
-                  </RightSide>
-                )}
-                {children}
-              </Content>
-            </FullViewportContainer>
-          );
-        }}
-      </MainLayoutConsumer>
+          {rightSide && (
+            <RightSide
+              isMobile={isMobile}
+              disableTransition={disableTransition}
+              backgroundImage={backgroundImage}
+              x={x}
+              y={y}
+              transitionEnd={transitionEnd}
+              selectedSectionIndex={selectedSectionIndex}
+              status={status}
+              willChangeRightSideClassName={willChangeRightSideClassName}
+              withRightSideAnimation={withRightSideAnimation}
+              rightSideClassName={rightSideClassName}
+            >
+              {rightSide}
+            </RightSide>
+          )}
+          {children}
+        </Content>
+      </FullViewportContainer>
     );
   }
 }
 
-export const MainAnimation = withRouter(MainAnimationBase);
+export const MainAnimationWithLayout = props => (
+  <MainLayoutConsumer>
+    {layoutProps => <MainAnimationBase {...props} {...layoutProps} />}
+  </MainLayoutConsumer>
+);
+
+export const MainAnimation = withRouter(MainAnimationWithLayout);
