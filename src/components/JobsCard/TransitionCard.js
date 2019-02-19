@@ -31,7 +31,7 @@ export class Crutch extends Component {
   ) {
     const { isSwipeEvent, section } = this.props;
     const { parentId } = this.state;
-    if (isSwipeEvent && parentId && parentId !== prevSection.id) {
+    if (isSwipeEvent && parentId && prevSection && parentId !== prevSection.id && section) {
       this.setState({ parentId: section.id });
     }
   }
