@@ -53,7 +53,7 @@ export class Background extends Component {
       disableTransition,
       isAboutPage,
     } = this.props;
-    // about page slider
+    // about page slider ****
     const transformToPoints = `translate(${x}px, ${y}px)`;
     const aboutBgStyle =
       transitionEnd && isAboutPage()
