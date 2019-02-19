@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import initReactFastclick from "react-fastclick";
 import { StaticQuery, graphql } from "gatsby";
 
 import { Helmet } from "../components/Helmet/Helmet";
@@ -9,6 +10,7 @@ import { PageTransition } from "../components/Transition/PageTransition";
 import { Navbar } from "../components/Navbar/Navbar";
 import { ViewportHeight } from "../components/ViewportHeight/ViewportHeight";
 
+initReactFastclick();
 injectGlobals();
 
 class Layout extends Component {

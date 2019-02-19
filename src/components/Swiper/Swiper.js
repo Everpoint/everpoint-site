@@ -22,7 +22,7 @@ export class Swiper extends Component {
       isDown: !y,
     };
   }
-
+  onSwiping;
   // ratio of percentage
   ratioDistance = (deltaX, deltaY) => {
     if (!this.swipeableNode) {
@@ -65,11 +65,32 @@ export class Swiper extends Component {
     }
   };
 
+  swiping = (event, deltaX, deltaY, isFlick, velocity) => {
+    const { onSwiping } = this.props;
+
+    this.ratioDistance(deltaX, deltaY);
+    onSwiping &&
+      onSwiping({
+        event,
+        deltaX,
+        deltaY,
+        isFlick,
+        velocity,
+        ...this.direction(deltaX, deltaY),
+        ...this.ratioDistance(deltaX, deltaY),
+      });
+  };
+
   render() {
     const { children, ...props } = this.props;
 
     return (
-      <Swipeable {...props} innerRef={this.onSwiperRef} onSwiped={this.swiped}>
+      <Swipeable
+        {...props}
+        innerRef={this.onSwiperRef}
+        onSwiped={this.swiped}
+        onSwiping={this.swiping}
+      >
         {children}
       </Swipeable>
     );
