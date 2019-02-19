@@ -131,8 +131,8 @@ export class MainLayoutProviderComponent extends Component {
     return sliderIdArray;
   };
 
-  getSelectedSectionIndexFromLocalstorage = (currentRoute, sections) => {
-    const { selectedSectionIndex } = this.state;
+  getSelectedSectionIndex = (currentRoute, sections) => {
+    const { selectedSectionIndex, direction } = this.state;
     const { id } = currentRoute;
     if (id === "portfolio") {
       const idFromLocalstorage = localStorage.getItem(id);
@@ -143,9 +143,11 @@ export class MainLayoutProviderComponent extends Component {
 
       return selectedSectionIndexFromStorage > 0
         ? Math.max(+selectedSectionIndexFromStorage, 0)
-        : selectedSectionIndex;
+        : selectedSectionIndex || direction < 0
+        ? sections.length - 1
+        : 0;
     } else {
-      return selectedSectionIndex;
+      return selectedSectionIndex || direction < 0 ? sections.length - 1 : 0;
     }
   };
 
@@ -164,10 +166,7 @@ export class MainLayoutProviderComponent extends Component {
           ? Array.from({ length: 5 }, (_, index) => index)
           : this.sectionsFromAdditionalMenu(additionalMenu);
 
-      const selectedSectionIndex = this.getSelectedSectionIndexFromLocalstorage(
-        currentRoute,
-        sections,
-      );
+      const selectedSectionIndex = this.getSelectedSectionIndex(currentRoute, sections);
 
       const sliderState =
         slider || scrollable
@@ -588,7 +587,10 @@ export class MainLayoutProviderComponent extends Component {
               disableScrollByDirection: {
                 direction: {
                   x: true,
-                  y: mobileMenuIsOpen || (currentRoute && !currentRoute.scrollable),
+                  y:
+                    mobileMenuIsOpen ||
+                    (currentRoute && !currentRoute.scrollable) ||
+                    !transitionEnd,
                 },
               },
               determineScrollingEvent: { callback: this.determineScrollingEvent },

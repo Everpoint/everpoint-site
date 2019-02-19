@@ -48,9 +48,9 @@ export const routes = [
 
 export const navigateTo = ({ navigate, pathname, direction }) => {
   const outsideLinkFilteredRoutes = routes.filter(({ outsideLink }) => !outsideLink);
-  const index = outsideLinkFilteredRoutes.findIndex(({ route }) => pathname.includes(route));
+  const index = outsideLinkFilteredRoutes.findIndex(({ id }) => pathname.includes(id));
   const length = outsideLinkFilteredRoutes.length;
-  const nextRouteIndex = index + direction;
+  const nextRouteIndex = Math.max(index + direction, direction);
 
   if (nextRouteIndex >= 0 && nextRouteIndex < length) {
     navigate(outsideLinkFilteredRoutes[nextRouteIndex].route);
