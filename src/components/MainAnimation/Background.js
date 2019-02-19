@@ -15,6 +15,7 @@ export class Background extends Component {
     direction: PropTypes.number,
     backgroundImage: PropTypes.string,
     disableTransition: PropTypes.bool,
+    backgroundClassName: PropTypes.string,
   };
 
   shouldComponentUpdate(
