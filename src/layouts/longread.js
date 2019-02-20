@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import cn from "classnames";
 
-import { isMobile } from "../utils/browser";
+import { isMobile, isTablet } from "../utils/browser";
 import { getProject, getBackRouteByLocationPathName } from "../routes";
 import { ViewportHeight } from "../components/ViewportHeight/ViewportHeight";
 import { Helmet } from "../components/Helmet/Helmet";
@@ -10,20 +10,9 @@ import { LongreadNavbar } from "../components/LongreadNavbar/LongreadNavbar";
 import styles from "../styles/longread";
 
 class LongredLayout extends Component {
-  static getDerivedStateFromProps(nextProps, prevState) {
-    const { isMobile: prevIsMobile } = prevState;
-
-    if (prevIsMobile === null) {
-      return {
-        isMobile: isMobile(),
-      };
-    }
-
-    return null;
-  }
-
   state = {
     projects: null,
+    isTablet: null,
     isMobile: null,
   };
 
@@ -36,27 +25,37 @@ class LongredLayout extends Component {
       const projects = getProject({ allProject: true }).map(({ id }) => id);
       this.setState({ projects });
     }
+
+    this.setState({ isMobile: isMobile(), isTablet: isTablet() });
   }
 
   render() {
-    const { projects, isMobile } = this.state;
+    const { projects, isMobile, isTablet } = this.state;
     const { children, location } = this.props;
 
     return (
       <ScrollbarProvider
-        native={isMobile}
+        nativeScrollbar={isMobile || isTablet}
         location={location}
         className={styles.scrollbar}
         withScrollbarY
       >
         <Helmet
           bodyAttributes={{
-            class: cn({ [styles.londreadBodyMobile]: isMobile }),
+            class: cn({ [styles.londreadBodyMobile]: isMobile || isTablet }),
           }}
         />
         <ViewportHeight />
-        <LongreadNavbar native={isMobile} projects={projects} pathname={location.pathname} />
-        {children}
+        <LongreadNavbar
+          nativeScrollbar={isMobile || isTablet}
+          projects={projects}
+          pathname={location.pathname}
+        />
+        {React.cloneElement(children, {
+          isMobile,
+          isTablet,
+          isMobileOrTablet: isMobile || isTablet,
+        })}
       </ScrollbarProvider>
     );
   }

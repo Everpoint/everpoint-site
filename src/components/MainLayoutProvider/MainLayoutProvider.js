@@ -4,7 +4,7 @@ import debounce from "lodash/debounce";
 import throttle from "lodash/throttle";
 
 import { preloadBgImages } from "../../components/Background/getBackground";
-import { ScrollBar } from "./styles";
+import { NativeScrollbar, ScrollBar } from "./styles";
 import { ImagesDownloadListener } from "../../components/ImagesDownloadListener/ImagesDownloadListener";
 import { Swiper } from "../../components/Swiper/Swiper";
 import { mobileMenu as mobileMenuWidth } from "../../components/Navbar/styles";
@@ -43,7 +43,8 @@ export class MainLayoutProviderComponent extends Component {
     disableTransition: true,
 
     // sections
-    isSwipeEvent: false,
+    isSwipeEvent: null,
+    isClickEvent: null,
     selectedSectionIndex: 0,
     sections: [],
     sectionDirection: 1,
@@ -110,7 +111,7 @@ export class MainLayoutProviderComponent extends Component {
     }
 
     if (currentRoute && currentRoute.scrollable) {
-      if (width <= mobileMenuWidth) {
+      if (this.scrollbar && width <= mobileMenuWidth) {
         this.setState(
           {
             scrollTop: 0,
@@ -137,10 +138,10 @@ export class MainLayoutProviderComponent extends Component {
   };
 
   getSelectedSectionIndex = (currentRoute, sections) => {
-    const { selectedSectionIndex, direction } = this.state;
+    const { selectedSectionIndex, direction, isClickEvent } = this.state;
     const { id } = currentRoute;
 
-    const indexFromDirection = direction < 0 ? sections.length - 1 : 0;
+    const indexFromDirection = direction < 0 && !isClickEvent ? sections.length - 1 : 0;
 
     if (id === "portfolio") {
       const idFromLocalstorage = localStorage.getItem(id);
@@ -154,6 +155,7 @@ export class MainLayoutProviderComponent extends Component {
 
       return indexFromLocalStorage || selectedSectionIndex || indexFromDirection;
     } else {
+      localStorage.removeItem("portfolio");
       return selectedSectionIndex || indexFromDirection;
     }
   };
@@ -188,9 +190,20 @@ export class MainLayoutProviderComponent extends Component {
               sliderDirection: 1,
             };
 
-      this.setState({ currentRoute, coloredNav: false, ...sliderState });
+      this.setState({
+        currentRoute,
+        coloredNav: false,
+        isSwipeEvent: false,
+        isClickEvent: false,
+        ...sliderState,
+      });
     } else {
-      this.setState({ currentRoute: null, coloredNav: false });
+      this.setState({
+        currentRoute: null,
+        coloredNav: false,
+        isSwipeEvent: false,
+        isClickEvent: false,
+      });
     }
   };
 
@@ -359,7 +372,10 @@ export class MainLayoutProviderComponent extends Component {
   };
 
   onExited = () => {
-    this.scrollbar.scrollTop = 0;
+    if (this.scrollbar) {
+      this.scrollbar.scrollTop = 0;
+    }
+
     this.setState({
       coloredNav: false,
       scrollTop: 0,
@@ -369,7 +385,7 @@ export class MainLayoutProviderComponent extends Component {
 
   determineScrollingEvent = scrolling => (this.scrolling = scrolling);
 
-  onNavLinkClick = ({ transitionEnd, id, event, navigate, selectedSectionIndex }) => {
+  onNavLinkClick = ({ transitionEnd, id, event, navigate, selectedSectionIndex, isClickEvent }) => {
     const { currentRoute } = this.state;
     const prevIndex = routes.findIndex(route => route.id === currentRoute.id);
     const currentIndex = routes.findIndex(route => route.id === id);
@@ -386,6 +402,7 @@ export class MainLayoutProviderComponent extends Component {
         selectedSectionIndex: selectedSectionIndex || 0,
         direction,
         transitionEnd,
+        isClickEvent,
         mobileMenuIsOpen: false,
       },
       () => {
@@ -423,7 +440,7 @@ export class MainLayoutProviderComponent extends Component {
     }));
 
   scrollToBlock = (index, onlyScrollIfNeeded = false) => {
-    if (this.scrollable && this.scrollable.children[index]) {
+    if (this.scrollbar && this.scrollable && this.scrollable.children[index]) {
       const { height } = this.getSize();
 
       let offsetTop = height / 2;
@@ -472,7 +489,7 @@ export class MainLayoutProviderComponent extends Component {
       const index = sectionFromMenu.findIndex(item => item.id === id);
 
       this.onNavLinkClick({
-        isSwipeEvent,
+        isClickEvent,
         selectedSectionIndex: index,
         transitionEnd: false,
         disableTransition: false,
@@ -490,6 +507,7 @@ export class MainLayoutProviderComponent extends Component {
 
       this.setState({
         isSwipeEvent,
+        isClickEvent,
         sectionDirection,
         disableTransition: false,
         selectedSectionIndex: nextValue,
@@ -576,27 +594,31 @@ export class MainLayoutProviderComponent extends Component {
           onSwiping={this.onSwiping}
           onSwiped={this.onSwiped}
         >
-          <ScrollBar
-            ref={this.onScrollBarRef}
-            damping={damping}
-            disableHover={disableHover || !transitionEnd}
-            plugins={{
-              disableScrollByDirection: {
-                direction: {
-                  x: true,
-                  y:
-                    mobileMenuIsOpen ||
-                    (currentRoute && !currentRoute.scrollable) ||
-                    !transitionEnd,
+          {false ? (
+            <NativeScrollbar>{children}</NativeScrollbar>
+          ) : (
+            <ScrollBar
+              ref={this.onScrollBarRef}
+              damping={damping}
+              disableHover={disableHover || !transitionEnd}
+              plugins={{
+                disableScrollByDirection: {
+                  direction: {
+                    x: true,
+                    y:
+                      mobileMenuIsOpen ||
+                      (currentRoute && !currentRoute.scrollable) ||
+                      !transitionEnd,
+                  },
                 },
-              },
-              determineScrollingEvent: { callback: this.determineScrollingEvent },
-            }}
-            onScroll={this.onScroll}
-            onWheel={this.onWheel}
-          >
-            {children}
-          </ScrollBar>
+                determineScrollingEvent: { callback: this.determineScrollingEvent },
+              }}
+              onScroll={this.onScroll}
+              onWheel={this.onWheel}
+            >
+              {children}
+            </ScrollBar>
+          )}
         </Swiper>
       </ScrollContext.Provider>
     );

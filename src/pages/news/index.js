@@ -5,7 +5,7 @@ import { graphql } from "gatsby";
 import { ScrollbarConsumer } from "../../components/ScrollbarProvider/ScrollbarProvider";
 import { PaginationFull } from "../../components/Pagination/Full/PaginationFull";
 import { PaginationSimple } from "../../components/Pagination/Simple/PaginationSimple";
-import { browser } from "../../utils/browser";
+import { isMobile } from "../../utils/browser";
 import { rowColumns } from "../../utils/array";
 import { H2 } from "../../components/Typography/Headlines";
 import { Section as Main } from "../../components/Elements/Section";
@@ -32,11 +32,7 @@ class NewsBase extends PureComponent {
   }
 
   init = () => {
-    const { parsedResult } = browser();
-    const {
-      platform: { type },
-    } = parsedResult;
-    const columnsCount = type === "mobile" ? 1 : 2;
+    const columnsCount = isMobile() ? 1 : 2;
     const { currentPage } = this.state;
     const { data } = this.props;
     const allMarkdownRemark = data.allMarkdownRemark;

@@ -32,13 +32,13 @@ export class LongreadNavbarBase extends Component {
     scrollTop: PropTypes.number,
     className: PropTypes.string,
     projects: PropTypes.arrayOf(PropTypes.string),
-    native: PropTypes.bool,
+    nativeScrollbar: PropTypes.bool,
   };
 
   render() {
-    const { pathname, scrollTop, className, children, projects, native } = this.props;
+    const { pathname, scrollTop, className, children, projects, nativeScrollbar } = this.props;
 
-    const transform = `translateY(${native ? 0 : scrollTop}px)`;
+    const transform = `translateY(${nativeScrollbar ? 0 : scrollTop}px)`;
     const fixed = Math.floor(scrollTop) > 0;
     const arrowControl = !!projects;
     const currentPageIndex =

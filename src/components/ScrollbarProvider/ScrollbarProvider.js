@@ -9,7 +9,7 @@ import { Scrollbar } from "../../components/Scrollbar/Scrollbar";
 
 import "../ScrollbarProvider/plugins/disableScrollByDirection";
 import { getLongreadNavbarHeight } from "../LongreadNavbar/LongreadNavbar";
-import { isMobile } from "../../utils/browser";
+import { isMobile, isTablet } from "../../utils/browser";
 
 const ScrollBarContext = React.createContext();
 
@@ -21,7 +21,7 @@ export class ScrollbarProvider extends Component {
   };
 
   static defaultProps = {
-    native: false,
+    nativeScrollbar: false,
   };
 
   state = {
@@ -30,17 +30,17 @@ export class ScrollbarProvider extends Component {
   };
 
   componentDidMount() {
-    const { native } = this.props;
+    const { nativeScrollbar } = this.props;
 
-    if (native) {
+    if (nativeScrollbar) {
       window.addEventListener("scroll", this.onNativeScroll);
     }
   }
 
   componentWillUnmount() {
-    const { native } = this.props;
+    const { nativeScrollbar } = this.props;
 
-    if (native) {
+    if (nativeScrollbar) {
       window.removeEventListener("scroll", this.onNativeScroll);
     }
   }
@@ -54,7 +54,7 @@ export class ScrollbarProvider extends Component {
         scrollbar.scrollTo(0, 0, 0);
       } else {
         const axis = Math.abs(window.orientation);
-        const y = axis === 90 && isMobile() ? 1 : 0;
+        const y = axis === 90 && (isMobile() || isTablet()) ? 1 : 0;
 
         window.scrollTo(0, y, 0);
       }
@@ -94,14 +94,14 @@ export class ScrollbarProvider extends Component {
 
   render() {
     const { scrollTop, scrollbar } = this.state;
-    const { children, className, withScrollbarY, native } = this.props;
+    const { children, className, withScrollbarY, nativeScrollbar } = this.props;
 
     return (
       <ScrollBarContext.Provider
-        value={{ scrollTop, scrollbar, elementYPosition: this.elementYPosition, native }}
+        value={{ scrollTop, scrollbar, elementYPosition: this.elementYPosition, nativeScrollbar }}
       >
-        <Swiper preventDefaultTouchmoveEvent={!native}>
-          {native ? (
+        <Swiper preventDefaultTouchmoveEvent={!nativeScrollbar}>
+          {nativeScrollbar ? (
             <NativeScrollbar onScroll={this.onNativeScroll}>{children}</NativeScrollbar>
           ) : (
             <Scrollbar

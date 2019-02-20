@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 // https://github.com/idiotWu/react-smooth-scrollbar
 // API https://github.com/idiotWu/smooth-scrollbar/blob/develop/docs/api.md
 
-import { isMobile } from "../../utils/browser";
+import { isMobile, isTablet } from "../../utils/browser";
 import styles, { ScrollBarContainer } from "./styles";
 
 export class Scrollbar extends Component {
@@ -15,20 +15,20 @@ export class Scrollbar extends Component {
   };
 
   state = {
-    isMobile: false,
+    isMobileOrTablet: false,
   };
 
   componentDidMount() {
-    this.setState({ isMobile: isMobile() });
+    this.setState({ isMobileOrTablet: isMobile() || isTablet() });
   }
 
   render() {
-    const { isMobile } = this.state;
+    const { isMobileOrTablet } = this.state;
     const { children, className, onScrollbarRef, withScrollbarY, ...props } = this.props;
 
     return (
       <ScrollBarContainer
-        className={cn({ [styles.isMobile]: isMobile }, className)}
+        className={cn({ [styles.isMobile]: isMobileOrTablet }, className)}
         withScrollbarY={withScrollbarY}
         {...props}
         ref={onScrollbarRef}

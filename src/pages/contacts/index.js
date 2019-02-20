@@ -5,7 +5,7 @@ import { ImagesDownloadListener } from "../../components/ImagesDownloadListener/
 import busInterlaced from "../../assets/img/main-slides/bus.png";
 import bus from "../../assets/img/main-slides/bus.svg";
 import metro from "../../assets/img/main-slides/metro.svg";
-import { isMobile } from "../../utils/browser";
+import { isMobile, isTablet } from "../../utils/browser";
 import { fade, transition } from "../../components/Transition/animation";
 import { MainLayoutConsumer } from "../../components/MainLayoutProvider/MainLayoutProvider";
 import { Portal } from "../../components/Portal/Portal";
@@ -42,18 +42,18 @@ export const ButtonGroup = ({ stope, onClickBus, onClickMetro }) => {
 class Contacts extends PureComponent {
   state = {
     stope: true,
-    isMobile: false,
+    isMobileOrTablet: false,
     imagesIsLoaded: false,
   };
 
   componentDidMount() {
-    this.setState({ isMobile: isMobile() });
+    this.setState({ isMobileOrTablet: isMobile() || isTablet() });
   }
 
   render() {
     const { status, location, disableTransition } = this.props;
     const { text } = getRouteByLocation(location);
-    const { stope, isMobile, imagesIsLoaded } = this.state;
+    const { stope, isMobileOrTablet, imagesIsLoaded } = this.state;
 
     const btnGroupProps = {
       stope,
@@ -75,14 +75,14 @@ class Contacts extends PureComponent {
           rightSideClassName={styles.contactsRightSide}
           willChangeLeftSideClassName={styles.willChangeContactsLeftSideClassName}
           willChangeRightSideClassName={styles.willChangeRightSideClassName}
-          isMobile={isMobile}
+          isMobileOrTablet={isMobileOrTablet}
           leftSide={
             <ContactsLeftSide>
               <H2 as="h1">{text}</H2>
               <Link as="address" className={styles.address}>
                 127051, Россия, <br /> г. Москва, ул. Трубная, д. 25 к. 1
               </Link>
-              {isMobile && <AddressLink>Открыть адрес на карте</AddressLink>}
+              {isMobileOrTablet && <AddressLink>Открыть адрес на карте</AddressLink>}
               <Link href="tel:+74955060774">+7 (495) 506-07-74</Link>
               <Link href="mailto:info@everpoint.ru">info@everpoint.ru</Link>
               <SocialBlock>
@@ -103,7 +103,7 @@ class Contacts extends PureComponent {
               <MainLayoutConsumer>
                 {({ mobileMenuIsOpen }) => (
                   <>
-                    {!mobileMenuIsOpen && isMobile && (
+                    {!mobileMenuIsOpen && isMobileOrTablet && (
                       <Portal>
                         <BtnGroup className={cn(fade[status], transition[status])}>
                           <ButtonGroup {...btnGroupProps} />

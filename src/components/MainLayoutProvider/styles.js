@@ -3,6 +3,8 @@ import styled from "astroturf";
 // API https://github.com/idiotWu/smooth-scrollbar/blob/develop/docs/api.md
 import Scrollbar from "react-smooth-scrollbar";
 
+export const NativeScrollbar = styled("div")``;
+
 export const ScrollBar = styled(Scrollbar)`
   width: 100vw;
   height: 100vh;

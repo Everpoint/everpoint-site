@@ -12,7 +12,7 @@ import { FooterContainer, Store, Mobiles, LeftSide, RightSide } from "./styles";
 export class Footer extends PureComponent {
   static propTypes = {
     ratio: PropTypes.string,
-    mobilePlatform: PropTypes.bool,
+    isMobileOrTablet: PropTypes.bool,
   };
 
   render() {

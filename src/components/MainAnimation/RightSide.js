@@ -18,7 +18,7 @@ export class RightSide extends Component {
     y: PropTypes.number,
     backgroundImage: PropTypes.string,
     disableTransition: PropTypes.bool,
-    isMobile: PropTypes.bool,
+    isMobileOrTablet: PropTypes.bool,
   };
 
   shouldComponentUpdate(
@@ -30,7 +30,7 @@ export class RightSide extends Component {
       y: nextY,
       backgroundImage: nextBackgroundImage,
       disableTransition: nextDisableTransition,
-      isMobile: nextIsMobile,
+      isMobileOrTablet: nextIsMobileOrTablet,
     },
     nextState,
   ) {
@@ -42,7 +42,7 @@ export class RightSide extends Component {
       y,
       backgroundImage,
       disableTransition,
-      isMobile,
+      isMobileOrTablet,
     } = this.props;
 
     return (
@@ -53,7 +53,7 @@ export class RightSide extends Component {
       y !== nextY ||
       backgroundImage !== nextBackgroundImage ||
       disableTransition !== nextDisableTransition ||
-      isMobile !== nextIsMobile
+      isMobileOrTablet !== nextIsMobileOrTablet
     );
   }
 
