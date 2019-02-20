@@ -94,11 +94,16 @@ export class MainLayoutProviderComponent extends Component {
     }
   };
 
+  getSize = () => {
+    return {
+      width: window.innerWidth,
+      height: window.innerHeight,
+    };
+  };
+
   onResize = () => {
     const { currentRoute, selectedSectionIndex } = this.state;
-    const {
-      container: { width },
-    } = this.scrollbar.getSize();
+    const { width } = this.getSize();
 
     if (width > mobileMenuWidth) {
       this.setState({ mobileMenuIsOpen: false });
@@ -219,9 +224,7 @@ export class MainLayoutProviderComponent extends Component {
   };
 
   onNavigateTo = (direction, routeSwipeUpAndDown = false) => {
-    const {
-      container: { height },
-    } = this.scrollbar.getSize();
+    const { height } = this.getSize();
 
     const { currentRoute, scrollTop, limitY, selectedSectionIndex, sections } = this.state;
     const { navigate, location } = this.props;
@@ -275,9 +278,7 @@ export class MainLayoutProviderComponent extends Component {
     const currentBlock = this.scrollable && this.scrollable.children[value];
 
     if (currentBlock) {
-      const {
-        container: { height },
-      } = this.scrollbar.getSize();
+      const { height } = this.getSize();
 
       const { top, bottom } = currentBlock.getBoundingClientRect();
 
@@ -298,9 +299,7 @@ export class MainLayoutProviderComponent extends Component {
   };
 
   onScroll = e => {
-    const {
-      container: { width },
-    } = this.scrollbar.getSize();
+    const { width } = this.getSize();
 
     const { disableHover, scrollTop, currentRoute } = this.state;
     const { offset, limit } = e;
@@ -425,9 +424,7 @@ export class MainLayoutProviderComponent extends Component {
 
   scrollToBlock = (index, onlyScrollIfNeeded = false) => {
     if (this.scrollable && this.scrollable.children[index]) {
-      const {
-        container: { height },
-      } = this.scrollbar.getSize();
+      const { height } = this.getSize();
 
       let offsetTop = height / 2;
 
@@ -457,9 +454,7 @@ export class MainLayoutProviderComponent extends Component {
     isClickEvent = false,
     index = null,
   }) => {
-    const {
-      container: { width },
-    } = this.scrollbar.getSize();
+    const { width } = this.getSize();
     const { navigate } = this.props;
     const { selectedSectionIndex, sections, currentRoute } = this.state;
 
