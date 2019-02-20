@@ -28,6 +28,7 @@ export class PortfolioSlide extends Component {
     isSwipeEvent: PropTypes.bool,
     scrollTop: PropTypes.number,
     transitionEnd: PropTypes.bool,
+    direction: PropTypes.number,
   };
 
   state = {
@@ -41,6 +42,7 @@ export class PortfolioSlide extends Component {
     height: 0,
     ratio: "x1",
     images: [],
+    prevIndex: null,
   };
 
   componentDidMount() {
@@ -53,11 +55,20 @@ export class PortfolioSlide extends Component {
     window.removeEventListener("resize", this.onResize);
   }
 
-  componentDidUpdate({ scrollTop: prevScrollTop }, prevState) {
-    const { scrollTop } = this.props;
+  componentDidUpdate(
+    { scrollTop: prevScrollTop, selectedSectionIndex: prevSelectedSectionIndex },
+    prevState,
+  ) {
+    const { scrollTop, selectedSectionIndex } = this.props;
 
     if (prevScrollTop !== scrollTop) {
       this.onResize();
+    }
+
+    if (selectedSectionIndex !== prevSelectedSectionIndex) {
+      this.setState({
+        prevIndex: prevSelectedSectionIndex,
+      });
     }
   }
 
@@ -132,7 +143,18 @@ export class PortfolioSlide extends Component {
   };
 
   render() {
-    const { top, down, up, left, width, height, goToLongread, ratio, images } = this.state;
+    const {
+      top,
+      down,
+      up,
+      left,
+      width,
+      height,
+      goToLongread,
+      ratio,
+      images,
+      prevIndex,
+    } = this.state;
     const {
       projectBackgroundColor,
       selectedSectionIndex,
@@ -140,18 +162,22 @@ export class PortfolioSlide extends Component {
       id,
       screenshots,
       isSwipeEvent,
+      transitionEnd,
+      direction,
     } = this.props;
 
     const sectionImages = Array.isArray(screenshots)
       ? screenshots.map(img => img[ratio])
       : screenshots[ratio];
 
+    const isLast = direction > 0 && !transitionEnd && prevIndex;
+
     return (
       <Swiper onSwiped={this.onSwiped}>
         <ImagesDownloadListener images={images} />
         <ContainerTransitionGroup>
           <Transition
-            key={`${id}-portfolio-slide-animation`}
+            key={`${!isLast ? id : "geomonitoring"}-portfolio-slide-animation`}
             timeout={{
               enter: 0,
               exit: isSwipeEvent ? 200 : 400,

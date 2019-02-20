@@ -22,6 +22,7 @@ class PortfolioBase extends Component {
       isSwipeEvent,
       scrollTop,
       transitionEnd,
+      direction,
     } = this.props;
     const currentRoute = getRouteByLocation(location);
     const sections = sectionsFromAdditionalMenu(currentRoute.additionalMenu);
@@ -55,6 +56,7 @@ class PortfolioBase extends Component {
             isSwipeEvent={isSwipeEvent}
             disableTransition={disableTransition}
             sectionDirection={sectionDirection}
+            direction={direction}
             sections={sections}
             selectedSectionIndex={selectedSectionIndex}
             onSectionChange={onSectionChange}
