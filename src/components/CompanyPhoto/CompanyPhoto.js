@@ -1,15 +1,14 @@
-import React, { PureComponent } from "react";
+import React, { Component } from "react";
 import PropTypes from "prop-types";
 import throttle from "lodash/throttle";
 import random from "lodash/random";
 
-import { isMobile } from "../../utils/browser";
 import { ImagesDownloadListener } from "../../components/ImagesDownloadListener/ImagesDownloadListener";
 import { HorizontalRule } from "../../components/Typography/HorizontalRule";
 import { CompanyPhotoTransition } from "./CompanyPhotoTransition";
 import { CompanyPhotoContainer, CompanyHeader } from "./styles";
 
-export class CompanyPhoto extends PureComponent {
+export class CompanyPhoto extends Component {
   static propTypes = {
     title: PropTypes.string,
     items: PropTypes.arrayOf(PropTypes.object),
@@ -27,7 +26,9 @@ export class CompanyPhoto extends PureComponent {
   };
 
   componentDidMount() {
-    if (isMobile()) {
+    const { isMobileOrTablet } = this.props;
+
+    if (isMobileOrTablet) {
       window.addEventListener("orientationchange", this.onResize);
     } else {
       window.addEventListener("resize", this.onResize);
@@ -37,11 +38,8 @@ export class CompanyPhoto extends PureComponent {
   }
 
   componentWillUnmount() {
-    if (isMobile()) {
-      window.removeEventListener("orientationchange", this.onResize);
-    } else {
-      window.removeEventListener("resize", this.onResize);
-    }
+    window.removeEventListener("orientationchange", this.onResize);
+    window.removeEventListener("resize", this.onResize);
     clearInterval(this.interval);
   }
 

@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
+import cn from "classnames";
 import sortBy from "lodash/sortBy";
 import { graphql } from "gatsby";
-import cn from "classnames";
 
 import { GoNextLink } from "../../components/GoNextLink/GoNextLink";
 import { BackendComponent } from "../../components/Backend/Backend";
@@ -13,7 +13,7 @@ import { H2 } from "../../components/Atoms/Atoms";
 import { MainLayoutConsumer } from "../../components/MainLayoutProvider/MainLayoutProvider";
 import { ConstellationPoints } from "../../components/ConstellationPoints/ConstellationPoints";
 import { fade, slideUp, transition } from "../../components/Transition/animation";
-import { browser } from "../../utils/browser";
+import { isMobile } from "../../utils/browser";
 import styles, { NewsContainer, WillChangeNews } from "../../styles/about";
 
 export class About extends Component {
@@ -30,12 +30,7 @@ export class About extends Component {
   };
 
   componentDidMount() {
-    const { parsedResult } = browser();
-    const {
-      platform: { type },
-    } = parsedResult;
-
-    this.setState({ isMobile: type === "mobile" });
+    this.setState({ isMobile: isMobile() });
   }
 
   onTransform = coordinates => this.setState(coordinates);

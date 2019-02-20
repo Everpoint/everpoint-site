@@ -1,20 +1,8 @@
 import { Component } from "react";
 
-import { isMobile, browser } from "../../utils/browser";
+import { isMobile, isTablet, browser } from "../../utils/browser";
 
 export class ViewportHeight extends Component {
-  static getDerivedStateFromProps(nextProps, prevState) {
-    const { isMobile: prevIsMobile } = prevState;
-
-    if (prevIsMobile === null && typeof window === "object") {
-      return {
-        isMobile: isMobile(),
-      };
-    }
-
-    return null;
-  }
-
   state = {
     isMobile: null,
     resizeIsPossible: true,
@@ -25,9 +13,7 @@ export class ViewportHeight extends Component {
   vh = 0;
 
   componentDidMount() {
-    const { isMobile } = this.state;
-
-    if (isMobile) {
+    if (isMobile() || isTablet()) {
       window.addEventListener("orientationchange", this.onOrientationChange);
       this.onOrientationChange();
     } else {
@@ -64,7 +50,7 @@ export class ViewportHeight extends Component {
   };
 
   onResize = () => {
-    const { isMobile, resizeIsPossible } = this.state;
+    const { resizeIsPossible } = this.state;
     const {
       parsedResult: {
         browser: { name },
@@ -74,13 +60,13 @@ export class ViewportHeight extends Component {
     const vh =
       name !== "Safari" ? document.documentElement.clientHeight * 0.01 : window.innerHeight * 0.01;
 
-    if ((!resizeIsPossible && isMobile) || vh === this.vh) {
+    if ((!resizeIsPossible && (isMobile() || isTablet())) || vh === this.vh) {
       return;
     }
 
     const axis = Math.abs(window.orientation);
 
-    if (axis === 90 && isMobile) {
+    if (axis === 90 && isMobile()) {
       window.scrollTo(0, 1);
     }
 

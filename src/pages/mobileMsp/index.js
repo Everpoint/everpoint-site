@@ -1,7 +1,7 @@
 import React, { PureComponent } from "react";
 
 import { getPixelRatioPropName } from "../../utils/utils";
-import { isMobile } from "../../utils/browser";
+import { isMobile, isTablet } from "../../utils/browser";
 import { SectionWithIcon } from "../../components/MobileMspLongread/SectionWithIcon/SectionWithIcon";
 import phones from "../../assets/img/portfolio/mobileMsp/phones.jpg";
 import { Header } from "../../components/PortfolioLongreadHeader/Header";
@@ -29,16 +29,16 @@ class MobileMsp extends PureComponent {
 
   state = {
     ratio: "x1",
-    mobilePlatform: false,
+    isMobileOrTablet: false,
     animate: false,
   };
 
   componentDidMount() {
-    this.setState({ ratio: getPixelRatioPropName(), mobilePlatform: isMobile() });
+    this.setState({ ratio: getPixelRatioPropName(), isMobileOrTablet: isMobile() || isTablet() });
   }
 
   render() {
-    const { ratio, mobilePlatform, animate } = this.state;
+    const { ratio, isMobileOrTablet, animate } = this.state;
     const { location, projectId } = this.props;
     const mobileMsp = getProject({ projectId });
     const { ios, android, iosMsp, androidMsp, iosSupport, androidSupport } = mobileMsp;
@@ -86,7 +86,7 @@ class MobileMsp extends PureComponent {
         <BnSection ratio={ratio} />
         <Footer
           ratio={ratio}
-          mobilePlatform={mobilePlatform}
+          isMobileOrTablet={isMobileOrTablet}
           iosMsp={iosMsp}
           androidMsp={androidMsp}
           iosSupport={iosSupport}

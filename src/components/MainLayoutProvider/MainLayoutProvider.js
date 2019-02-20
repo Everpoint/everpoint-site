@@ -4,7 +4,7 @@ import debounce from "lodash/debounce";
 import throttle from "lodash/throttle";
 
 import { preloadBgImages } from "../../components/Background/getBackground";
-import { ScrollBar } from "./styles";
+import { NativeScrollbar, ScrollBar } from "./styles";
 import { ImagesDownloadListener } from "../../components/ImagesDownloadListener/ImagesDownloadListener";
 import { Swiper } from "../../components/Swiper/Swiper";
 import { mobileMenu as mobileMenuWidth } from "../../components/Navbar/styles";
@@ -110,7 +110,7 @@ export class MainLayoutProviderComponent extends Component {
     }
 
     if (currentRoute && currentRoute.scrollable) {
-      if (width <= mobileMenuWidth) {
+      if (this.scrollbar && width <= mobileMenuWidth) {
         this.setState(
           {
             scrollTop: 0,
@@ -359,7 +359,10 @@ export class MainLayoutProviderComponent extends Component {
   };
 
   onExited = () => {
-    this.scrollbar.scrollTop = 0;
+    if (this.scrollbar) {
+      this.scrollbar.scrollTop = 0;
+    }
+
     this.setState({
       coloredNav: false,
       scrollTop: 0,
@@ -423,7 +426,7 @@ export class MainLayoutProviderComponent extends Component {
     }));
 
   scrollToBlock = (index, onlyScrollIfNeeded = false) => {
-    if (this.scrollable && this.scrollable.children[index]) {
+    if (this.scrollbar && this.scrollable && this.scrollable.children[index]) {
       const { height } = this.getSize();
 
       let offsetTop = height / 2;
@@ -576,27 +579,31 @@ export class MainLayoutProviderComponent extends Component {
           onSwiping={this.onSwiping}
           onSwiped={this.onSwiped}
         >
-          <ScrollBar
-            ref={this.onScrollBarRef}
-            damping={damping}
-            disableHover={disableHover || !transitionEnd}
-            plugins={{
-              disableScrollByDirection: {
-                direction: {
-                  x: true,
-                  y:
-                    mobileMenuIsOpen ||
-                    (currentRoute && !currentRoute.scrollable) ||
-                    !transitionEnd,
+          {false ? (
+            <NativeScrollbar>{children}</NativeScrollbar>
+          ) : (
+            <ScrollBar
+              ref={this.onScrollBarRef}
+              damping={damping}
+              disableHover={disableHover || !transitionEnd}
+              plugins={{
+                disableScrollByDirection: {
+                  direction: {
+                    x: true,
+                    y:
+                      mobileMenuIsOpen ||
+                      (currentRoute && !currentRoute.scrollable) ||
+                      !transitionEnd,
+                  },
                 },
-              },
-              determineScrollingEvent: { callback: this.determineScrollingEvent },
-            }}
-            onScroll={this.onScroll}
-            onWheel={this.onWheel}
-          >
-            {children}
-          </ScrollBar>
+                determineScrollingEvent: { callback: this.determineScrollingEvent },
+              }}
+              onScroll={this.onScroll}
+              onWheel={this.onWheel}
+            >
+              {children}
+            </ScrollBar>
+          )}
         </Swiper>
       </ScrollContext.Provider>
     );

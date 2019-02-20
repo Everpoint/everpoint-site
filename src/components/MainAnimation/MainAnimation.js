@@ -31,7 +31,7 @@ class MainAnimationBase extends Component {
     withRightSideAnimation: PropTypes.bool,
     onLeftSideSectionRef: PropTypes.func,
     disableTransition: PropTypes.bool,
-    isMobile: PropTypes.bool,
+    isMobileOrTablet: PropTypes.bool,
   };
 
   static defaultProps = {
@@ -55,7 +55,7 @@ class MainAnimationBase extends Component {
       x,
       y,
       disableTransition,
-      isMobile,
+      isMobileOrTablet,
       scrollTop,
       direction,
       onTransitionEnd,
@@ -102,7 +102,7 @@ class MainAnimationBase extends Component {
 
           {rightSide && (
             <RightSide
-              isMobile={isMobile}
+              isMobileOrTablet={isMobileOrTablet}
               disableTransition={disableTransition}
               backgroundImage={backgroundImage}
               x={x}
