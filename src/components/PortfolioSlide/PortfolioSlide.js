@@ -170,7 +170,7 @@ export class PortfolioSlide extends Component {
       ? screenshots.map(img => img[ratio])
       : screenshots[ratio];
 
-    const isLast = direction > 0 && !transitionEnd && prevIndex;
+    const isLast = direction > 0 && !transitionEnd && prevIndex !== null;
 
     return (
       <Swiper onSwiped={this.onSwiped}>

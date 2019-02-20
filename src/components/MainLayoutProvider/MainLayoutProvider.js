@@ -43,7 +43,8 @@ export class MainLayoutProviderComponent extends Component {
     disableTransition: true,
 
     // sections
-    isSwipeEvent: false,
+    isSwipeEvent: null,
+    isClickEvent: null,
     selectedSectionIndex: 0,
     sections: [],
     sectionDirection: 1,
@@ -137,10 +138,10 @@ export class MainLayoutProviderComponent extends Component {
   };
 
   getSelectedSectionIndex = (currentRoute, sections) => {
-    const { selectedSectionIndex, direction } = this.state;
+    const { selectedSectionIndex, direction, isClickEvent } = this.state;
     const { id } = currentRoute;
 
-    const indexFromDirection = direction < 0 ? sections.length - 1 : 0;
+    const indexFromDirection = direction < 0 && !isClickEvent ? sections.length - 1 : 0;
 
     if (id === "portfolio") {
       const idFromLocalstorage = localStorage.getItem(id);
@@ -188,9 +189,20 @@ export class MainLayoutProviderComponent extends Component {
               sliderDirection: 1,
             };
 
-      this.setState({ currentRoute, coloredNav: false, ...sliderState });
+      this.setState({
+        currentRoute,
+        coloredNav: false,
+        isSwipeEvent: false,
+        isClickEvent: false,
+        ...sliderState,
+      });
     } else {
-      this.setState({ currentRoute: null, coloredNav: false });
+      this.setState({
+        currentRoute: null,
+        coloredNav: false,
+        isSwipeEvent: false,
+        isClickEvent: false,
+      });
     }
   };
 
@@ -372,7 +384,7 @@ export class MainLayoutProviderComponent extends Component {
 
   determineScrollingEvent = scrolling => (this.scrolling = scrolling);
 
-  onNavLinkClick = ({ transitionEnd, id, event, navigate, selectedSectionIndex }) => {
+  onNavLinkClick = ({ transitionEnd, id, event, navigate, selectedSectionIndex, isClickEvent }) => {
     const { currentRoute } = this.state;
     const prevIndex = routes.findIndex(route => route.id === currentRoute.id);
     const currentIndex = routes.findIndex(route => route.id === id);
@@ -389,6 +401,7 @@ export class MainLayoutProviderComponent extends Component {
         selectedSectionIndex: selectedSectionIndex || 0,
         direction,
         transitionEnd,
+        isClickEvent,
         mobileMenuIsOpen: false,
       },
       () => {
@@ -475,7 +488,7 @@ export class MainLayoutProviderComponent extends Component {
       const index = sectionFromMenu.findIndex(item => item.id === id);
 
       this.onNavLinkClick({
-        isSwipeEvent,
+        isClickEvent,
         selectedSectionIndex: index,
         transitionEnd: false,
         disableTransition: false,
@@ -493,6 +506,7 @@ export class MainLayoutProviderComponent extends Component {
 
       this.setState({
         isSwipeEvent,
+        isClickEvent,
         sectionDirection,
         disableTransition: false,
         selectedSectionIndex: nextValue,
