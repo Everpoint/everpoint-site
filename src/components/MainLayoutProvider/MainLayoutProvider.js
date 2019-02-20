@@ -155,6 +155,7 @@ export class MainLayoutProviderComponent extends Component {
 
       return indexFromLocalStorage || selectedSectionIndex || indexFromDirection;
     } else {
+      localStorage.removeItem("portfolio");
       return selectedSectionIndex || indexFromDirection;
     }
   };
