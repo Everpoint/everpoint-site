@@ -91,7 +91,7 @@ export class TeamMembers extends Component {
     const half = Math.round(data.length / 2);
     const containerHeight = height * half + margin * half + (data.length % 2 ? 0 : 160);
 
-    const noVacancies = id === "vacancy" && items.length === 0;
+    const noVacancies = id === "vacancy" && items && items.length === 0;
 
     if (id === "process") {
       return (

@@ -1,4 +1,4 @@
-import React, { PureComponent } from "react";
+import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { Transition } from "react-transition-group";
 
@@ -10,7 +10,7 @@ import { TransitionSlide } from "./TransitionSlide";
 import { PaginationSimple } from "../../components/Pagination/Simple/PaginationSimple";
 import { Portal } from "../../components/Portal/Portal";
 
-export class PortfolioSlide extends PureComponent {
+export class PortfolioSlide extends Component {
   static propTypes = {
     projectBackgroundColor: PropTypes.string,
     text: PropTypes.string,
@@ -31,6 +31,7 @@ export class PortfolioSlide extends PureComponent {
   };
 
   state = {
+    id: null,
     goToLongread: false,
     top: 0,
     up: 0,
@@ -158,13 +159,13 @@ export class PortfolioSlide extends PureComponent {
           >
             {status => (
               <TransitionSlide
+                {...this.props}
                 status={status}
                 onContainerRef={this.onContainerRef}
                 goToLongread={this.goToLongread}
                 images={sectionImages}
                 up={up}
                 down={down}
-                {...this.props}
               />
             )}
           </Transition>
