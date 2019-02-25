@@ -30,7 +30,6 @@ class MainAnimationBase extends Component {
     backgroundClassName: PropTypes.string,
     withRightSideAnimation: PropTypes.bool,
     onLeftSideSectionRef: PropTypes.func,
-    disableTransition: PropTypes.bool,
     isMobileOrTablet: PropTypes.bool,
   };
 
@@ -54,11 +53,9 @@ class MainAnimationBase extends Component {
       onLeftSideSectionRef,
       x,
       y,
-      disableTransition,
       isMobileOrTablet,
       scrollTop,
       direction,
-      onTransitionEnd,
       transitionEnd,
       selectedSectionIndex,
       backgroundClassName,
@@ -80,8 +77,6 @@ class MainAnimationBase extends Component {
             {...this.props}
             backgroundClassName={backgroundClassName}
             transitionEnd={transitionEnd}
-            onTransitionEnd={onTransitionEnd}
-            disableTransition={disableTransition}
             direction={direction}
           />
         </WillChange>
@@ -92,7 +87,6 @@ class MainAnimationBase extends Component {
             style={{ transform, willChange: transitionEnd && "transform" }}
           >
             <LeftSide
-              disableTransition={disableTransition}
               ref={onLeftSideSectionRef}
               className={cn(leftSideClassName, slideUp[status], fade[status], transition[status])}
             >
@@ -103,7 +97,6 @@ class MainAnimationBase extends Component {
           {rightSide && (
             <RightSide
               isMobileOrTablet={isMobileOrTablet}
-              disableTransition={disableTransition}
               backgroundImage={backgroundImage}
               x={x}
               y={y}

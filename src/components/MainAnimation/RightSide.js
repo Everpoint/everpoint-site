@@ -17,7 +17,6 @@ export class RightSide extends Component {
     x: PropTypes.number,
     y: PropTypes.number,
     backgroundImage: PropTypes.string,
-    disableTransition: PropTypes.bool,
     isMobileOrTablet: PropTypes.bool,
   };
 
@@ -29,7 +28,6 @@ export class RightSide extends Component {
       x: nextX,
       y: nextY,
       backgroundImage: nextBackgroundImage,
-      disableTransition: nextDisableTransition,
       isMobileOrTablet: nextIsMobileOrTablet,
     },
     nextState,
@@ -41,7 +39,6 @@ export class RightSide extends Component {
       x,
       y,
       backgroundImage,
-      disableTransition,
       isMobileOrTablet,
     } = this.props;
 
@@ -52,7 +49,6 @@ export class RightSide extends Component {
       x !== nextX ||
       y !== nextY ||
       backgroundImage !== nextBackgroundImage ||
-      disableTransition !== nextDisableTransition ||
       isMobileOrTablet !== nextIsMobileOrTablet
     );
   }
@@ -64,13 +60,11 @@ export class RightSide extends Component {
       rightSideClassName,
       withRightSideAnimation,
       children,
-      disableTransition,
     } = this.props;
 
     return (
       <WillChange className={willChangeRightSideClassName}>
         <RightSideBlock
-          disableTransition={disableTransition}
           className={cn(
             rightSideClassName,
             withRightSideAnimation && slideUp[status],

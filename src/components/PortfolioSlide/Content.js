@@ -17,11 +17,10 @@ export class Content extends Component {
   };
 
   render() {
-    const { status, direction, disableTransition, description, title, text } = this.props;
+    const { status, direction, description, title, text } = this.props;
 
     return (
       <ContentBlock
-        disableTransition={disableTransition}
         className={cn(
           direction > 0 ? slideUp[status] : slideDown[status],
           fade[status],

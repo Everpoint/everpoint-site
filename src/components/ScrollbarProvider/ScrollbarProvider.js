@@ -29,25 +29,17 @@ export class ScrollbarProvider extends Component {
     scrollbar: null,
   };
 
-  componentDidMount() {
-    const { nativeScrollbar } = this.props;
-
-    if (nativeScrollbar) {
-      window.addEventListener("scroll", this.onNativeScroll);
-    }
-  }
-
   componentWillUnmount() {
     const { nativeScrollbar } = this.props;
 
     if (nativeScrollbar) {
-      window.removeEventListener("scroll", this.onNativeScroll);
+      window.removeEventListener("scroll", this.onNativeScroll, true);
     }
   }
 
   componentDidUpdate({ location: prevLocation }, prevState) {
     const { scrollbar } = this.state;
-    const { location } = this.props;
+    const { location, nativeScrollbar } = this.props;
 
     if (prevLocation.pathname !== location.pathname) {
       if (scrollbar) {
@@ -58,6 +50,10 @@ export class ScrollbarProvider extends Component {
 
         window.scrollTo(0, y, 0);
       }
+    }
+
+    if (nativeScrollbar) {
+      window.addEventListener("scroll", this.onNativeScroll, true);
     }
   }
 
@@ -102,7 +98,7 @@ export class ScrollbarProvider extends Component {
       >
         <Swiper preventDefaultTouchmoveEvent={!nativeScrollbar}>
           {nativeScrollbar ? (
-            <NativeScrollbar onScroll={this.onNativeScroll}>{children}</NativeScrollbar>
+            <NativeScrollbar ref={this.onScrollBarRef}>{children}</NativeScrollbar>
           ) : (
             <Scrollbar
               withScrollbarY={withScrollbarY}

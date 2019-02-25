@@ -41,6 +41,7 @@ export class ImagesDownloadListener extends Component {
 
   loadImages() {
     const { images, onLoad, onError } = this.props;
+
     const promises = [];
 
     if (!images) {

@@ -1,7 +1,11 @@
 import React, { PureComponent } from "react";
 
+// import { ReactComponent as Earth } from "../assets/img/main-slides/earth.svg";
+// import { CoveringImage } from "../components/CoveringImage/CoveringImage";
 import { GoNextLink } from "../components/GoNextLink/GoNextLink";
-import { MainAnimation } from "../components/MainAnimation/MainAnimation";
+import { Main } from "../components/NewMainAnimation/Main";
+import { Background } from "../components/NewMainAnimation/Background";
+import { Side, animation } from "../components/NewMainAnimation/Section";
 import { HorizontalRule } from "../components/Typography/HorizontalRule";
 import { BigH1 } from "../components/Typography/Headlines";
 
@@ -9,23 +13,24 @@ import styles from "../styles/index";
 
 export class IndexPage extends PureComponent {
   render() {
+    const { status, location } = this.props;
+
     return (
-      <MainAnimation
-        {...this.props}
-        withSvg
-        containerClassName={styles.indexContainer}
-        leftSide={
-          <>
-            <HorizontalRule />
-            <BigH1>
-              Геосервисы для <br /> принятия решений
-            </BigH1>
-            <GoNextLink to="/company" gatsby big>
-              О компании
-            </GoNextLink>
-          </>
-        }
-      />
+      <Main>
+        <Background className={styles.background} status={status} location={location} />
+        {/*<CoveringImage>*/}
+        {/*<Earth />*/}
+        {/*</CoveringImage>*/}
+        <Side className={animation(status)}>
+          <HorizontalRule />
+          <BigH1>
+            Геосервисы для <br /> принятия решений
+          </BigH1>
+          <GoNextLink to="/company" gatsby big>
+            О компании
+          </GoNextLink>
+        </Side>
+      </Main>
     );
   }
 }

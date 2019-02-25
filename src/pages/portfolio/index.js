@@ -1,20 +1,20 @@
 import React, { Component } from "react";
 
+import { Background } from "../../components/NewMainAnimation/Background";
 import { MainLayoutConsumer } from "../../components/MainLayoutProvider/MainLayoutProvider";
-import { MainAnimation } from "../../components/MainAnimation/MainAnimation";
-import { getRouteByLocation, sectionsFromAdditionalMenu } from "../../routes";
+import { getRouteByLocation } from "../../routes";
 import { AdditionalMenu } from "../../components/AdditionalMenu/AdditionalMenu";
 import { PortfolioSlide } from "../../components/PortfolioSlide/PortfolioSlide";
-import styles from "../../styles/portfolio";
+import styles, { Main, LeftSide, Rightside } from "../../styles/portfolio";
 import { MobileTitle } from "../../components/PortfolioSlide/styles";
 import withRouter from "../../hoc/withRouter";
+import { animation } from "../../components/NewMainAnimation/Section";
 
 class PortfolioBase extends Component {
   render() {
     const {
       location,
       navigate,
-      disableTransition,
       isPortfolioPage,
       selectedSectionIndex,
       onSectionChange,
@@ -23,38 +23,32 @@ class PortfolioBase extends Component {
       scrollTop,
       transitionEnd,
       direction,
+      status,
     } = this.props;
     const currentRoute = getRouteByLocation(location);
-    const sections = sectionsFromAdditionalMenu(currentRoute.additionalMenu);
+    const { sections } = currentRoute;
     const section = sections[selectedSectionIndex];
 
     return (
-      <MainAnimation
-        {...this.props}
-        backgroundClassName={styles.zoomRussia}
-        disableTransition={disableTransition}
-        willChangeLeftSideClassName={styles.portfolioLeftSide}
-        leftSide={
-          <>
-            <MobileTitle>{section && section.parentTitle}</MobileTitle>
-            <AdditionalMenu
-              isPortfolioPage={isPortfolioPage()}
-              className={styles.menu}
-              selectedId={section && section.id}
-              onSectionChange={onSectionChange}
-              leftSide
-              additionalMenu={currentRoute.additionalMenu}
-              isOpen={true}
-            />
-          </>
-        }
-        containerClassName={styles.portfolioContainer}
-        rightSide={
+      <Main>
+        <Background className={styles.zoomRussia} status={status} location={location} />
+        <LeftSide className={animation(status)}>
+          <MobileTitle>{section && section.parentTitle}</MobileTitle>
+          <AdditionalMenu
+            isPortfolioPage={isPortfolioPage()}
+            className={styles.menu}
+            selectedId={section && section.id}
+            onSectionChange={onSectionChange}
+            leftSide
+            additionalMenu={sections}
+            isOpen={true}
+          />
+        </LeftSide>
+        <Rightside className={animation(status)}>
           <PortfolioSlide
             transitionEnd={transitionEnd}
             scrollTop={scrollTop}
             isSwipeEvent={isSwipeEvent}
-            disableTransition={disableTransition}
             sectionDirection={sectionDirection}
             direction={direction}
             sections={sections}
@@ -63,8 +57,8 @@ class PortfolioBase extends Component {
             navigate={navigate}
             {...section}
           />
-        }
-      />
+        </Rightside>
+      </Main>
     );
   }
 }

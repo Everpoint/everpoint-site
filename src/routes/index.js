@@ -13,32 +13,22 @@ export const routes = [
     text: "СМИ о нас",
     route: "/about",
     slider: true,
+    maxItemCount: 5,
   },
   {
     id: "jobs",
     text: "Работа у нас",
     route: "/jobs",
-    additionalMenu: [
+    sections: [
+      { id: "employees", text: "Наши сотрудники", items: employees, groupName: "Команда" },
+      { id: "vacancy", text: "Вакансии", items: vacancy, groupName: "Команда" },
       {
-        id: "team",
-        title: "Команда",
-        children: [
-          { id: "employees", text: "Наши сотрудники", items: employees },
-          { id: "vacancy", text: "Вакансии", items: vacancy },
-        ],
+        id: "process",
+        text: "Рабочий процесс",
+        items: principles,
+        groupName: "Как мы работаем",
       },
-      {
-        id: "howWeAreWorking",
-        title: "Как мы работаем",
-        children: [
-          {
-            id: "process",
-            text: "Рабочий процесс",
-            items: principles,
-          },
-          { id: "photo", text: "Фото", items: photo },
-        ],
-      },
+      { id: "photo", text: "Фото", items: photo, groupName: "Как мы работаем" },
     ],
     scrollable: true,
   },
@@ -68,19 +58,9 @@ export const getRouteByLocation = location => {
 
 export const getRouteById = id => routes.find(route => route.id === id);
 
-export const sectionsFromAdditionalMenu = additionalMenu => {
-  const sliderIdArray = [];
-  additionalMenu &&
-    additionalMenu.forEach(({ children, title }) =>
-      children.forEach(item => sliderIdArray.push({ ...item, parentTitle: title })),
-    );
-
-  return sliderIdArray;
-};
-
 export const getProject = ({ projectId, parentId = "portfolio", allProject = false }) => {
-  const { additionalMenu } = getRouteById(parentId);
-  const projects = sectionsFromAdditionalMenu(additionalMenu) || [];
+  const { sections } = getRouteById(parentId);
+  const projects = sections || [];
 
   if (allProject) {
     return projects;

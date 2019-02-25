@@ -12,11 +12,6 @@ export const JobsCardContainer = styled("section")`
   @media (min-width: 1001px) {
     display: none;
   }
-  &.disableTransition {
-    transition: none;
-    opacity: 1;
-    transform: none;
-  }
 `;
 
 export const JobsCardSwiper = styled(Swiper)`

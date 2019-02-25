@@ -1,6 +1,7 @@
 import React, { PureComponent } from "react";
-import { TransitionGroup, Transition as ReactTransition } from "react-transition-group";
+import { Transition as ReactTransition } from "react-transition-group";
 
+import { MainTransitionGroup } from "./styled";
 import { MainLayoutConsumer } from "../MainLayoutProvider/MainLayoutProvider";
 import { MainTransitionContainer } from "../Main/MainTransitionContainer";
 import { enterTimeout, exitTimeout } from "./animation";
@@ -11,23 +12,24 @@ export class PageTransition extends PureComponent {
 
     return (
       <MainLayoutConsumer>
-        {({ onExited, disableTransition }) => (
-          <TransitionGroup>
+        {({ onExited, onEnter }) => (
+          <MainTransitionGroup>
             <ReactTransition
               key={location.pathname}
               timeout={{
                 enter: enterTimeout,
                 exit: exitTimeout,
               }}
+              onEnter={onEnter}
               onExited={onExited}
             >
               {status => (
                 <MainTransitionContainer>
-                  {React.cloneElement(children, { status, location, disableTransition })}
+                  {React.cloneElement(children, { status, location })}
                 </MainTransitionContainer>
               )}
             </ReactTransition>
-          </TransitionGroup>
+          </MainTransitionGroup>
         )}
       </MainLayoutConsumer>
     );

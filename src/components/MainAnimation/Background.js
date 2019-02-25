@@ -14,7 +14,6 @@ export class Background extends Component {
     y: PropTypes.number,
     direction: PropTypes.number,
     backgroundImage: PropTypes.string,
-    disableTransition: PropTypes.bool,
     backgroundClassName: PropTypes.string,
   };
 
@@ -24,7 +23,6 @@ export class Background extends Component {
       x: nextX,
       y: nextY,
       backgroundImage: nextBackgroundImage,
-      disableTransition: nextDisableTransition,
       transitionEnd: nextTransitionEnd,
       backgroundClassName: nextBackgroundClassName,
     },
@@ -35,7 +33,6 @@ export class Background extends Component {
       x,
       y,
       backgroundImage,
-      disableTransition,
       transitionEnd,
       backgroundClassName,
     } = this.props;
@@ -46,7 +43,6 @@ export class Background extends Component {
       x !== nextX ||
       y !== nextY ||
       backgroundImage !== nextBackgroundImage ||
-      disableTransition !== nextDisableTransition ||
       backgroundClassName !== nextBackgroundClassName
     );
   }
@@ -57,12 +53,10 @@ export class Background extends Component {
       y,
       direction,
       transitionEnd,
-      onTransitionEnd,
       withSvg,
       status,
       backgroundClassName,
       backgroundImage,
-      disableTransition,
       isAboutPage,
     } = this.props;
     // about page slider **
@@ -82,8 +76,6 @@ export class Background extends Component {
             ...aboutBgStyle,
             backgroundImage: `url(${backgroundImage || getBackground(this.props)})`,
           }}
-          disableTransition={disableTransition}
-          onTransitionEnd={onTransitionEnd}
           className={cn(
             direction > 0 ? scaleIn[status] : scaleOut[status],
             fade[status],

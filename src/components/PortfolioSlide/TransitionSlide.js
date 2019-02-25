@@ -21,7 +21,6 @@ export class TransitionSlide extends Component {
     selectedSectionIndex: PropTypes.number,
     sections: PropTypes.arrayOf(PropTypes.object),
     isSwipeEvent: PropTypes.bool,
-    disableTransition: PropTypes.bool,
     up: PropTypes.number,
     down: PropTypes.number,
     transitionEnd: PropTypes.bool,
@@ -59,19 +58,15 @@ export class TransitionSlide extends Component {
       onContainerRef,
       selectedSectionIndex,
       sections,
-      disableTransition,
       sectionDirection,
       status,
       isSwipeEvent,
       up,
       down,
-      transitionEnd,
     } = this.props;
 
     const scrollEvent = !isSwipeEvent;
     const nextSlide = id === nextId;
-
-    const animtionDisabled = disableTransition || !transitionEnd;
 
     const scrollDown = sectionDirection > 0;
 
@@ -105,11 +100,9 @@ export class TransitionSlide extends Component {
         ref={onContainerRef}
         onMouseOver={() => this.setState({ hovered: true })}
         onMouseOut={() => this.setState({ hovered: false })}
-        disableTransition={animtionDisabled}
       >
         <BackendComponent sections={sections} selectedSectionIndex={selectedSectionIndex} />
         <SliderBackground
-          disableTransition={animtionDisabled}
           hovered={hovered}
           style={{
             background:
@@ -120,14 +113,13 @@ export class TransitionSlide extends Component {
           isNext={nextSlide}
           scrollEvent={scrollEvent}
           status={status}
-          disableTransition={animtionDisabled}
           direction={sectionDirection}
           text={text}
           screenshots={images}
         />
         <Content
           status={status}
-          disableTransition={animtionDisabled || scrollEvent}
+          disableTransition={scrollEvent}
           direction={sectionDirection}
           title={title}
           text={text}

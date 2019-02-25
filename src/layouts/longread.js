@@ -51,11 +51,13 @@ class LongredLayout extends Component {
           projects={projects}
           pathname={location.pathname}
         />
-        {React.cloneElement(children, {
-          isMobile,
-          isTablet,
-          isMobileOrTablet: isMobile || isTablet,
-        })}
+        {isTablet !== null &&
+          isMobile !== null &&
+          React.cloneElement(children, {
+            isMobile,
+            isTablet,
+            isMobileOrTablet: isMobile || isTablet,
+          })}
       </ScrollbarProvider>
     );
   }

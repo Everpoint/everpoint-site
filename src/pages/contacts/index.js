@@ -51,7 +51,7 @@ class Contacts extends PureComponent {
   }
 
   render() {
-    const { status, location, disableTransition } = this.props;
+    const { status, location } = this.props;
     const { text } = getRouteByLocation(location);
     const { stope, isMobileOrTablet, imagesIsLoaded } = this.state;
 
@@ -70,7 +70,6 @@ class Contacts extends PureComponent {
         />
         <MainAnimation
           {...this.props}
-          disableTransition={disableTransition}
           backgroundImage={imagesIsLoaded ? (stope ? bus : metro) : busInterlaced}
           rightSideClassName={styles.contactsRightSide}
           willChangeLeftSideClassName={styles.willChangeContactsLeftSideClassName}
@@ -117,7 +116,6 @@ class Contacts extends PureComponent {
           }
         >
           <TelegramBtnContainer
-            disableTransition={disableTransition}
             className={cn(fade[status], transition[status])}
           >
             <TelegramButton

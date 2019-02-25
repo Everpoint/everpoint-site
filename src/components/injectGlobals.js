@@ -14,15 +14,19 @@ export const injectGlobals = () => {
       -webkit-font-smoothing: antialiased;
       letter-spacing: 0;
       max-width: 100vw;
-    }
-    body {
       overflow: hidden;
-    }
-    html {
-      overflow-y: auto;
     }
     img {
       outline: none;
+    }
+  `;
+};
+
+export const injectGlobalsLongread = () => {
+  return css`
+    html,
+    body {
+      overflow-y: auto;
     }
   `;
 };

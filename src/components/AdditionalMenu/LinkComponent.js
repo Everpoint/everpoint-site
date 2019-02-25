@@ -14,7 +14,6 @@ const styles = css`
 export class LinkComponent extends Component {
   static propTypes = {
     text: PropTypes.string,
-    little: PropTypes.bool,
     isPortfolioPage: PropTypes.bool,
     leftSide: PropTypes.bool,
   };
@@ -52,7 +51,6 @@ export class LinkComponent extends Component {
     const { isMobile } = this.state;
     const {
       text,
-      little = false,
       id,
       selectedId,
       onSectionChange,
@@ -71,7 +69,6 @@ export class LinkComponent extends Component {
             isSwipeEvent: isMobile && isPortfolioPage,
           })
         }
-        little={little}
         isActive={isActive}
         className={cn({ [styles.isActive]: isActive && leftSide })}
       >

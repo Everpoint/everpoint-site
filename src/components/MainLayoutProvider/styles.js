@@ -3,7 +3,10 @@ import styled from "astroturf";
 // API https://github.com/idiotWu/smooth-scrollbar/blob/develop/docs/api.md
 import Scrollbar from "react-smooth-scrollbar";
 
-export const NativeScrollbar = styled("div")``;
+export const NativeScrollbar = styled("div")`
+  width: 100%;
+  height: 100%;
+`;
 
 export const ScrollBar = styled(Scrollbar)`
   width: 100vw;
@@ -13,14 +16,6 @@ export const ScrollBar = styled(Scrollbar)`
     width: 100%;
     height: 100%;
     will-change: transform;
-    > div {
-      width: 100%;
-      height: 100%;
-      > div {
-        width: 100%;
-        height: 100%;
-      }
-    }
   }
   :global(.scrollbar-track) {
     display: none !important;

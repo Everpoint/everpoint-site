@@ -32,7 +32,6 @@ const MultiScreenshotsContainer = styled("div")`
     }
   }
   &.startAnimation,
-  &.disableTransition,
   &.scrollEvent {
     > img {
       transition: transform 500ms ease;
@@ -60,8 +59,7 @@ const MultiScreenshotsContainer = styled("div")`
         transform: translateX(217%);
       }
     }
-    &.startAnimation,
-    &.disableTransition {
+    &.startAnimation {
       > img {
         transition: transform 500ms ease;
         &:nth-child(1) {
@@ -78,13 +76,6 @@ const MultiScreenshotsContainer = styled("div")`
   }
   @media (max-width: 767px) and (orientation: portrait) {
     margin: 3rem 0 0 -0.7rem;
-  }
-
-  &.disableTransition {
-    transition: none;
-    > img {
-      transition: none;
-    }
   }
 `;
 

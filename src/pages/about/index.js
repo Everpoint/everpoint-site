@@ -4,6 +4,7 @@ import cn from "classnames";
 import sortBy from "lodash/sortBy";
 import { graphql } from "gatsby";
 
+import { Background } from "../../components/NewMainAnimation/Background";
 import { GoNextLink } from "../../components/GoNextLink/GoNextLink";
 import { BackendComponent } from "../../components/Backend/Backend";
 import { PaginationSimple } from "../../components/Pagination/Simple/PaginationSimple";
@@ -14,13 +15,13 @@ import { MainLayoutConsumer } from "../../components/MainLayoutProvider/MainLayo
 import { ConstellationPoints } from "../../components/ConstellationPoints/ConstellationPoints";
 import { fade, slideUp, transition } from "../../components/Transition/animation";
 import { isMobile } from "../../utils/browser";
-import styles, { NewsContainer, WillChangeNews } from "../../styles/about";
+import styles, { Main, LeftSide, RightSide, NewsContainer } from "../../styles/about";
+import { animation } from "../../components/NewMainAnimation/Section";
 
 export class About extends Component {
   static propTypes = {
     data: PropTypes.object.isRequired,
     status: PropTypes.string,
-    disableTransition: PropTypes.bool,
   };
 
   state = {
@@ -44,11 +45,11 @@ export class About extends Component {
   };
 
   render() {
-    const { data } = this.props;
+    const { data, location } = this.props;
 
     const allMarkdownRemark = data.allMarkdownRemark;
 
-    const { status, disableTransition } = this.props;
+    const { status } = this.props;
     const { x, y, isMobile } = this.state;
 
     return (
@@ -80,62 +81,61 @@ export class About extends Component {
 
           const markdownRemark = data.markdownRemark;
 
+          const transformToPoints = `translate(${x}px, ${y}px)`;
+
+          const backgroundStyles = transitionEnd
+            ? {
+                transform: transformToPoints,
+                transition: "transform 500ms ease",
+              }
+            : {};
+
           return (
-            <MainAnimation
-              {...this.props}
-              disableTransition={disableTransition}
-              withRightSideAnimation={false}
-              x={x}
-              y={y}
-              backgroundClassName={styles.isAboutSlide}
-              leftSide={
-                <>
-                  <H2 as="h1">{markdownRemark && markdownRemark.frontmatter.title}</H2>
-                  <GoNextLink to="/news" gatsby big>
-                    Все комментарии
-                  </GoNextLink>
-                </>
-              }
-              containerClassName={styles.aboutContainer}
-              rightSide={
-                <NewsContainer>
-                  <ConstellationPoints
-                    isMobile={isMobile}
-                    disableTransition={disableTransition}
-                    transitionEnd={transitionEnd}
-                    status={status}
-                    x={x}
-                    y={y}
-                    onTransform={this.onTransform}
+            <Main>
+              <Background
+                className={styles.background}
+                status={status}
+                location={location}
+                style={backgroundStyles}
+              />
+              <LeftSide className={animation(status)}>
+                <H2 as="h1">{markdownRemark && markdownRemark.frontmatter.title}</H2>
+                <GoNextLink to="/news" gatsby big>
+                  Все комментарии
+                </GoNextLink>
+              </LeftSide>
+              <NewsContainer>
+                <ConstellationPoints
+                  isMobile={isMobile}
+                  transitionEnd={transitionEnd}
+                  status={status}
+                  x={x}
+                  y={y}
+                  onTransform={this.onTransform}
+                  selectedSectionIndex={selectedSectionIndex}
+                  onSectionChange={onSectionChange}
+                />
+                <RightSide className={animation(status)}>
+                  <BackendComponent
+                    sections={sections}
                     selectedSectionIndex={selectedSectionIndex}
-                    onSectionChange={onSectionChange}
                   />
-                  <WillChangeNews
-                    disableTransition={disableTransition}
-                    className={cn(slideUp[status], fade[status], transition[status])}
-                  >
-                    <BackendComponent
-                      sections={sections}
-                      selectedSectionIndex={selectedSectionIndex}
-                    />
-                    <NewsCard
-                      disableTransition={disableTransition}
-                      isSwipeEvent={isSwipeEvent}
-                      onSectionChange={onSectionChange}
-                      direction={sectionDirection}
-                      {...section}
-                    />
-                    <PaginationSimple
-                      pageCount={sections.length}
-                      currentPage={selectedSectionIndex + 1}
-                      onPageChange={page =>
-                        this.onPageChange(page, selectedSectionIndex, onSectionChange)
-                      }
-                    />
-                  </WillChangeNews>
-                </NewsContainer>
-              }
-            />
+                  <NewsCard
+                    isSwipeEvent={isSwipeEvent}
+                    onSectionChange={onSectionChange}
+                    direction={sectionDirection}
+                    {...section}
+                  />
+                  <PaginationSimple
+                    pageCount={sections.length}
+                    currentPage={selectedSectionIndex + 1}
+                    onPageChange={page =>
+                      this.onPageChange(page, selectedSectionIndex, onSectionChange)
+                    }
+                  />
+                </RightSide>
+              </NewsContainer>
+            </Main>
           );
         }}
       </MainLayoutConsumer>

@@ -5,7 +5,7 @@ import { CenterBlock } from "../../components/CenterBlock/CenterBlock";
 import { MainAnimation } from "../../components/MainAnimation/MainAnimation";
 import { AdditionalMenu } from "../../components/AdditionalMenu/AdditionalMenu";
 import { ScrollableTeamMembers } from "../../components/ScrollableTeamMembers/ScrollableTeamMembers";
-import { getRouteByLocation, sectionsFromAdditionalMenu } from "../../routes";
+import { getRouteByLocation } from "../../routes";
 import { JobsCard } from "../../components/JobsCard/JobsCard";
 import styles from "../../styles/jobs";
 
@@ -22,10 +22,9 @@ export class JobsBase extends Component {
       isSwipeEvent,
       sectionDirection,
       setPreventDefaultTouchmoveEvent,
-      disableTransition,
     } = this.props;
     const currentRoute = getRouteByLocation(location);
-    const sections = sectionsFromAdditionalMenu(currentRoute.additionalMenu);
+    const { sections } = currentRoute;
     const section = sections[selectedSectionIndex];
     const selectedId = section && section.id;
 
@@ -43,7 +42,7 @@ export class JobsBase extends Component {
               selectedId={section && section.id}
               onSectionChange={onSectionChange}
               leftSide
-              additionalMenu={currentRoute.additionalMenu}
+              additionalMenu={sections}
               isOpen={true}
             />
           </div>
@@ -59,7 +58,6 @@ export class JobsBase extends Component {
               onSectionChange={onSectionChange}
             />
             <JobsCard
-              disableTransition={disableTransition}
               isSwipeEvent={isSwipeEvent}
               sections={sections}
               selectedSectionIndex={selectedSectionIndex}

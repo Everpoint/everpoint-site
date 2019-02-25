@@ -15,9 +15,6 @@ export const AboutCardContainer = styled(Blank)`
   @media (max-height: 344px) {
     padding: 0.8rem;
   }
-  &.disableTransition {
-    transition: none;
-  }
 `;
 
 export const Title = styled("h4")`

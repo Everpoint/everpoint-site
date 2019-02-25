@@ -18,9 +18,6 @@ export const ConstellationPointsContainer = styled("div")`
     left: 50%;
     transform: translate(-50%, calc(-100% - 2rem));
   }
-  &.disableTransition {
-    transition: none;
-  }
 `;
 
 export const TransformContainer = styled("div")`

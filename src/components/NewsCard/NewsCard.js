@@ -15,7 +15,6 @@ export class News extends PureComponent {
     const {
       status,
       direction,
-      disableTransition,
       description,
       title,
       date,
@@ -34,7 +33,6 @@ export class News extends PureComponent {
 
     return (
       <AboutCardContainer
-        disableTransition={disableTransition}
         className={cn(animation, fade[status], transition[status])}
       >
         <Title>{title}</Title>
@@ -62,7 +60,6 @@ export class NewsCard extends PureComponent {
     id: PropTypes.string,
     direction: PropTypes.number,
     isSwipeEvent: PropTypes.bool,
-    disableTransition: PropTypes.bool,
   };
 
   onSwiped = ({ isLeft, isRight, xRatio }) => {

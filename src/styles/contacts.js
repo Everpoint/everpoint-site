@@ -29,11 +29,7 @@ export const SocialBlock = styled("div")`
   }
 `;
 
-export const TelegramBtnContainer = styled("div")`
-  &.disableTransition {
-    transition: none;
-  }
-`;
+export const TelegramBtnContainer = styled("div")``;
 
 export const BtnGroup = styled("div")`
   display: flex;

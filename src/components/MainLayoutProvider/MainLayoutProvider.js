@@ -22,33 +22,44 @@ export class MainLayoutProviderComponent extends Component {
     this.checkBlockIsCenter = throttle(this.checkBlockIsCenter, 100);
     this.checkNavbarIntoContent = throttle(this.checkNavbarIntoContent, 100);
     this.scrollToBlock = debounce(this.scrollToBlock, 100);
+    const { location } = props;
+    const currentRoute = getRouteByLocation(location);
+    const { id, sections } = currentRoute;
+
+    const idFromLocalstorage = localStorage.getItem(id);
+    const selectedSectionIndexFromStorage =
+      idFromLocalstorage && sections
+        ? sections.findIndex(section => section.id === idFromLocalstorage)
+        : 0;
+
+    localStorage.removeItem(id);
+
     this.onNavigateToDebounced = debounce(this.onNavigateTo, 144, {
       leading: true,
       trailing: false,
     });
+
+    this.state = {
+      scrollTop: 0,
+      limitY: 0,
+      coloredNav: false,
+      currentRoute: null,
+      direction: 1,
+      transitionEnd: true,
+      disableHover: false,
+      mobileMenuIsOpen: false,
+      damping: 0.1,
+      thresholdIsActive: false,
+      preventDefaultTouchmoveEvent: true,
+
+      // sections
+      isSwipeEvent: null,
+      isClickEvent: null,
+      selectedSectionIndex: selectedSectionIndexFromStorage,
+      sections: sections || [],
+      sectionDirection: 1,
+    };
   }
-
-  state = {
-    scrollTop: 0,
-    limitY: 0,
-    coloredNav: false,
-    currentRoute: null,
-    direction: 1,
-    transitionEnd: true,
-    disableHover: false,
-    mobileMenuIsOpen: false,
-    damping: 0.1,
-    thresholdIsActive: false,
-    preventDefaultTouchmoveEvent: true,
-    disableTransition: true,
-
-    // sections
-    isSwipeEvent: null,
-    isClickEvent: null,
-    selectedSectionIndex: 0,
-    sections: [],
-    sectionDirection: 1,
-  };
 
   defaultDamping = 0.1;
   threshold = 0;
@@ -127,39 +138,6 @@ export class MainLayoutProviderComponent extends Component {
     }
   };
 
-  sectionsFromAdditionalMenu = additionalMenu => {
-    const sliderIdArray = [];
-    additionalMenu &&
-      additionalMenu.forEach(({ children, title }) =>
-        children.forEach(item => sliderIdArray.push({ ...item, parentTitle: title })),
-      );
-
-    return sliderIdArray;
-  };
-
-  getSelectedSectionIndex = (currentRoute, sections) => {
-    const { selectedSectionIndex, direction, isClickEvent } = this.state;
-    const { id } = currentRoute;
-
-    const indexFromDirection = direction < 0 && !isClickEvent ? sections.length - 1 : 0;
-
-    if (id === "portfolio") {
-      const idFromLocalstorage = localStorage.getItem(id);
-      const selectedSectionIndexFromStorage = sections.findIndex(
-        section => section.id === idFromLocalstorage,
-      );
-
-      localStorage.removeItem(id);
-
-      const indexFromLocalStorage = Math.max(+selectedSectionIndexFromStorage, 0);
-
-      return indexFromLocalStorage || selectedSectionIndex || indexFromDirection;
-    } else {
-      localStorage.removeItem("portfolio");
-      return selectedSectionIndex || indexFromDirection;
-    }
-  };
-
   setCurrentRoute = () => {
     const { location } = this.props;
     const currentRoute = getRouteByLocation(location);
@@ -167,35 +145,14 @@ export class MainLayoutProviderComponent extends Component {
     clearTimeout(this.timeout);
 
     if (currentRoute) {
-      const { slider, additionalMenu, scrollable, id } = currentRoute;
-
-      // todo remove
-      const sections =
-        id === "about"
-          ? Array.from({ length: 5 }, (_, index) => index)
-          : this.sectionsFromAdditionalMenu(additionalMenu);
-
-      const selectedSectionIndex = this.getSelectedSectionIndex(currentRoute, sections);
-
-      const sliderState =
-        slider || scrollable
-          ? {
-              sliderDirection: 1,
-              selectedSectionIndex,
-              sections: slider || scrollable ? sections : [],
-            }
-          : {
-              selectedSectionIndex: 0,
-              sections: [],
-              sliderDirection: 1,
-            };
+      const { sections } = currentRoute;
 
       this.setState({
         currentRoute,
         coloredNav: false,
         isSwipeEvent: false,
         isClickEvent: false,
-        ...sliderState,
+        sections: sections || [],
       });
     } else {
       this.setState({
@@ -203,6 +160,7 @@ export class MainLayoutProviderComponent extends Component {
         coloredNav: false,
         isSwipeEvent: false,
         isClickEvent: false,
+        sections: [],
       });
     }
   };
@@ -215,7 +173,7 @@ export class MainLayoutProviderComponent extends Component {
       this.scrollable.children[selectedSectionIndex] &&
       damping === this.defaultDamping
     ) {
-      const headerHeight = 82;
+      const headerHeight = 80;
       const { top } = this.scrollable.children[selectedSectionIndex].getBoundingClientRect();
 
       const scrollable = currentRoute && currentRoute.scrollable;
@@ -234,6 +192,15 @@ export class MainLayoutProviderComponent extends Component {
         coloredNav: false,
       });
     }
+  };
+
+  getIndexFromDirection = ({ sections, maxItemCount }, direction) => {
+    const { isClickEvent } = this.state;
+    const sectionsLength = maxItemCount || (sections && sections.length) || 1;
+
+    const indexFromDirection = direction < 0 && !isClickEvent ? sectionsLength - 1 : 0;
+
+    return indexFromDirection;
   };
 
   onNavigateTo = (direction, routeSwipeUpAndDown = false) => {
@@ -260,23 +227,24 @@ export class MainLayoutProviderComponent extends Component {
     const slider = currentRoute && currentRoute.slider;
     const up = selectedSectionIndex === 0 && direction < 0;
     const nextIndex = selectedSectionIndex + direction;
-    const down = nextIndex === sections.length;
+    const sectionsLength = currentRoute.maxItemCount || sections.length;
+
+    const down = nextIndex === sectionsLength;
 
     if (slider && !up && !down && !routeSwipeUpAndDown) {
       const sectionDirection = selectedSectionIndex > nextIndex ? -1 : 1;
+
       this.setState({
-        disableTransition: false,
         sectionDirection,
         selectedSectionIndex: nextIndex,
       });
     } else {
       const jumped = navigateTo({ navigate, pathname, direction });
+      const selectedSectionIndex = this.getIndexFromDirection(currentRoute, direction);
 
       if (jumped) {
         this.setState({
-          disableTransition: false,
-          selectedSectionIndex: 0,
-          transitionEnd: false,
+          selectedSectionIndex,
           direction,
         });
 
@@ -377,6 +345,7 @@ export class MainLayoutProviderComponent extends Component {
     }
 
     this.setState({
+      transitionEnd: true,
       coloredNav: false,
       scrollTop: 0,
       limitY: 0,
@@ -385,7 +354,7 @@ export class MainLayoutProviderComponent extends Component {
 
   determineScrollingEvent = scrolling => (this.scrolling = scrolling);
 
-  onNavLinkClick = ({ transitionEnd, id, event, navigate, selectedSectionIndex, isClickEvent }) => {
+  onNavLinkClick = ({ id, event, navigate, selectedSectionIndex, isClickEvent }) => {
     const { currentRoute } = this.state;
     const prevIndex = routes.findIndex(route => route.id === currentRoute.id);
     const currentIndex = routes.findIndex(route => route.id === id);
@@ -398,10 +367,8 @@ export class MainLayoutProviderComponent extends Component {
 
     this.setState(
       {
-        disableTransition: false,
         selectedSectionIndex: selectedSectionIndex || 0,
         direction,
-        transitionEnd,
         isClickEvent,
         mobileMenuIsOpen: false,
       },
@@ -413,8 +380,6 @@ export class MainLayoutProviderComponent extends Component {
       },
     );
   };
-
-  onTransitionEnd = (e, transitionEnd = true) => this.setState({ transitionEnd });
 
   onScrollableRef = ref => {
     if (ref) {
@@ -476,6 +441,8 @@ export class MainLayoutProviderComponent extends Component {
     const { selectedSectionIndex, sections, currentRoute } = this.state;
 
     const pageIsChanged = pageId && currentRoute && currentRoute.id !== pageId;
+    const sectionsLength =
+      (currentRoute && currentRoute.maxItemCount) || (sections && sections.length) || 1;
 
     const nextValue = id
       ? sections.findIndex(item => item.id === id)
@@ -484,20 +451,18 @@ export class MainLayoutProviderComponent extends Component {
       : selectedSectionIndex + value;
 
     if (pageIsChanged) {
-      const { additionalMenu } = getRouteById(pageId);
-      const sectionFromMenu = this.sectionsFromAdditionalMenu(additionalMenu);
-      const index = sectionFromMenu.findIndex(item => item.id === id);
+      const { sections } = getRouteById(pageId);
+      const index = sections.findIndex(item => item.id === id);
 
       this.onNavLinkClick({
         isClickEvent,
         selectedSectionIndex: index,
-        transitionEnd: false,
-        disableTransition: false,
         id: pageId,
         navigate,
       });
     } else {
-      if (nextValue >= sections.length || nextValue < 0) return;
+      console.info("--> nextValue ggwp 4444", nextValue, "ggwp", sectionsLength);
+      if (nextValue >= sectionsLength || nextValue < 0) return;
 
       const sectionDirection = selectedSectionIndex > nextValue ? -1 : 1;
 
@@ -509,7 +474,6 @@ export class MainLayoutProviderComponent extends Component {
         isSwipeEvent,
         isClickEvent,
         sectionDirection,
-        disableTransition: false,
         selectedSectionIndex: nextValue,
       });
     }
@@ -540,6 +504,8 @@ export class MainLayoutProviderComponent extends Component {
   setPreventDefaultTouchmoveEvent = preventDefaultTouchmoveEvent =>
     this.setState({ preventDefaultTouchmoveEvent });
 
+  onEnter = () => this.setState({ transitionEnd: false });
+
   render() {
     const {
       scrollTop,
@@ -551,7 +517,6 @@ export class MainLayoutProviderComponent extends Component {
       mobileMenuIsOpen,
       damping,
       preventDefaultTouchmoveEvent,
-      disableTransition,
 
       // sections
       isSwipeEvent,
@@ -567,11 +532,11 @@ export class MainLayoutProviderComponent extends Component {
           scrollTop,
           onScrollableRef: this.onScrollableRef,
           coloredNav,
+          onEnter: this.onEnter,
           onExited: this.onExited,
           direction,
           onNavLinkClick: this.onNavLinkClick,
           transitionEnd,
-          onTransitionEnd: this.onTransitionEnd,
           currentRoute,
           mobileMenuIsOpen,
           toggleMobileMenu: this.toggleMobileMenu,
@@ -585,7 +550,6 @@ export class MainLayoutProviderComponent extends Component {
           selectedSectionIndex,
           sections,
           sectionDirection,
-          disableTransition,
         }}
       >
         <ImagesDownloadListener images={preloadBgImages} />
@@ -595,7 +559,7 @@ export class MainLayoutProviderComponent extends Component {
           onSwiped={this.onSwiped}
         >
           {false ? (
-            <NativeScrollbar>{children}</NativeScrollbar>
+            <NativeScrollbar onWheel={this.onWheel}>{children}</NativeScrollbar>
           ) : (
             <ScrollBar
               ref={this.onScrollBarRef}

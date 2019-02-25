@@ -9,6 +9,11 @@ const styles = css`
   .londreadBodyMobile {
     overflow-y: auto;
   }
+  :global {
+    html {
+      overflow-y: auto;
+    }
+  }
 `;
 
 export default styles;

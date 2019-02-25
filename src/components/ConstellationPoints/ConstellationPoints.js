@@ -14,7 +14,6 @@ export class ConstellationPoints extends PureComponent {
     y: PropTypes.number,
     status: PropTypes.string,
     transitionEnd: PropTypes.bool,
-    disableTransition: PropTypes.bool,
     onSectionChange: PropTypes.func,
     isMobile: PropTypes.bool,
   };
@@ -88,14 +87,12 @@ export class ConstellationPoints extends PureComponent {
       x,
       y,
       status,
-      disableTransition,
       onSectionChange,
       isMobile,
     } = this.props;
 
     return (
       <ConstellationPointsContainer
-        disableTransition={disableTransition}
         className={cn(fade[status], transition[status])}
       >
         <FakePoint ref={this.onFakePointRef} />
