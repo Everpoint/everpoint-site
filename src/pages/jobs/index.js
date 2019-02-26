@@ -37,7 +37,7 @@ export class JobsBase extends Component {
     const selectedId = section && section.id;
 
     const transform = `translateY(${scrollTop}px)`;
-    console.info("--> scrollTop ggwp 4444", scrollTop);
+
     return (
       <Main>
         <BackgroundWrapper style={{ transform }}>

@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import styled from "astroturf";
+import isEqual from "lodash/isEqual";
 import cn from "classnames";
 
 import withProvider from "../../hoc/withProvider";
@@ -35,6 +36,17 @@ export const BackgroundBlock = styled("div")`
 `;
 
 export class BackgroundBase extends Component {
+  shouldComponentUpdate(
+    { status: nextStatus, backgroundImage: nextBackgroundImage, style: nextStyle },
+    nextState,
+  ) {
+    const { status, backgroundImage, style } = this.props;
+
+    return (
+      status !== nextStatus || backgroundImage !== nextBackgroundImage || !isEqual(style, nextStyle)
+    );
+  }
+
   render() {
     const { status, direction, className, style, backgroundImage, ...props } = this.props;
 
