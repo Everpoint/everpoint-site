@@ -3,10 +3,10 @@ import PropTypes from "prop-types";
 import groupBy from "lodash/groupBy";
 import cn from "classnames";
 
-import { H2, Link } from "../../components/Atoms/Atoms";
+import { H2 } from "../../components/Atoms/Atoms";
 import animation from "../../components/Transition/animation";
 import { LinkComponent } from "./LinkComponent";
-import { Menu, ListItem, ListHeader, MenuList, SecondLevelMenu } from "./styles";
+import { Menu, ListItem, ListHeader, MenuList } from "./styles";
 
 export class AdditionalMenu extends PureComponent {
   static propTypes = {

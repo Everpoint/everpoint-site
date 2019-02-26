@@ -34,7 +34,7 @@ export class MainLayoutProviderComponent extends Component {
 
     localStorage.removeItem(id);
 
-    this.onNavigateToDebounced = debounce(this.onNavigateTo, 144, {
+    this.onNavigateToDebounced = debounce(this.onNavigateTo, 200, {
       leading: true,
       trailing: false,
     });
@@ -194,63 +194,16 @@ export class MainLayoutProviderComponent extends Component {
     }
   };
 
-  getIndexFromDirection = ({ sections, maxItemCount }, direction) => {
+  getIndexFromDirection = (currentRoute, direction) => {
+    if (!currentRoute) return 0;
+
+    const { sections, maxItemCount } = currentRoute;
+
     const { isClickEvent } = this.state;
     const sectionsLength = maxItemCount || (sections && sections.length) || 1;
-
     const indexFromDirection = direction < 0 && !isClickEvent ? sectionsLength - 1 : 0;
 
     return indexFromDirection;
-  };
-
-  onNavigateTo = (direction, routeSwipeUpAndDown = false) => {
-    const { height } = this.getSize();
-
-    const { currentRoute, scrollTop, limitY, selectedSectionIndex, sections } = this.state;
-    const { navigate, location } = this.props;
-    const { pathname } = location;
-
-    const scrollable = currentRoute && currentRoute.scrollable;
-
-    if (scrollable && (scrollTop === 0 || limitY === scrollTop) && !routeSwipeUpAndDown) {
-      const ratio = height / 4.8;
-
-      if (Math.abs(this.threshold) < ratio) {
-        return;
-      }
-    }
-
-    if (scrollable && scrollTop > 0 && limitY !== scrollTop) {
-      return;
-    }
-
-    const slider = currentRoute && currentRoute.slider;
-    const up = selectedSectionIndex === 0 && direction < 0;
-    const nextIndex = selectedSectionIndex + direction;
-    const sectionsLength = currentRoute.maxItemCount || sections.length;
-
-    const down = nextIndex === sectionsLength;
-
-    if (slider && !up && !down && !routeSwipeUpAndDown) {
-      const sectionDirection = selectedSectionIndex > nextIndex ? -1 : 1;
-
-      this.setState({
-        sectionDirection,
-        selectedSectionIndex: nextIndex,
-      });
-    } else {
-      const jumped = navigateTo({ navigate, pathname, direction });
-      const selectedSectionIndex = this.getIndexFromDirection(currentRoute, direction);
-
-      if (jumped) {
-        this.setState({
-          selectedSectionIndex,
-          direction,
-        });
-
-        this.threshold = 0;
-      }
-    }
   };
 
   checkBlockIsCenter = (direction, divider = 2) => {
@@ -461,7 +414,6 @@ export class MainLayoutProviderComponent extends Component {
         navigate,
       });
     } else {
-      console.info("--> nextValue ggwp 4444", nextValue, "ggwp", sectionsLength);
       if (nextValue >= sectionsLength || nextValue < 0) return;
 
       const sectionDirection = selectedSectionIndex > nextValue ? -1 : 1;
@@ -505,6 +457,58 @@ export class MainLayoutProviderComponent extends Component {
     this.setState({ preventDefaultTouchmoveEvent });
 
   onEnter = () => this.setState({ transitionEnd: false });
+
+  onNavigateTo = (direction, routeSwipeUpAndDown = false) => {
+    const { height } = this.getSize();
+
+    const { currentRoute, scrollTop, limitY, selectedSectionIndex, sections } = this.state;
+    const { navigate, location } = this.props;
+    const { pathname } = location;
+
+    const scrollable = currentRoute && currentRoute.scrollable;
+
+    if (scrollable && (scrollTop === 0 || limitY === scrollTop) && !routeSwipeUpAndDown) {
+      const ratio = height / 4.8;
+
+      if (Math.abs(this.threshold) < ratio) {
+        return;
+      }
+    }
+
+    if (scrollable && scrollTop > 0 && limitY !== scrollTop) {
+      return;
+    }
+
+    const slider = currentRoute && currentRoute.slider;
+    const up = selectedSectionIndex === 0 && direction < 0;
+    const nextIndex = selectedSectionIndex + direction;
+    const sectionsLength = currentRoute.maxItemCount || sections.length;
+
+    const down = nextIndex === sectionsLength;
+
+    if (slider && !up && !down && !routeSwipeUpAndDown) {
+      // section change
+      const sectionDirection = selectedSectionIndex > nextIndex ? -1 : 1;
+
+      this.setState({
+        sectionDirection,
+        selectedSectionIndex: nextIndex,
+      });
+    } else {
+      // page change
+      const nextPage = navigateTo({ navigate, pathname, direction });
+      const selectedSectionIndexFromIndex = this.getIndexFromDirection(nextPage, direction);
+
+      if (nextPage) {
+        this.setState({
+          selectedSectionIndex: selectedSectionIndexFromIndex,
+          direction,
+        });
+
+        this.threshold = 0;
+      }
+    }
+  };
 
   render() {
     const {

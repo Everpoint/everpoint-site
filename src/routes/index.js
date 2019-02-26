@@ -43,8 +43,9 @@ export const navigateTo = ({ navigate, pathname, direction }) => {
   const nextRouteIndex = Math.max(index + direction, direction);
 
   if (nextRouteIndex >= 0 && nextRouteIndex < length) {
-    navigate(outsideLinkFilteredRoutes[nextRouteIndex].route);
-    return true;
+    const nextRoute = outsideLinkFilteredRoutes[nextRouteIndex];
+    navigate(nextRoute.route);
+    return nextRoute;
   }
 };
 
