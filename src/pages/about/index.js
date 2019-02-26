@@ -4,7 +4,7 @@ import sortBy from "lodash/sortBy";
 import debounce from "lodash/debounce";
 import { graphql } from "gatsby";
 
-import { Background } from "../../components/NewMainAnimation/Background";
+import { Background } from "../../components/MainPageElements/Background";
 import { GoNextLink } from "../../components/GoNextLink/GoNextLink";
 import { BackendComponent } from "../../components/Backend/Backend";
 import { PaginationSimple } from "../../components/Pagination/Simple/PaginationSimple";
@@ -14,7 +14,7 @@ import { MainLayoutConsumer } from "../../components/MainLayoutProvider/MainLayo
 import { ConstellationPoints } from "../../components/ConstellationPoints/ConstellationPoints";
 import { isMobile } from "../../utils/browser";
 import styles, { Main, LeftSide, RightSide, NewsContainer } from "../../styles/about";
-import { animation } from "../../components/NewMainAnimation/Section";
+import { animation } from "../../components/MainPageElements/Section";
 
 export class AboutBase extends Component {
   static propTypes = {
@@ -119,6 +119,7 @@ export class AboutBase extends Component {
       isSwipeEvent,
       transitionEnd,
       currentRoute,
+      disableBackgroundTransition,
     } = this.props;
     const { x, y, isMobile } = this.state;
 
@@ -147,9 +148,11 @@ export class AboutBase extends Component {
     const backgroundStyles = transitionEnd
       ? {
           transform: transformToPoints,
-          transitionDuration: "500ms",
+          transitionDuration: disableBackgroundTransition ? "20ms" : "500ms",
         }
-      : {};
+      : {
+          transitionDuration: disableBackgroundTransition && "20ms",
+        };
 
     return (
       <Main>

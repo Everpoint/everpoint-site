@@ -2,7 +2,9 @@ import styled, { css } from "astroturf";
 
 import { Section } from "../components/Elements/Section";
 
-export const CompanyContainer = styled("main")``;
+export const CompanyContainer = styled("main")`
+  position: relative;
+`;
 
 export const Footer = styled(Section)`
   padding-top: 5.3571rem;

@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 
-import { Background } from "../../components/NewMainAnimation/Background";
+import { Background } from "../../components/MainPageElements/Background";
 import { MainLayoutConsumer } from "../../components/MainLayoutProvider/MainLayoutProvider";
 import { getRouteByLocation } from "../../routes";
 import { AdditionalMenu } from "../../components/AdditionalMenu/AdditionalMenu";
@@ -8,7 +8,7 @@ import { PortfolioSlide } from "../../components/PortfolioSlide/PortfolioSlide";
 import styles, { Main, LeftSide, Rightside } from "../../styles/portfolio";
 import { MobileTitle } from "../../components/PortfolioSlide/styles";
 import withRouter from "../../hoc/withRouter";
-import { animation } from "../../components/NewMainAnimation/Section";
+import { animation } from "../../components/MainPageElements/Section";
 
 class PortfolioBase extends Component {
   render() {
@@ -24,6 +24,7 @@ class PortfolioBase extends Component {
       transitionEnd,
       direction,
       status,
+      disableBackgroundTransition,
     } = this.props;
     const currentRoute = getRouteByLocation(location);
     const { sections } = currentRoute;
@@ -31,7 +32,11 @@ class PortfolioBase extends Component {
 
     return (
       <Main>
-        <Background className={styles.zoomRussia} status={status} location={location} />
+        <Background
+          style={{ transitionDuration: disableBackgroundTransition && "20ms" }}
+          status={status}
+          location={location}
+        />
         <LeftSide className={animation(status)}>
           <MobileTitle>{section && section.parentTitle}</MobileTitle>
           <AdditionalMenu

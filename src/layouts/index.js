@@ -5,7 +5,7 @@ import { StaticQuery, graphql } from "gatsby";
 import { Helmet } from "../components/Helmet/Helmet";
 import LongreadLayout from "./longread";
 import { MainLayoutProvider } from "../components/MainLayoutProvider/MainLayoutProvider";
-import { injectGlobals, injectGlobalsLongread } from "../components/injectGlobals";
+import { injectGlobals } from "../components/injectGlobals";
 import { PageTransition } from "../components/Transition/PageTransition";
 import { Navbar } from "../components/Navbar/Navbar";
 import { ViewportHeight } from "../components/ViewportHeight/ViewportHeight";
@@ -30,8 +30,6 @@ class Layout extends Component {
 
 export default ({ children, pageContext, ...props }) => {
   if (pageContext.layout === "longread") {
-    injectGlobalsLongread();
-
     return <LongreadLayout {...props}>{children}</LongreadLayout>;
   }
 

@@ -1,7 +1,7 @@
 import styled, { css } from "astroturf";
 
-import { Main as MainBlock } from "../components/NewMainAnimation/Main";
-import { Side } from "../components/NewMainAnimation/Section";
+import { Main as MainBlock } from "../components/MainPageElements/Main";
+import { Side } from "../components/MainPageElements/Section";
 
 export const Main = styled(MainBlock)`
   @media (max-width: 1199px) {

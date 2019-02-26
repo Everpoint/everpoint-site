@@ -1,9 +1,10 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
+import cn from "classnames";
 // https://github.com/idiotWu/react-smooth-scrollbar
 // API https://github.com/idiotWu/smooth-scrollbar/blob/develop/docs/api.md
 
-import { NativeScrollbar } from "./NativeScrollbar";
+import styles, { NativeScrollbar } from "./styles";
 import { Swiper } from "../../components/Swiper/Swiper";
 import { Scrollbar } from "../../components/Scrollbar/Scrollbar";
 
@@ -29,6 +30,14 @@ export class ScrollbarProvider extends Component {
     scrollbar: null,
   };
 
+  componentDidMount() {
+    const { nativeScrollbar } = this.props;
+
+    if (nativeScrollbar) {
+      window.addEventListener("scroll", this.onNativeScroll, true);
+    }
+  }
+
   componentWillUnmount() {
     const { nativeScrollbar } = this.props;
 
@@ -53,7 +62,7 @@ export class ScrollbarProvider extends Component {
     }
 
     if (nativeScrollbar) {
-      window.addEventListener("scroll", this.onNativeScroll, true);
+      document.addEventListener("scroll", this.onNativeScroll, true);
     }
   }
 
@@ -86,7 +95,10 @@ export class ScrollbarProvider extends Component {
       : Math.abs(diff);
   };
 
-  onNativeScroll = () => this.setState({ scrollTop: window.scrollY });
+  onNativeScroll = () => {
+    const top = window.pageYOffset || document.documentElement.scrollTop;
+    this.setState({ scrollTop: top });
+  };
 
   render() {
     const { scrollTop, scrollbar } = this.state;
@@ -96,9 +108,9 @@ export class ScrollbarProvider extends Component {
       <ScrollBarContext.Provider
         value={{ scrollTop, scrollbar, elementYPosition: this.elementYPosition, nativeScrollbar }}
       >
-        <Swiper preventDefaultTouchmoveEvent={!nativeScrollbar}>
+        <Swiper className={cn(styles.swiper, nativeScrollbar && styles.native)}>
           {nativeScrollbar ? (
-            <NativeScrollbar ref={this.onScrollBarRef}>{children}</NativeScrollbar>
+            <NativeScrollbar>{children}</NativeScrollbar>
           ) : (
             <Scrollbar
               withScrollbarY={withScrollbarY}

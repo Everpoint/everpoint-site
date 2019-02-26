@@ -4,7 +4,7 @@ import debounce from "lodash/debounce";
 import throttle from "lodash/throttle";
 
 import { preloadBgImages } from "../../components/Background/getBackground";
-import { NativeScrollbar, ScrollBar } from "./styles";
+import styles, { NativeScrollbar, ScrollBar } from "./styles";
 import { ImagesDownloadListener } from "../../components/ImagesDownloadListener/ImagesDownloadListener";
 import { Swiper } from "../../components/Swiper/Swiper";
 import { mobileMenu as mobileMenuWidth } from "../../components/Navbar/styles";
@@ -21,7 +21,7 @@ export class MainLayoutProviderComponent extends Component {
     this.onResize = debounce(this.onResize, 200);
     this.checkBlockIsCenter = throttle(this.checkBlockIsCenter, 100);
     this.checkNavbarIntoContent = throttle(this.checkNavbarIntoContent, 100);
-    // this.scrollToBlock = debounce(this.scrollToBlock, 100);
+    this.scrollToBlock = debounce(this.scrollToBlock, 100);
     const { location } = props;
     const currentRoute = getRouteByLocation(location);
     const { id, sections } = currentRoute;
@@ -57,6 +57,7 @@ export class MainLayoutProviderComponent extends Component {
       selectedSectionIndex: selectedSectionIndexFromStorage,
       sections: sections || [],
       sectionDirection: 1,
+      disableBackgroundTransition: false,
     };
   }
 
@@ -317,17 +318,25 @@ export class MainLayoutProviderComponent extends Component {
       return;
     }
 
+    const nextPage = routes[currentIndex];
+    const prevPageId = currentRoute && currentRoute.id;
+    const nextPageId = nextPage && nextPage.id;
+
+    const disableBackgroundTransition =
+      (prevPageId === "portfolio" && nextPageId === "about") ||
+      (prevPageId === "about" && nextPageId === "portfolio");
+
     this.setState(
       {
         selectedSectionIndex: selectedSectionIndex || 0,
         direction,
         isClickEvent,
         mobileMenuIsOpen: false,
+        disableBackgroundTransition,
       },
       () => {
-        const page = routes[currentIndex];
-        if (navigate && page) {
-          navigate(page.route);
+        if (navigate && nextPage) {
+          navigate(nextPage.route);
         }
       },
     );
@@ -411,6 +420,7 @@ export class MainLayoutProviderComponent extends Component {
         selectedSectionIndex: index,
         id: pageId,
         navigate,
+        disableBackgroundTransition: false,
       });
     } else {
       if (nextValue >= sectionsLength || nextValue < 0) return;
@@ -426,6 +436,7 @@ export class MainLayoutProviderComponent extends Component {
         isClickEvent,
         sectionDirection,
         selectedSectionIndex: nextValue,
+        disableBackgroundTransition: false,
       });
     }
   };
@@ -487,27 +498,33 @@ export class MainLayoutProviderComponent extends Component {
       const sectionDirection = selectedSectionIndex > nextIndex ? -1 : 1;
 
       this.setState({
+        disableBackgroundTransition: false,
         sectionDirection,
         selectedSectionIndex: nextIndex,
       });
     } else {
       // page change
       const nextPage = navigateTo({ navigate, pathname, direction });
+      const prevPageId = currentRoute && currentRoute.id;
+      const nextPageId = nextPage && nextPage.id;
+
+      const disableBackgroundTransition =
+        (prevPageId === "portfolio" && nextPageId === "about") ||
+        (prevPageId === "about" && nextPageId === "portfolio");
+
       const selectedSectionIndexFromIndex = this.getIndexFromDirection(nextPage, direction);
 
       if (nextPage) {
         this.setState({
           selectedSectionIndex: selectedSectionIndexFromIndex,
           direction,
+          disableBackgroundTransition,
         });
 
         this.threshold = 0;
       }
     }
   };
-
-  setPreventDefaultTouchmoveEvent = preventDefaultTouchmoveEvent =>
-    this.setState({ preventDefaultTouchmoveEvent });
 
   render() {
     const {
@@ -525,6 +542,7 @@ export class MainLayoutProviderComponent extends Component {
       selectedSectionIndex,
       sections,
       sectionDirection,
+      disableBackgroundTransition,
     } = this.state;
     const { children } = this.props;
 
@@ -542,7 +560,6 @@ export class MainLayoutProviderComponent extends Component {
           currentRoute,
           mobileMenuIsOpen,
           toggleMobileMenu: this.toggleMobileMenu,
-          setPreventDefaultTouchmoveEvent: this.setPreventDefaultTouchmoveEvent,
 
           // sections
           scrollToBlock: this.scrollToBlock,
@@ -552,10 +569,11 @@ export class MainLayoutProviderComponent extends Component {
           selectedSectionIndex,
           sections,
           sectionDirection,
+          disableBackgroundTransition,
         }}
       >
         <ImagesDownloadListener images={preloadBgImages} />
-        <Swiper onSwiping={this.onSwiping} onSwiped={this.onSwiped}>
+        <Swiper className={styles.swiper} onSwiping={this.onSwiping} onSwiped={this.onSwiped}>
           {false ? (
             <NativeScrollbar onWheel={this.onWheel}>{children}</NativeScrollbar>
           ) : (

@@ -14,18 +14,20 @@ export const injectGlobals = () => {
       -webkit-font-smoothing: antialiased;
       letter-spacing: 0;
       overflow: hidden;
+      width: 100%;
+      height: 100%;
     }
     img {
       outline: none;
     }
-  `;
-};
-
-export const injectGlobalsLongread = () => {
-  return css`
-    html,
-    body {
-      overflow-y: auto;
+    :global(#___gatsby) {
+      width: 100%;
+      height: 100%;
+      > div:first-child {
+        width: 100%;
+        height: 100%;
+      }
     }
   `;
 };
+

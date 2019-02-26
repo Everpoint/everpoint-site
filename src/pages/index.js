@@ -3,9 +3,9 @@ import React, { PureComponent } from "react";
 // import { ReactComponent as Earth } from "../assets/img/main-slides/earth.svg";
 // import { CoveringImage } from "../components/CoveringImage/CoveringImage";
 import { GoNextLink } from "../components/GoNextLink/GoNextLink";
-import { Main } from "../components/NewMainAnimation/Main";
-import { Background } from "../components/NewMainAnimation/Background";
-import { Side, animation } from "../components/NewMainAnimation/Section";
+import { Main } from "../components/MainPageElements/Main";
+import { Background } from "../components/MainPageElements/Background";
+import { Side, animation } from "../components/MainPageElements/Section";
 import { HorizontalRule } from "../components/Typography/HorizontalRule";
 import { BigH1 } from "../components/Typography/Headlines";
 

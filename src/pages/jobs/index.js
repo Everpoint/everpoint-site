@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 
-import { Background } from "../../components/NewMainAnimation/Background";
+import { Background } from "../../components/MainPageElements/Background";
 import { MainLayoutConsumer } from "../../components/MainLayoutProvider/MainLayoutProvider";
-import { Side } from "../../components/NewMainAnimation/Section";
+import { Side } from "../../components/MainPageElements/Section";
 import { AdditionalMenu } from "../../components/AdditionalMenu/AdditionalMenu";
 import { ScrollableTeamMembers } from "../../components/ScrollableTeamMembers/ScrollableTeamMembers";
 import { getRouteByLocation } from "../../routes";
@@ -14,7 +14,7 @@ import styles, {
   RightSide,
   RightSideContent,
 } from "../../styles/jobs";
-import { animation } from "../../components/NewMainAnimation/Section";
+import { animation } from "../../components/MainPageElements/Section";
 
 export class JobsBase extends Component {
   render() {
@@ -37,7 +37,7 @@ export class JobsBase extends Component {
     const selectedId = section && section.id;
 
     const transform = `translateY(${scrollTop}px)`;
-
+    console.info("--> scrollTop ggwp 4444", scrollTop);
     return (
       <Main>
         <BackgroundWrapper style={{ transform }}>

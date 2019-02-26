@@ -86,7 +86,7 @@ class Geomonitoring extends PureComponent {
                 Помочь банкам в этом деле может корпоративное геоинформационное веб-приложение
                 «Геомониторинг недвижимости». Эта аналитическая система управления залоговым
                 имуществом разработана на базе нашей собственной{" "}
-                <LocalLink to="evergis">ГИС-платформы EverGIS</LocalLink>.
+                <LocalLink to="/evergis">ГИС-платформы EverGIS</LocalLink>.
               </Paragraph>
             </Article>
           </Section>

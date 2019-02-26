@@ -41,8 +41,11 @@ class LongredLayout extends Component {
         withScrollbarY
       >
         <Helmet
+          htmlAttributes={{
+            class: cn(isMobile || isTablet ? styles.londreadHtmlMobile : styles.longreadHtml),
+          }}
           bodyAttributes={{
-            class: cn({ [styles.londreadBodyMobile]: isMobile || isTablet }),
+            class: cn(isMobile || isTablet ? styles.londreadBodyMobile : styles.longreadBody),
           }}
         />
         <ViewportHeight />

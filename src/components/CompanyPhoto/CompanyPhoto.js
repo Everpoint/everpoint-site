@@ -101,7 +101,7 @@ export class CompanyPhoto extends Component {
 
   onAllAvatarsLoaded = () => {
     clearInterval(this.interval);
-    // this.interval = setInterval(() => this.updatePhoto(), 2000);
+    this.interval = setInterval(() => this.updatePhoto(), 2000);
   };
 
   render() {
