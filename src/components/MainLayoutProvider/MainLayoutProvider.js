@@ -155,10 +155,6 @@ export class MainLayoutProviderComponent extends Component {
         sections: sections || [],
       });
     }
-
-    if (this.scrollbar && currentRoute && !currentRoute.scrollable) {
-      this.scrollbar.scrollTo(0, 0, 0);
-    }
   };
 
   checkNavbarIntoContent = () => {
