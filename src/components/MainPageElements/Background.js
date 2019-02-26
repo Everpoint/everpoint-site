@@ -35,13 +35,21 @@ export const BackgroundBlock = styled("div")`
 
 export class BackgroundBase extends Component {
   shouldComponentUpdate(
-    { status: nextStatus, backgroundImage: nextBackgroundImage, style: nextStyle },
+    {
+      status: nextStatus,
+      backgroundImage: nextBackgroundImage,
+      style: nextStyle,
+      direction: nextDirection,
+    },
     nextState,
   ) {
-    const { status, backgroundImage, style } = this.props;
+    const { status, backgroundImage, style, direction } = this.props;
 
     return (
-      status !== nextStatus || backgroundImage !== nextBackgroundImage || !isEqual(style, nextStyle)
+      status !== nextStatus ||
+      backgroundImage !== nextBackgroundImage ||
+      !isEqual(style, nextStyle) ||
+      direction !== nextDirection
     );
   }
 
