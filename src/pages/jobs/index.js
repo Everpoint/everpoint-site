@@ -43,8 +43,8 @@ export class JobsBase extends Component {
         <BackgroundWrapper style={{ transform }}>
           <Background className={styles.background} status={status} location={location} />
         </BackgroundWrapper>
-        <LeftSide ref={onLeftSideSectionRef} className={animation(status)}>
-          <Side style={{ transform }}>
+        <Side style={{ transform }} ref={onLeftSideSectionRef}>
+          <LeftSide className={animation(status)}>
             <AdditionalMenu
               className={styles.menu}
               selectedId={section && section.id}
@@ -53,8 +53,8 @@ export class JobsBase extends Component {
               additionalMenu={sections}
               isOpen={true}
             />
-          </Side>
-        </LeftSide>
+          </LeftSide>
+        </Side>
         <RightSide className={animation(status)}>
           <RightSideContent ref={onScrollableRef}>
             <ScrollableTeamMembers

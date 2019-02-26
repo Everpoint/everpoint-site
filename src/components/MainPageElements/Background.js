@@ -7,7 +7,6 @@ import cn from "classnames";
 import withProvider from "../../hoc/withProvider";
 import withRouter from "../../hoc/withRouter";
 import { fade, scaleIn, scaleOut, transition } from "../Transition/animation";
-import styles from "../Background/styles";
 import russia from "../../assets/img/main-slides/russia.svg";
 import moscow from "../../assets/img/main-slides/moscow.svg";
 import bus from "../../assets/img/main-slides/bus.svg";
@@ -23,7 +22,6 @@ export const getBackground = ({ isPortfolioPage, isAboutPage, isJobsPage }) => {
 };
 
 export const BackgroundBlock = styled("div")`
-  z-index: -1;
   position: absolute;
   top: 0;
   left: 0;
@@ -60,7 +58,6 @@ export class BackgroundBase extends Component {
           direction > 0 ? scaleIn[status] : scaleOut[status],
           fade[status],
           transition[status],
-          styles.default,
           className,
         )}
       />

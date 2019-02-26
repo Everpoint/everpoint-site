@@ -3,7 +3,7 @@ import { Location } from "@reach/router";
 import debounce from "lodash/debounce";
 import throttle from "lodash/throttle";
 
-import { preloadBgImages } from "../../components/Background/getBackground";
+import { backgrounds } from "../../components/MainPageElements/Background";
 import styles, { NativeScrollbar, ScrollBar } from "./styles";
 import { ImagesDownloadListener } from "../../components/ImagesDownloadListener/ImagesDownloadListener";
 import { Swiper } from "../../components/Swiper/Swiper";
@@ -154,14 +154,10 @@ export class MainLayoutProviderComponent extends Component {
         isClickEvent: false,
         sections: sections || [],
       });
-    } else {
-      this.setState({
-        currentRoute: null,
-        coloredNav: false,
-        isSwipeEvent: false,
-        isClickEvent: false,
-        sections: [],
-      });
+    }
+
+    if (this.scrollbar && currentRoute && !currentRoute.scrollable) {
+      this.scrollbar.scrollTo(0, 0, 0);
     }
   };
 
@@ -322,13 +318,15 @@ export class MainLayoutProviderComponent extends Component {
     const prevPageId = currentRoute && currentRoute.id;
     const nextPageId = nextPage && nextPage.id;
 
+    const selectedSectionIndexFromIndex = this.getIndexFromDirection(nextPage, direction);
+
     const disableBackgroundTransition =
       (prevPageId === "portfolio" && nextPageId === "about") ||
       (prevPageId === "about" && nextPageId === "portfolio");
 
     this.setState(
       {
-        selectedSectionIndex: selectedSectionIndex || 0,
+        selectedSectionIndex: selectedSectionIndex || selectedSectionIndexFromIndex,
         direction,
         isClickEvent,
         mobileMenuIsOpen: false,
@@ -572,7 +570,7 @@ export class MainLayoutProviderComponent extends Component {
           disableBackgroundTransition,
         }}
       >
-        <ImagesDownloadListener images={preloadBgImages} />
+        <ImagesDownloadListener images={backgrounds} />
         <Swiper className={styles.swiper} onSwiping={this.onSwiping} onSwiped={this.onSwiped}>
           {false ? (
             <NativeScrollbar onWheel={this.onWheel}>{children}</NativeScrollbar>
