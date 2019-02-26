@@ -21,7 +21,7 @@ export class MainLayoutProviderComponent extends Component {
     this.onResize = debounce(this.onResize, 200);
     this.checkBlockIsCenter = throttle(this.checkBlockIsCenter, 100);
     this.checkNavbarIntoContent = throttle(this.checkNavbarIntoContent, 100);
-    this.scrollToBlock = debounce(this.scrollToBlock, 100);
+    // this.scrollToBlock = debounce(this.scrollToBlock, 100);
     const { location } = props;
     const currentRoute = getRouteByLocation(location);
     const { id, sections } = currentRoute;
@@ -50,7 +50,6 @@ export class MainLayoutProviderComponent extends Component {
       mobileMenuIsOpen: false,
       damping: 0.1,
       thresholdIsActive: false,
-      preventDefaultTouchmoveEvent: true,
 
       // sections
       isSwipeEvent: null,
@@ -108,8 +107,8 @@ export class MainLayoutProviderComponent extends Component {
 
   getSize = () => {
     return {
-      width: window.innerWidth,
-      height: window.innerHeight,
+      width: Math.max(document.documentElement.clientWidth, window.innerWidth || 0),
+      height: Math.max(document.documentElement.clientHeight, window.innerHeight || 0),
     };
   };
 
@@ -364,7 +363,7 @@ export class MainLayoutProviderComponent extends Component {
       let offsetTop = height / 2;
 
       if (this.lefsideSection) {
-        offsetTop = this.lefsideSection.getBoundingClientRect().top;
+        offsetTop = this.lefsideSection.offsetTop;
       }
 
       this.setState(
@@ -453,9 +452,6 @@ export class MainLayoutProviderComponent extends Component {
     }
   };
 
-  setPreventDefaultTouchmoveEvent = preventDefaultTouchmoveEvent =>
-    this.setState({ preventDefaultTouchmoveEvent });
-
   onEnter = () => this.setState({ transitionEnd: false });
 
   onNavigateTo = (direction, routeSwipeUpAndDown = false) => {
@@ -510,6 +506,9 @@ export class MainLayoutProviderComponent extends Component {
     }
   };
 
+  setPreventDefaultTouchmoveEvent = preventDefaultTouchmoveEvent =>
+    this.setState({ preventDefaultTouchmoveEvent });
+
   render() {
     const {
       scrollTop,
@@ -520,7 +519,6 @@ export class MainLayoutProviderComponent extends Component {
       currentRoute,
       mobileMenuIsOpen,
       damping,
-      preventDefaultTouchmoveEvent,
 
       // sections
       isSwipeEvent,
@@ -557,11 +555,7 @@ export class MainLayoutProviderComponent extends Component {
         }}
       >
         <ImagesDownloadListener images={preloadBgImages} />
-        <Swiper
-          preventDefaultTouchmoveEvent={preventDefaultTouchmoveEvent}
-          onSwiping={this.onSwiping}
-          onSwiped={this.onSwiped}
-        >
+        <Swiper onSwiping={this.onSwiping} onSwiped={this.onSwiped}>
           {false ? (
             <NativeScrollbar onWheel={this.onWheel}>{children}</NativeScrollbar>
           ) : (

@@ -31,6 +31,7 @@ export const BackgroundBlock = styled("div")`
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
+  will-change: transform, opacity;
 `;
 
 export class BackgroundBase extends Component {
