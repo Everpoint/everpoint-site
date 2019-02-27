@@ -285,10 +285,6 @@ export class MainLayoutProviderComponent extends Component {
   };
 
   onExited = () => {
-    if (this.scrollbar) {
-      this.scrollbar.scrollTop = 0;
-    }
-
     this.setState({
       transitionEnd: true,
       coloredNav: false,
@@ -299,7 +295,7 @@ export class MainLayoutProviderComponent extends Component {
 
   determineScrollingEvent = scrolling => (this.scrolling = scrolling);
 
-  onNavLinkClick = ({ id, event, navigate, selectedSectionIndex, isClickEvent }) => {
+  onNavLinkClick = ({ id, event, navigate, selectedSectionIndex, isClickEvent, transitionEnd }) => {
     const { currentRoute } = this.state;
     const prevIndex = routes.findIndex(route => route.id === currentRoute.id);
     const currentIndex = routes.findIndex(route => route.id === id);
@@ -327,6 +323,7 @@ export class MainLayoutProviderComponent extends Component {
         isClickEvent,
         mobileMenuIsOpen: false,
         disableBackgroundTransition,
+        transitionEnd,
       },
       () => {
         if (navigate && nextPage) {
@@ -457,7 +454,12 @@ export class MainLayoutProviderComponent extends Component {
     }
   };
 
-  onEnter = () => this.setState({ transitionEnd: false });
+  onEnter = () => {
+    if (this.scrollbar) {
+      this.scrollbar.scrollTop = 0;
+    }
+    this.setState({ transitionEnd: false });
+  };
 
   onNavigateTo = (direction, routeSwipeUpAndDown = false) => {
     const { height } = this.getSize();
