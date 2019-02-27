@@ -64,6 +64,7 @@ export class TransitionSlide extends Component {
       up,
       down,
       transitionEnd,
+      lastSectionIndex,
     } = this.props;
 
     const scrollEvent = !isSwipeEvent;
@@ -103,7 +104,10 @@ export class TransitionSlide extends Component {
         onMouseOver={() => this.setState({ hovered: true })}
         onMouseOut={() => this.setState({ hovered: false })}
       >
-        <BackendComponent sections={sections} selectedSectionIndex={selectedSectionIndex} />
+        <BackendComponent
+          sections={sections}
+          selectedSectionIndex={lastSectionIndex || selectedSectionIndex}
+        />
         <SliderBackground
           hovered={hovered}
           style={{

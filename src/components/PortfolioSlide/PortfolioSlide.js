@@ -28,6 +28,7 @@ export class PortfolioSlide extends Component {
     scrollTop: PropTypes.number,
     transitionEnd: PropTypes.bool,
     direction: PropTypes.number,
+    lastSectionIndex: PropTypes.number,
   };
 
   state = {
@@ -143,6 +144,7 @@ export class PortfolioSlide extends Component {
       id,
       screenshots,
       isSwipeEvent,
+      lastSectionIndex,
     } = this.props;
 
     const sectionImages = Array.isArray(screenshots)
@@ -175,7 +177,7 @@ export class PortfolioSlide extends Component {
         </ContainerTransitionGroup>
         <PaginationSimple
           pageCount={sections.length}
-          currentPage={selectedSectionIndex + 1}
+          currentPage={(lastSectionIndex || selectedSectionIndex) + 1}
           onPageChange={this.onPageChange}
         />
         {typeof window === "object" && (

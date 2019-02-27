@@ -52,6 +52,7 @@ class PortfolioBase extends Component {
         </LeftSide>
         <Rightside className={animation(status)}>
           <PortfolioSlide
+            lastSectionIndex={lastSectionIndex}
             transitionEnd={transitionEnd}
             scrollTop={scrollTop}
             isSwipeEvent={isSwipeEvent}

@@ -37,6 +37,7 @@ export class JobsCard extends Component {
     onSectionChange: PropTypes.func,
     isSwipeEvent: PropTypes.bool,
     sectionDirection: PropTypes.number,
+    lastSectionIndex: PropTypes.number,
   };
 
   static getDerivedStateFromProps({ sections, selectedSectionIndex }, { items: prevItems }) {
@@ -82,11 +83,17 @@ export class JobsCard extends Component {
   }
 
   componentDidUpdate({ selectedSectionIndex: prevSelectedSectionIndex }, prevState) {
-    const { selectedSectionIndex, sections, isSwipeEvent, sectionDirection } = this.props;
+    const {
+      selectedSectionIndex,
+      sections,
+      isSwipeEvent,
+      sectionDirection,
+      lastSectionIndex,
+    } = this.props;
     const { items } = this.state;
 
     if (prevSelectedSectionIndex !== selectedSectionIndex) {
-      const section = sections[selectedSectionIndex];
+      const section = sections[lastSectionIndex || selectedSectionIndex];
 
       if (section && !isSwipeEvent) {
         const index = items.findIndex(({ parentId }) => parentId === section.id);
@@ -154,7 +161,7 @@ export class JobsCard extends Component {
 
   render() {
     const { items, selectedItemsIndex, direction } = this.state;
-    const { sections, selectedSectionIndex, isSwipeEvent } = this.props;
+    const { sections, selectedSectionIndex, isSwipeEvent, lastSectionIndex } = this.props;
     const section = sections[selectedSectionIndex];
     const item = items[selectedItemsIndex];
 
@@ -166,7 +173,10 @@ export class JobsCard extends Component {
           section={section}
           isSwipeEvent={isSwipeEvent}
         />
-        <BackendComponent sections={items} selectedSectionIndex={selectedItemsIndex} />
+        <BackendComponent
+          sections={items}
+          selectedSectionIndex={lastSectionIndex || selectedItemsIndex}
+        />
         <PaginationSimple
           pageCount={items.length}
           currentPage={selectedItemsIndex + 1}

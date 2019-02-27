@@ -12,16 +12,7 @@ import { fade } from "../../components/Transition/animation";
 
 export class News extends PureComponent {
   render() {
-    const {
-      status,
-      direction,
-      description,
-      title,
-      date,
-      logo,
-      isSwipeEvent,
-      link,
-    } = this.props;
+    const { status, direction, description, title, date, logo, isSwipeEvent, link } = this.props;
 
     const animation = isSwipeEvent
       ? direction > 0
@@ -32,9 +23,7 @@ export class News extends PureComponent {
       : slideDown[status];
 
     return (
-      <AboutCardContainer
-        className={cn(animation, fade[status], transition[status])}
-      >
+      <AboutCardContainer className={cn(animation, fade[status], transition[status])}>
         <Title>{title}</Title>
         <DateBlock>{format(date)}</DateBlock>
         <Description>
@@ -73,13 +62,13 @@ export class NewsCard extends PureComponent {
   };
 
   render() {
-    const { direction, title, date, description, logo, id } = this.props;
+    const { title, date, description, logo, id } = this.props;
 
     return (
       <Swiper onSwiped={this.onSwiped}>
         <TransitionGroup>
           <Transition
-            key={`${id}-news-${direction}`}
+            key={`${id}-news-card`}
             timeout={{
               enter: 100,
               exit: 200,

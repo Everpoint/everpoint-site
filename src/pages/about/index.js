@@ -73,9 +73,11 @@ export class AboutBase extends Component {
 
   transform = () => {
     const { x, y } = this.state;
-    const { selectedSectionIndex } = this.props;
+    const { selectedSectionIndex, lastSectionIndex } = this.props;
     const { left: fakeLeft, top: fakeTop } = this.fakePoint.getBoundingClientRect();
-    const { left, top } = this.points[selectedSectionIndex].getBoundingClientRect();
+    const { left, top } = this.points[
+      lastSectionIndex || selectedSectionIndex
+    ].getBoundingClientRect();
 
     const nextX = fakeLeft - left + x;
     const nextY = fakeTop - top + y;
@@ -120,6 +122,7 @@ export class AboutBase extends Component {
       transitionEnd,
       currentRoute,
       disableBackgroundTransition,
+      lastSectionIndex,
     } = this.props;
     const { x, y, isMobile } = this.state;
 
@@ -178,11 +181,14 @@ export class AboutBase extends Component {
             isMobile={isMobile}
             transitionEnd={transitionEnd}
             status={status}
-            selectedSectionIndex={selectedSectionIndex}
+            selectedSectionIndex={lastSectionIndex || selectedSectionIndex}
             onSectionChange={onSectionChange}
           />
           <RightSide className={animation(status)}>
-            <BackendComponent sections={sections} selectedSectionIndex={selectedSectionIndex} />
+            <BackendComponent
+              sections={sections}
+              selectedSectionIndex={lastSectionIndex || selectedSectionIndex}
+            />
             <NewsCard
               isSwipeEvent={isSwipeEvent}
               onSectionChange={onSectionChange}
@@ -191,7 +197,7 @@ export class AboutBase extends Component {
             />
             <PaginationSimple
               pageCount={sections.length}
-              currentPage={selectedSectionIndex + 1}
+              currentPage={(lastSectionIndex || selectedSectionIndex) + 1}
               onPageChange={page => this.onPageChange(page, selectedSectionIndex, onSectionChange)}
             />
           </RightSide>

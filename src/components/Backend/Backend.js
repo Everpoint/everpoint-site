@@ -8,6 +8,7 @@ export class BackendComponent extends Component {
   static propTypes = {
     selectedSectionIndex: PropTypes.number,
     sections: PropTypes.arrayOf(PropTypes.object),
+    transitionEnd: PropTypes.bool,
   };
 
   shouldComponentUpdate({ selectedSectionIndex: nextSelectedSectionIndex }, nextState) {

@@ -43,6 +43,7 @@ export class JobsBase extends Component {
       sectionDirection,
       scrollTop,
       status,
+      lastSectionIndex,
     } = this.props;
     const currentRoute = getRouteByLocation(location);
     const { sections } = currentRoute;
@@ -84,6 +85,7 @@ export class JobsBase extends Component {
               onSectionChange={onSectionChange}
             />
             <JobsCard
+              lastSectionIndex={lastSectionIndex}
               isSwipeEvent={isSwipeEvent}
               sections={sections}
               selectedSectionIndex={selectedSectionIndex}
