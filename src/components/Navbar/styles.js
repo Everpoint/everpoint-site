@@ -9,7 +9,6 @@ export const NavbarContainer = styled("nav")`
   position: fixed;
   top: 0;
   left: 0;
-  will-change: transform;
   background: rgba(255, 255, 255, 0);
   transition: background 200ms ease-in;
   &.mobileMenuIsOpen {

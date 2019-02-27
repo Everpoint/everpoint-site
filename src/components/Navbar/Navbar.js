@@ -71,7 +71,10 @@ class NavbarBase extends PureComponent {
 
     return (
       <NavbarContainer
-        style={{ transform }}
+        style={{
+          transform,
+          willChange: transitionEnd && currentRoute && currentRoute.scrollable && "transform",
+        }}
         className={cn({
           [styles.coloredNav]: coloredNav || additionalMenuIsOpenId,
         })}

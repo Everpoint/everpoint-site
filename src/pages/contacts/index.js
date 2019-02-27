@@ -1,4 +1,4 @@
-import React, { PureComponent } from "react";
+import React, { Component } from "react";
 import cn from "classnames";
 
 import { Background } from "../../components/MainPageElements/Background";
@@ -26,7 +26,7 @@ import styles, {
 import { getRouteByLocation } from "../../routes";
 import { animation } from "../../components/MainPageElements/Section";
 
-class Contacts extends PureComponent {
+class Contacts extends Component {
   state = {
     stope: true,
     isMobileOrTablet: false,
