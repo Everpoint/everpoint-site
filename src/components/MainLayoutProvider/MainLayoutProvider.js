@@ -574,7 +574,12 @@ export class MainLayoutProviderComponent extends Component {
         }}
       >
         <ImagesDownloadListener images={backgrounds} />
-        <Swiper className={styles.swiper} onSwiping={this.onSwiping} onSwiped={this.onSwiped}>
+        <Swiper
+          className={styles.swiper}
+          onSwiping={this.onSwiping}
+          onSwiped={this.onSwiped}
+          preventDefaultTouchmoveEvent={true}
+        >
           {false ? (
             <NativeScrollbar onWheel={this.onWheel}>{children}</NativeScrollbar>
           ) : (

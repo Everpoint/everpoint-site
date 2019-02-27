@@ -41,8 +41,9 @@ export const LeftSide = styled(Side)`
   }
 
   @media (max-width: 767px) and (orientation: portrait) {
+    width: 100vw;
+    padding-left: 1.7142rem;
     padding-right: 0;
-    width: calc(100% + 1.7142rem * 2);
     overflow-x: auto;
   }
 `;
@@ -153,7 +154,8 @@ const styles = css`
         }
 
         &:first-child {
-          margin: 0 2.8571rem 0 1.7142rem;
+          margin: 0;
+          padding-right: 2.8571rem;
         }
         &:last-child {
           padding-right: 1.7142rem;
