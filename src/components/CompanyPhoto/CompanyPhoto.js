@@ -112,7 +112,7 @@ export class CompanyPhoto extends Component {
 
     return (
       <CompanyPhotoContainer>
-        <ImagesDownloadListener images={avatars} onLoad={this.onAllAvatarsLoaded} />
+        <ImagesDownloadListener images={avatars} onLoad={() => this.onAllAvatarsLoaded()} />
         {title && (
           <CompanyHeader>
             <HorizontalRule />

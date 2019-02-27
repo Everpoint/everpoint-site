@@ -33,6 +33,10 @@ class LongredLayout extends Component {
     const { projects, isMobile, isTablet } = this.state;
     const { children, location } = this.props;
 
+    if (isTablet === null && isMobile === null) {
+      return <div style={{ display: "none" }} />;
+    }
+
     return (
       <ScrollbarProvider
         nativeScrollbar={isMobile || isTablet}
@@ -54,13 +58,11 @@ class LongredLayout extends Component {
           projects={projects}
           pathname={location.pathname}
         />
-        {isTablet !== null &&
-          isMobile !== null &&
-          React.cloneElement(children, {
-            isMobile,
-            isTablet,
-            isMobileOrTablet: isMobile || isTablet,
-          })}
+        {React.cloneElement(children, {
+          isMobile,
+          isTablet,
+          isMobileOrTablet: isMobile || isTablet,
+        })}
       </ScrollbarProvider>
     );
   }
