@@ -17,7 +17,20 @@ import styles, {
 import { animation } from "../../components/MainPageElements/Section";
 
 export class JobsBase extends Component {
+  state = {
+    prevScrollTop: 0,
+  };
+
+  componentDidUpdate({ transitionEnd: prevTransitionEnd }, prevState) {
+    const { transitionEnd, scrollTop } = this.props;
+
+    if (prevTransitionEnd !== transitionEnd) {
+      this.setState({ prevScrollTop: scrollTop });
+    }
+  }
+
   render() {
+    const { prevScrollTop } = this.state;
     const {
       location,
       selectedSectionIndex,
@@ -56,7 +69,12 @@ export class JobsBase extends Component {
           </LeftSide>
         </Side>
         <RightSide className={animation(status)}>
-          <RightSideContent ref={onScrollableRef}>
+          <RightSideContent
+            ref={onScrollableRef}
+            style={{
+              transform: !transitionEnd && `translateY(-${prevScrollTop}px)`,
+            }}
+          >
             <ScrollableTeamMembers
               sections={sections}
               transitionEnd={transitionEnd}
