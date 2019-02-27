@@ -512,6 +512,7 @@ export class MainLayoutProviderComponent extends Component {
 
       if (nextPage) {
         this.setState({
+          transitionEnd: false,
           selectedSectionIndex: selectedSectionIndexFromIndex,
           direction,
           disableBackgroundTransition,
