@@ -1,4 +1,4 @@
-import styled from "astroturf";
+import styled, { css } from "astroturf";
 
 export const Viewport = styled("div")`
   position: absolute;
@@ -19,3 +19,7 @@ export const Container = styled("div")`
 export const Row = styled("div")`
   padding: 4.4rem;
 `;
+
+const styles = css``;
+
+export default styles;

@@ -56,7 +56,7 @@ export class BackgroundBase extends Component {
   }
 
   render() {
-    const { status, direction, className, style, backgroundImage, ...props } = this.props;
+    const { status, direction, className, style, backgroundImage, children, ...props } = this.props;
 
     return (
       <BackgroundBlock
@@ -70,7 +70,9 @@ export class BackgroundBase extends Component {
           transition[status],
           className,
         )}
-      />
+      >
+        {children}
+      </BackgroundBlock>
     );
   }
 }
