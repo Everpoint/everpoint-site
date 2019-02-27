@@ -25,10 +25,11 @@ class PortfolioBase extends Component {
       direction,
       status,
       disableBackgroundTransition,
+      lastSectionIndex,
     } = this.props;
     const currentRoute = getRouteByLocation(location);
     const { sections } = currentRoute;
-    const section = sections[selectedSectionIndex];
+    const section = sections[lastSectionIndex || selectedSectionIndex];
 
     return (
       <Main>

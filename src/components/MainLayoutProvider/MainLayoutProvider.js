@@ -61,6 +61,7 @@ export class MainLayoutProviderComponent extends Component {
       selectedSectionIndex: selectedSectionIndexFromStorage,
       sections: (currentRoute && currentRoute.sections) || [],
       sectionDirection: 1,
+      lastSectionIndex: 0,
       disableBackgroundTransition: false,
     };
   }
@@ -294,6 +295,7 @@ export class MainLayoutProviderComponent extends Component {
       coloredNav: false,
       scrollTop: 0,
       limitY: 0,
+      lastSectionIndex: 0,
     });
   };
 
@@ -518,6 +520,7 @@ export class MainLayoutProviderComponent extends Component {
         this.setState({
           transitionEnd: false,
           selectedSectionIndex: selectedSectionIndexFromIndex,
+          lastSectionIndex: selectedSectionIndex,
           direction,
           disableBackgroundTransition,
         });
@@ -544,6 +547,7 @@ export class MainLayoutProviderComponent extends Component {
       sections,
       sectionDirection,
       disableBackgroundTransition,
+      lastSectionIndex,
     } = this.state;
     const { children } = this.props;
 
@@ -571,6 +575,7 @@ export class MainLayoutProviderComponent extends Component {
           sections,
           sectionDirection,
           disableBackgroundTransition,
+          lastSectionIndex,
         }}
       >
         <ImagesDownloadListener images={backgrounds} />
