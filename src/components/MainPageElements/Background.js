@@ -7,7 +7,6 @@ import cn from "classnames";
 import withProvider from "../../hoc/withProvider";
 import withRouter from "../../hoc/withRouter";
 import { fade, scaleIn, scaleOut, transition } from "../Transition/animation";
-import styles from "../Background/styles";
 import russia from "../../assets/img/main-slides/russia.svg";
 import moscow from "../../assets/img/main-slides/moscow.svg";
 import bus from "../../assets/img/main-slides/bus.svg";
@@ -23,10 +22,11 @@ export const getBackground = ({ isPortfolioPage, isAboutPage, isJobsPage }) => {
 };
 
 export const BackgroundBlock = styled("div")`
-  z-index: -1;
   position: absolute;
   top: 0;
   left: 0;
+  right: 0;
+  bottom: 0;
   width: 100%;
   height: 100%;
   background-position: center;
@@ -37,13 +37,21 @@ export const BackgroundBlock = styled("div")`
 
 export class BackgroundBase extends Component {
   shouldComponentUpdate(
-    { status: nextStatus, backgroundImage: nextBackgroundImage, style: nextStyle },
+    {
+      status: nextStatus,
+      backgroundImage: nextBackgroundImage,
+      style: nextStyle,
+      direction: nextDirection,
+    },
     nextState,
   ) {
-    const { status, backgroundImage, style } = this.props;
+    const { status, backgroundImage, style, direction } = this.props;
 
     return (
-      status !== nextStatus || backgroundImage !== nextBackgroundImage || !isEqual(style, nextStyle)
+      status !== nextStatus ||
+      backgroundImage !== nextBackgroundImage ||
+      !isEqual(style, nextStyle) ||
+      direction !== nextDirection
     );
   }
 
@@ -60,7 +68,6 @@ export class BackgroundBase extends Component {
           direction > 0 ? scaleIn[status] : scaleOut[status],
           fade[status],
           transition[status],
-          styles.default,
           className,
         )}
       />

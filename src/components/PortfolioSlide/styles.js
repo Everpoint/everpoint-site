@@ -16,6 +16,9 @@ export const PortfolioSlideContainer = styled("div")`
   position: absolute;
   top: 0;
   left: 0;
+  &.willChange {
+    will-change: transform;
+  }
 `;
 
 export const SliderBackground = styled("div")`
@@ -256,7 +259,6 @@ export const slideDownScroll = css`
     pointer-events: none;
   }
 `;
-
 
 const styles = css`
   .swiper {

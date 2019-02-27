@@ -2,7 +2,6 @@ import React, { Component } from "react";
 
 import { Background } from "../../components/MainPageElements/Background";
 import { MainLayoutConsumer } from "../../components/MainLayoutProvider/MainLayoutProvider";
-import { Side } from "../../components/MainPageElements/Section";
 import { AdditionalMenu } from "../../components/AdditionalMenu/AdditionalMenu";
 import { ScrollableTeamMembers } from "../../components/ScrollableTeamMembers/ScrollableTeamMembers";
 import { getRouteByLocation } from "../../routes";
@@ -13,11 +12,25 @@ import styles, {
   LeftSide,
   RightSide,
   RightSideContent,
+  WillChange,
 } from "../../styles/jobs";
 import { animation } from "../../components/MainPageElements/Section";
 
 export class JobsBase extends Component {
+  state = {
+    prevScrollTop: 0,
+  };
+
+  componentDidUpdate({ transitionEnd: prevTransitionEnd }, prevState) {
+    const { transitionEnd, scrollTop } = this.props;
+
+    if (prevTransitionEnd !== transitionEnd) {
+      this.setState({ prevScrollTop: scrollTop });
+    }
+  }
+
   render() {
+    const { prevScrollTop } = this.state;
     const {
       location,
       selectedSectionIndex,
@@ -43,8 +56,8 @@ export class JobsBase extends Component {
         <BackgroundWrapper style={{ transform }}>
           <Background className={styles.background} status={status} location={location} />
         </BackgroundWrapper>
-        <LeftSide ref={onLeftSideSectionRef} className={animation(status)}>
-          <Side style={{ transform }}>
+        <WillChange style={{ transform }} ref={onLeftSideSectionRef}>
+          <LeftSide className={animation(status)}>
             <AdditionalMenu
               className={styles.menu}
               selectedId={section && section.id}
@@ -53,10 +66,15 @@ export class JobsBase extends Component {
               additionalMenu={sections}
               isOpen={true}
             />
-          </Side>
-        </LeftSide>
+          </LeftSide>
+        </WillChange>
         <RightSide className={animation(status)}>
-          <RightSideContent ref={onScrollableRef}>
+          <RightSideContent
+            ref={onScrollableRef}
+            style={{
+              transform: !transitionEnd && `translateY(-${prevScrollTop}px)`,
+            }}
+          >
             <ScrollableTeamMembers
               sections={sections}
               transitionEnd={transitionEnd}

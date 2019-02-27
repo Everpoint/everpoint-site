@@ -1,4 +1,4 @@
-import React, { PureComponent } from "react";
+import React, { Component } from "react";
 
 // import { ReactComponent as Earth } from "../assets/img/main-slides/earth.svg";
 // import { CoveringImage } from "../components/CoveringImage/CoveringImage";
@@ -11,7 +11,7 @@ import { BigH1 } from "../components/Typography/Headlines";
 
 import styles from "../styles/index";
 
-export class IndexPage extends PureComponent {
+export class IndexPage extends Component {
   render() {
     const { status, location } = this.props;
 
