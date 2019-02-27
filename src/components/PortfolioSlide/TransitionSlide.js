@@ -63,6 +63,7 @@ export class TransitionSlide extends Component {
       isSwipeEvent,
       up,
       down,
+      transitionEnd,
     } = this.props;
 
     const scrollEvent = !isSwipeEvent;
@@ -96,6 +97,7 @@ export class TransitionSlide extends Component {
           ...transitionUp[status],
         }}
         className={cn(...scrollClassNames)}
+        willChange={transitionEnd && scrollEvent}
         onClick={goToLongread}
         ref={onContainerRef}
         onMouseOver={() => this.setState({ hovered: true })}

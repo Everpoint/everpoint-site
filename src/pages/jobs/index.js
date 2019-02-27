@@ -2,7 +2,6 @@ import React, { Component } from "react";
 
 import { Background } from "../../components/MainPageElements/Background";
 import { MainLayoutConsumer } from "../../components/MainLayoutProvider/MainLayoutProvider";
-import { Side } from "../../components/MainPageElements/Section";
 import { AdditionalMenu } from "../../components/AdditionalMenu/AdditionalMenu";
 import { ScrollableTeamMembers } from "../../components/ScrollableTeamMembers/ScrollableTeamMembers";
 import { getRouteByLocation } from "../../routes";
@@ -13,6 +12,7 @@ import styles, {
   LeftSide,
   RightSide,
   RightSideContent,
+  WillChange,
 } from "../../styles/jobs";
 import { animation } from "../../components/MainPageElements/Section";
 
@@ -56,7 +56,7 @@ export class JobsBase extends Component {
         <BackgroundWrapper style={{ transform }}>
           <Background className={styles.background} status={status} location={location} />
         </BackgroundWrapper>
-        <Side style={{ transform }} ref={onLeftSideSectionRef}>
+        <WillChange style={{ transform }} ref={onLeftSideSectionRef}>
           <LeftSide className={animation(status)}>
             <AdditionalMenu
               className={styles.menu}
@@ -67,7 +67,7 @@ export class JobsBase extends Component {
               isOpen={true}
             />
           </LeftSide>
-        </Side>
+        </WillChange>
         <RightSide className={animation(status)}>
           <RightSideContent
             ref={onScrollableRef}
