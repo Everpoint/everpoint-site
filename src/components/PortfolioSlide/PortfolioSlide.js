@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
+import debounce from "lodash/debounce";
 import { Transition } from "react-transition-group";
 
 import { getPixelRatioPropName } from "../../utils/utils";
@@ -31,6 +32,11 @@ export class PortfolioSlide extends Component {
     lastSectionIndex: PropTypes.number,
   };
 
+  constructor(props) {
+    super(props);
+    this.onResize = debounce(this.onResize, 200);
+  }
+
   state = {
     id: null,
     goToLongread: false,
@@ -54,13 +60,10 @@ export class PortfolioSlide extends Component {
     window.removeEventListener("resize", this.onResize);
   }
 
-  componentDidUpdate(
-    { scrollTop: prevScrollTop, selectedSectionIndex: prevSelectedSectionIndex },
-    prevState,
-  ) {
-    const { scrollTop } = this.props;
+  componentDidUpdate({ transitionEnd: prevTransitionEnd }, prevState) {
+    const { transitionEnd } = this.props;
 
-    if (prevScrollTop !== scrollTop) {
+    if (prevTransitionEnd !== transitionEnd && transitionEnd) {
       this.onResize();
     }
   }
@@ -68,6 +71,7 @@ export class PortfolioSlide extends Component {
   onResize = () => {
     if (this.slide) {
       const { top, bottom, left, width, height } = this.slide.getBoundingClientRect();
+
       this.setState({
         top,
         left,

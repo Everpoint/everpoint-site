@@ -6,7 +6,7 @@ import { isMobile, isTablet } from "../../utils/browser";
 export class ViewportHeight extends Component {
   constructor(props) {
     super(props);
-    this.onResize = debounce(this.onResize, 200);
+    this.onResizeDebounced = debounce(this.onResize, 200);
   }
 
   componentDidMount() {
@@ -14,14 +14,19 @@ export class ViewportHeight extends Component {
 
     if (isMobile() || isTablet()) {
       window.addEventListener("orientationchange", this.onResize);
+      window.addEventListener("orientationchange", this.onResizeDebounced);
     } else {
       window.addEventListener("resize", this.onResize);
     }
   }
 
   componentWillUnmount() {
-    window.removeEventListener("orientationchange", this.onResize);
-    window.removeEventListener("resize", this.onResize);
+    if (isMobile() || isTablet()) {
+      window.removeEventListener("orientationchange", this.onResize);
+      window.removeEventListener("orientationchange", this.onResizeDebounced);
+    } else {
+      window.removeEventListener("resize", this.onResize);
+    }
   }
 
   onResize = () => {
