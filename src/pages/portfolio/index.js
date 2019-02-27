@@ -20,7 +20,6 @@ class PortfolioBase extends Component {
       onSectionChange,
       sectionDirection,
       isSwipeEvent,
-      scrollTop,
       transitionEnd,
       direction,
       status,
@@ -54,7 +53,6 @@ class PortfolioBase extends Component {
           <PortfolioSlide
             lastSectionIndex={lastSectionIndex}
             transitionEnd={transitionEnd}
-            scrollTop={scrollTop}
             isSwipeEvent={isSwipeEvent}
             sectionDirection={sectionDirection}
             direction={direction}

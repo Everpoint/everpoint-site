@@ -26,7 +26,6 @@ export class PortfolioSlide extends Component {
     sectionDirection: PropTypes.number,
     navigate: PropTypes.func,
     isSwipeEvent: PropTypes.bool,
-    scrollTop: PropTypes.number,
     transitionEnd: PropTypes.bool,
     direction: PropTypes.number,
     lastSectionIndex: PropTypes.number,
@@ -40,14 +39,16 @@ export class PortfolioSlide extends Component {
   state = {
     id: null,
     goToLongread: false,
+    ratio: "x1",
+    images: [],
+
+    // snapshot
     top: 0,
     up: 0,
     down: 0,
     left: 0,
     width: 0,
     height: 0,
-    ratio: "x1",
-    images: [],
   };
 
   componentDidMount() {
@@ -68,18 +69,29 @@ export class PortfolioSlide extends Component {
     }
   }
 
-  onResize = () => {
-    if (this.slide) {
-      const { top, bottom, left, width, height } = this.slide.getBoundingClientRect();
+  onResize = () => this.setState(this.getSlideBoundingClientRect());
 
-      this.setState({
-        top,
-        left,
+  getSlideBoundingClientRect = () => {
+    if (this.slide) {
+      const {
+        top: topRect,
+        left: leftRect,
         width,
         height,
-        up: top + height,
-        down: window.innerHeight - bottom + height,
-      });
+        bottom,
+      } = this.slide.getBoundingClientRect();
+
+      const top = topRect + window.scrollY;
+      const left = leftRect + window.scrollX;
+
+      return {
+        top: Math.round(top),
+        left: Math.round(left),
+        width: Math.round(width),
+        height: Math.round(height),
+        up: Math.round(top + height),
+        down: Math.round(window.innerHeight - bottom + height),
+      };
     }
   };
 
@@ -165,6 +177,7 @@ export class PortfolioSlide extends Component {
               enter: 0,
               exit: isSwipeEvent ? 200 : 400,
             }}
+            onExited={this.onResize}
           >
             {status => (
               <TransitionSlide

@@ -38,7 +38,7 @@ export class MainLayoutProviderComponent extends Component {
       localStorage.removeItem(id);
     }
 
-    this.onNavigateToDebounced = debounce(this.onNavigateTo, 200, {
+    this.onNavigateToDebounced = debounce(this.onNavigateTo, 144, {
       leading: true,
       trailing: false,
     });
@@ -50,6 +50,7 @@ export class MainLayoutProviderComponent extends Component {
       currentRoute: null,
       direction: 1,
       transitionEnd: true,
+      disableHover: false,
       mobileMenuIsOpen: false,
       damping: 0.1,
       thresholdIsActive: false,
@@ -68,17 +69,16 @@ export class MainLayoutProviderComponent extends Component {
   defaultDamping = 0.1;
   threshold = 0;
   scrolling = false;
-  timer = 0;
   scrollbar = null;
   scrollable = null;
   lefsideSection = null;
+  timer = 0;
   disableSwipeNavigation = false;
 
   componentDidMount() {
     this.setCurrentRoute();
     window.addEventListener("resize", this.onResize);
     window.addEventListener("keydown", this.onKeyDown);
-    window.addEventListener("orientationchange", this.onOrientationChange);
   }
 
   componentWillUnmount() {
@@ -86,7 +86,6 @@ export class MainLayoutProviderComponent extends Component {
 
     window.removeEventListener("resize", this.onResize);
     window.removeEventListener("keydown", this.onKeyDown);
-    window.removeEventListener("orientationchange", this.onOrientationChange);
   }
 
   componentDidUpdate(prevProps) {
@@ -227,7 +226,7 @@ export class MainLayoutProviderComponent extends Component {
   onScroll = e => {
     const { width } = this.getSize();
 
-    const { scrollTop, currentRoute } = this.state;
+    const { disableHover, scrollTop, currentRoute } = this.state;
     const { offset, limit } = e;
     const { y: offsetY } = offset;
     const { y: limitY } = limit;
@@ -235,6 +234,20 @@ export class MainLayoutProviderComponent extends Component {
     if (width <= mobileMenuWidth && currentRoute && currentRoute.scrollable) {
       return;
     }
+
+    clearTimeout(this.timer);
+
+    if (!disableHover) {
+      this.setState({
+        disableHover: true,
+      });
+    }
+
+    this.timer = setTimeout(() => {
+      this.setState({
+        disableHover: false,
+      });
+    }, 200);
 
     this.setState(
       {
@@ -451,7 +464,14 @@ export class MainLayoutProviderComponent extends Component {
   onNavigateTo = (direction, routeSwipeUpAndDown = false) => {
     const { height } = this.getSize();
 
-    const { currentRoute, scrollTop, limitY, selectedSectionIndex, sections } = this.state;
+    const {
+      currentRoute,
+      scrollTop,
+      limitY,
+      selectedSectionIndex,
+      sections,
+      transitionEnd,
+    } = this.state;
     const { navigate, location } = this.props;
     const { pathname } = location;
 
@@ -465,7 +485,7 @@ export class MainLayoutProviderComponent extends Component {
       }
     }
 
-    if (scrollable && scrollTop > 0 && limitY !== scrollTop) {
+    if ((scrollable && scrollTop > 0 && limitY !== scrollTop) || !transitionEnd) {
       return;
     }
 
@@ -517,6 +537,7 @@ export class MainLayoutProviderComponent extends Component {
       coloredNav,
       direction,
       transitionEnd,
+      disableHover,
       currentRoute,
       mobileMenuIsOpen,
       damping,
@@ -568,6 +589,7 @@ export class MainLayoutProviderComponent extends Component {
           <ScrollBar
             ref={this.onScrollBarRef}
             damping={damping}
+            disableHover={disableHover || !transitionEnd}
             plugins={{
               disableScrollByDirection: {
                 direction: {
