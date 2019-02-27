@@ -1,13 +1,20 @@
 import React, { Component } from "react";
 
+import { Background } from "../../components/MainPageElements/Background";
 import { MainLayoutConsumer } from "../../components/MainLayoutProvider/MainLayoutProvider";
-import { CenterBlock } from "../../components/CenterBlock/CenterBlock";
-import { MainAnimation } from "../../components/MainAnimation/MainAnimation";
+import { Side } from "../../components/MainPageElements/Section";
 import { AdditionalMenu } from "../../components/AdditionalMenu/AdditionalMenu";
 import { ScrollableTeamMembers } from "../../components/ScrollableTeamMembers/ScrollableTeamMembers";
-import { getRouteByLocation, sectionsFromAdditionalMenu } from "../../routes";
+import { getRouteByLocation } from "../../routes";
 import { JobsCard } from "../../components/JobsCard/JobsCard";
-import styles from "../../styles/jobs";
+import styles, {
+  Main,
+  BackgroundWrapper,
+  LeftSide,
+  RightSide,
+  RightSideContent,
+} from "../../styles/jobs";
+import { animation } from "../../components/MainPageElements/Section";
 
 export class JobsBase extends Component {
   render() {
@@ -21,35 +28,35 @@ export class JobsBase extends Component {
       transitionEnd,
       isSwipeEvent,
       sectionDirection,
-      setPreventDefaultTouchmoveEvent,
-      disableTransition,
+      scrollTop,
+      status,
     } = this.props;
     const currentRoute = getRouteByLocation(location);
-    const sections = sectionsFromAdditionalMenu(currentRoute.additionalMenu);
+    const { sections } = currentRoute;
     const section = sections[selectedSectionIndex];
     const selectedId = section && section.id;
 
+    const transform = `translateY(${scrollTop}px)`;
+
     return (
-      <MainAnimation
-        {...this.props}
-        onLeftSideSectionRef={onLeftSideSectionRef}
-        containerClassName={styles.jobsContainer}
-        leftSide={
-          <div
-            onTouchStart={() => setPreventDefaultTouchmoveEvent(false)}
-            onTouchEnd={() => setPreventDefaultTouchmoveEvent(true)}
-          >
+      <Main>
+        <BackgroundWrapper style={{ transform }}>
+          <Background className={styles.background} status={status} location={location} />
+        </BackgroundWrapper>
+        <LeftSide ref={onLeftSideSectionRef} className={animation(status)}>
+          <Side style={{ transform }}>
             <AdditionalMenu
+              className={styles.menu}
               selectedId={section && section.id}
               onSectionChange={onSectionChange}
               leftSide
-              additionalMenu={currentRoute.additionalMenu}
+              additionalMenu={sections}
               isOpen={true}
             />
-          </div>
-        }
-        rightSide={
-          <CenterBlock ref={onScrollableRef}>
+          </Side>
+        </LeftSide>
+        <RightSide className={animation(status)}>
+          <RightSideContent ref={onScrollableRef}>
             <ScrollableTeamMembers
               sections={sections}
               transitionEnd={transitionEnd}
@@ -59,16 +66,15 @@ export class JobsBase extends Component {
               onSectionChange={onSectionChange}
             />
             <JobsCard
-              disableTransition={disableTransition}
               isSwipeEvent={isSwipeEvent}
               sections={sections}
               selectedSectionIndex={selectedSectionIndex}
               onSectionChange={onSectionChange}
               sectionDirection={sectionDirection}
             />
-          </CenterBlock>
-        }
-      />
+          </RightSideContent>
+        </RightSide>
+      </Main>
     );
   }
 }

@@ -1,25 +1,23 @@
-import styled from "astroturf";
+import styled, { css } from "astroturf";
 // https://github.com/idiotWu/react-smooth-scrollbar
 // API https://github.com/idiotWu/smooth-scrollbar/blob/develop/docs/api.md
 import Scrollbar from "react-smooth-scrollbar";
 
-export const NativeScrollbar = styled("div")``;
+export const NativeScrollbar = styled("div")`
+  width: 100%;
+  height: 100%;
+`;
 
 export const ScrollBar = styled(Scrollbar)`
-  width: 100vw;
-  height: 100vh;
-  height: calc(var(--vh, 1vh) * 100);
+  width: 100%;
+  height: 100%;
   :global(.scroll-content) {
     width: 100%;
     height: 100%;
     will-change: transform;
-    > div {
+    > div:first-child {
       width: 100%;
       height: 100%;
-      > div {
-        width: 100%;
-        height: 100%;
-      }
     }
   }
   :global(.scrollbar-track) {
@@ -31,3 +29,12 @@ export const ScrollBar = styled(Scrollbar)`
     }
   }
 `;
+
+const styles = css`
+  .swiper {
+    width: 100%;
+    height: 100%;
+  }
+`;
+
+export default styles;

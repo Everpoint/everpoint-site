@@ -41,8 +41,11 @@ class LongredLayout extends Component {
         withScrollbarY
       >
         <Helmet
+          htmlAttributes={{
+            class: cn(isMobile || isTablet ? styles.londreadHtmlMobile : styles.longreadHtml),
+          }}
           bodyAttributes={{
-            class: cn({ [styles.londreadBodyMobile]: isMobile || isTablet }),
+            class: cn(isMobile || isTablet ? styles.londreadBodyMobile : styles.longreadBody),
           }}
         />
         <ViewportHeight />
@@ -51,11 +54,13 @@ class LongredLayout extends Component {
           projects={projects}
           pathname={location.pathname}
         />
-        {React.cloneElement(children, {
-          isMobile,
-          isTablet,
-          isMobileOrTablet: isMobile || isTablet,
-        })}
+        {isTablet !== null &&
+          isMobile !== null &&
+          React.cloneElement(children, {
+            isMobile,
+            isTablet,
+            isMobileOrTablet: isMobile || isTablet,
+          })}
       </ScrollbarProvider>
     );
   }

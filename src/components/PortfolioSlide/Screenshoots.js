@@ -30,7 +30,6 @@ export class Screenshoots extends Component {
       text,
       status,
       direction,
-      disableTransition,
     } = this.props;
     const slideY = direction > 0 ? screenshotSlideUp[status] : screenshotSlideDown[status];
     const slideX = direction > 0 ? slideLeft[status] : slideRight[status];
@@ -47,14 +46,12 @@ export class Screenshoots extends Component {
         {Array.isArray(screenshots) ? (
           <MultiScreenshots
             scrollEvent={scrollEvent}
-            disableTransition={disableTransition}
             className={cn(...classNames)}
             alt={text}
             screenshots={screenshots}
           />
         ) : (
           <Screenshot
-            disableTransition={disableTransition}
             className={cn(...classNames)}
             src={screenshots}
             alt={text}

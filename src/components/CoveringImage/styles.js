@@ -1,18 +1,16 @@
 import styled from "astroturf";
 
-export const Background = styled("div")`
-  will-change: transform;
+export const SvgWrapper = styled("div")`
   position: absolute;
-  right: 0;
-  bottom: 0;
-  top: 0;
-  left: 0;
   width: 100%;
   height: 100%;
-  svg {
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  svg,
+  img {
     position: absolute;
-    width: 100%;
-    height: auto;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);

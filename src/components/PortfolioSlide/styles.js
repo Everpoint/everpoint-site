@@ -16,14 +16,6 @@ export const PortfolioSlideContainer = styled("div")`
   position: absolute;
   top: 0;
   left: 0;
-  &.disableTransition {
-    opacity: 1;
-    transition: none;
-    transform: none;
-    &:not(:first-child) {
-      visibility: hidden;
-    }
-  }
 `;
 
 export const SliderBackground = styled("div")`
@@ -34,9 +26,6 @@ export const SliderBackground = styled("div")`
   height: 100%;
   will-change: top, background;
   transition: all 200ms ease-in;
-  &.disableTransition {
-    transition-property: top, width, height;
-  }
   @media (hover: hover) {
     &.hovered {
       top: -1.1428rem;
@@ -141,11 +130,6 @@ export const Content = styled("div")`
     only screen and (min-device-width: 320px) and (max-device-width: 568px) and (-webkit-min-device-pixel-ratio: 2) and (orientation: landscape) {
     padding: 0 0.8rem 0 3rem;
   }
-  &.disableTransition {
-    transition: none;
-    opacity: 1;
-    transform: none;
-  }
 `;
 
 export const MobileTitle = styled("h1")`
@@ -223,11 +207,6 @@ export const Screenshot = styled("img")`
     top: auto;
     bottom: 0;
   }
-  &.disableTransition {
-    opacity: 1;
-    transition: none;
-    transform: none;
-  }
 `;
 
 export const LongreadBackground = styled("div")`
@@ -277,3 +256,13 @@ export const slideDownScroll = css`
     pointer-events: none;
   }
 `;
+
+
+const styles = css`
+  .swiper {
+    width: 100%;
+    height: 100%;
+  }
+`;
+
+export default styles;

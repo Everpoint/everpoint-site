@@ -32,6 +32,7 @@ export default ({ children, pageContext, ...props }) => {
   if (pageContext.layout === "longread") {
     return <LongreadLayout {...props}>{children}</LongreadLayout>;
   }
+
   return (
     <StaticQuery
       query={graphql`

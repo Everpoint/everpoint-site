@@ -13,7 +13,6 @@ export const Menu = styled("menu")`
   }
   &.leftSide {
     padding: 0;
-    display: block;
     > ul {
       margin-bottom: 3.9285rem;
       @media (max-width: 1024px) {

@@ -82,9 +82,6 @@ export const Logo = styled("img")`
     (max-width: 767px) and (orientation: portrait) {
     min-width: 7.1428rem;
   }
-  @media (max-height: 344px) {
-    min-width: 7.1428rem;
-  }
 `;
 
 export const LanguageSwitch = styled("div")`

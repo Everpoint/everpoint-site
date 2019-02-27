@@ -3,10 +3,10 @@ import PropTypes from "prop-types";
 import groupBy from "lodash/groupBy";
 import cn from "classnames";
 
-import { H2, Link } from "../../components/Atoms/Atoms";
+import { H2 } from "../../components/Atoms/Atoms";
 import animation from "../../components/Transition/animation";
 import { LinkComponent } from "./LinkComponent";
-import { Menu, ListItem, ListHeader, MenuList, SecondLevelMenu } from "./styles";
+import { Menu, ListItem, ListHeader, MenuList } from "./styles";
 
 export class AdditionalMenu extends PureComponent {
   static propTypes = {
@@ -31,59 +31,26 @@ export class AdditionalMenu extends PureComponent {
       onSectionChange,
       isPortfolioPage,
     } = this.props;
+    const grouped = groupBy(additionalMenu, "groupName");
 
     return (
       <Menu leftSide={leftSide} className={cn(className, { [animation.fadeIn]: fadeIn })}>
-        {additionalMenu &&
-          additionalMenu.map(({ title, id, children }) => {
-            const grouped = groupBy(children, "groupName");
-
-            return (
-              <MenuList key={id}>
-                {leftSide ? <H2>{title}</H2> : <ListHeader>{title}</ListHeader>}
-                {Object.keys(grouped).map(key => {
-                  if (key !== "undefined") {
-                    return (
-                      <ListItem key={key}>
-                        <Link
-                          as="h4"
-                          title
-                          isActive={grouped[key].some(({ id }) => id === selectedId)}
-                        >
-                          {key}
-                        </Link>
-                        <SecondLevelMenu>
-                          {grouped[key].map((item, index) => (
-                            <LinkComponent
-                              leftSide={leftSide}
-                              isPortfolioPage={isPortfolioPage}
-                              onSectionChange={onSectionChange}
-                              key={index}
-                              little
-                              selectedId={selectedId}
-                              {...item}
-                            />
-                          ))}
-                        </SecondLevelMenu>
-                      </ListItem>
-                    );
-                  } else {
-                    return grouped[key].map((item, index) => (
-                      <ListItem key={index}>
-                        <LinkComponent
-                          leftSide={leftSide}
-                          isPortfolioPage={isPortfolioPage}
-                          onSectionChange={onSectionChange}
-                          selectedId={selectedId}
-                          {...item}
-                        />
-                      </ListItem>
-                    ));
-                  }
-                })}
-              </MenuList>
-            );
-          })}
+        {Object.keys(grouped).map(groupName => (
+          <MenuList key={groupName}>
+            {leftSide ? <H2>{groupName}</H2> : <ListHeader>{groupName}</ListHeader>}
+            {grouped[groupName].map(item => (
+              <ListItem key={item.id}>
+                <LinkComponent
+                  leftSide={leftSide}
+                  isPortfolioPage={isPortfolioPage}
+                  onSectionChange={onSectionChange}
+                  selectedId={selectedId}
+                  {...item}
+                />
+              </ListItem>
+            ))}
+          </MenuList>
+        ))}
       </Menu>
     );
   }

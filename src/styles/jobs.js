@@ -1,182 +1,156 @@
-import { css } from "astroturf";
+import styled, { css } from "astroturf";
+
+import { Main as MainBlock } from "../components/MainPageElements/Main";
+import { Side } from "../components/MainPageElements/Section";
+
+export const Main = styled(MainBlock)`
+  @media (max-width: 1199px) {
+    justify-content: flex-start;
+  }
+  @media (max-width: 767px) and (orientation: portrait) {
+    flex-direction: column;
+    justify-content: space-between;
+  }
+`;
+
+export const BackgroundWrapper = styled(Side)`
+  top: 0;
+  left: 0;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+`;
+
+export const LeftSide = styled(Side)`
+  flex-shrink: 1;
+  padding-right: 4rem;
+  @media (max-width: 1199px) {
+    padding-right: 2rem;
+  }
+  @media (min-width: 1024px) and (max-width: 1024px) {
+    h2 {
+      max-width: 14rem;
+    }
+  }
+
+  @media (max-width: 767px) and (orientation: portrait) {
+    padding-right: 0;
+    width: calc(100% + 1.7142rem * 2);
+    overflow-x: auto;
+  }
+`;
+
+export const RightSide = styled(Side)`
+  position: relative;
+  height: 25rem;
+  flex-shrink: 1;
+  @media (max-width: 1306px) {
+    height: 29.4rem;
+  }
+  @media (max-width: 1199px) {
+    height: 22rem;
+    padding: 0;
+    margin: 0 auto;
+  }
+  @media (max-width: 991px) {
+    max-width: 20rem;
+    width: 100%;
+    max-height: 22.4444rem;
+    height: 100%;
+  }
+  @media (max-width: 812px) and (orientation: landscape),
+    (max-width: 767px) and (orientation: portrait) {
+    max-width: 18rem;
+    max-height: 18rem;
+    margin-bottom: 3.4rem;
+  }
+  @media (max-width: 767px) and (orientation: portrait) and (max-height: 490px) {
+    margin-bottom: 2.4rem;
+  }
+`;
+
+export const RightSideContent = styled("div")`
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  @media (max-width: 991px) {
+    width: 100%;
+    height: 100%;
+  }
+`;
 
 const styles = css`
-  .jobsContainer {
-    > section:first-child {
-      flex-shrink: 1;
-      padding-right: 4rem;
+  .background {
+    @media (max-width: 767px) and (orientation: portrait) {
+      background-size: 344%;
+      background-position: 51% 51%;
     }
-    > section:last-child {
-      position: relative;
-      height: 25rem;
-      flex-shrink: 1;
-      > div {
-        position: relative;
-        height: 100%;
-      }
-    }
-    @media (max-width: 1314px) {
-      > section:last-child {
-        height: 27.4rem;
-      }
-    }
+  }
+  .menu {
+    display: block;
     @media (max-width: 1199px) {
-      justify-content: flex-start;
-      > section:first-child {
-        padding-right: 2rem;
-        ul {
-          margin-right: 0;
-        }
-      }
-      > section:last-child {
-        height: 22rem;
-        display: flex;
-        justify-content: center;
-        flex-grow: 1;
-        padding: 0;
+      ul {
+        margin-right: 0;
       }
     }
-
-    @media (min-width: 1024px) and (max-width: 1024px) {
+    @media (max-width: 767px) and (orientation: portrait) {
       h2 {
-        max-width: 14rem;
+        font-size: 1.2857rem;
+        margin-bottom: 1rem;
       }
-      > section:last-child {
-        justify-content: flex-end;
-      }
-    }
-
-    @media (max-width: 991px) {
-      > section:last-child {
-        height: 100%;
-        max-height: 22.4285rem;
-        > div {
-          width: 100%;
-          max-width: 20rem;
+      ul {
+        &:first-child {
+          margin-bottom: 1.8rem;
+        }
+        li {
+          margin-bottom: 0.4rem;
+          a {
+            font-size: 0.8571rem;
+          }
         }
       }
     }
-
-    @media (max-width: 812px) and (orientation: landscape),
-      (max-width: 767px) and (orientation: portrait) {
-      > section:first-child {
-        h2 {
-          font-size: 1.2857rem;
+    @media (max-width: 812px) and (orientation: landscape) {
+      h2 {
+        font-size: 1.14285rem;
+        margin-bottom: 0.4rem;
+      }
+      ul {
+        &:first-child {
           margin-bottom: 1rem;
         }
-        ul {
-          &:first-child {
-            margin-bottom: 1.8rem;
-          }
-          li {
-            margin-bottom: 0.4rem;
-            a {
-              font-size: 0.8571rem;
-            }
+        li {
+          margin-bottom: 0.2rem !important;
+          a {
+            font-size: 0.8571rem;
           }
         }
       }
     }
-
-    @media (max-width: 812px) and (orientation: landscape) {
-      justify-content: space-between;
-      > section:last-child {
-        position: absolute;
-        top: 50%;
-        transform: translateY(-50%);
-        right: 6rem;
-        max-width: 17.1428rem;
-        width: 100%;
-        height: 100%;
-        max-height: 16rem;
-        margin-bottom: 0;
-        align-self: center;
-        > div {
-          align-self: center;
-          max-height: 17.4rem;
-          max-width: 17.1428rem;
-        }
-      }
-    }
-
     @media (max-width: 767px) and (orientation: portrait) {
-      flex-direction: column;
-      justify-content: space-between;
-      > section:first-child {
-        position: relative;
-        width: calc(100% + 1.7142rem * 2);
-        left: -1.7142rem;
-        overflow-x: auto;
-        align-self: flex-start;
-        padding-right: 0;
-        &::-webkit-scrollbar {
-          display: none;
-        }
-        menu {
-          margin: 0 1.7142rem 0 1.7142rem;
-          display: flex;
-          @media (max-height: 500px) {
-            margin-top: 0;
-          }
-          > ul {
-            h2 {
-              white-space: nowrap;
-              margin-bottom: 0.4rem;
-            }
-            li {
-              margin-bottom: 0;
-              a {
-                white-space: nowrap;
-              }
-            }
-
-            &:first-child {
-              margin-bottom: 0;
-              margin-right: 2.8571rem;
-            }
-            &:last-child {
-              padding-right: 1.7142rem;
-            }
-          }
-        }
+      margin: 0;
+      display: flex;
+      @media (max-height: 500px) {
+        margin-top: 0;
       }
-      > section:last-child {
-        width: 100%;
-        flex-grow: 0;
-        margin-bottom: 3rem;
-        max-height: 18.4444rem;
-        max-width: 20.1428rem;
-        @media (max-height: 490px) {
-          margin-bottom: 2.4rem;
-        }
-        > div {
-          max-width: none;
-        }
-      }
-    }
-    @media (max-height: 320px) {
-      position: static;
-      > section:first-child {
-        margin-bottom: 4rem;
+      > ul {
         h2 {
-          font-size: 0.8571rem;
+          white-space: nowrap;
+          margin-bottom: 0.4rem;
+        }
+        li {
           margin-bottom: 0;
-        }
-        ul {
-          &:first-child {
-            margin-bottom: 1rem;
-          }
-          li {
-            margin-bottom: 0;
-            a {
-              font-size: 0.7142rem;
-            }
+          a {
+            white-space: nowrap !important;
           }
         }
-      }
-      > section:last-child {
-        max-height: calc(100vh - 4rem);
-        max-height: calc(var(--vh, 1vh) * 100 - 4rem);
+
+        &:first-child {
+          margin: 0 2.8571rem 0 1.7142rem;
+        }
+        &:last-child {
+          padding-right: 1.7142rem;
+        }
       }
     }
   }

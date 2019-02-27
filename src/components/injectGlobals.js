@@ -13,16 +13,21 @@ export const injectGlobals = () => {
       text-rendering: optimizeLegibility;
       -webkit-font-smoothing: antialiased;
       letter-spacing: 0;
-      max-width: 100vw;
-    }
-    body {
       overflow: hidden;
-    }
-    html {
-      overflow-y: auto;
+      width: 100%;
+      height: 100%;
     }
     img {
       outline: none;
     }
+    :global(#___gatsby) {
+      width: 100%;
+      height: 100%;
+      > div:first-child {
+        width: 100%;
+        height: 100%;
+      }
+    }
   `;
 };
+

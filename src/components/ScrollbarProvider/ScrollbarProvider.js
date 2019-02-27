@@ -1,9 +1,10 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
+import cn from "classnames";
 // https://github.com/idiotWu/react-smooth-scrollbar
 // API https://github.com/idiotWu/smooth-scrollbar/blob/develop/docs/api.md
 
-import { NativeScrollbar } from "./NativeScrollbar";
+import styles, { NativeScrollbar } from "./styles";
 import { Swiper } from "../../components/Swiper/Swiper";
 import { Scrollbar } from "../../components/Scrollbar/Scrollbar";
 
@@ -33,7 +34,7 @@ export class ScrollbarProvider extends Component {
     const { nativeScrollbar } = this.props;
 
     if (nativeScrollbar) {
-      window.addEventListener("scroll", this.onNativeScroll);
+      window.addEventListener("scroll", this.onNativeScroll, true);
     }
   }
 
@@ -41,13 +42,13 @@ export class ScrollbarProvider extends Component {
     const { nativeScrollbar } = this.props;
 
     if (nativeScrollbar) {
-      window.removeEventListener("scroll", this.onNativeScroll);
+      window.removeEventListener("scroll", this.onNativeScroll, true);
     }
   }
 
   componentDidUpdate({ location: prevLocation }, prevState) {
     const { scrollbar } = this.state;
-    const { location } = this.props;
+    const { location, nativeScrollbar } = this.props;
 
     if (prevLocation.pathname !== location.pathname) {
       if (scrollbar) {
@@ -58,6 +59,10 @@ export class ScrollbarProvider extends Component {
 
         window.scrollTo(0, y, 0);
       }
+    }
+
+    if (nativeScrollbar) {
+      document.addEventListener("scroll", this.onNativeScroll, true);
     }
   }
 
@@ -90,7 +95,10 @@ export class ScrollbarProvider extends Component {
       : Math.abs(diff);
   };
 
-  onNativeScroll = () => this.setState({ scrollTop: window.scrollY });
+  onNativeScroll = () => {
+    const top = window.pageYOffset || document.documentElement.scrollTop;
+    this.setState({ scrollTop: top });
+  };
 
   render() {
     const { scrollTop, scrollbar } = this.state;
@@ -100,9 +108,9 @@ export class ScrollbarProvider extends Component {
       <ScrollBarContext.Provider
         value={{ scrollTop, scrollbar, elementYPosition: this.elementYPosition, nativeScrollbar }}
       >
-        <Swiper preventDefaultTouchmoveEvent={!nativeScrollbar}>
+        <Swiper className={cn(styles.swiper, nativeScrollbar && styles.native)}>
           {nativeScrollbar ? (
-            <NativeScrollbar onScroll={this.onNativeScroll}>{children}</NativeScrollbar>
+            <NativeScrollbar>{children}</NativeScrollbar>
           ) : (
             <Scrollbar
               withScrollbarY={withScrollbarY}

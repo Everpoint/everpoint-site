@@ -25,6 +25,8 @@ export class CompanyPhoto extends Component {
     item: null,
   };
 
+  interval = null;
+
   componentDidMount() {
     const { isMobileOrTablet } = this.props;
 
@@ -98,6 +100,7 @@ export class CompanyPhoto extends Component {
   };
 
   onAllAvatarsLoaded = () => {
+    clearInterval(this.interval);
     this.interval = setInterval(() => this.updatePhoto(), 2000);
   };
 

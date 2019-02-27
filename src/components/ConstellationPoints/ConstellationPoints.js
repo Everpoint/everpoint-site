@@ -1,110 +1,45 @@
 import React, { PureComponent } from "react";
-import debounce from "lodash/debounce";
 import PropTypes from "prop-types";
+import cn from "classnames";
 
 import { ConstellationPointsContainer, TransformContainer, Point, FakePoint } from "./styles";
-import cn from "classnames";
 import { fade, transition } from "../Transition/animation";
 
 export class ConstellationPoints extends PureComponent {
   static propTypes = {
     selectedSectionIndex: PropTypes.number,
-    onTransform: PropTypes.func,
     x: PropTypes.number,
     y: PropTypes.number,
     status: PropTypes.string,
     transitionEnd: PropTypes.bool,
-    disableTransition: PropTypes.bool,
     onSectionChange: PropTypes.func,
     isMobile: PropTypes.bool,
-  };
-
-  constructor(props) {
-    super(props);
-    this.debouncedTransform = debounce(this.transform, 200);
-  }
-
-  static defaultProps = {
-    pointsAmount: 5,
-    x: 0,
-    y: 0,
-  };
-
-  points = [];
-  fakePoint = null;
-
-  componentDidMount() {
-    window.addEventListener("resize", this.debouncedTransform);
-  }
-
-  componentWillUnmount() {
-    window.removeEventListener("resize", this.debouncedTransform);
-  }
-
-  componentDidUpdate(
-    { selectedSectionIndex: prevSelectedSectionIndex, transitionEnd: prevTransitionEnd },
-    prevState,
-  ) {
-    const { selectedSectionIndex, transitionEnd } = this.props;
-
-    if (
-      selectedSectionIndex !== prevSelectedSectionIndex &&
-      this.points[selectedSectionIndex] &&
-      this.fakePoint &&
-      transitionEnd
-    ) {
-      this.transform();
-    } else if (prevTransitionEnd !== transitionEnd) {
-      this.transform();
-    }
-  }
-
-  transform = () => {
-    const { selectedSectionIndex, onTransform, x, y } = this.props;
-    const { left: fakeLeft, top: fakeTop } = this.fakePoint.getBoundingClientRect();
-    const { left, top } = this.points[selectedSectionIndex].getBoundingClientRect();
-
-    onTransform && onTransform({ x: fakeLeft - left + x, y: fakeTop - top + y });
-  };
-
-  savePointsRef = ref => {
-    const { pointsAmount } = this.props;
-
-    if (ref && this.points.length !== pointsAmount) {
-      this.points.push(ref);
-    }
-  };
-
-  onFakePointRef = ref => {
-    if (ref) {
-      this.fakePoint = ref;
-    }
+    onFakePointRef: PropTypes.func,
+    savePointsRef: PropTypes.func,
   };
 
   render() {
     const {
-      selectedSectionIndex,
-      pointsAmount,
       x,
       y,
+      selectedSectionIndex,
+      pointsAmount,
       status,
-      disableTransition,
       onSectionChange,
       isMobile,
+      onFakePointRef,
+      savePointsRef,
     } = this.props;
 
     return (
-      <ConstellationPointsContainer
-        disableTransition={disableTransition}
-        className={cn(fade[status], transition[status])}
-      >
-        <FakePoint ref={this.onFakePointRef} />
+      <ConstellationPointsContainer className={cn(fade[status], transition[status])}>
+        <FakePoint ref={onFakePointRef} />
         <TransformContainer style={{ transform: `translate(${x}px, ${y}px)` }}>
           {Array.from({ length: pointsAmount }, (_, index) => (
             <Point
               onMouseUp={!isMobile ? () => onSectionChange({ index }) : void 0}
               onTouchEnd={!isMobile ? () => onSectionChange({ index, isSwipeEvent: true }) : void 0}
-              ref={this.savePointsRef}
+              ref={savePointsRef}
               key={`point-${index}`}
               isActive={index === selectedSectionIndex}
             />

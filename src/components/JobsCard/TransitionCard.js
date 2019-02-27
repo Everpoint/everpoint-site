@@ -38,12 +38,11 @@ export class Crutch extends Component {
 
   render() {
     const { parentId } = this.state;
-    const { status, direction, card, section, disableTransition } = this.props;
+    const { status, direction, card, section } = this.props;
     const animation = direction > 0 ? slideLeft[status] : slideRight[status];
 
     return (
       <JobsCardContainer
-        disableTransition={disableTransition}
         className={cn(animation, fade[status], transition[status])}
       >
         <Card {...section} id={parentId} card={card} />
@@ -53,29 +52,22 @@ export class Crutch extends Component {
 }
 
 export class TransitionCard extends PureComponent {
-  state = {
-    disableTransition: true,
-  };
-
   render() {
-    const { disableTransition } = this.state;
     const { card, direction } = this.props;
 
     return (
-      <TransitionGroup appear>
+      <TransitionGroup>
         <Transition
           key={`${card.id}-jobs-card-${direction}`}
           timeout={{
-            enter: 100,
+            enter: 0,
             exit: 200,
           }}
-          onEntered={() => this.setState({ disableTransition: false })}
         >
           {status => {
             return (
               <Crutch
                 {...this.props}
-                disableTransition={disableTransition}
                 status={status}
                 card={card}
               />

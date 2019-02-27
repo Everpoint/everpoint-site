@@ -48,7 +48,11 @@ export class HeaderBase extends Component {
   ) {
     const { scrollbar, animate, nativeScrollbar } = this.props;
 
-    return scrollbar !== nextScrollbar || animate !== nextAnimate || nativeScrollbar !== nextNativeScrollbar;
+    return (
+      scrollbar !== nextScrollbar ||
+      animate !== nextAnimate ||
+      nativeScrollbar !== nextNativeScrollbar
+    );
   }
 
   onScrollDown = () => {
@@ -115,6 +119,8 @@ export class HeaderBase extends Component {
 
 export const Header = props => (
   <ScrollbarConsumer>
-    {({ scrollbar, nativeScrollbar }) => <HeaderBase scrollbar={scrollbar} nativeScrollbar={nativeScrollbar} {...props} />}
+    {({ scrollbar, nativeScrollbar }) => (
+      <HeaderBase scrollbar={scrollbar} nativeScrollbar={nativeScrollbar} {...props} />
+    )}
   </ScrollbarConsumer>
 );

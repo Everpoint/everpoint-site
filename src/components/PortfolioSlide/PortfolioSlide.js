@@ -5,7 +5,7 @@ import { Transition } from "react-transition-group";
 import { getPixelRatioPropName } from "../../utils/utils";
 import { ImagesDownloadListener } from "../../components/ImagesDownloadListener/ImagesDownloadListener";
 import { Swiper } from "../../components/Swiper/Swiper";
-import { ContainerTransitionGroup, LongreadBackground } from "./styles";
+import styles, { ContainerTransitionGroup, LongreadBackground } from "./styles";
 import { TransitionSlide } from "./TransitionSlide";
 import { PaginationSimple } from "../../components/Pagination/Simple/PaginationSimple";
 import { Portal } from "../../components/Portal/Portal";
@@ -24,7 +24,6 @@ export class PortfolioSlide extends Component {
     parentTitle: PropTypes.string,
     sectionDirection: PropTypes.number,
     navigate: PropTypes.func,
-    disableTransition: PropTypes.bool,
     isSwipeEvent: PropTypes.bool,
     scrollTop: PropTypes.number,
     transitionEnd: PropTypes.bool,
@@ -42,7 +41,6 @@ export class PortfolioSlide extends Component {
     height: 0,
     ratio: "x1",
     images: [],
-    prevIndex: null,
   };
 
   componentDidMount() {
@@ -59,16 +57,10 @@ export class PortfolioSlide extends Component {
     { scrollTop: prevScrollTop, selectedSectionIndex: prevSelectedSectionIndex },
     prevState,
   ) {
-    const { scrollTop, selectedSectionIndex } = this.props;
+    const { scrollTop } = this.props;
 
     if (prevScrollTop !== scrollTop) {
       this.onResize();
-    }
-
-    if (selectedSectionIndex !== prevSelectedSectionIndex) {
-      this.setState({
-        prevIndex: prevSelectedSectionIndex,
-      });
     }
   }
 
@@ -143,18 +135,7 @@ export class PortfolioSlide extends Component {
   };
 
   render() {
-    const {
-      top,
-      down,
-      up,
-      left,
-      width,
-      height,
-      goToLongread,
-      ratio,
-      images,
-      prevIndex,
-    } = this.state;
+    const { top, down, up, left, width, height, goToLongread, ratio, images } = this.state;
     const {
       projectBackgroundColor,
       selectedSectionIndex,
@@ -162,22 +143,18 @@ export class PortfolioSlide extends Component {
       id,
       screenshots,
       isSwipeEvent,
-      transitionEnd,
-      direction,
     } = this.props;
 
     const sectionImages = Array.isArray(screenshots)
       ? screenshots.map(img => img[ratio])
       : screenshots[ratio];
 
-    const isLast = direction > 0 && !transitionEnd && prevIndex !== null;
-
     return (
-      <Swiper onSwiped={this.onSwiped}>
+      <Swiper onSwiped={this.onSwiped} className={styles.swiper}>
         <ImagesDownloadListener images={images} />
         <ContainerTransitionGroup>
           <Transition
-            key={`${!isLast ? id : "geomonitoring"}-portfolio-slide-animation`}
+            key={`${id}-portfolio-slide-animation`}
             timeout={{
               enter: 0,
               exit: isSwipeEvent ? 200 : 400,
