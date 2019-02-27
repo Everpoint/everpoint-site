@@ -23,16 +23,20 @@ export class MainLayoutProviderComponent extends Component {
     this.checkNavbarIntoContent = throttle(this.checkNavbarIntoContent, 100);
     this.scrollToBlock = debounce(this.scrollToBlock, 100);
     const { location } = props;
-    const currentRoute = getRouteByLocation(location);
-    const { id, sections } = currentRoute;
 
-    const idFromLocalstorage = localStorage.getItem(id);
+    const currentRoute = getRouteByLocation(location);
+    const id = currentRoute && currentRoute.id;
+    const sections = (currentRoute && currentRoute.sections) || [];
+
+    const idFromLocalstorage = typeof window === "object" && localStorage.getItem(id);
     const selectedSectionIndexFromStorage =
       idFromLocalstorage && sections
         ? sections.findIndex(section => section.id === idFromLocalstorage)
         : 0;
 
-    localStorage.removeItem(id);
+    if (typeof window === "object") {
+      localStorage.removeItem(id);
+    }
 
     this.onNavigateToDebounced = debounce(this.onNavigateTo, 200, {
       leading: true,
@@ -55,7 +59,7 @@ export class MainLayoutProviderComponent extends Component {
       isSwipeEvent: null,
       isClickEvent: null,
       selectedSectionIndex: selectedSectionIndexFromStorage,
-      sections: sections || [],
+      sections: (currentRoute && currentRoute.sections) || [],
       sectionDirection: 1,
       disableBackgroundTransition: false,
     };
