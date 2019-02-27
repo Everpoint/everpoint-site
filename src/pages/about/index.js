@@ -181,7 +181,7 @@ export class AboutBase extends Component {
             isMobile={isMobile}
             transitionEnd={transitionEnd}
             status={status}
-            selectedSectionIndex={lastSectionIndex || selectedSectionIndex}
+            selectedSectionIndex={selectedSectionIndex}
             onSectionChange={onSectionChange}
           />
           <RightSide className={animation(status)}>
