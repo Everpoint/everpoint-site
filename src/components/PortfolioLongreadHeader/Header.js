@@ -62,7 +62,7 @@ export class HeaderBase extends Component {
     const y = viewportHeight - getLongreadNavbarHeight();
 
     if (nativeScrollbar) {
-      window.scrollTo({ top: y, behavior: "smooth" });
+      window.scrollBy({ top: y, behavior: "smooth" });
     } else if (scrollbar) {
       scrollbar.scrollTo(0, y, 400);
     }
