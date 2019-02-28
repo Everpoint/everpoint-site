@@ -29,6 +29,7 @@ export class PortfolioSlide extends Component {
     transitionEnd: PropTypes.bool,
     direction: PropTypes.number,
     lastSectionIndex: PropTypes.number,
+    onExited: PropTypes.func,
   };
 
   constructor(props) {
@@ -42,7 +43,6 @@ export class PortfolioSlide extends Component {
     ratio: "x1",
     images: [],
 
-    // snapshot
     top: 0,
     up: 0,
     down: 0,
@@ -61,11 +61,15 @@ export class PortfolioSlide extends Component {
     window.removeEventListener("resize", this.onResize);
   }
 
-  componentDidUpdate({ transitionEnd: prevTransitionEnd }, prevState) {
+  getSnapshotBeforeUpdate(prevProps, prevState) {
+    return this.getSlideBoundingClientRect();
+  }
+
+  componentDidUpdate({ transitionEnd: prevTransitionEnd }, prevState, snapshot) {
     const { transitionEnd } = this.props;
 
     if (prevTransitionEnd !== transitionEnd && transitionEnd) {
-      this.onResize();
+      this.setState(snapshot);
     }
   }
 
@@ -177,12 +181,12 @@ export class PortfolioSlide extends Component {
               enter: 0,
               exit: isSwipeEvent ? 200 : 400,
             }}
-            onExited={this.onResize}
           >
             {status => (
               <TransitionSlide
                 {...this.props}
                 status={status}
+                onResize={this.onResize}
                 onContainerRef={this.onContainerRef}
                 goToLongread={this.goToLongread}
                 images={sectionImages}

@@ -1,4 +1,5 @@
 import React, { PureComponent } from "react";
+// https://reactcommunity.org/react-transition-group/
 import { Transition as ReactTransition } from "react-transition-group";
 
 import { MainTransitionGroup } from "./styled";

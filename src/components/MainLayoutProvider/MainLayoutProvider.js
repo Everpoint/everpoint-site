@@ -11,7 +11,6 @@ import { mobileMenu as mobileMenuWidth } from "../../components/Navbar/styles";
 import { navigateTo, getRouteByLocation, getRouteById, routes } from "../../routes";
 
 import "../ScrollbarProvider/plugins/disableScrollByDirection";
-import "../ScrollbarProvider/plugins/determineScrollingPlugin";
 
 const ScrollContext = React.createContext();
 
@@ -22,8 +21,12 @@ export class MainLayoutProviderComponent extends Component {
     this.checkBlockIsCenter = throttle(this.checkBlockIsCenter, 100);
     this.checkNavbarIntoContent = throttle(this.checkNavbarIntoContent, 100);
     this.scrollToBlock = debounce(this.scrollToBlock, 100);
-    const { location } = props;
+    this.onNavigateToDebounced = debounce(this.onNavigateTo, 200, {
+      leading: true,
+      trailing: false,
+    });
 
+    const { location } = props;
     const currentRoute = getRouteByLocation(location);
     const id = currentRoute && currentRoute.id;
     const sections = (currentRoute && currentRoute.sections) || [];
@@ -37,11 +40,6 @@ export class MainLayoutProviderComponent extends Component {
     if (typeof window === "object") {
       localStorage.removeItem(id);
     }
-
-    this.onNavigateToDebounced = debounce(this.onNavigateTo, 144, {
-      leading: true,
-      trailing: false,
-    });
 
     this.state = {
       scrollTop: 0,
@@ -68,7 +66,6 @@ export class MainLayoutProviderComponent extends Component {
 
   defaultDamping = 0.1;
   threshold = 0;
-  scrolling = false;
   scrollbar = null;
   scrollable = null;
   lefsideSection = null;
@@ -269,7 +266,7 @@ export class MainLayoutProviderComponent extends Component {
   };
 
   onWheel = e => {
-    const { thresholdIsActive, scrollTop } = this.state;
+    const { thresholdIsActive, scrollTop, currentRoute } = this.state;
     const direction = e.deltaY > 0 ? 1 : -1;
     const normalizeDeltaY = direction > 0 ? 53 : -53;
 
@@ -280,7 +277,13 @@ export class MainLayoutProviderComponent extends Component {
     this.setState({ direction, isSwipeEvent: false, damping: this.defaultDamping });
 
     this.checkNavbarIntoContent();
-    this.onNavigateToDebounced(direction);
+    const isPortfolioPage = currentRoute && currentRoute.id === "portfolio";
+
+    if (isPortfolioPage) {
+      this.onNavigateTo(direction);
+    } else {
+      this.onNavigateToDebounced(direction);
+    }
   };
 
   onExited = () => {
@@ -292,8 +295,6 @@ export class MainLayoutProviderComponent extends Component {
       lastSectionIndex: 0,
     });
   };
-
-  determineScrollingEvent = scrolling => (this.scrolling = scrolling);
 
   onNavLinkClick = ({ id, event, navigate, selectedSectionIndex, isClickEvent, transitionEnd }) => {
     const { currentRoute } = this.state;
@@ -490,6 +491,7 @@ export class MainLayoutProviderComponent extends Component {
     }
 
     const slider = currentRoute && currentRoute.slider;
+    const isPortfolioPage = currentRoute && currentRoute.id === "portfolio";
     const up = selectedSectionIndex === 0 && direction < 0;
     const nextIndex = selectedSectionIndex + direction;
     const sectionsLength = currentRoute.maxItemCount || sections.length;
@@ -502,6 +504,7 @@ export class MainLayoutProviderComponent extends Component {
 
       this.setState({
         disableBackgroundTransition: false,
+        transitionEnd: !isPortfolioPage,
         sectionDirection,
         selectedSectionIndex: nextIndex,
       });
@@ -600,7 +603,6 @@ export class MainLayoutProviderComponent extends Component {
                     !transitionEnd,
                 },
               },
-              determineScrollingEvent: { callback: this.determineScrollingEvent },
             }}
             onScroll={this.onScroll}
             onWheel={this.onWheel}
