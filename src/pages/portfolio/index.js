@@ -25,6 +25,7 @@ class PortfolioBase extends Component {
       status,
       disableBackgroundTransition,
       lastSectionIndex,
+      onExited,
     } = this.props;
     const currentRoute = getRouteByLocation(location);
     const { sections } = currentRoute;
@@ -51,6 +52,7 @@ class PortfolioBase extends Component {
         </LeftSide>
         <Rightside className={animation(status)}>
           <PortfolioSlide
+            onExited={onExited}
             lastSectionIndex={lastSectionIndex}
             transitionEnd={transitionEnd}
             isSwipeEvent={isSwipeEvent}

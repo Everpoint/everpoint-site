@@ -65,6 +65,8 @@ export class TransitionSlide extends Component {
       down,
       transitionEnd,
       lastSectionIndex,
+      onResize,
+      onExited,
     } = this.props;
 
     const scrollEvent = !isSwipeEvent;
@@ -103,6 +105,12 @@ export class TransitionSlide extends Component {
         ref={onContainerRef}
         onMouseOver={() => this.setState({ hovered: true })}
         onMouseOut={() => this.setState({ hovered: false })}
+        onTransitionEnd={e => {
+          if (e.propertyName === "transform" && e.elapsedTime > 0.4 && !isSwipeEvent) {
+            onResize();
+            onExited();
+          }
+        }}
       >
         <BackendComponent
           sections={sections}
