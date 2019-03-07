@@ -22,7 +22,7 @@ export class Swiper extends Component {
       isDown: !y,
     };
   }
-  onSwiping;
+
   // ratio of percentage
   ratioDistance = (deltaX, deltaY) => {
     if (!this.swipeableNode) {
