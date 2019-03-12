@@ -36,13 +36,17 @@ exports.onCreateNode = ({ page, node, actions, getNode }) => {
 };
 
 exports.onCreateWebpackConfig = ({ stage, getConfig, actions: { replaceWebpackConfig } }) => {
+  const config = getConfig();
+
+  if (stage.startsWith("develop") && config.resolve) {
+    config.resolve.alias = {
+      ...config.resolve.alias,
+      "react-dom": "@hot-loader/react-dom",
+    };
+  }
+
   switch (stage) {
     case "build-javascript":
-      // We want to include the babel polyfills before any application code,
-      // so we're inserting it as an additional entry point.  Gatsby does not allow
-      // this in "setWebpackConfig", so we have to use "replaceWebpackConfig"
-      const config = getConfig();
-
       const app = typeof config.entry.app === "string" ? [config.entry.app] : config.entry.app;
 
       config.entry.app = ["@babel/polyfill", ...app];
