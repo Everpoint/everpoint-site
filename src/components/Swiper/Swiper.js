@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 // https://github.com/dogfessional/react-swipeable
-import Swipeable from "react-swipeable";
+import { Swipeable } from "react-swipeable";
 
 import { getElementWidthAndHeight } from "../../utils/dom";
 
@@ -43,7 +43,7 @@ export class Swiper extends Component {
     };
   };
 
-  swiped = (event, deltaX, deltaY, isFlick, velocity) => {
+  swiped = ({ event, deltaX, deltaY, isFlick, velocity }) => {
     const { onSwiped } = this.props;
 
     this.ratioDistance(deltaX, deltaY);
@@ -65,7 +65,7 @@ export class Swiper extends Component {
     }
   };
 
-  swiping = (event, deltaX, deltaY, isFlick, velocity) => {
+  swiping = ({ event, deltaX, deltaY, isFlick, velocity }) => {
     const { onSwiping } = this.props;
 
     this.ratioDistance(deltaX, deltaY);
