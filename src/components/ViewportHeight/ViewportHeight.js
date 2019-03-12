@@ -1,4 +1,4 @@
-import { Component } from "react";
+import React, { Component } from "react";
 import debounce from "lodash/debounce";
 
 import { isMobile, isTablet } from "../../utils/browser";
@@ -42,6 +42,6 @@ export class ViewportHeight extends Component {
   };
 
   render() {
-    return null;
+    return <div style={{ display: "none" }} />;
   }
 }
