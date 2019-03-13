@@ -4,6 +4,7 @@ import { Link as GLink } from "gatsby";
 import { Button } from "../../components/Buttons/Buttons";
 
 export const CookieNoticeContainer = styled("div")`
+  z-index: 999;
   display: flex;
   align-items: center;
   color: #fff;
