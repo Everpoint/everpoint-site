@@ -19,10 +19,6 @@ const portalRoot = getPortalRoot();
 
 export class Portal extends Component {
   render() {
-    if (typeof window !== "undefined") {
-      return ReactDOM.createPortal(this.props.children, portalRoot);
-    } else {
-      return null;
-    }
+    return ReactDOM.createPortal(this.props.children, portalRoot);
   }
 }

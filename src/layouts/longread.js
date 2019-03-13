@@ -54,7 +54,6 @@ class LongredLayout extends Component {
           }}
         />
         <ViewportHeight />
-        <CookieNotice />
         <LongreadNavbar
           nativeScrollbar={isMobile || isTablet}
           projects={projects}
@@ -65,6 +64,7 @@ class LongredLayout extends Component {
           isTablet,
           isMobileOrTablet: isMobile || isTablet,
         })}
+        <CookieNotice />
       </ScrollbarProvider>
     );
   }

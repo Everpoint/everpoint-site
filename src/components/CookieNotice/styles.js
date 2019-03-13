@@ -3,12 +3,11 @@ import { Link as GLink } from "gatsby";
 
 import { Button } from "../../components/Buttons/Buttons";
 
-export const Container = styled("div")`
+export const CookieNoticeContainer = styled("div")`
   display: flex;
   align-items: center;
   color: #fff;
   width: calc(100% - 3.2857rem * 2);
-  line-height: normal;
   max-width: 64.2857rem;
   bottom: 1.7142rem;
   left: 50%;

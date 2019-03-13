@@ -15,9 +15,9 @@ export class MainLayout extends Component {
       <MainLayoutProvider>
         <Helmet />
         <ViewportHeight />
-        <CookieNotice />
         <Navbar location={location} data={allMarkdownRemark ? allMarkdownRemark.edges : []} />
         <PageTransition location={location}>{children}</PageTransition>
+        <CookieNotice />
       </MainLayoutProvider>
     );
   }

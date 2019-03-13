@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 
 import { Portal } from "../../components/Portal/Portal";
-import { Container, PrimaryButton, Link } from "./styles";
+import { CookieNoticeContainer, PrimaryButton, Link } from "./styles";
 
 export class CookieNotice extends Component {
   state = {
@@ -31,18 +31,22 @@ export class CookieNotice extends Component {
     const { isVisible } = this.state;
 
     return (
-      <Portal>
-        <Container isVisible={isVisible}>
-          <div>
-            Сайт everpoint.ru использует файлы cookies, IP адрес вашего браузера, историю посещённых
-            страницах сайта, данные геолокации. Эта информация поможет нам улучшить работу сайта.{" "}
-            <Link to="/">Условия использования.</Link>
-          </div>
-          <PrimaryButton raisedButton primary onClick={this.gotCookie}>
-            ok
-          </PrimaryButton>
-        </Container>
-      </Portal>
+      <>
+        {typeof window !== "undefined" && (
+          <Portal>
+            <CookieNoticeContainer isVisible={isVisible}>
+              <div>
+                Сайт everpoint.ru использует файлы cookies, IP адрес вашего браузера, историю
+                посещённых страницах сайта, данные геолокации. Эта информация поможет нам улучшить
+                работу сайта. <Link to="/">Условия использования.</Link>
+              </div>
+              <PrimaryButton raisedButton primary onClick={this.gotCookie}>
+                ok
+              </PrimaryButton>
+            </CookieNoticeContainer>
+          </Portal>
+        )}
+      </>
     );
   }
 }
