@@ -1,7 +1,8 @@
 import React, { Component } from "react";
 
 import { Portal } from "../../components/Portal/Portal";
-import { CookieNoticeContainer, PrimaryButton, Link } from "./styles";
+import { DefaultGatsbyLink as Link} from '../../components/Typography/Links';
+import { CookieNoticeContainer, PrimaryButton } from "./styles";
 
 export class CookieNotice extends Component {
   state = {

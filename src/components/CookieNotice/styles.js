@@ -47,13 +47,3 @@ export const PrimaryButton = styled(Button)`
     margin: 1rem 0 0 0;
   }
 `;
-
-export const Link = styled(GLink)`
-  color: #90c53d;
-  text-decoration: none;
-  @media (hover: hover) {
-    &:hover {
-      text-decoration: underline;
-    }
-  }
-`;
