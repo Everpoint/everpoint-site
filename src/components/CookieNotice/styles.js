@@ -19,7 +19,7 @@ export const CookieNoticeContainer = styled("div")`
   box-shadow: 0 0.2857rem 0.5714rem 0 rgba(38, 44, 55, 0.25);
   opacity: 0;
   pointer-events: none;
-  transition: opacity 200ms ease;
+  transition: opacity 400ms ease;
   @media (max-width: 767px) and (orientation: portrait) {
     width: calc(100% - 1.7142rem * 2);
     bottom: 1rem;
@@ -31,6 +31,9 @@ export const CookieNoticeContainer = styled("div")`
   &.isVisible {
     pointer-events: auto;
     opacity: 1;
+  }
+  &.transitionDisabled {
+    transition: none;
   }
 `;
 

@@ -6,6 +6,7 @@ import { CookieNoticeContainer, PrimaryButton, Link } from "./styles";
 export class CookieNotice extends Component {
   state = {
     isVisible: false,
+    transitionDisabled: true,
   };
 
   componentDidMount() {
@@ -20,6 +21,7 @@ export class CookieNotice extends Component {
     this.setState(
       {
         isVisible: false,
+        transitionDisabled: false,
       },
       () => {
         localStorage.setItem("cookiePolice", true);
@@ -28,13 +30,13 @@ export class CookieNotice extends Component {
   };
 
   render() {
-    const { isVisible } = this.state;
+    const { isVisible, transitionDisabled } = this.state;
 
     return (
       <>
         {typeof window !== "undefined" && (
           <Portal>
-            <CookieNoticeContainer isVisible={isVisible}>
+            <CookieNoticeContainer isVisible={isVisible} transitionDisabled={transitionDisabled}>
               <div>
                 Сайт everpoint.ru использует файлы cookies, IP адрес вашего браузера, историю
                 посещённых страницах сайта, данные геолокации. Эта информация поможет нам улучшить
