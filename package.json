@@ -14,7 +14,7 @@
     "lodash": "^4.17.11",
     "netlify-cms": "^2.6.1",
     "prop-types": "^15.6.0",
-    "react": "^16.2.0",
+    "react": "^16.8.0",
     "react-fastclick": "^3.0.2",
     "react-helmet": "^5.2.0",
     "react-smooth-scrollbar": "^8.0.6",

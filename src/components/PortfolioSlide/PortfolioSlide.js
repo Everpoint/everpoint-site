@@ -201,20 +201,18 @@ export class PortfolioSlide extends Component {
           currentPage={(lastSectionIndex || selectedSectionIndex) + 1}
           onPageChange={this.onPageChange}
         />
-        {typeof window === "object" && (
-          <Portal>
-            <LongreadBackground
-              goToLongread={goToLongread}
-              style={{
-                background: projectBackgroundColor,
-                top: goToLongread ? 0 : top,
-                left: goToLongread ? 0 : left,
-                width: goToLongread ? "100vw" : width,
-                height: goToLongread ? "100vh" : height,
-              }}
-            />
-          </Portal>
-        )}
+        <Portal>
+          <LongreadBackground
+            goToLongread={goToLongread}
+            style={{
+              background: projectBackgroundColor,
+              top: goToLongread ? 0 : top,
+              left: goToLongread ? 0 : left,
+              width: goToLongread ? "100vw" : width,
+              height: goToLongread ? "100vh" : height,
+            }}
+          />
+        </Portal>
       </Swiper>
     );
   }
