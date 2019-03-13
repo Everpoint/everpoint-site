@@ -22,5 +22,12 @@ export const Button = styled("button")`
       color: #fff;
       background-color: #90c53d;
     }
+    &.primary {
+      line-height: 1;
+      padding: 0;
+      height: 2.4285rem;
+      color: #fff;
+      background-color: #90c53d;
+    }
   }
 `;

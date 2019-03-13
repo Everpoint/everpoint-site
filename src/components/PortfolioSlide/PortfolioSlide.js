@@ -201,7 +201,7 @@ export class PortfolioSlide extends Component {
           currentPage={(lastSectionIndex || selectedSectionIndex) + 1}
           onPageChange={this.onPageChange}
         />
-        {typeof window === "object" && (
+        {typeof window !== "undefined" && (
           <Portal>
             <LongreadBackground
               goToLongread={goToLongread}

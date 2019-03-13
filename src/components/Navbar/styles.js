@@ -21,10 +21,8 @@ export const Nav = styled("div")`
   pointer-events: auto !important;
   display: flex;
   align-items: flex-start;
-  padding: 1.6rem 0;
-  @media (max-width: 1199px) {
-    padding: 1.6rem 0;
-  }
+  padding-top: 1.6rem;
+  padding-bottom: 1.6rem;
   @media (max-width: ${mobileMenu}px) {
     &.mobileMenuIsOpen {
       top: 0;
@@ -38,10 +36,8 @@ export const Nav = styled("div")`
   }
   @media (max-width: 812px) and (orientation: landscape),
     (max-width: 767px) and (orientation: portrait) {
-    padding: 1rem 0;
-  }
-  @media (max-height: 344px) {
-    padding: 1rem 0;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
   }
 
   * {

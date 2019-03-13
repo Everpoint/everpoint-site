@@ -7,6 +7,7 @@ import { ViewportHeight } from "../components/ViewportHeight/ViewportHeight";
 import { Helmet } from "../components/Helmet/Helmet";
 import { ScrollbarProvider } from "../components/ScrollbarProvider/ScrollbarProvider";
 import { LongreadNavbar } from "../components/LongreadNavbar/LongreadNavbar";
+import { CookieNotice } from "../components/CookieNotice/CookieNotice";
 import styles from "../styles/longread";
 
 class LongredLayout extends Component {
@@ -63,6 +64,7 @@ class LongredLayout extends Component {
           isTablet,
           isMobileOrTablet: isMobile || isTablet,
         })}
+        <CookieNotice />
       </ScrollbarProvider>
     );
   }
