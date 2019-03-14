@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 
 import { Portal } from "../../components/Portal/Portal";
-import { DefaultGatsbyLink as Link} from '../../components/Typography/Links';
+import { DefaultGatsbyLink as Link } from "../../components/Typography/Links";
 import { CookieNoticeContainer, PrimaryButton } from "./styles";
 
 export class CookieNotice extends Component {
@@ -39,7 +39,7 @@ export class CookieNotice extends Component {
           <Portal>
             <CookieNoticeContainer isVisible={isVisible} transitionDisabled={transitionDisabled}>
               <div>
-                Сайт everpoint.ru использует файлы cookies, IP адрес вашего браузера, историю
+                Сайт everpoint.ru использует файлы cookies, IP адрес вашего браузера, историю o
                 посещённых страницах сайта, данные геолокации. Эта информация поможет нам улучшить
                 работу сайта. <Link to="/">Условия использования.</Link>
               </div>
