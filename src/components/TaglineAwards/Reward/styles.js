@@ -6,7 +6,7 @@ export const Figure = styled("figure")`
   width: calc(100% / 3 + 2.2857rem / 2);
   align-items: center;
   margin: 0;
-  padding: 0 2.2857rem 0 0;
+  padding: 0 2.2857rem 1rem 0;
   svg {
     flex-shrink: 0;
   }
@@ -24,12 +24,10 @@ export const Figure = styled("figure")`
   }
   &:last-of-type {
     width: calc(100% / 3 - 2.2857rem);
-    padding: 0;
   }
   @media (max-width: 1064px) {
     width: 20rem;
     &:last-of-type {
-      padding-top: 1rem;
       width: 20rem;
     }
     &:after {
@@ -46,7 +44,6 @@ export const Title = styled("h4")`
   color: #e8d26d;
   font-weight: 600;
   margin-bottom: 0.4rem;
-  line-height: 1.5;
 `;
 
 export const Description = styled("div")`

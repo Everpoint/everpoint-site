@@ -3,7 +3,7 @@ import styled from "astroturf";
 export const TaglineAwardsContainer = styled("div")`
   width: 100%;
   background-color: #323232;
-  padding: 2.2857rem;
+  padding: 2.2857rem 2.2857rem 1.2857rem 2.2857rem;
   margin-bottom: 3.4rem;
 `;
 
@@ -21,6 +21,7 @@ export const TaglineAwardsBlock = styled("div")`
 `;
 
 export const Title = styled("h4")`
+  line-height: 1.5;
   text-align: center;
   color: #fff;
   font-weight: 600;
