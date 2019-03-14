@@ -5,6 +5,9 @@ export const TaglineAwardsContainer = styled("div")`
   background-color: #323232;
   padding: 2.2857rem 2.2857rem 1.2857rem 2.2857rem;
   margin-bottom: 3.4rem;
+  @media (max-width: 767px) and (orientation: portrait) {
+    padding: 1.4857rem 1.4857rem 1rem 1.4857rem;
+  }
 `;
 
 export const TaglineAwardsBlock = styled("div")`
@@ -28,4 +31,7 @@ export const Title = styled("h4")`
   text-transform: uppercase;
   font-size: 1.1428rem;
   margin-bottom: 2.4rem;
+  @media (max-width: 767px) and (orientation: portrait) {
+    margin-bottom: 1.4rem;
+  }
 `;
