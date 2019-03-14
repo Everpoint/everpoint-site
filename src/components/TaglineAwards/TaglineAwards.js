@@ -1,46 +1,25 @@
 import React, { PureComponent } from "react";
 
-import { ResponsiveSvg } from "../../components/Atoms/ResponsiveSvg";
-import { ReactComponent as Loyalty } from "../../assets/img/icons/loyalty.svg";
-import { ReactComponent as Badge } from "../../assets/img/portfolio/msp/tagline-awards-badge.svg";
-import {
-  TaglineAwardsContainer,
-  TaglineAwardsBlock,
-  TaglineAwardsLeftBlock,
-  LoyaltyContainer,
-  TaglineAwardsLeftText,
-  TaglineAwardsCenterBlock,
-  TaglineAwardsRightBlock,
-} from "./styles";
+import { Reward } from "./Reward/Reward";
+import { TaglineAwardsContainer, TaglineAwardsBlock, Title } from "./styles";
 
 export class TaglineAwards extends PureComponent {
   render() {
     return (
       <TaglineAwardsContainer>
+        <Title>Сервис регулярно занимает призовые места в престижных digital-премиях</Title>
         <TaglineAwardsBlock>
-          <TaglineAwardsLeftBlock>
-            <LoyaltyContainer>
-              <ResponsiveSvg>
-                <Loyalty />
-              </ResponsiveSvg>
-            </LoyaltyContainer>
-            <TaglineAwardsLeftText>
-              <span>Бронза</span>
-              <span>Tagline Awards 2018</span>
-            </TaglineAwardsLeftText>
-          </TaglineAwardsLeftBlock>
-          <TaglineAwardsCenterBlock>
-            <span>Лучший сервис для digital-маркетинга</span>
-            <span>Лучший инновационный сервис</span>
-          </TaglineAwardsCenterBlock>
-          <TaglineAwardsRightBlock>
-            <ResponsiveSvg>
-              <Badge />
-            </ResponsiveSvg>
-            <ResponsiveSvg>
-              <Badge />
-            </ResponsiveSvg>
-          </TaglineAwardsRightBlock>
+          <Reward
+            place={1}
+            title="Золотой сайт : 1 место"
+            description="Поддержка малого и среднего бизнеса в России"
+          />
+          <Reward
+            place={3}
+            title="TAGLINE : Бронза"
+            description="Лучший сервис для digital-маркетинга"
+          />
+          <Reward place={3} title="TAGLINE : Бронза" description="Лучший инновационный сервис" />
         </TaglineAwardsBlock>
       </TaglineAwardsContainer>
     );

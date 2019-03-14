@@ -13,7 +13,7 @@ export const CookieNoticeContainer = styled("div")`
   left: 50%;
   transform: translateX(-50%);
   border-radius: 0.2857rem;
-  position: absolute;
+  position: fixed;
   padding: 1.7142rem;
   background-color: rgba(38, 44, 55, 0.9);
   box-shadow: 0 0.2857rem 0.5714rem 0 rgba(38, 44, 55, 0.25);
