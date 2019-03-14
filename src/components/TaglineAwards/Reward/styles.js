@@ -34,6 +34,9 @@ export const Figure = styled("figure")`
       display: none;
     }
   }
+  @media (max-width: 767px) and (orientation: portrait) {
+    padding: 0 0 1rem 0;
+  }
 `;
 
 export const RightSide = styled("div")`
