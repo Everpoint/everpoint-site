@@ -1,50 +1,58 @@
 import styled from "astroturf";
 
 export const ConstellationPointsContainer = styled("div")`
-  position: absolute;
-  width: 40vw;
-  height: 100%;
-  top: 0;
-  left: 0;
-  transform: translateX(-100%);
-  @media (max-width: 1250px) {
-    width: 30vw;
+  position: relative;
+  flex-grow: 1;
+  height: 30.5714rem;
+  opacity: 0;
+  transition: 200ms opacity ease;
+  transition-delay: 400ms;
+  @media (max-width: 991px) {
+    top: 50%;
+    transform: translateY(-50%);
+    left: 0;
+    width: 100%;
+    position: absolute;
   }
-  @media (max-width: 1199px) {
-    width: 100vw;
+  @media (max-width: 812px) and (orientation: landscape),
+    (max-width: 767px) and (orientation: portrait) {
+    display: none;
   }
-  @media (max-width: 767px) and (orientation: portrait) {
-    width: 400vw;
-    left: 50%;
-    transform: translate(-50%, calc(-100% - 2rem));
-  }
-  &.disableTransition {
-    transition: none;
+  &.isVisible {
+    opacity: 1;
   }
 `;
 
 export const TransformContainer = styled("div")`
-  will-change: transform;
   position: absolute;
-  width: 100%;
+  width: 59%;
   height: 100%;
   top: 0;
-  left: 0;
+  left: 50%;
+  transform: translateX(-50%);
   right: 0;
   bottom: 0;
-  transition: transform 500ms ease;
+  @media (max-width: 1199px) {
+    left: 0;
+    transform: none;
+    width: calc(100% - 3.4285rem);
+  }
+  @media (max-width: 991px) {
+    width: calc(100% - 2rem);
+  }
 `;
 
 export const PointMain = styled("div")`
   position: absolute;
-  width: 2.2857rem;
-  height: 2.2857rem;
+  width: 2rem;
+  height: 2rem;
   border-radius: 50%;
   border: 0.7142rem solid rgba(33, 34, 36, 0.25);
+  transform: scale(1);
   &:before {
     content: "";
-    width: calc(2.2857rem - 0.7142rem * 2);
-    height: calc(2.2857rem - 0.7142rem * 2);
+    width: 12px;
+    height: 12px;
     display: block;
     position: absolute;
     top: 50%;
@@ -53,114 +61,67 @@ export const PointMain = styled("div")`
     border-radius: 50%;
     background-color: #212224;
   }
-`;
-
-export const FakePoint = styled(PointMain)`
-  opacity: 0;
-  top: 50%;
-  right: 0;
-  transform: translate(calc(-50% - 1.8rem), -50%);
-  @media (max-width: 767px) and (orientation: portrait) {
-    top: auto;
-    right: auto;
-    left: 50%;
-    bottom: 0;
-    transform: translate(-50%, 0);
+  @media (hover: hover) {
+    &:hover {
+      transform: scale(1.4);
+    }
+  }
+  @media (max-width: 991px) {
+    width: 1.4rem;
+    height: 1.4rem;
+    &:before {
+      width: 8px;
+      height: 8px;
+    }
   }
 `;
 
 export const Point = styled(PointMain)`
   cursor: pointer;
-  transition-property: background-color, border;
+  transform-origin: center;
+  transition-property: background-color, border, transform;
   transition-duration: 200ms;
   transition-timing-function: ease;
   &:nth-child(1) {
-    top: 50%;
+    top: 78%;
     right: 0;
-    transform: translate(calc(-50% - 1.8rem), -50%);
   }
   &:nth-child(2) {
     top: 8%;
-    left: 76%;
+    left: 78%;
   }
   &:nth-child(3) {
-    top: 32%;
-    left: 40%;
+    top: 61%;
+    left: 55%;
   }
   &:nth-child(4) {
-    top: 83%;
-    left: 75%;
+    top: 31%;
+    left: 28%;
   }
   &:nth-child(5) {
-    top: 93%;
-    left: 30%;
-  }
-  @media (max-width: 1199px) {
-    &:nth-child(2) {
-      top: 136%;
-      left: 58%;
-    }
-    &:nth-child(3) {
-      top: 30%;
-      left: 49%;
-    }
-    &:nth-child(4) {
-      top: 151%;
-      left: 19%;
-    }
-    &:nth-child(5) {
-      top: 98%;
-      left: 4%;
-    }
-  }
-  @media (max-width: 767px) and (orientation: portrait) {
-    &:nth-child(1) {
-      top: auto;
-      right: auto;
-      left: 50%;
-      bottom: 0;
-      transform: translate(-50%, 0);
-    }
-    &:nth-child(2) {
-      top: 5%;
-      left: 31%;
-    }
-    &:nth-child(3) {
-      top: 89%;
-      left: 20%;
-    }
-    &:nth-child(4) {
-      top: 15%;
-      left: 10%;
-    }
-    &:nth-child(5) {
-      top: 144%;
-      left: 4%;
-    }
-  }
-  @media (max-width: 812px) and (orientation: landscape) {
-    &:nth-child(2) {
-      top: 119%;
-      left: 56%;
-    }
-    &:nth-child(3) {
-      top: 16%;
-      left: 20%;
-    }
-    &:nth-child(4) {
-      top: 101%;
-      left: -16%;
-    }
-    &:nth-child(5) {
-      top: 174%;
-      left: 17%;
-    }
+    top: 82%;
+    left: 0;
   }
   &.isActive {
     cursor: default;
     border: 0.7142rem solid rgba(144, 197, 61, 0.25);
+    transform: scale(1.4);
     &:before {
       background-color: #90c53d;
+    }
+  }
+  @media (max-width: 991px) {
+    &:nth-child(3) {
+      top: 66%;
+      left: 58%;
+    }
+    &:nth-child(4) {
+      top: 10%;
+      left: 25%;
+    }
+    &:nth-child(5) {
+      top: 73%;
+      left: 19%;
     }
   }
 `;

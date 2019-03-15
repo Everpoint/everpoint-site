@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import sortBy from "lodash/sortBy";
-import debounce from "lodash/debounce";
 import { graphql } from "gatsby";
 
 import { Background } from "../../components/MainPageElements/Background";
@@ -13,7 +12,7 @@ import { H2 } from "../../components/Atoms/Atoms";
 import { MainLayoutConsumer } from "../../components/MainLayoutProvider/MainLayoutProvider";
 import { ConstellationPoints } from "../../components/ConstellationPoints/ConstellationPoints";
 import { isMobile } from "../../utils/browser";
-import styles, { Main, LeftSide, RightSide, NewsContainer } from "../../styles/about";
+import styles, { Main, LeftSide, Content, RightSide, NewsContainer } from "../../styles/about";
 import { animation } from "../../components/MainPageElements/Section";
 
 export class AboutBase extends Component {
@@ -22,83 +21,13 @@ export class AboutBase extends Component {
     status: PropTypes.string,
   };
 
-  constructor(props) {
-    super(props);
-    this.debouncedTransform = debounce(this.transform, 200);
-  }
-
   state = {
-    x: 0,
-    y: 0,
     isMobile: false,
   };
 
-  points = [];
-  fakePoint = null;
-
   componentDidMount() {
-    window.addEventListener("resize", this.debouncedTransform);
     this.setState({ isMobile: isMobile() });
   }
-
-  componentWillUnmount() {
-    window.removeEventListener("resize", this.debouncedTransform);
-  }
-
-  getSnapshotBeforeUpdate(prevProps, prevState) {
-    const { currentRoute } = this.props;
-    const { maxItemCount } = currentRoute;
-
-    if (this.points.length === maxItemCount) {
-      return this.transform();
-    } else {
-      return null;
-    }
-  }
-
-  componentDidUpdate(
-    { selectedSectionIndex: prevSelectedSectionIndex, transitionEnd: prevTransitionEnd },
-    { x: prevX, y: prevY },
-    snapshot,
-  ) {
-    const { selectedSectionIndex, transitionEnd } = this.props;
-
-    if (
-      (prevSelectedSectionIndex !== selectedSectionIndex && snapshot) ||
-      (prevTransitionEnd !== transitionEnd && snapshot)
-    ) {
-      this.setState(snapshot);
-    }
-  }
-
-  transform = () => {
-    const { x, y } = this.state;
-    const { selectedSectionIndex, lastSectionIndex } = this.props;
-    const { left: fakeLeft, top: fakeTop } = this.fakePoint.getBoundingClientRect();
-    const { left, top } = this.points[
-      lastSectionIndex || selectedSectionIndex
-    ].getBoundingClientRect();
-
-    const nextX = fakeLeft - left + x;
-    const nextY = fakeTop - top + y;
-
-    return { x: Math.round(nextX), y: Math.round(nextY) };
-  };
-
-  savePointsRef = ref => {
-    const { currentRoute } = this.props;
-    const { maxItemCount } = currentRoute;
-
-    if (ref && this.points.length !== maxItemCount) {
-      this.points.push(ref);
-    }
-  };
-
-  onFakePointRef = ref => {
-    if (ref) {
-      this.fakePoint = ref;
-    }
-  };
 
   onPageChange = (page, prevPage, onSectionChange) => {
     if (page > prevPage) {
@@ -121,10 +50,10 @@ export class AboutBase extends Component {
       isSwipeEvent,
       transitionEnd,
       currentRoute,
-      disableBackgroundTransition,
       lastSectionIndex,
+      disableBackgroundTransition,
     } = this.props;
-    const { x, y, isMobile } = this.state;
+    const { isMobile } = this.state;
 
     const sections =
       allMarkdownRemark && allMarkdownRemark.edges
@@ -146,37 +75,22 @@ export class AboutBase extends Component {
 
     const markdownRemark = data.markdownRemark;
 
-    const transformToPoints = `translate(${x}px, ${y}px)`;
-
-    const backgroundStyles = transitionEnd
-      ? {
-          transform: transformToPoints,
-          transitionDuration: disableBackgroundTransition ? "20ms" : "500ms",
-        }
-      : {
-          transitionDuration: disableBackgroundTransition && "20ms",
-        };
-
     return (
       <Main>
         <Background
+          style={{ transition: disableBackgroundTransition && "none" }}
           className={styles.background}
           status={status}
           location={location}
-          style={backgroundStyles}
         />
         <LeftSide className={animation(status)}>
-          <H2 as="h1">{markdownRemark && markdownRemark.frontmatter.title}</H2>
-          <GoNextLink to="/news" gatsby big>
-            Все комментарии
-          </GoNextLink>
-        </LeftSide>
-        <NewsContainer>
+          <Content>
+            <H2 as="h1">{markdownRemark && markdownRemark.frontmatter.title}</H2>
+            <GoNextLink to="/news" gatsby big>
+              Все комментарии
+            </GoNextLink>
+          </Content>
           <ConstellationPoints
-            x={x}
-            y={y}
-            savePointsRef={this.savePointsRef}
-            onFakePointRef={this.onFakePointRef}
             pointsAmount={currentRoute && currentRoute.maxItemCount}
             isMobile={isMobile}
             transitionEnd={transitionEnd}
@@ -184,6 +98,8 @@ export class AboutBase extends Component {
             selectedSectionIndex={selectedSectionIndex}
             onSectionChange={onSectionChange}
           />
+        </LeftSide>
+        <NewsContainer>
           <RightSide className={animation(status)}>
             <BackendComponent
               sections={sections}

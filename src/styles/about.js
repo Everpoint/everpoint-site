@@ -14,6 +14,10 @@ export const Main = styled(MainBlock)`
 `;
 
 export const LeftSide = styled(Side)`
+  display: flex;
+  align-items: center;
+  flex-grow: 1;
+  flex-shrink: 0;
   z-index: 1;
   @media (max-width: 812px) and (orientation: landscape) {
     display: flex;
@@ -25,6 +29,10 @@ export const LeftSide = styled(Side)`
       margin-bottom: 0.4rem;
     }
   }
+`;
+
+export const Content = styled("div")`
+  flex-shrink: 0;
 `;
 
 export const RightSide = styled(Side)`
@@ -60,32 +68,13 @@ export const NewsContainer = styled("div")`
 
 const styles = css`
   .background {
-    will-change: transform;
-    bottom: auto;
-    right: auto;
-    top: -13rem;
-    left: 0;
-    height: calc(100% + 26rem);
     @media (max-width: 1199px) {
-      top: -20rem;
-      left: -82rem;
-      width: calc(100% + 100rem);
-      height: calc(100% + 51rem);
+      background-size: 184%;
+      background-position-y: 53%;
     }
-    @media (max-width: 767px) and (orientation: portrait) {
-      top: -43rem;
-      left: -84rem;
-      width: calc(100% + 93rem);
-      height: calc(100% + 79rem);
-      @media (max-height: 490px) {
-        top: -53rem;
-      }
-    }
-    @media (max-width: 812px) and (orientation: landscape) {
-      top: -21rem;
-      left: -79rem;
-      width: calc(100% + 90rem);
-      height: calc(100% + 44rem);
+    @media (max-width: 991px) {
+      background-size: 251%;
+      background-position-y: 54%;
     }
   }
 `;
