@@ -108,20 +108,17 @@ export const Description = styled(Paragraph)`
 `;
 
 export const Badge = styled("label")`
-  color: #fff;
+  font-size: 1.1428rem;
+  color: rgba(255, 255, 255, 0.5);
   display: inline-block;
-  padding: 0.4285rem 1.5rem;
+  padding: 0;
   text-transform: uppercase;
-  font-weight: 400;
-  border-radius: 0.2857rem;
-  background-color: rgba(255, 255, 255, 0.25);
+  font-weight: 600;
   @media (max-width: 991px) {
-    padding: 0.1428rem 0.66rem;
-    font-size: 0.8571rem;
+    font-size: 1rem;
   }
   @media (max-width: 767px) and (orientation: portrait) {
-    padding: 0 0.44rem;
-    font-size: 0.7142rem;
+    font-size: 0.8571rem;
   }
   @media (max-width: 812px) and (max-height: 275px) and (orientation: landscape),
     only screen and (min-device-width: 320px) and (max-device-width: 568px) and (-webkit-min-device-pixel-ratio: 2) and (orientation: landscape) {

@@ -98,7 +98,7 @@ export class HeaderBase extends Component {
             animate={animate}
             className={cn({ [animation.fadeIn]: !images }, leftSideClassName)}
           >
-            {type && <Badge>{type}</Badge>}
+            {type && <Badge>#{type}</Badge>}
             <Title>{title || text}</Title>
             <Description>{description}</Description>
             {link && (
