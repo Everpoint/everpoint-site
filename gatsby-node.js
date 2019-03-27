@@ -17,6 +17,8 @@ const longreadPages = [
 exports.onCreatePage = ({ page }) => {
   if (longreadPages.some(route => page.path.match(route))) {
     page.context.layout = "longread";
+  } else if (page.path.match("mobile-test")) {
+    page.context.layout = "mobile";
   }
 };
 

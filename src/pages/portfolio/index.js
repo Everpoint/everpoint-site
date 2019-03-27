@@ -7,6 +7,7 @@ import { AdditionalMenu } from "../../components/AdditionalMenu/AdditionalMenu";
 import { PortfolioSlide } from "../../components/PortfolioSlide/PortfolioSlide";
 import styles, { Main, LeftSide, Rightside } from "../../styles/portfolio";
 import { MobileTitle } from "../../components/PortfolioSlide/styles";
+import { common } from '../../styles/common';
 import withRouter from "../../hoc/withRouter";
 import { animation } from "../../components/MainPageElements/Section";
 
@@ -34,6 +35,7 @@ class PortfolioBase extends Component {
     return (
       <Main>
         <Background
+          className={common.russiaBackground}
           style={{ transitionDuration: disableBackgroundTransition && "20ms" }}
           status={status}
           location={location}

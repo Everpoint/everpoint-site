@@ -12,7 +12,8 @@ import { H2 } from "../../components/Atoms/Atoms";
 import { MainLayoutConsumer } from "../../components/MainLayoutProvider/MainLayoutProvider";
 import { ConstellationPoints } from "../../components/ConstellationPoints/ConstellationPoints";
 import { isMobile } from "../../utils/browser";
-import styles, { Main, LeftSide, Content, RightSide, NewsContainer } from "../../styles/about";
+import { Main, LeftSide, Content, RightSide, NewsContainer } from "../../styles/about";
+import { common } from "../../styles/common";
 import { animation } from "../../components/MainPageElements/Section";
 
 export class AboutBase extends Component {
@@ -79,7 +80,7 @@ export class AboutBase extends Component {
       <Main>
         <Background
           style={{ transition: disableBackgroundTransition && "none" }}
-          className={styles.background}
+          className={common.russiaBackground}
           status={status}
           location={location}
         />

@@ -1,4 +1,4 @@
-import styled, { css } from "astroturf";
+import styled from "astroturf";
 
 import { Main as MainBlock } from "../components/MainPageElements/Main";
 import { Side } from "../components/MainPageElements/Section";
@@ -65,18 +65,3 @@ export const NewsContainer = styled("div")`
     margin-bottom: 1.4rem;
   }
 `;
-
-const styles = css`
-  .background {
-    @media (max-width: 1199px) {
-      background-size: 184%;
-      background-position-y: 53%;
-    }
-    @media (max-width: 991px) {
-      background-size: 251%;
-      background-position-y: 54%;
-    }
-  }
-`;
-
-export default styles;

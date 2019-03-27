@@ -10,7 +10,7 @@ import { LongreadNavbar } from "../components/LongreadNavbar/LongreadNavbar";
 import { CookieNotice } from "../components/CookieNotice/CookieNotice";
 import styles from "../styles/longread";
 
-class LongredLayout extends Component {
+export class LongreadLayout extends Component {
   state = {
     projects: null,
     isTablet: null,
@@ -69,5 +69,3 @@ class LongredLayout extends Component {
     );
   }
 }
-
-export default LongredLayout;

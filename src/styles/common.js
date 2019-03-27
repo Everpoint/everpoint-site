@@ -10,9 +10,19 @@ export const common = css`
       padding-right: 3.2857rem;
     }
     @media (max-width: 812px) and (orientation: landscape),
-    (max-width: 767px) and (orientation: portrait) {
+      (max-width: 767px) and (orientation: portrait) {
       padding-left: 1.7142rem;
       padding-right: 1.7142rem;
+    }
+  }
+  .russiaBackground {
+    @media (max-width: 1199px) {
+      background-size: 184%;
+      background-position-y: 53%;
+    }
+    @media (max-width: 991px) {
+      background-size: 251%;
+      background-position-y: 54%;
     }
   }
 `;
