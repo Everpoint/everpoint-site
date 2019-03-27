@@ -23,7 +23,7 @@ export const Menu = ({ routes, isOpen, scrollTo }) => {
   return (
     <MobileMenu isOpen={isOpen}>
       {routes.map(({ text, id, route, outsideLink }, index) => (
-        <LinkContainer key={id} onClick={() => scrollTo(index)}>
+        <LinkContainer key={id} onClick={!outsideLink ? () => scrollTo(index) : void 0}>
           <OutsideLink href={outsideLink} target="_blank">
             {text}
           </OutsideLink>

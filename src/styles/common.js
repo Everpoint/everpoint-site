@@ -15,7 +15,7 @@ export const common = css`
       padding-right: 1.7142rem;
     }
   }
-  .russiaBackground {
+  div.russiaBackground {
     @media (max-width: 1199px) {
       background-size: 184%;
       background-position-y: 53%;
