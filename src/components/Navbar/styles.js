@@ -14,6 +14,10 @@ export const NavbarContainer = styled("nav")`
   &.mobileMenuIsOpen {
     height: 100%;
   }
+  &.fixed {
+    background: rgba(255, 255, 255, 1);
+    box-shadow: 0 0.5714rem 0.5714rem 0 rgba(10, 18, 33, 0.05);
+  }
 `;
 
 export const Nav = styled("div")`
@@ -241,7 +245,7 @@ const styles = css`
     color: #90c53d;
   }
   .coloredNav {
-    box-shadow: 0 8px 8px 0 rgba(10, 18, 33, 0.05);
+    box-shadow: 0 0.5714rem 0.5714rem 0 rgba(10, 18, 33, 0.05);
     background: rgba(255, 255, 255, 1);
   }
   .withoutAdditionalMenuAndIsActive {

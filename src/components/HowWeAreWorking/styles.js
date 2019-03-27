@@ -83,7 +83,7 @@ export const Principle = styled("section")`
 export const Badge = styled("div")`
   width: 4rem;
   height: 4rem;
-  box-shadow: 0 8px 8px 0 rgba(10, 18, 33, 0.05);
+  box-shadow: 0 0.5714rem 0.5714rem 0 rgba(10, 18, 33, 0.05);
   background-color: #ffffff;
   background-repeat: no-repeat;
   background-position: center;

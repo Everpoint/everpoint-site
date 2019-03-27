@@ -33,7 +33,7 @@ export const routes = [
     scrollable: true,
   },
   { id: "contacts", text: "Контакты", route: "/contacts" },
-  { text: "Блог", outsideLink: "https://medium.com/everpoint " },
+  { id: "blog", text: "Блог", outsideLink: "https://medium.com/everpoint " },
 ];
 
 export const navigateTo = ({ navigate, pathname, direction }) => {
