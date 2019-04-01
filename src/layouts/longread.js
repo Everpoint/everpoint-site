@@ -55,6 +55,7 @@ export class LongreadLayout extends Component {
         />
         <ViewportHeight />
         <LongreadNavbar
+          isMobile={isMobile}
           nativeScrollbar={isMobile || isTablet}
           projects={projects}
           pathname={location.pathname}

@@ -8,6 +8,7 @@ import { Side } from "../components/MainPageElements/Section";
 export const Main = styled(MainBlock)`
   @media (max-width: 812px) and (orientation: landscape),
     (max-width: 767px) and (orientation: portrait) {
+    padding-top: 0;
     padding-bottom: 1.7142rem;
   }
 `;
@@ -50,11 +51,11 @@ export const Link = styled(ContactLink)`
 `;
 
 export const SocialBlock = styled("div")`
-  @media (max-width: 812px) and (max-height: 275px) and (orientation: landscape),
-    only screen and (min-device-width: 320px) and (max-device-width: 568px) and (-webkit-min-device-pixel-ratio: 2) and (orientation: landscape) {
-    a {
-      margin-top: 0.4rem;
-    }
+  @media (max-width: 812px) and (orientation: landscape),
+    (max-width: 767px) and (orientation: portrait) {
+    top: 0.2rem;
+    position: relative;
+    display: flex;
   }
 `;
 
@@ -69,12 +70,12 @@ export const SocialLink = styled("a")`
   &:last-child {
     margin-right: 0;
   }
-  @media (max-width: 1199px) {
-    width: 1.14285rem;
-    height: 1.14285rem;
-  }
   @media (max-width: 991px) {
     margin-top: 1.7142rem;
+  }
+  @media (max-width: 812px) and (orientation: landscape),
+    (max-width: 767px) and (orientation: portrait) {
+    margin-top: 0.8rem;
   }
 `;
 
@@ -109,19 +110,10 @@ const styles = css`
   }
   .background {
     background-position: 75% center;
-    @media (max-width: 767px) and (orientation: portrait) {
-      height: 117%;
-      width: 111%;
-      top: -14%;
-    }
-    @media (max-width: 812px) and (orientation: landscape) {
-      background-position: 74% 24%;
-      background-size: 130%;
-    }
-    @media (max-width: 812px) and (max-height: 275px) and (orientation: landscape),
-      only screen and (min-device-width: 320px) and (max-device-width: 568px) and (-webkit-min-device-pixel-ratio: 2) and (orientation: landscape) {
-      background-position: 53% 28%;
-      background-size: 107%;
+    @media (max-width: 812px) and (orientation: landscape),
+      (max-width: 767px) and (orientation: portrait) {
+      background-size: 394%;
+      background-position: 71% 87%;
     }
   }
 `;

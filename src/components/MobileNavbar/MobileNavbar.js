@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { PureComponent } from "react";
 import PropTypes from "prop-types";
 
 import {
@@ -15,7 +15,7 @@ import { common } from "../../styles/common";
 import { Logo } from "./styles";
 import styles from "../../components/Navbar/styles";
 
-export class MobileNavbar extends Component {
+export class MobileNavbar extends PureComponent {
   static propTypes = {
     fixed: PropTypes.bool,
     scrollTo: PropTypes.func,
@@ -24,7 +24,7 @@ export class MobileNavbar extends Component {
   };
 
   render() {
-    const { routes, fixed, mobileMenuIsOpen, scrollTo, toggleMenu } = this.props;
+    const { routes, fixed, mobileMenuIsOpen, scrollTo, toggleMenu, titles } = this.props;
 
     return (
       <NavbarContainer mobileMenuIsOpen={mobileMenuIsOpen} fixed={fixed}>
@@ -41,7 +41,7 @@ export class MobileNavbar extends Component {
               className={styles.hamburger}
             />
           </LeftSide>
-          <Menu routes={routes} isOpen={mobileMenuIsOpen} scrollTo={scrollTo} />
+          <Menu routes={routes} titles={titles} isOpen={mobileMenuIsOpen} scrollTo={scrollTo} />
         </Nav>
       </NavbarContainer>
     );

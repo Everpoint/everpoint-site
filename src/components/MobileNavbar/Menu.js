@@ -19,16 +19,19 @@ const MobileMenu = styled(MobileMenuUI)`
   }
 `;
 
-export const Menu = ({ routes, isOpen, scrollTo }) => {
+export const Menu = ({ routes, isOpen, scrollTo, titles }) => {
   return (
     <MobileMenu isOpen={isOpen}>
-      {routes.map(({ text, id, route, outsideLink }, index) => (
-        <LinkContainer key={id} onClick={!outsideLink ? () => scrollTo(index) : void 0}>
-          <OutsideLink href={outsideLink} target="_blank">
-            {text}
-          </OutsideLink>
-        </LinkContainer>
-      ))}
+      {routes.map(({ text, id, route, outsideLink }, index) => {
+        const item = titles.find(item => item.id === id);
+        return (
+          <LinkContainer key={id} onClick={!outsideLink ? () => scrollTo(index) : void 0}>
+            <OutsideLink href={outsideLink} target="_blank">
+              {(item && item.title) || text}
+            </OutsideLink>
+          </LinkContainer>
+        );
+      })}
     </MobileMenu>
   );
 };

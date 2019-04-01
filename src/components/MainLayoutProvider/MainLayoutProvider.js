@@ -553,7 +553,7 @@ export class MainLayoutProviderComponent extends Component {
       disableBackgroundTransition,
       lastSectionIndex,
     } = this.state;
-    const { children } = this.props;
+    const { children, news, titles } = this.props;
 
     return (
       <ScrollContext.Provider
@@ -571,6 +571,8 @@ export class MainLayoutProviderComponent extends Component {
           toggleMobileMenu: this.toggleMobileMenu,
 
           // sections
+          news,
+          titles,
           scrollToBlock: this.scrollToBlock,
           onLeftSideSectionRef: this.onLeftSideSectionRef,
           isSwipeEvent,
@@ -615,9 +617,13 @@ export class MainLayoutProviderComponent extends Component {
   }
 }
 
-export const MainLayoutProvider = ({ children }) => (
+export const MainLayoutProvider = ({ children, ...parentProps }) => (
   <Location>
-    {props => <MainLayoutProviderComponent {...props}>{children}</MainLayoutProviderComponent>}
+    {props => (
+      <MainLayoutProviderComponent {...parentProps} {...props}>
+        {children}
+      </MainLayoutProviderComponent>
+    )}
   </Location>
 );
 

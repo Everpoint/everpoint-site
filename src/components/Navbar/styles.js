@@ -40,8 +40,8 @@ export const Nav = styled("div")`
   }
   @media (max-width: 812px) and (orientation: landscape),
     (max-width: 767px) and (orientation: portrait) {
-    padding-top: 1rem;
-    padding-bottom: 1rem;
+    padding-top: 0.64rem;
+    padding-bottom: 0.64rem;
   }
 
   * {
