@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-import { Background, backgrounds } from "../../components/MainPageElements/Background";
+import { BackgroundBase, backgrounds } from "../../components/MainPageElements/Background";
 import { format } from "../../utils/date";
 import { Article } from "../../components/News/Article/Article";
 import { PreviewContainer } from "../../components/CmsPreviewContainer/CmsPreviewContainer";
@@ -10,7 +10,7 @@ import { News } from "../../components/NewsCard/NewsCard";
 import { Row } from "../../styles/cms";
 
 const AboutPreview = ({ entry, widgetFor }) => (
-  <Background backgroundImage={backgrounds[0]}>
+  <BackgroundBase backgroundImage={backgrounds[0]}>
     <PreviewContainer>
       <Row>
         <NewsContainer>
@@ -33,7 +33,7 @@ const AboutPreview = ({ entry, widgetFor }) => (
         />
       </Row>
     </PreviewContainer>
-  </Background>
+  </BackgroundBase>
 );
 
 AboutPreview.propTypes = {

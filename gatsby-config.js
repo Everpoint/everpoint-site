@@ -6,15 +6,6 @@ module.exports = {
     "gatsby-plugin-react-helmet",
     "gatsby-plugin-postcss",
     "gatsby-plugin-sass",
-    {
-      resolve: "gatsby-plugin-astroturf",
-      // defaults:
-      options: {
-        tagName: "css",
-        styledTag: "styled",
-        extension: ".module.scss",
-      },
-    },
     "gatsby-plugin-layout",
     {
       resolve: "gatsby-plugin-svgr",
@@ -50,6 +41,15 @@ module.exports = {
       },
     },
     {
+      resolve: "gatsby-plugin-astroturf",
+      // defaults:
+      options: {
+        tagName: "css",
+        styledTag: "styled",
+        extension: ".module.scss",
+      },
+    },
+    {
       resolve: "gatsby-source-filesystem",
       options: {
         path: `${__dirname}/src/assets/img`,
@@ -81,6 +81,12 @@ module.exports = {
       },
     },
     `gatsby-transformer-remark`,
+    {
+      resolve: "gatsby-plugin-netlify-cache",
+      options: {
+        extraDirsToCache: ["extraDir", ".extraDotDir", "extra/dir"],
+      },
+    },
     {
       resolve: "gatsby-plugin-netlify-cms",
       options: {

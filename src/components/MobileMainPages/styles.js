@@ -11,6 +11,7 @@ export const Title = styled("h2")`
 export const CardContainer = styled("div")`
   overflow-y: hidden;
   overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
   display: flex;
   padding: 2rem 0;
 `;
