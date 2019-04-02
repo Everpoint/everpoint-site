@@ -7,12 +7,12 @@ import {
   LeftSide,
   LanguageSwitch,
   LanguageLink,
+  Logo,
 } from "../../components/Navbar/styles";
 import logo from "../../assets/img/assets/logo.svg";
 import { Hamburger } from "../Buttons/IconButtons";
-import { Menu } from "./Menu";
+import { MenuMobile } from "./MenuMobile";
 import { common } from "../../styles/common";
-import { Logo } from "./styles";
 import styles from "../../components/Navbar/styles";
 
 export class MobileNavbar extends PureComponent {
@@ -41,7 +41,12 @@ export class MobileNavbar extends PureComponent {
               className={styles.hamburger}
             />
           </LeftSide>
-          <Menu routes={routes} titles={titles} isOpen={mobileMenuIsOpen} scrollTo={scrollTo} />
+          <MenuMobile
+            routes={routes}
+            titles={titles}
+            isOpen={mobileMenuIsOpen}
+            scrollTo={scrollTo}
+          />
         </Nav>
       </NavbarContainer>
     );

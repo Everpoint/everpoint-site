@@ -147,6 +147,21 @@ export const MobileMenu = styled("ul")`
   @media (min-width: 992px) {
     display: none;
   }
+
+  @media (max-width: 812px) and (orientation: landscape),
+    (max-width: 767px) and (orientation: portrait) {
+    width: 0;
+    height: 0;
+    visibility: hidden;
+    opacity: 0;
+    transition: 200ms opacity ease;
+    &.isOpen {
+      width: 100%;
+      height: auto;
+      opacity: 1;
+      visibility: visible;
+    }
+  }
 `;
 
 export const LinkContainer = styled("li")`
