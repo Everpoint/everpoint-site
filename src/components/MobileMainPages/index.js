@@ -78,8 +78,8 @@ class MobileMainPage extends Component {
         draw: progress => {
           const y =
             scrollTop <= top
-              ? progress * (top - 84) + scrollTop
-              : scrollTop + progress * (top - 84);
+              ? progress * (top - 74) + scrollTop
+              : scrollTop + progress * (top - 74);
           window.scrollTo(0, y);
         },
       });

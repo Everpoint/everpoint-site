@@ -50,15 +50,14 @@ export const Nav = styled("div")`
 `;
 
 export const LeftSide = styled("div")`
+  position: relative;
   z-index: 1;
   height: 2.5421rem;
   display: flex;
   align-items: center;
+  flex-shrink: 0;
   @media (max-width: ${mobileMenu}px) {
     width: 100%;
-  }
-  @media (max-height: 480px) {
-    flex-shrink: 0;
   }
 `;
 
@@ -74,12 +73,11 @@ export const LogoLink = styled(GatsbyLink)`
 `;
 
 export const Logo = styled("img")`
-  min-width: 10.7142rem;
-  width: 100%;
-  height: auto;
+  width: auto;
+  height: 2.1428rem;
   @media (max-width: 812px) and (orientation: landscape),
     (max-width: 767px) and (orientation: portrait) {
-    min-width: 7.1428rem;
+    height: 1.4428rem;
   }
 `;
 
@@ -256,6 +254,13 @@ const styles = css`
     display: none;
     @media (max-width: ${mobileMenu}px) {
       display: block;
+    }
+    @media (max-width: 812px) and (orientation: landscape),
+      (max-width: 767px) and (orientation: portrait) {
+      position: absolute;
+      right: 0;
+      top: 50%;
+      transform: translateY(-50%);
     }
   }
 `;
