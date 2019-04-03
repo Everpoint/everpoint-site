@@ -1,7 +1,5 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-import sortBy from "lodash/sortBy";
-import { graphql } from "gatsby";
 
 import { Background } from "../../components/MainPageElements/Background";
 import { GoNextLink } from "../../components/GoNextLink/GoNextLink";
@@ -18,7 +16,6 @@ import { animation } from "../../components/MainPageElements/Section";
 
 export class AboutBase extends Component {
   static propTypes = {
-    data: PropTypes.object.isRequired,
     status: PropTypes.string,
   };
 
@@ -39,9 +36,7 @@ export class AboutBase extends Component {
   };
 
   render() {
-    const { data, location } = this.props;
-
-    const allMarkdownRemark = data.allMarkdownRemark;
+    const { location, news, titles } = this.props;
 
     const {
       status,
@@ -56,25 +51,8 @@ export class AboutBase extends Component {
     } = this.props;
     const { isMobile } = this.state;
 
-    const sections =
-      allMarkdownRemark && allMarkdownRemark.edges
-        ? sortBy(
-            allMarkdownRemark.edges.map(({ node }) => ({ ...node.frontmatter, id: node.id })),
-            "date",
-          ).reverse()
-        : [];
-
-    const section =
-      allMarkdownRemark && allMarkdownRemark.edges[selectedSectionIndex]
-        ? sections[selectedSectionIndex]
-        : {
-            title: !allMarkdownRemark ? "Список пуст" : "Пусто",
-            description: !allMarkdownRemark
-              ? "Заполните статьи в системе управления содержимым"
-              : "Заполните статью в системе управления содержимым",
-          };
-
-    const markdownRemark = data.markdownRemark;
+    const sections = news;
+    const section = news[selectedSectionIndex];
 
     return (
       <Main>
@@ -86,7 +64,7 @@ export class AboutBase extends Component {
         />
         <LeftSide className={animation(status)}>
           <Content>
-            <H2 as="h1">{markdownRemark && markdownRemark.frontmatter.title}</H2>
+            <H2 as="h1">{titles && titles.find(({ id }) => id === "about").title}</H2>
             <GoNextLink to="/news" gatsby big>
               Все комментарии
             </GoNextLink>
@@ -131,33 +109,3 @@ export const AboutWithLayout = props => (
 );
 
 export default AboutWithLayout;
-
-export const aboutPageQuery = graphql`
-  query LimitNews {
-    allMarkdownRemark(
-      sort: { fields: [frontmatter___isVisible, frontmatter___date], order: [DESC, DESC] }
-      filter: { frontmatter: { templateKey: { eq: "about" } } }
-      limit: 5
-    ) {
-      totalCount
-      edges {
-        node {
-          id
-          frontmatter {
-            logo
-            title
-            date
-            description
-            link
-            isVisible
-          }
-        }
-      }
-    }
-    markdownRemark(frontmatter: { templateKey: { eq: "about-page" } }) {
-      frontmatter {
-        title
-      }
-    }
-  }
-`;

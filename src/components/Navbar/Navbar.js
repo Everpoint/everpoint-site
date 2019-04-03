@@ -1,5 +1,4 @@
 import React, { PureComponent } from "react";
-import PropTypes from "prop-types";
 import cn from "classnames";
 
 import { MainLayoutConsumer } from "../MainLayoutProvider/MainLayoutProvider";
@@ -20,26 +19,8 @@ import { MobileMenu } from "./MobileMenu";
 import { routes } from "../../routes";
 
 class NavbarBase extends PureComponent {
-  static getDerivedStateFromProps(nextProps, prevState) {
-    const { data } = nextProps;
-    const { normalizeData } = prevState;
-
-    if (!normalizeData.length) {
-      return {
-        normalizeData: data.map(({ node }) => node.frontmatter),
-      };
-    }
-
-    return null;
-  }
-
-  static propTypes = {
-    data: PropTypes.arrayOf(PropTypes.object),
-  };
-
   state = {
     additionalMenuIsOpenId: null,
-    normalizeData: [],
   };
 
   onOpenAdditionalMenu = id => {
@@ -51,7 +32,7 @@ class NavbarBase extends PureComponent {
   };
 
   render() {
-    const { additionalMenuIsOpenId, normalizeData } = this.state;
+    const { additionalMenuIsOpenId } = this.state;
     const {
       location,
       scrollTop,
@@ -64,6 +45,7 @@ class NavbarBase extends PureComponent {
       sections,
       onSectionChange,
       transitionEnd,
+      titles,
     } = this.props;
 
     const transform = `translateY(${scrollTop}px)`;
@@ -107,7 +89,7 @@ class NavbarBase extends PureComponent {
             />
           </LeftSide>
           <DesktopMenu
-            data={normalizeData}
+            data={titles}
             transitionEnd={transitionEnd}
             routes={routes}
             selectedId={typeof section === "object" ? section.id : undefined}
@@ -121,7 +103,7 @@ class NavbarBase extends PureComponent {
           />
           {mobileMenuIsOpen && (
             <MobileMenu
-              data={normalizeData}
+              data={titles}
               routes={routes}
               location={location}
               onNavLinkClick={onNavLinkClick}

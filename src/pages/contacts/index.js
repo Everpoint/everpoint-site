@@ -23,10 +23,10 @@ import styles, {
   PrimaryButton,
   StopeButton,
 } from "../../styles/contacts";
-import { getRouteByLocation } from "../../routes";
 import { animation } from "../../components/MainPageElements/Section";
+import { MainLayoutConsumer } from "../../components/MainLayoutProvider/MainLayoutProvider";
 
-class Contacts extends Component {
+class ContactsBase extends Component {
   state = {
     stope: true,
     isMobileOrTablet: false,
@@ -38,8 +38,7 @@ class Contacts extends Component {
   }
 
   render() {
-    const { status, location } = this.props;
-    const { text } = getRouteByLocation(location);
+    const { status, location, titles } = this.props;
     const { stope, isMobileOrTablet, imagesIsLoaded } = this.state;
 
     return (
@@ -56,7 +55,7 @@ class Contacts extends Component {
         />
         <Content className={animation(status)}>
           <LeftSide>
-            <H2 as="h1">{text}</H2>
+            <H2 as="h1">{titles && titles.find(({ id }) => id === "contacts").title}</H2>
             <Link as="address" className={styles.address}>
               127051, Россия, <br /> г. Москва, ул. Трубная, д. 25 к. 1
             </Link>
@@ -102,4 +101,10 @@ class Contacts extends Component {
   }
 }
 
-export default Contacts;
+export const ContactsWithLayout = props => (
+  <MainLayoutConsumer>
+    {layoutProps => <ContactsBase {...props} {...layoutProps} />}
+  </MainLayoutConsumer>
+);
+
+export default ContactsWithLayout;

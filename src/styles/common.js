@@ -11,8 +11,8 @@ export const common = css`
     }
     @media (max-width: 812px) and (orientation: landscape),
       (max-width: 767px) and (orientation: portrait) {
-      padding-left: 1.7142rem;
-      padding-right: 1.7142rem;
+      padding-left: 1rem;
+      padding-right: 1rem;
     }
   }
   div.russiaBackground {

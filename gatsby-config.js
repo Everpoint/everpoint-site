@@ -1,6 +1,6 @@
 module.exports = {
   siteMetadata: {
-    title: "Everpoint-side",
+    title: "Everpoint-site",
   },
   plugins: [
     "gatsby-plugin-react-helmet",
@@ -16,15 +16,6 @@ module.exports = {
           removeViewBox: true, // remove viewBox even when doing so is possible (default)
           cleanupIDs: true, // remove unused IDs and minify remaining IDs (default)
         },
-      },
-    },
-    {
-      resolve: "gatsby-plugin-astroturf",
-      // defaults:
-      options: {
-        tagName: "css",
-        styledTag: "styled",
-        extension: ".module.scss",
       },
     },
     {
@@ -47,6 +38,15 @@ module.exports = {
       options: {
         path: `${__dirname}/src/pages`,
         name: "pages",
+      },
+    },
+    {
+      resolve: "gatsby-plugin-astroturf",
+      // defaults:
+      options: {
+        tagName: "css",
+        styledTag: "styled",
+        extension: ".module.scss",
       },
     },
     {
@@ -81,6 +81,12 @@ module.exports = {
       },
     },
     `gatsby-transformer-remark`,
+    {
+      resolve: "gatsby-plugin-netlify-cache",
+      options: {
+        extraDirsToCache: ["extraDir", ".extraDotDir", "extra/dir"],
+      },
+    },
     {
       resolve: "gatsby-plugin-netlify-cms",
       options: {

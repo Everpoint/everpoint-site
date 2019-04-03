@@ -14,7 +14,7 @@ export const Button = styled("button")`
     padding: 0.4rem 0.8rem;
     font-weight: 600;
     color: #262c37;
-    background-color: #fff;
+    background-color: transparent;
     border: 2px solid #90c53d;
     border-radius: 1.2857rem;
     &.isActive {

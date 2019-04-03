@@ -94,14 +94,6 @@ class Msp extends PureComponent {
                 предпринимателей, мы разработали геомаркетинговый сервис «
                 <OutsideLink href={link}>Бизнес-навигатор МСП</OutsideLink>».
               </Paragraph>
-              <Paragraph>
-                В 2018 году сервис получил премию{" "}
-                <OutsideLink href="tagline.ru/cases/razrabotka-veb-servisa-dlya-poiska-mesta-dlya-biznesa-i-rascheta-biznes-plana--biznes-navigator-msp/">
-                  Tagline Awards
-                </OutsideLink>{" "}
-                - 3 место в категории лучший инновационный сервис и лучший сервис для
-                digital-маркетинга.
-              </Paragraph>
               <TaglineAwards />
               <Paragraph>
                 Сервис абсолютно бесплатный. Он разработан на базе нашей современной

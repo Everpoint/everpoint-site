@@ -35,9 +35,10 @@ collections:
         label: "Страница контактов, родительский маршрут /contacts"
         name: "contact-page"
         fields:
-          - {label: "Template Key", name: "templateKey", widget: "hidden", default: "contact-page"}
-          - {label: "page Id", name: "id", widget: "hidden"}
-          - {label: "Заголовок", name: "title", widget: "string"}
-          - {label: "Адрес", name: "address", widget: "string"}
-          - {label: "Телефон", name: "phone", widget: "string"}
-          - {label: "Email", name: "email", widget: "string"}
+            - {label: "Template Key", name: "templateKey", widget: "hidden", default: "contact-page"}
+            - {label: "page Id", name: "id", widget: "hidden"}
+            - {label: "Заголовок", name: "title", widget: "string"}
+            - {label: "Адрес", name: "address", widget: "string"}
+            - {label: "Телефон", name: "phone", widget: "string"}
+            - {label: "Email", name: "email", widget: "string"}
+
