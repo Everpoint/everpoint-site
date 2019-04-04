@@ -18,6 +18,9 @@ export const EmployeesContainer = styled(XScrollContainer)`
 export const VacanciesContainer = styled(XScrollContainer)`
   padding-left: 1rem;
   height: 21rem;
+  &.noVacancy {
+    padding-right: 1rem;
+  }
 `;
 
 export const Row = styled("div")`

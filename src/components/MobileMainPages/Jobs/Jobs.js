@@ -5,6 +5,7 @@ import { PaddingBlock, Title } from "../styles";
 import { HowWeAreWorking } from "../../HowWeAreWorking/HowWeAreWorking";
 import { TeamMemberCard } from "../../../components/TeamMemberCard/TeamMemberCard";
 import { getVacancyAvatarByType } from "../../TeamMembers/getVacancyAvatarByType";
+import { NoVacancyCard } from "../../../components/TeamMembers/NoVacancyCard";
 import styles, {
   TeamSection,
   VacancySection,
@@ -78,19 +79,23 @@ export class Jobs extends Component {
         </TeamSection>
         <VacancySection ref={ref => onRef(ref, vacancyId)}>
           <Title>{text}</Title>
-          <VacanciesContainer>
-            {vacancies.map((vacancy, index, array) => (
-              <React.Fragment key={vacancy.id}>
-                <TeamMemberCard
-                  {...vacancy}
-                  vacancy
-                  className={styles.vacancyBlock}
-                  control={<GoNextLink>Описание вакансии</GoNextLink>}
-                  avatar={getVacancyAvatarByType(vacancy.type)}
-                />
-                {array.length - 1 === index && <PaddingBlock />}
-              </React.Fragment>
-            ))}
+          <VacanciesContainer noVacancy={vacancies.length === 0 }>
+            {vacancies.length > 0 ? (
+              vacancies.map((vacancy, index, array) => (
+                <React.Fragment key={vacancy.id}>
+                  <TeamMemberCard
+                    {...vacancy}
+                    vacancy
+                    className={styles.vacancyBlock}
+                    control={<GoNextLink>Описание вакансии</GoNextLink>}
+                    avatar={getVacancyAvatarByType(vacancy.type)}
+                  />
+                  {array.length - 1 === index && <PaddingBlock />}
+                </React.Fragment>
+              ))
+            ) : (
+              <NoVacancyCard />
+            )}
           </VacanciesContainer>
         </VacancySection>
       </>
