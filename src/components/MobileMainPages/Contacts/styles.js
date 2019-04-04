@@ -3,7 +3,7 @@ import styled from "astroturf";
 import { Section as SectionUI } from "../styles";
 
 export const Section = styled(SectionUI)`
-  height: 35.2857rem;
+  height: 37.2857rem;
   position: relative;
   padding-top: 4rem;
 `;

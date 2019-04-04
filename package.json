@@ -30,7 +30,6 @@
     "gatsby-plugin-astroturf": "0.2.1",
     "gatsby-plugin-layout": "1.0.14",
     "gatsby-plugin-netlify": "^2.0.13",
-    "gatsby-plugin-netlify-cache": "^1.1.0",
     "gatsby-plugin-netlify-cms": "^3.0.17",
     "gatsby-plugin-postcss": "^2.0.1",
     "gatsby-plugin-react-helmet": "^3.0.4",

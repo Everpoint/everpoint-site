@@ -15,33 +15,36 @@ export const TeamMemberCard = ({
   descrition,
   control,
   className,
+  vacancy,
 }) => {
   return (
     <TeamMemberCardContainer
       className={className}
+      vacancy={vacancy}
       style={{ height, marginBottom: margin, marginTop: withMarginTop && top }}
     >
-      <Avatar source={avatar} className={styles.avatarBlock} />
+      {vacancy ? avatar : <Avatar source={avatar} className={styles.avatarBlock} />}
       <Name
+        vacancy={vacancy}
         dangerouslySetInnerHTML={{
           __html: name,
         }}
       />
       {control}
       {position && <Position>{position}</Position>}
-      <Description>{descrition}</Description>
+      {descrition && <Description>{descrition}</Description>}
     </TeamMemberCardContainer>
   );
 };
 
 TeamMemberCard.propTypes = {
   className: PropTypes.string,
+  vacancy: PropTypes.bool,
   name: PropTypes.string,
   position: PropTypes.string,
   withMarginTop: PropTypes.bool,
   height: PropTypes.number,
   top: PropTypes.number,
   margin: PropTypes.number,
-  avatar: PropTypes.string,
   control: PropTypes.element,
 };

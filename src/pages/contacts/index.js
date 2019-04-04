@@ -59,7 +59,7 @@ class ContactsBase extends Component {
             <Link as="address" className={styles.address}>
               127051, Россия, <br /> г. Москва, ул. Трубная, д. 25 к. 1
             </Link>
-            {isMobileOrTablet && <AddressLink>Открыть адрес на карте</AddressLink>}
+            {isMobileOrTablet && <AddressLink>Открыть маршрут на карте</AddressLink>}
             <Link href="tel:+74955060774">+7 (495) 506-07-74</Link>
             <Link href="mailto:info@everpoint.ru">info@everpoint.ru</Link>
             <SocialBlock>

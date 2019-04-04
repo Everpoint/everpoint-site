@@ -30,6 +30,7 @@ export const TeamMembersContainer = styled("div")`
   }
   &.oneItem {
     align-items: center;
+    flex-wrap: nowrap;
     > article {
       margin-right: 0;
     }

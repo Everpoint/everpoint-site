@@ -3,24 +3,17 @@ import styled, { css } from "astroturf";
 import { Section as SectionUI, Card, Description as DescriptionUI } from "../styles";
 
 export const Section = styled(SectionUI)`
-  height: 28.2857rem;
-  position: relative;
-  &:before {
-    content: "";
-    background-color: #fff;
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    height: 44%;
-  }
+  height: 29.2857rem;
+  display: flex;
+  flex-direction: column;
 `;
 
 export const Article = styled(Card)`
+  padding: 0 2rem 0 0;
   align-items: flex-start;
   height: 21rem;
-  background-color: #fff;
-  box-shadow: 0 0.8571rem 0.8571rem 0 rgba(10, 18, 33, 0.1);
+  background-color: transparent;
+  box-shadow: none;
 `;
 
 export const Title = styled("h4")`
@@ -39,7 +32,7 @@ export const Date = styled("div")`
 export const Description = styled(DescriptionUI)``;
 
 export const Logo = styled("img")`
-  margin-top: auto;
+  margin: auto 0 1rem 0;
   width: auto;
   height: 1.2rem;
 `;
@@ -48,6 +41,10 @@ const styles = css`
   .readMore {
     font-size: 0.8571rem;
     color: #90c53d;
+  }
+  .readAll {
+    align-self: center;
+    margin-top: 1.4rem;
   }
 `;
 
