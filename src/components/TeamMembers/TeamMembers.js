@@ -127,6 +127,7 @@ export class TeamMembers extends Component {
               <TeamMemberCard
                 control={id === "vacancy" ? <GoNextLink>Описание вакансии</GoNextLink> : null}
                 avatar={item.type ? getVacancyAvatarByType(item.type) : item.avatar}
+                vacancy={id === "vacancy"}
                 withMarginTop={index === half}
                 height={height}
                 top={top}

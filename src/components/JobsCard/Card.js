@@ -23,6 +23,7 @@ export const Card = props => {
         <TeamMemberCard
           {...card}
           className={cn(className, { [styles.vacancyCard]: id === "vacancy" })}
+          vacancy={id === "vacancy"}
           control={id === "vacancy" ? <GoNextLink>Описание вакансии</GoNextLink> : null}
           avatar={type ? getVacancyAvatarByType(type) : avatar}
         />

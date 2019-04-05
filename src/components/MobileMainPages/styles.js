@@ -1,19 +1,21 @@
 import styled from "astroturf";
 
 export const Section = styled("section")`
-  height: 31.2857rem;
+  position: relative;
+  z-index: 1;
+  height: 30.7142rem;
 `;
 
 export const Title = styled("h2")`
-  margin: 0 0 0 1rem;
+  font-size: 1.4285rem;
+  margin: 0 0 1.7142rem 1rem;
 `;
 
-export const CardContainer = styled("div")`
+export const XScrollContainer = styled("div")`
   overflow-y: hidden;
   overflow-x: auto;
   -webkit-overflow-scrolling: touch;
   display: flex;
-  padding: 2rem 0;
 `;
 
 export const Card = styled("article")`

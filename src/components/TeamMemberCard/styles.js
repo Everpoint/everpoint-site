@@ -11,6 +11,9 @@ export const TeamMemberCardContainer = styled(Blank)`
     width: calc(50% - 2.1428rem / 2);
     max-width: none;
   }
+  @media (max-width: 1199px) and (min-width: 992px) {
+    padding: 2.1428rem;
+  }
   @media (max-width: 991px) {
     width: 100%;
     height: 100%;
@@ -19,6 +22,20 @@ export const TeamMemberCardContainer = styled(Blank)`
     display: flex;
     flex-direction: column;
     justify-content: center;
+  }
+  &.vacancy {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    flex-shrink: 0;
+    @media (max-width: 812px) and (orientation: landscape),
+      (max-width: 767px) and (orientation: portrait) {
+    }
+  }
+  > svg {
+    margin-bottom: 1rem;
+    flex-shrink: 0;
   }
 `;
 
@@ -29,6 +46,17 @@ export const Name = styled("div")`
   @media (max-width: 812px) and (orientation: landscape),
     (max-width: 767px) and (orientation: portrait) {
     font-size: 1.1428rem;
+  }
+  &.vacancy {
+    padding-left: 1rem;
+    padding-right: 1rem;
+    font-size: 1rem;
+    margin-bottom: 0;
+    @media (max-width: 812px) and (orientation: landscape),
+      (max-width: 767px) and (orientation: portrait) {
+      padding-left: 0;
+      padding-right: 0;
+    }
   }
 `;
 
@@ -57,7 +85,7 @@ export const Description = styled("div")`
 
 const styles = css`
   .avatarBlock {
-    margin: 1.5rem auto;
+    margin: 0 auto 1.5rem auto;
     @media (max-width: 812px) and (orientation: landscape),
       (max-width: 767px) and (orientation: portrait) {
       margin: 0 auto 0.6rem auto;

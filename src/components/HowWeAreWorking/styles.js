@@ -14,6 +14,8 @@ export const HowWeAreWorkingContainer = styled("div")`
   }
   @media (max-width: 812px) and (orientation: landscape),
     (max-width: 767px) and (orientation: portrait) {
+    background-color: transparent;
+    box-shadow: none;
     padding: 1.2rem;
   }
 `;
@@ -29,14 +31,8 @@ export const Title = styled("h4")`
   }
   @media (max-width: 812px) and (orientation: landscape),
     (max-width: 767px) and (orientation: portrait) {
-    font-size: 0.8571rem;
-  }
-  @media (max-width: 812px) and (orientation: landscape) {
-    font-size: 0.7142rem;
-  }
-  @media (max-height: 300px),
-    only screen and (min-device-width: 320px) and (max-device-width: 568px) and (-webkit-min-device-pixel-ratio: 2) and (orientation: landscape) {
-    margin-bottom: 0.8rem;
+    margin-bottom: 1rem;
+    font-size: 1rem;
   }
 `;
 
@@ -50,12 +46,9 @@ export const Paragraph = styled("p")`
       display: none;
     }
   }
-  @media (max-width: 812px) and (orientation: landscape) {
-    font-size: 0.5714rem;
-  }
-  @media (max-height: 300px),
-    only screen and (min-device-width: 320px) and (max-device-width: 568px) and (-webkit-min-device-pixel-ratio: 2) and (orientation: landscape) {
-    margin-bottom: 0.4rem;
+  @media (max-width: 812px) and (orientation: landscape),
+    (max-width: 767px) and (orientation: portrait) {
+    font-size: 0.85714rem;
   }
 `;
 

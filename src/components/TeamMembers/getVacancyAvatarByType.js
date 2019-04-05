@@ -1,20 +1,21 @@
-import developer from "../../assets/img/vacancy/developer.svg";
-import designer from '../../assets/img/vacancy/designer.svg';
-import manager from '../../assets/img/vacancy/manager.svg';
-import analyst from '../../assets/img/vacancy/analytic.svg';
-import novacancy from "../../assets/img/vacancy/no-vacancy.svg";
+import React from "react";
+import { ReactComponent as Developer } from "../../assets/img/vacancy/developer.svg";
+import { ReactComponent as Designer } from "../../assets/img/vacancy/designer.svg";
+import { ReactComponent as Manager } from "../../assets/img/vacancy/manager.svg";
+import { ReactComponent as Analytic } from "../../assets/img/vacancy/analytic.svg";
+import { ReactComponent as NoVacancy } from "../../assets/img/vacancy/no-vacancy.svg";
 
 export const getVacancyAvatarByType = type => {
   switch (type) {
     case "developer":
-      return developer;
+      return <Developer />;
     case "designer":
-      return designer;
+      return <Designer />;
     case "manager":
-      return manager;
+      return <Manager />;
     case "analyst":
-      return analyst;
+      return <Analytic />;
     default:
-      return novacancy;
+      return <NoVacancy />;
   }
 };

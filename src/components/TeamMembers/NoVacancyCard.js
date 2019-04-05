@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 
 import { TeamMemberCard } from "../TeamMemberCard/TeamMemberCard";
-import noVacancy from "../../assets/img/vacancy/no-vacancy.svg";
+import { ReactComponent as NoVacancy } from "../../assets/img/vacancy/no-vacancy.svg";
 import { NoVacancyDescription } from "./styles";
 import { GoNextLink } from "../GoNextLink/GoNextLink";
 
@@ -11,10 +11,10 @@ import styles from "./styles";
 export const NoVacancyCard = ({ height }) => {
   return (
     <TeamMemberCard
+      vacancy
       className={styles.noVacancyCard}
       height={height}
-      id="noVacancies"
-      avatar={noVacancy}
+      avatar={<NoVacancy />}
       name="В настоящее время вакансий нет"
       control={
         <NoVacancyDescription>
@@ -29,6 +29,6 @@ export const NoVacancyCard = ({ height }) => {
 };
 
 NoVacancyCard.propTypes = {
-  className:  PropTypes.string,
+  className: PropTypes.string,
   cardHeight: PropTypes.number,
 };

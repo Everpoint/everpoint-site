@@ -3,13 +3,12 @@ import React, { Component } from "react";
 import { MobileNavbar } from "../../components/MobileNavbar/MobileNavbar";
 import { Section } from "../../components/MobileMainPages/Section";
 import { routes } from "../../routes";
-import { Main } from "../../styles/mobile";
+import { Main, Background } from "../../styles/mobile";
 import { getPixelRatioPropName } from "../../utils/utils";
 
 class MobileMainPage extends Component {
   state = {
-    sections: routes.filter(({ id }) => id !== "jobs"),
-    scrolled: false,
+    sections: routes,
     mobileMenuIsOpen: false,
     ratio: 1,
   };
@@ -17,33 +16,21 @@ class MobileMainPage extends Component {
   sectionsRef = [];
 
   componentDidMount() {
+    const { location } = this.props;
     this.setState({ ratio: getPixelRatioPropName() });
-    window.addEventListener("scroll", this.onScroll, true);
-  }
+    const section = this.sectionsRef.find(({ id }) => location.pathname.includes(id));
 
-  componentWillUnmount() {
-    window.removeEventListener("scroll", this.onScroll, true);
-  }
-
-  onScroll = () => {
-    const scrollY = window.scrollY;
-
-    if (scrollY > 0) {
-      this.setState({
-        scrolled: true,
-      });
-    } else {
-      this.setState({
-        scrolled: false,
-      });
+    if (section && section.id) {
+      this.scrollTo(section.id);
     }
-  };
+  }
 
-  onSectionRef = ref => {
-    const { sections } = this.state;
-
-    if (sections.length !== this.sectionsRef.length) {
-      this.sectionsRef.push(ref);
+  onSectionRef = (ref, id) => {
+    if (this.sectionsRef.length < 6) {
+      this.sectionsRef.push({
+        node: ref,
+        id,
+      });
     }
   };
 
@@ -65,12 +52,11 @@ class MobileMainPage extends Component {
     return t * t;
   }
 
-  scrollTo = index => {
-    const section = this.sectionsRef[index];
-
-    if (section) {
+  scrollTo = id => {
+    const section = this.sectionsRef.find(section => section.id === id);
+    if (section && section.node) {
       const scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
-      const { top } = section.getBoundingClientRect();
+      const { top } = section.node.getBoundingClientRect();
 
       this.animate({
         duration: 400,
@@ -91,14 +77,14 @@ class MobileMainPage extends Component {
   toggleMenu = () => this.setState({ mobileMenuIsOpen: !this.state.mobileMenuIsOpen });
 
   render() {
-    const { scrolled, sections, mobileMenuIsOpen, ratio } = this.state;
+    const { sections, mobileMenuIsOpen, ratio } = this.state;
     const { news, titles, navigate } = this.props;
 
     return (
       <Main>
+        <Background />
         <MobileNavbar
           routes={sections}
-          fixed={scrolled}
           titles={titles}
           toggleMenu={this.toggleMenu}
           scrollTo={this.scrollTo}
@@ -109,7 +95,7 @@ class MobileMainPage extends Component {
             key={item.id}
             titles={titles}
             navigate={navigate}
-            onRef={this.onSectionRef}
+            onRef={(ref, id) => this.onSectionRef(ref, id || item.id)}
             routes={routes}
             news={news}
             ratio={ratio}

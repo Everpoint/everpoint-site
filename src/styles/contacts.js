@@ -110,10 +110,9 @@ const styles = css`
   }
   div.background {
     background-position: 75% center;
-    @media (max-width: 812px) and (orientation: landscape),
-      (max-width: 767px) and (orientation: portrait) {
+    @media (max-width: 767px) and (orientation: portrait) {
       background-size: 394%;
-      background-position: 71% 87%;
+      background-position: 71% 74%;
     }
   }
 `;

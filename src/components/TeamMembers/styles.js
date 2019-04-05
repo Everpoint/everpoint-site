@@ -30,6 +30,7 @@ export const TeamMembersContainer = styled("div")`
   }
   &.oneItem {
     align-items: center;
+    flex-wrap: nowrap;
     > article {
       margin-right: 0;
     }
@@ -41,15 +42,6 @@ export const NoVacancyDescription = styled("p")`
   font-weight: 400;
   margin-top: 1.4rem;
   margin-bottom: 0;
-  @media (max-width: 812px) and (orientation: landscape) {
-    margin-top: 0;
-    font-size: 0.7142rem;
-  }
-  @media (max-height: 340px) {
-    span:last-child {
-      display: none;
-    }
-  }
 `;
 
 export const PhotoContainer = styled("div")`
@@ -83,12 +75,6 @@ export const PhotoContainer = styled("div")`
 
 const styles = css`
   .noVacancyCard {
-    @media (max-height: 300px),
-      only screen and (min-device-width: 320px) and (max-device-width: 568px) and (-webkit-min-device-pixel-ratio: 2) and (orientation: landscape) {
-      > div:nth-child(2) {
-        font-size: 0.8rem;
-      }
-    }
     @media (max-width: 767px) and (orientation: portrait) {
       > div:nth-child(2) {
         margin-bottom: 0;
@@ -96,6 +82,13 @@ const styles = css`
       p {
         margin-top: 0.6rem;
       }
+    }
+    @media (max-width: 812px) and (orientation: landscape),
+      (max-width: 767px) and (orientation: portrait) {
+      max-width: 20rem;
+      background-color: transparent;
+      box-shadow: none;
+      margin: 0 auto;
     }
   }
   .vacancyCard {

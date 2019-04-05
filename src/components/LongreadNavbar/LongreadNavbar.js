@@ -37,15 +37,7 @@ export class LongreadNavbarBase extends Component {
   };
 
   render() {
-    const {
-      pathname,
-      scrollTop,
-      className,
-      children,
-      projects,
-      nativeScrollbar,
-      isMobile,
-    } = this.props;
+    const { pathname, scrollTop, className, children, projects, nativeScrollbar } = this.props;
 
     const transform = `translateY(${nativeScrollbar ? 0 : scrollTop}px)`;
     const fixed = Math.floor(scrollTop) > 0;
@@ -67,10 +59,7 @@ export class LongreadNavbarBase extends Component {
             Предыдущий
           </Link>
         )}
-        <Link
-          className={styles.longreadCloseBtn}
-          to={getBackRouteByLocationPathName(pathname, isMobile)}
-        >
+        <Link className={styles.longreadCloseBtn} to={getBackRouteByLocationPathName(pathname)}>
           <Close />
         </Link>
         {arrowControl && nextProjectPage && (

@@ -23,8 +23,66 @@ export class MobileNavbar extends PureComponent {
     mobileMenuIsOpen: PropTypes.bool,
   };
 
+  static getDerivedStateFromProps(nextProps, prevState) {
+    const { routes } = nextProps;
+    const { additionalRoutes } = prevState;
+
+    if (additionalRoutes.length === 0) {
+      const additionalSections = [];
+
+      routes.forEach(item => {
+        if (item.id === "jobs") {
+          item.sections.forEach(section => {
+            if (section.id === "vacancy" || section.id === "employees") {
+              additionalSections.push({
+                ...section,
+                text: section.id === "employees" ? section.groupName : section.text,
+              });
+            }
+          });
+        } else {
+          additionalSections.push(item);
+        }
+      });
+
+      return {
+        additionalRoutes: additionalSections,
+      };
+    }
+
+    return null;
+  }
+
+  state = {
+    additionalRoutes: [],
+    fixed: false,
+  };
+
+  componentDidMount() {
+    window.addEventListener("scroll", this.onScroll, true);
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener("scroll", this.onScroll, true);
+  }
+
+  onScroll = () => {
+    const scrollY = window.scrollY;
+
+    if (scrollY > 0) {
+      this.setState({
+        fixed: true,
+      });
+    } else {
+      this.setState({
+        fixed: false,
+      });
+    }
+  };
+
   render() {
-    const { routes, fixed, mobileMenuIsOpen, scrollTo, toggleMenu, titles } = this.props;
+    const { additionalRoutes, fixed } = this.state;
+    const { mobileMenuIsOpen, scrollTo, toggleMenu, titles } = this.props;
 
     return (
       <NavbarContainer mobileMenuIsOpen={mobileMenuIsOpen} fixed={fixed}>
@@ -42,7 +100,7 @@ export class MobileNavbar extends PureComponent {
             />
           </LeftSide>
           <MenuMobile
-            routes={routes}
+            routes={additionalRoutes}
             titles={titles}
             isOpen={mobileMenuIsOpen}
             scrollTo={scrollTo}
