@@ -140,17 +140,13 @@ export class MainLayoutProviderComponent extends Component {
     const { location } = this.props;
     const currentRoute = getRouteByLocation(location);
 
-    if (currentRoute) {
-      const { sections } = currentRoute;
-
-      this.setState({
-        currentRoute,
-        coloredNav: false,
-        isSwipeEvent: false,
-        isClickEvent: false,
-        sections: sections || [],
-      });
-    }
+    this.setState({
+      currentRoute: currentRoute || "404",
+      coloredNav: false,
+      isSwipeEvent: false,
+      isClickEvent: false,
+      sections: (currentRoute && currentRoute.sections) || [],
+    });
   };
 
   checkNavbarIntoContent = () => {
@@ -298,7 +294,8 @@ export class MainLayoutProviderComponent extends Component {
 
   onNavLinkClick = ({ id, event, navigate, selectedSectionIndex, isClickEvent, transitionEnd }) => {
     const { currentRoute } = this.state;
-    const prevIndex = routes.findIndex(route => route.id === currentRoute.id);
+
+    const prevIndex = routes.findIndex(route => route.id === currentRoute && currentRoute.id);
     const currentIndex = routes.findIndex(route => route.id === id);
     const direction = currentIndex > prevIndex ? 1 : -1;
 
@@ -475,6 +472,10 @@ export class MainLayoutProviderComponent extends Component {
     } = this.state;
     const { navigate, location } = this.props;
     const { pathname } = location;
+
+    if (!currentRoute) {
+      return;
+    }
 
     const scrollable = currentRoute && currentRoute.scrollable;
 
