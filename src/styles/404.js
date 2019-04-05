@@ -15,6 +15,7 @@ export const Article = styled("article")`
   flex-direction: column;
   z-index: 1;
   position: relative;
+  will-change: transform, opacity;
 `;
 
 export const Title = styled("h2")`
@@ -23,6 +24,7 @@ export const Title = styled("h2")`
 `;
 
 export const Description = styled("p")`
+  text-align: center;
   font-size: 1.1428rem;
   margin-bottom: 0;
 `;

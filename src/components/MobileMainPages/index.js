@@ -126,7 +126,7 @@ class MobileMainPage extends Component {
           mobileMenuIsOpen={mobileMenuIsOpen}
         />
         {is404Page ? (
-          <Page404 />
+          <Page404 location={location} />
         ) : (
           sections.map(item => (
             <Section
