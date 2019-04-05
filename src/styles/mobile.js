@@ -8,14 +8,15 @@ export const Main = styled("main")`
 `;
 
 export const Background = styled("div")`
-  position: absolute;
+  position: fixed;
   pointer-events: none;
   top: 0;
   left: 0;
   width: 100%;
-  height: 138rem;
-  background-position: center top;
-  background-size: auto 34.2857rem;
-  background-repeat: repeat-y;
+  height: 100vh;
+  height: calc(var(--vh, 1vh) * 100);
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
   background-image: url(../assets/img/main-slides/earth.svg);
 `;

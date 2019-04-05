@@ -50,11 +50,11 @@ export class MainLayout extends Component {
           }}
         />
         <CookieNotice />
+        <ViewportHeight />
         {isMobile ? (
           <Mobile news={newsSection} titles={titles} navigate={navigate} location={location} />
         ) : (
           <MainLayoutProvider news={newsSection} titles={titles}>
-            <ViewportHeight />
             <Navbar location={location} data={titles} />
             <PageTransition location={location}>{children}</PageTransition>
           </MainLayoutProvider>

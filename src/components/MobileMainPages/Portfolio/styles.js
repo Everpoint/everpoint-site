@@ -9,6 +9,7 @@ import {
 
 export const Section = styled(SectionUI)`
   padding: 0;
+  margin-bottom: 6.4444rem;
 `;
 
 export const Title = styled(TitleUI)``;

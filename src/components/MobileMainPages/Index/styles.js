@@ -7,4 +7,5 @@ export const Section = styled(SectionUI)`
   flex-direction: column;
   justify-content: center;
   margin-left: 1rem;
+  height: 31rem;
 `;
