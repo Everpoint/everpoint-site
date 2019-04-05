@@ -3,9 +3,9 @@ import styled, { css } from "astroturf";
 import { Section as SectionUI, Card, Description as DescriptionUI } from "../styles";
 
 export const Section = styled(SectionUI)`
-  height: 29.2857rem;
   display: flex;
   flex-direction: column;
+  margin-bottom: 6.4444rem;
 `;
 
 export const Article = styled(Card)`

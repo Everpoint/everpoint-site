@@ -30,18 +30,14 @@ export const RightSide = styled("div")`
   align-self: flex-end;
   @media (max-width: 812px) and (orientation: landscape),
     (max-width: 767px) and (orientation: portrait) {
-    display: flex;
-    position: absolute;
-    top: 0;
-    left: 50%;
-    transform: translateX(-50%);
+    display: none;
   }
 `;
 
 export const PrimaryButton = styled(Button)``;
 
 export const StopeButton = styled(PrimaryButton)`
-  margin-right: 0.7142rem;
+  margin-left: 0.7142rem;
 `;
 
 export const Link = styled(ContactLink)`
@@ -110,9 +106,9 @@ const styles = css`
   }
   div.background {
     background-position: 75% center;
-    @media (max-width: 767px) and (orientation: portrait) {
-      background-size: 340%;
-      background-position: 71% 74%;
+    @media (max-width: 812px) and (orientation: landscape),
+      (max-width: 767px) and (orientation: portrait) {
+      display: none;
     }
   }
 `;

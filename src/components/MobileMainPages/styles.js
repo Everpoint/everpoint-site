@@ -3,7 +3,6 @@ import styled from "astroturf";
 export const Section = styled("section")`
   position: relative;
   z-index: 1;
-  height: 30.7142rem;
 `;
 
 export const Title = styled("h2")`

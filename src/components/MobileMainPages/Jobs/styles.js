@@ -3,12 +3,10 @@ import styled, { css } from "astroturf";
 import { Section, XScrollContainer, PaddingBlock } from "../styles";
 
 export const TeamSection = styled(Section)`
-  height: 32.8rem;
+  margin-bottom: 6.4444rem;
 `;
 
-export const VacancySection = styled(Section)`
-  height: 27.7142rem;
-`;
+export const VacancySection = styled(Section)``;
 
 export const EmployeesContainer = styled(XScrollContainer)`
   padding-left: 1rem;

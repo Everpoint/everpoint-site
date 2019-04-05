@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 
+import Page404 from "../../pages/404";
 import { MobileNavbar } from "../../components/MobileNavbar/MobileNavbar";
 import { Section } from "../../components/MobileMainPages/Section";
 import { routes } from "../../routes";
@@ -11,6 +12,7 @@ class MobileMainPage extends Component {
     sections: routes,
     mobileMenuIsOpen: false,
     ratio: 1,
+    scrollToId: null,
   };
 
   sectionsRef = [];
@@ -22,6 +24,24 @@ class MobileMainPage extends Component {
 
     if (section && section.id) {
       this.scrollTo(section.id);
+    }
+  }
+
+  componentDidUpdate({ location: prevLocation }, prevState) {
+    const { location } = this.props;
+    const { scrollToId } = this.state;
+
+    const prevPageIs404 = prevLocation.pathname.indexOf("404") === 1;
+
+    if (prevPageIs404 && prevLocation.pathname !== location.pathname) {
+      this.setState(
+        {
+          scrollToId: null,
+        },
+        () => {
+          this.scrollTo(scrollToId);
+        },
+      );
     }
   }
 
@@ -53,8 +73,11 @@ class MobileMainPage extends Component {
   }
 
   scrollTo = id => {
+    const { navigate, location } = this.props;
     const section = this.sectionsRef.find(section => section.id === id);
-    if (section && section.node) {
+    const is404Page = location.pathname.indexOf("404") === 1;
+
+    if (section && section.node && !is404Page) {
       const scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
       const { top } = section.node.getBoundingClientRect();
 
@@ -69,16 +92,28 @@ class MobileMainPage extends Component {
           window.scrollTo(0, y);
         },
       });
+    } else {
+      navigate("/");
     }
 
-    this.setState({ mobileMenuIsOpen: false });
+    const state = {
+      mobileMenuIsOpen: false,
+    };
+
+    if (is404Page) {
+      state.scrollToId = id;
+    }
+
+    this.setState(state);
   };
 
   toggleMenu = () => this.setState({ mobileMenuIsOpen: !this.state.mobileMenuIsOpen });
 
   render() {
     const { sections, mobileMenuIsOpen, ratio } = this.state;
-    const { news, titles, navigate } = this.props;
+    const { news, titles, navigate, location } = this.props;
+
+    const is404Page = location.pathname.indexOf("404") === 1;
 
     return (
       <Main>
@@ -90,18 +125,22 @@ class MobileMainPage extends Component {
           scrollTo={this.scrollTo}
           mobileMenuIsOpen={mobileMenuIsOpen}
         />
-        {sections.map(item => (
-          <Section
-            key={item.id}
-            titles={titles}
-            navigate={navigate}
-            onRef={(ref, id) => this.onSectionRef(ref, id || item.id)}
-            routes={routes}
-            news={news}
-            ratio={ratio}
-            {...item}
-          />
-        ))}
+        {is404Page ? (
+          <Page404 />
+        ) : (
+          sections.map(item => (
+            <Section
+              key={item.id}
+              titles={titles}
+              navigate={navigate}
+              onRef={(ref, id) => this.onSectionRef(ref, id || item.id)}
+              routes={routes}
+              news={news}
+              ratio={ratio}
+              {...item}
+            />
+          ))
+        )}
       </Main>
     );
   }
