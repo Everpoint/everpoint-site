@@ -111,7 +111,7 @@ const styles = css`
   div.background {
     background-position: 75% center;
     @media (max-width: 767px) and (orientation: portrait) {
-      background-size: 394%;
+      background-size: 340%;
       background-position: 71% 74%;
     }
   }

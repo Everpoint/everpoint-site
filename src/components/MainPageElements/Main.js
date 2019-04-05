@@ -17,7 +17,6 @@ export const Main = styled("main")`
   }
   @media (max-width: 812px) and (orientation: landscape),
     (max-width: 767px) and (orientation: portrait) {
-    overflow: hidden;
     padding: 4.5714rem 1.7142rem 0 1.7142rem;
   }
 `;
