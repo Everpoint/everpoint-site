@@ -5,7 +5,7 @@ import { Section as SectionUI } from "../styles";
 export const Section = styled(SectionUI)`
   height: 37.2857rem;
   position: relative;
-  padding-top: 2.4rem;
+  padding-top: 3.4rem;
 `;
 
 export const Blur = styled("div")`
@@ -15,7 +15,7 @@ export const Blur = styled("div")`
   left: 0;
   position: absolute;
   width: 100%;
-  height: 2.4rem;
+  height: 3.4rem;
   background: linear-gradient(
     to bottom,
     rgba(255, 255, 255, 1),
