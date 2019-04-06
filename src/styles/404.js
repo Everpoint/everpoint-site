@@ -55,7 +55,7 @@ const styles = css`
       stroke: #90c53d;
       animation-duration: 1s;
       animation-timing-function: ease-out;
-      animation-iteration-count: 1;
+      animation-iteration-count: infinite;
       &:nth-of-type(1) {
         animation-name: fourOuter;
       }
