@@ -25,8 +25,8 @@ export const Rightside = styled(Side)`
     max-width: 34.1428rem;
   }
   @media (max-width: 991px) {
-    max-width: 26.2857rem;
-    max-height: 30.4857rem;
+    max-width: 27.2857rem;
+    max-height: 36.2857rem;
   }
   @media (max-width: 812px) and (orientation: landscape) {
     flex-shrink: 0;

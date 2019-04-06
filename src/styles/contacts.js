@@ -42,6 +42,7 @@ export const StopeButton = styled(PrimaryButton)`
 
 export const Link = styled(ContactLink)`
   @media (max-width: 991px) {
+    font-size: 1.14285rem;
     margin-bottom: 0.2rem;
   }
 `;
@@ -87,7 +88,7 @@ const styles = css`
       }
     }
     @media (max-width: 991px) {
-      margin-bottom: 0.4rem;
+      margin-bottom: 1rem;
     }
   }
   .telegramBtn {
@@ -106,6 +107,9 @@ const styles = css`
   }
   div.background {
     background-position: 75% center;
+    @media (max-width: 991px) {
+      background-position: 66% center;
+    }
     @media (max-width: 812px) and (orientation: landscape),
       (max-width: 767px) and (orientation: portrait) {
       display: none;

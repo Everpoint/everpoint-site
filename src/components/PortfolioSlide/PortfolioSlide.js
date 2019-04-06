@@ -5,10 +5,8 @@ import { Transition } from "react-transition-group";
 
 import { getPixelRatioPropName } from "../../utils/utils";
 import { ImagesDownloadListener } from "../../components/ImagesDownloadListener/ImagesDownloadListener";
-import { Swiper } from "../../components/Swiper/Swiper";
-import styles, { ContainerTransitionGroup, LongreadBackground } from "./styles";
+import { ContainerTransitionGroup, LongreadBackground } from "./styles";
 import { TransitionSlide } from "./TransitionSlide";
-import { PaginationSimple } from "../../components/Pagination/Simple/PaginationSimple";
 import { Portal } from "../../components/Portal/Portal";
 
 export class PortfolioSlide extends Component {
@@ -25,7 +23,6 @@ export class PortfolioSlide extends Component {
     parentTitle: PropTypes.string,
     sectionDirection: PropTypes.number,
     navigate: PropTypes.func,
-    isSwipeEvent: PropTypes.bool,
     transitionEnd: PropTypes.bool,
     direction: PropTypes.number,
     lastSectionIndex: PropTypes.number,
@@ -116,16 +113,6 @@ export class PortfolioSlide extends Component {
     this.setState({ ratio, images });
   };
 
-  onSwiped = ({ isLeft, isRight, xRatio }) => {
-    const { onSectionChange } = this.props;
-
-    if (isLeft && xRatio > 25) {
-      onSectionChange({ value: 1, isSwipeEvent: true });
-    } else if (isRight && xRatio > 25) {
-      onSectionChange({ value: -1, isSwipeEvent: true });
-    }
-  };
-
   goToLongread = () => {
     const { navigate, id } = this.props;
     this.setState(
@@ -146,40 +133,23 @@ export class PortfolioSlide extends Component {
     }
   };
 
-  onPageChange = page => {
-    const { selectedSectionIndex, onSectionChange } = this.props;
-    if (page > selectedSectionIndex) {
-      onSectionChange({ value: 1, isSwipeEvent: true });
-    } else {
-      onSectionChange({ value: -1, isSwipeEvent: true });
-    }
-  };
-
   render() {
     const { top, down, up, left, width, height, goToLongread, ratio, images } = this.state;
-    const {
-      projectBackgroundColor,
-      selectedSectionIndex,
-      sections,
-      id,
-      screenshots,
-      isSwipeEvent,
-      lastSectionIndex,
-    } = this.props;
+    const { projectBackgroundColor, id, screenshots } = this.props;
 
     const sectionImages = Array.isArray(screenshots)
       ? screenshots.map(img => img[ratio])
       : screenshots[ratio];
 
     return (
-      <Swiper onSwiped={this.onSwiped} className={styles.swiper}>
+      <>
         <ImagesDownloadListener images={images} />
         <ContainerTransitionGroup>
           <Transition
             key={`${id}-portfolio-slide-animation`}
             timeout={{
               enter: 0,
-              exit: isSwipeEvent ? 200 : 400,
+              exit: 400,
             }}
           >
             {status => (
@@ -196,11 +166,6 @@ export class PortfolioSlide extends Component {
             )}
           </Transition>
         </ContainerTransitionGroup>
-        <PaginationSimple
-          pageCount={sections.length}
-          currentPage={(lastSectionIndex || selectedSectionIndex) + 1}
-          onPageChange={this.onPageChange}
-        />
         {typeof window !== "undefined" && (
           <Portal>
             <LongreadBackground
@@ -215,7 +180,7 @@ export class PortfolioSlide extends Component {
             />
           </Portal>
         )}
-      </Swiper>
+      </>
     );
   }
 }

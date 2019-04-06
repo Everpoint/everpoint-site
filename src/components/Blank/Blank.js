@@ -6,7 +6,7 @@ export const Blank = styled("article")`
   box-shadow: 0 2.2857rem 2.2857rem 0 rgba(10, 18, 33, 0.15);
   background-color: #fff;
   @media (max-width: 991px) {
-    padding: 2.1428rem;
+    padding: 1.7142rem;
     box-shadow: 0 0.8571rem 0.8571rem 0 rgba(10, 18, 33, 0.1);
   }
   @media (max-width: 812px) and (orientation: landscape),

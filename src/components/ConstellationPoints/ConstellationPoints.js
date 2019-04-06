@@ -26,7 +26,7 @@ export class ConstellationPoints extends PureComponent {
           {Array.from({ length: pointsAmount }, (_, index) => (
             <Point
               onMouseUp={!isMobile ? () => onSectionChange({ index }) : void 0}
-              onTouchEnd={!isMobile ? () => onSectionChange({ index, isSwipeEvent: true }) : void 0}
+              onTouchEnd={!isMobile ? () => onSectionChange({ index }) : void 0}
               key={`point-${index}`}
               isActive={index === selectedSectionIndex}
             />

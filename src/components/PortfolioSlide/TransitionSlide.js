@@ -3,7 +3,6 @@ import PropTypes from "prop-types";
 import cn from "classnames";
 
 import { fade } from "../../styles/transition";
-import { BackendComponent } from "../Backend/Backend";
 import {
   PortfolioSlideContainer,
   SliderBackground,
@@ -20,7 +19,6 @@ export class TransitionSlide extends Component {
     onContainerRef: PropTypes.func,
     selectedSectionIndex: PropTypes.number,
     sections: PropTypes.arrayOf(PropTypes.object),
-    isSwipeEvent: PropTypes.bool,
     up: PropTypes.number,
     down: PropTypes.number,
     transitionEnd: PropTypes.bool,
@@ -56,43 +54,34 @@ export class TransitionSlide extends Component {
       id: nextId,
       goToLongread,
       onContainerRef,
-      selectedSectionIndex,
-      sections,
       sectionDirection,
       status,
-      isSwipeEvent,
       up,
       down,
       transitionEnd,
-      lastSectionIndex,
       onResize,
       onExited,
     } = this.props;
 
-    const scrollEvent = !isSwipeEvent;
     const nextSlide = id === nextId;
 
     const scrollDown = sectionDirection > 0;
 
-    const transitionUp = scrollEvent
-      ? scrollDown
-        ? {
-            entering: { transform: `translateY(${down}px)` },
-            exiting: { transform: `translateY(-${down}px)` },
-          }
-        : {
-            entering: { transform: `translateY(-${up}px)` },
-            exiting: { transform: `translateY(${up}px)` },
-          }
-      : {};
+    const transitionUp = scrollDown
+      ? {
+          entering: { transform: `translateY(${down}px)` },
+          exiting: { transform: `translateY(-${down}px)` },
+        }
+      : {
+          entering: { transform: `translateY(-${up}px)` },
+          exiting: { transform: `translateY(${up}px)` },
+        };
 
-    const scrollClassNames = scrollEvent
-      ? [
-          scrollDown ? slideUpScroll[status] : slideDownScroll[status],
-          !nextSlide && fade[status],
-          transitionScroll[status],
-        ]
-      : [];
+    const scrollClassNames = [
+      scrollDown ? slideUpScroll[status] : slideDownScroll[status],
+      !nextSlide && fade[status],
+      transitionScroll[status],
+    ];
 
     return (
       <PortfolioSlideContainer
@@ -100,32 +89,26 @@ export class TransitionSlide extends Component {
           ...transitionUp[status],
         }}
         className={cn(...scrollClassNames)}
-        willChange={transitionEnd && scrollEvent}
+        willChange={transitionEnd}
         onClick={goToLongread}
         ref={onContainerRef}
         onMouseOver={() => this.setState({ hovered: true })}
         onMouseOut={() => this.setState({ hovered: false })}
         onTransitionEnd={e => {
-          if (e.propertyName === "transform" && e.elapsedTime > 0.4 && !isSwipeEvent) {
+          if (e.propertyName === "transform" && e.elapsedTime > 0.4) {
             onResize();
             onExited();
           }
         }}
       >
-        <BackendComponent
-          sections={sections}
-          selectedSectionIndex={lastSectionIndex || selectedSectionIndex}
-        />
         <SliderBackground
           hovered={hovered}
           style={{
-            background:
-              isSwipeEvent && !nextSlide ? "rgba(255, 255, 255, 0)" : projectBackgroundColor,
+            background: !nextSlide ? "rgba(255, 255, 255, 0)" : projectBackgroundColor,
           }}
         />
         <Screenshoots
           isNext={nextSlide}
-          scrollEvent={scrollEvent}
           status={status}
           direction={sectionDirection}
           text={text}
@@ -133,7 +116,6 @@ export class TransitionSlide extends Component {
         />
         <Content
           status={status}
-          disableTransition={scrollEvent}
           direction={sectionDirection}
           title={title}
           text={text}

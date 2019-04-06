@@ -11,6 +11,10 @@ const Container = styled("div")`
   border-radius: 50%;
   overflow: hidden;
   background-color: rgba(33, 34, 36, 0.1);
+  @media (max-width: 991px) {
+    width: 5.7142rem;
+    height: 5.7142rem;
+  }
   &.vacancyCard {
     background-color: transparent;
   }

@@ -13,7 +13,7 @@ const MultiScreenshotsContainer = styled("div")`
   position: absolute;
   width: 100%;
   height: 100%;
-  margin: 2rem 0 0 -2rem;
+  margin: 2rem 0 0 0;
   > img {
     position: relative;
     max-height: 100%;
@@ -21,28 +21,17 @@ const MultiScreenshotsContainer = styled("div")`
       z-index: 3;
     }
     &:nth-child(2) {
-      transform: translateX(-91%);
+      transform: translateX(-18%);
       z-index: 2;
       max-height: 90%;
     }
     &:nth-child(3) {
       z-index: 1;
-      transform: translateX(-171%);
+      transform: translateX(-52%);
       max-height: 80%;
     }
   }
-  &.startAnimation,
-  &.scrollEvent {
-    > img {
-      transition: transform 500ms ease;
-      &:nth-child(2) {
-        transform: translateX(-18%);
-      }
-      &:nth-child(3) {
-        transform: translateX(-52%);
-      }
-    }
-  }
+
   @media (min-width: 1200px) and (orientation: landscape) {
     margin: 1rem 0 0 -2rem;
   }
@@ -52,25 +41,14 @@ const MultiScreenshotsContainer = styled("div")`
     flex-direction: row-reverse;
     margin: 0;
     > img {
+      &:nth-child(1) {
+        transform: translateX(0);
+      }
       &:nth-child(2) {
-        transform: translateX(101%);
+        transform: translateX(30%);
       }
       &:nth-child(3) {
-        transform: translateX(217%);
-      }
-    }
-    &.startAnimation {
-      > img {
-        transition: transform 500ms ease;
-        &:nth-child(1) {
-          transform: translateX(0);
-        }
-        &:nth-child(2) {
-          transform: translateX(30%);
-        }
-        &:nth-child(3) {
-          transform: translateX(64%);
-        }
+        transform: translateX(64%);
       }
     }
   }
@@ -82,25 +60,18 @@ const MultiScreenshotsContainer = styled("div")`
 export class MultiScreenshots extends Component {
   static propTypes = {
     screenshots: PropTypes.arrayOf(PropTypes.string),
-    scrollEvent: PropTypes.bool,
   };
 
   state = {
     imagesIsLoaded: false,
-    startAnimation: false,
   };
 
   render() {
-    const { imagesIsLoaded, startAnimation } = this.state;
-    const { screenshots, scrollEvent } = this.props;
+    const { imagesIsLoaded } = this.state;
+    const { screenshots } = this.props;
 
     return (
-      <MultiScreenshotsContainer
-        {...this.props}
-        scrollEvent={scrollEvent}
-        startAnimation={startAnimation}
-        onTransitionEnd={() => this.setState({ startAnimation: true })}
-      >
+      <MultiScreenshotsContainer {...this.props}>
         <ImagesDownloadListener
           images={screenshots}
           onLoad={() => this.setState({ imagesIsLoaded: true })}

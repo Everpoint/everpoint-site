@@ -25,17 +25,6 @@ export class Crutch extends Component {
     parentId: null,
   };
 
-  componentDidUpdate(
-    { isSwipeEvent: prevIsSwipeEvent, section: prevSection },
-    { parentId: prevParentId },
-  ) {
-    const { isSwipeEvent, section } = this.props;
-    const { parentId } = this.state;
-    if (isSwipeEvent && parentId && prevSection && parentId !== prevSection.id && section) {
-      this.setState({ parentId: section.id });
-    }
-  }
-
   render() {
     const { parentId } = this.state;
     const { status, direction, card, section } = this.props;

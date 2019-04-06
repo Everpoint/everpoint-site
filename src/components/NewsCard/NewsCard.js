@@ -5,22 +5,15 @@ import { Transition, TransitionGroup } from "react-transition-group";
 
 import { format } from "../../utils/date";
 import { OutsideLink } from "../../components/OutsideLink/OutsideLink";
-import { Swiper } from "../../components/Swiper/Swiper";
 import styles, { AboutCardContainer, Title, Date as DateBlock, Description, Logo } from "./styles";
-import { slideDown, slideLeft, slideRight, slideUp, transition } from "../../styles/transition";
+import { slideDown, slideUp, transition } from "../../styles/transition";
 import { fade } from "../../components/Transition/animation";
 
 export class News extends PureComponent {
   render() {
-    const { status, direction, description, title, date, logo, isSwipeEvent, link } = this.props;
+    const { status, direction, description, title, date, logo, link } = this.props;
 
-    const animation = isSwipeEvent
-      ? direction > 0
-        ? slideLeft[status]
-        : slideRight[status]
-      : direction > 0
-      ? slideUp[status]
-      : slideDown[status];
+    const animation = direction > 0 ? slideUp[status] : slideDown[status];
 
     return (
       <AboutCardContainer className={cn(animation, fade[status], transition[status])}>
@@ -48,24 +41,13 @@ export class NewsCard extends PureComponent {
     logo: PropTypes.string,
     id: PropTypes.string,
     direction: PropTypes.number,
-    isSwipeEvent: PropTypes.bool,
-  };
-
-  onSwiped = ({ isLeft, isRight, xRatio }) => {
-    const { onSectionChange } = this.props;
-
-    if (isLeft && xRatio > 25) {
-      onSectionChange({ value: 1, isSwipeEvent: true });
-    } else if (isRight && xRatio > 25) {
-      onSectionChange({ value: -1, isSwipeEvent: true });
-    }
   };
 
   render() {
     const { title, date, description, logo, id } = this.props;
 
     return (
-      <Swiper onSwiped={this.onSwiped}>
+      <>
         <TransitionGroup>
           <Transition
             key={`${id}-news-card`}
@@ -86,7 +68,7 @@ export class NewsCard extends PureComponent {
             )}
           </Transition>
         </TransitionGroup>
-      </Swiper>
+      </>
     );
   }
 }

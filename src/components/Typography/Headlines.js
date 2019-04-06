@@ -8,8 +8,7 @@ export const BigH1 = styled("h1")`
     font-size: 3.4285rem;
   }
   @media (max-width: 991px) {
-    font-size: 2.5714rem;
-    margin-bottom: 2rem;
+    margin-bottom: 1.4rem;
   }
   @media (max-width: 812px) and (orientation: landscape),
     (max-width: 767px) and (orientation: portrait) {

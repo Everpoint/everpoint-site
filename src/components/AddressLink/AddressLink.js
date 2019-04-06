@@ -6,7 +6,13 @@ import styles from "./styles";
 
 export const AddressLink = ({ children, ...props }) => {
   return (
-    <GoNextLink href={getLink()} target="_blank" className={styles.addressLink} {...props}>
+    <GoNextLink
+      withArrow={false}
+      href={getLink()}
+      target="_blank"
+      className={styles.addressLink}
+      {...props}
+    >
       {children}
     </GoNextLink>
   );

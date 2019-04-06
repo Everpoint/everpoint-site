@@ -45,9 +45,6 @@ export const SliderBackground = styled("div")`
       }
     }
   }
-  @media (max-width: 991px) {
-    border-radius: 0.2857rem;
-  }
 `;
 
 export const Title = styled("h2")`
@@ -162,6 +159,7 @@ export const ScreenshotTransitionGroup = styled("div")`
     left: -3.4rem;
   }
   @media (max-width: 991px) and (orientation: portrait) {
+    left: -4.4rem;
     max-height: calc(100% - 11rem);
   }
   @media (max-width: 812px) and (orientation: landscape) {
@@ -199,6 +197,7 @@ export const Screenshot = styled("img")`
   }
   @media (max-width: 991px) and (orientation: portrait) {
     top: 18%;
+    max-width: 109%;
   }
   @media (max-width: 812px) and (orientation: landscape) {
     top: 0;
@@ -259,12 +258,3 @@ export const slideDownScroll = css`
     pointer-events: none;
   }
 `;
-
-const styles = css`
-  .swiper {
-    width: 100%;
-    height: 100%;
-  }
-`;
-
-export default styles;

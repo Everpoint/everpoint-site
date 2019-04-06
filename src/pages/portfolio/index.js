@@ -7,7 +7,7 @@ import { AdditionalMenu } from "../../components/AdditionalMenu/AdditionalMenu";
 import { PortfolioSlide } from "../../components/PortfolioSlide/PortfolioSlide";
 import styles, { Main, LeftSide, Rightside } from "../../styles/portfolio";
 import { MobileTitle } from "../../components/PortfolioSlide/styles";
-import { common } from '../../styles/common';
+import { common } from "../../styles/common";
 import withRouter from "../../hoc/withRouter";
 import { animation } from "../../components/MainPageElements/Section";
 
@@ -20,7 +20,6 @@ class PortfolioBase extends Component {
       selectedSectionIndex,
       onSectionChange,
       sectionDirection,
-      isSwipeEvent,
       transitionEnd,
       direction,
       status,
@@ -57,7 +56,6 @@ class PortfolioBase extends Component {
             onExited={onExited}
             lastSectionIndex={lastSectionIndex}
             transitionEnd={transitionEnd}
-            isSwipeEvent={isSwipeEvent}
             sectionDirection={sectionDirection}
             direction={direction}
             sections={sections}

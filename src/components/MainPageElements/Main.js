@@ -13,7 +13,7 @@ export const Main = styled("main")`
     padding: 5.9285rem 3.2857rem 0 3.2857rem;
   }
   @media (max-width: 991px) {
-    padding-top: 5.7142rem;
+    padding: 5.7142rem 2.2857rem 0 2.2857rem;
   }
   @media (max-width: 812px) and (orientation: landscape),
     (max-width: 767px) and (orientation: portrait) {
