@@ -234,9 +234,10 @@ export class MainLayoutProviderComponent extends Component {
 
   onWheel = e => {
     const { thresholdIsActive, scrollTop, currentRoute } = this.state;
+    const { location, navigate } = this.props;
     const direction = e.deltaY > 0 ? 1 : -1;
     const normalizeDeltaY = direction > 0 ? 53 : -53;
-
+    const is404Page = location.pathname.indexOf("404") === 1;
     if (thresholdIsActive || (scrollTop === 0 && direction < 0)) {
       this.threshold = this.threshold + normalizeDeltaY;
     }
@@ -246,7 +247,9 @@ export class MainLayoutProviderComponent extends Component {
     this.checkNavbarIntoContent();
     const isPortfolioPage = currentRoute && currentRoute.id === "portfolio";
 
-    if (isPortfolioPage) {
+    if (is404Page) {
+      navigate("/");
+    } else if (isPortfolioPage) {
       this.onNavigateTo(direction);
     } else {
       this.onNavigateToDebounced(direction);
@@ -395,14 +398,17 @@ export class MainLayoutProviderComponent extends Component {
 
   onSwiping = ({ isUp, isDown, yRatio }) => {
     const { damping, sections, selectedSectionIndex, currentRoute, scrollTop, limitY } = this.state;
-
+    const { location, navigate } = this.props;
+    const is404Page = location.pathname.indexOf("404") === 1;
     const sectionsLength = (currentRoute && currentRoute.maxItemCount) || sections.length;
     const scrollable = currentRoute && currentRoute.scrollable;
 
     const isEdge = scrollTop === 0 || limitY === scrollTop;
 
     if (isUp && yRatio > 25 && !this.disableSwipeNavigation) {
-      if (selectedSectionIndex < sectionsLength - 1 && !scrollable) {
+      if (is404Page) {
+        navigate("/");
+      } else if (selectedSectionIndex < sectionsLength - 1 && !scrollable) {
         this.setState({
           sectionDirection: 1,
           selectedSectionIndex: selectedSectionIndex + 1,
@@ -417,7 +423,9 @@ export class MainLayoutProviderComponent extends Component {
       }
       this.disableSwipeNavigation = true;
     } else if (isDown && yRatio > 25 && !this.disableSwipeNavigation) {
-      if (selectedSectionIndex > 0 && !scrollable) {
+      if (is404Page) {
+        navigate("/");
+      } else if (selectedSectionIndex > 0 && !scrollable) {
         this.setState({
           sectionDirection: -1,
           selectedSectionIndex: selectedSectionIndex - 1,

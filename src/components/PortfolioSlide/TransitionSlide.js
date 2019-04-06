@@ -104,7 +104,7 @@ export class TransitionSlide extends Component {
         <SliderBackground
           hovered={hovered}
           style={{
-            background: !nextSlide ? "rgba(255, 255, 255, 0)" : projectBackgroundColor,
+            background: projectBackgroundColor,
           }}
         />
         <Screenshoots
