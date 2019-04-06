@@ -6,6 +6,12 @@ export const Main404 = styled(Main)`
   display: flex;
   align-items: center;
   justify-content: center;
+  @media (max-width: 812px) and (orientation: landscape),
+    (max-width: 767px) and (orientation: portrait) {
+    padding: 0 1.4444rem;
+    height: calc(100vh - 4rem);
+    height: calc(var(--vh, 1vh) * 100 - 4rem);
+  }
 `;
 
 export const Article = styled("article")`
