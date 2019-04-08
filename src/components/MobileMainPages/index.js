@@ -6,6 +6,7 @@ import { Section } from "../../components/MobileMainPages/Section";
 import { routes } from "../../routes";
 import { Main, Background } from "../../styles/mobile";
 import { getPixelRatioPropName } from "../../utils/utils";
+import { animate, ease } from "../../utils/animate";
 
 class MobileMainPage extends Component {
   state = {
@@ -54,24 +55,6 @@ class MobileMainPage extends Component {
     }
   };
 
-  animate({ duration = 144, timing, draw }) {
-    const self = this;
-    const start = performance.now();
-    requestAnimationFrame(function animate(time) {
-      let timeFraction = (time - start) / duration;
-      if (timeFraction > 1) timeFraction = 1;
-      const progress = timing(timeFraction);
-      draw(progress, self);
-      if (timeFraction < 1) {
-        requestAnimationFrame(animate);
-      }
-    });
-  }
-
-  ease(t) {
-    return t * t;
-  }
-
   scrollTo = id => {
     const { navigate, location } = this.props;
     const section = this.sectionsRef.find(section => section.id === id);
@@ -81,9 +64,9 @@ class MobileMainPage extends Component {
       const scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
       const { top } = section.node.getBoundingClientRect();
 
-      this.animate({
+      animate({
         duration: 400,
-        timing: this.ease,
+        timing: ease,
         draw: progress => {
           const y =
             scrollTop <= top
