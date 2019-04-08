@@ -88,7 +88,7 @@ export class MobileNavbar extends PureComponent {
       <NavbarContainer mobileMenuIsOpen={mobileMenuIsOpen} fixed={fixed}>
         <Nav className={common.container} mobileMenuIsOpen={mobileMenuIsOpen}>
           <LeftSide>
-            <Logo as="img" src={logo} alt="logo" />
+            <Logo as="img" src={logo} alt="logo" onClick={() => scrollTo("index")} />
             <LanguageSwitch>
               <LanguageLink isActive>ru</LanguageLink>
               <LanguageLink>en</LanguageLink>

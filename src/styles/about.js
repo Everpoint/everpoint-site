@@ -18,7 +18,6 @@ export const LeftSide = styled(Side)`
   align-items: center;
   flex-grow: 1;
   flex-shrink: 0;
-  z-index: 1;
   @media (max-width: 812px) and (orientation: landscape) {
     display: flex;
     justify-content: center;
@@ -32,7 +31,9 @@ export const LeftSide = styled(Side)`
 `;
 
 export const Content = styled("div")`
+  position: relative;
   flex-shrink: 0;
+  z-index: 4;
 `;
 
 export const RightSide = styled(Side)`

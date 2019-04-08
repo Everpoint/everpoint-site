@@ -35,7 +35,6 @@ export class JobsCard extends Component {
     sections: PropTypes.arrayOf(PropTypes.object),
     selectedSectionIndex: PropTypes.number,
     onSectionChange: PropTypes.func,
-    isSwipeEvent: PropTypes.bool,
     sectionDirection: PropTypes.number,
     lastSectionIndex: PropTypes.number,
   };
@@ -86,7 +85,6 @@ export class JobsCard extends Component {
     const {
       selectedSectionIndex,
       sections,
-      isSwipeEvent,
       sectionDirection,
       lastSectionIndex,
     } = this.props;
@@ -95,7 +93,7 @@ export class JobsCard extends Component {
     if (prevSelectedSectionIndex !== selectedSectionIndex) {
       const section = sections[lastSectionIndex || selectedSectionIndex];
 
-      if (section && !isSwipeEvent) {
+      if (section) {
         const index = items.findIndex(({ parentId }) => parentId === section.id);
         this.setState({
           direction: sectionDirection,
@@ -124,7 +122,7 @@ export class JobsCard extends Component {
           },
           () => {
             if (sectionIsChange) {
-              onSectionChange({ value: 1, isSwipeEvent: true });
+              onSectionChange({ value: 1 });
             }
           },
         );
@@ -141,7 +139,7 @@ export class JobsCard extends Component {
           },
           () => {
             if (sectionIsChange) {
-              onSectionChange({ value: -1, isSwipeEvent: true });
+              onSectionChange({ value: -1 });
             }
           },
         );
@@ -161,7 +159,7 @@ export class JobsCard extends Component {
 
   render() {
     const { items, selectedItemsIndex, direction } = this.state;
-    const { sections, selectedSectionIndex, isSwipeEvent, lastSectionIndex } = this.props;
+    const { sections, selectedSectionIndex, lastSectionIndex } = this.props;
     const section = sections[selectedSectionIndex];
     const item = items[selectedItemsIndex];
 
@@ -171,7 +169,6 @@ export class JobsCard extends Component {
           direction={direction}
           card={item}
           section={section}
-          isSwipeEvent={isSwipeEvent}
         />
         <BackendComponent
           sections={items}

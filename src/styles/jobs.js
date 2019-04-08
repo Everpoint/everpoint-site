@@ -26,6 +26,9 @@ export const BackgroundWrapper = styled("div")`
 
 export const WillChange = styled("div")`
   will-change: transform;
+  @media (max-width: 991px) {
+    flex-shrink: 0;
+  }
 `;
 
 export const LeftSide = styled(Side)`
@@ -61,10 +64,7 @@ export const RightSide = styled(Side)`
     margin: 0 auto;
   }
   @media (max-width: 991px) {
-    max-width: 20rem;
-    width: 100%;
-    max-height: 22.4444rem;
-    height: 100%;
+    height: 17rem;
   }
   @media (max-width: 812px) and (orientation: landscape),
     (max-width: 767px) and (orientation: portrait) {
@@ -81,10 +81,6 @@ export const RightSideContent = styled("div")`
   display: flex;
   flex-direction: column;
   align-items: flex-end;
-  @media (max-width: 991px) {
-    width: 100%;
-    height: 100%;
-  }
 `;
 
 const styles = css`

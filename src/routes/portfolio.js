@@ -43,17 +43,17 @@ export default {
   text: "Продукты и Решения",
   route: "/portfolio",
   sections: [
-    {
-      groupName: "Продукты",
-      text: "EverGIS",
-      id: "evergis",
-      projectBackgroundColor: "#f8a717",
-      screenshots: {
-        x1: mspX1,
-        x2: mspX2,
-        x3: mspX3,
-      },
-    },
+    // {
+    //   groupName: "Продукты",
+    //   text: "EverGIS",
+    //   id: "evergis",
+    //   projectBackgroundColor: "#f8a717",
+    //   screenshots: {
+    //     x1: mspX1,
+    //     x2: mspX2,
+    //     x3: mspX3,
+    //   },
+    // },
     {
       groupName: "Продукты",
       text: "EverGIS Online",

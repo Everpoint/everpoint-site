@@ -4,13 +4,7 @@ export const HowWeAreWorkingContainer = styled("div")`
   display: flex;
   flex-direction: column;
   @media (max-width: 991px) {
-    will-change: opacity, transform;
-    padding: 1.7142rem;
-    width: 100%;
-    height: 100%;
-    border-radius: 0.1428rem;
-    box-shadow: 0 0.8571rem 0.8571rem 0 rgba(10, 18, 33, 0.1);
-    background-color: #fff;
+    padding: 0.4rem 1.7142rem 0 1.7142rem;
   }
   @media (max-width: 812px) and (orientation: landscape),
     (max-width: 767px) and (orientation: portrait) {
@@ -23,12 +17,6 @@ export const HowWeAreWorkingContainer = styled("div")`
 export const Title = styled("h4")`
   font-size: 1.2857rem;
   font-weight: 600;
-  @media (max-width: 991px) {
-    font-size: 1.1428rem;
-    &:nth-child(4) {
-      display: none;
-    }
-  }
   @media (max-width: 812px) and (orientation: landscape),
     (max-width: 767px) and (orientation: portrait) {
     margin-bottom: 1rem;
@@ -40,11 +28,8 @@ export const Paragraph = styled("p")`
   font-size: 1.1428rem;
   line-height: normal;
   @media (max-width: 991px) {
-    font-size: 0.7142rem;
+    font-size: 1rem;
     margin-bottom: 0.8rem;
-    ~ br {
-      display: none;
-    }
   }
   @media (max-width: 812px) and (orientation: landscape),
     (max-width: 767px) and (orientation: portrait) {

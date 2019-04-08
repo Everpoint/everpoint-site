@@ -3,8 +3,6 @@ import PropTypes from "prop-types";
 
 import { Background } from "../../components/MainPageElements/Background";
 import { GoNextLink } from "../../components/GoNextLink/GoNextLink";
-import { BackendComponent } from "../../components/Backend/Backend";
-import { PaginationSimple } from "../../components/Pagination/Simple/PaginationSimple";
 import { NewsCard } from "../../components/NewsCard/NewsCard";
 import { H2 } from "../../components/Atoms/Atoms";
 import { MainLayoutConsumer } from "../../components/MainLayoutProvider/MainLayoutProvider";
@@ -27,14 +25,6 @@ export class AboutBase extends Component {
     this.setState({ isMobile: isMobile() });
   }
 
-  onPageChange = (page, prevPage, onSectionChange) => {
-    if (page > prevPage) {
-      onSectionChange({ value: 1, isSwipeEvent: true });
-    } else {
-      onSectionChange({ value: -1, isSwipeEvent: true });
-    }
-  };
-
   render() {
     const { location, news, titles } = this.props;
 
@@ -43,15 +33,12 @@ export class AboutBase extends Component {
       selectedSectionIndex,
       onSectionChange,
       sectionDirection,
-      isSwipeEvent,
       transitionEnd,
       currentRoute,
-      lastSectionIndex,
       disableBackgroundTransition,
     } = this.props;
     const { isMobile } = this.state;
 
-    const sections = news;
     const section = news[selectedSectionIndex];
 
     return (
@@ -80,20 +67,10 @@ export class AboutBase extends Component {
         </LeftSide>
         <NewsContainer>
           <RightSide className={animation(status)}>
-            <BackendComponent
-              sections={sections}
-              selectedSectionIndex={lastSectionIndex || selectedSectionIndex}
-            />
             <NewsCard
-              isSwipeEvent={isSwipeEvent}
               onSectionChange={onSectionChange}
               direction={sectionDirection}
               {...section}
-            />
-            <PaginationSimple
-              pageCount={sections.length}
-              currentPage={(lastSectionIndex || selectedSectionIndex) + 1}
-              onPageChange={page => this.onPageChange(page, selectedSectionIndex, onSectionChange)}
             />
           </RightSide>
         </NewsContainer>

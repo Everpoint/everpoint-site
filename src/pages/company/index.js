@@ -17,11 +17,14 @@ import styles, { CompanyContainer, Footer, ChatRow } from "../../styles/company"
 
 class Company extends PureComponent {
   render() {
+    const { isMobileOrTablet } = this.props;
+
     return (
       <CompanyContainer>
         <CompanyPhoto
           title="Everpoint - это мы!"
           // add designer photo
+          isMobileOrTablet={isMobileOrTablet}
           items={employees
             .filter(({ id }) => id !== "8")
             .map(({ portret, id }) => ({ avatar: portret[getPixelRatioPropName()], id }))}

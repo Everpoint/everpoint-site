@@ -6,6 +6,12 @@ export const Main404 = styled(Main)`
   display: flex;
   align-items: center;
   justify-content: center;
+  @media (max-width: 812px) and (orientation: landscape),
+    (max-width: 767px) and (orientation: portrait) {
+    padding: 0 1.4444rem;
+    height: calc(100vh - 4rem);
+    height: calc(var(--vh, 1vh) * 100 - 4rem);
+  }
 `;
 
 export const Article = styled("article")`
@@ -31,7 +37,84 @@ export const Description = styled("p")`
 
 const styles = css`
   .svg404 {
+    fill: transparent;
     max-width: 100%;
+    path {
+      stroke: rgba(0, 0, 0, 0.1);
+      stroke-width: 4px;
+    }
+  }
+  .down {
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    position: absolute;
+  }
+  .up {
+    path {
+      stroke: #90c53d;
+      animation-duration: 1s;
+      animation-timing-function: ease-out;
+      animation-iteration-count: 1;
+      &:nth-of-type(1) {
+        animation-name: fourOuter;
+      }
+      &:nth-of-type(2) {
+        animation-name: zeroOuter;
+      }
+      &:nth-of-type(3) {
+        animation-name: fourOuter;
+      }
+      &:nth-of-type(4) {
+        animation-name: fourInner;
+      }
+      &:nth-of-type(5) {
+        animation-name: zeroInner;
+      }
+      &:nth-of-type(6) {
+        animation-name: fourInner;
+      }
+      @keyframes fourOuter {
+        from {
+          stroke-dasharray: 571.817px, 571.817px;
+          stroke-dashoffset: 571.817px;
+        }
+        to {
+          stroke-dasharray: 571.817px, 571.817px;
+          stroke-dashoffset: 0;
+        }
+      }
+      @keyframes zeroOuter {
+        from {
+          stroke-dasharray: 504.764px, 504.764px;
+          stroke-dashoffset: 504.764px;
+        }
+        to {
+          stroke-dasharray: 504.764px, 504.764px;
+          stroke-dashoffset: 0;
+        }
+      }
+      @keyframes fourInner {
+        from {
+          stroke-dasharray: 194.654px, 194.654px;
+          stroke-dashoffset: 194.654px;
+        }
+        to {
+          stroke-dasharray: 194.654px, 194.654px;
+          stroke-dashoffset: 0;
+        }
+      }
+      @keyframes zeroInner {
+        from {
+          stroke-dasharray: 292.74px, 292.74px;
+          stroke-dashoffset: 292.74px;
+        }
+        to {
+          stroke-dasharray: 292.74px, 292.74px;
+          stroke-dashoffset: 0;
+        }
+      }
+    }
   }
 `;
 

@@ -15,8 +15,7 @@ export const TeamMemberCardContainer = styled(Blank)`
     padding: 2.1428rem;
   }
   @media (max-width: 991px) {
-    width: 100%;
-    height: 100%;
+    width: calc(50% - 1.4444rem / 2);
   }
   @media (max-width: 812px) and (orientation: landscape) {
     display: flex;

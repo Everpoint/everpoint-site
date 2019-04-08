@@ -17,7 +17,7 @@ export const TeamMembersContainer = styled("div")`
     width: calc(20rem * 2 + 2.1428rem);
   }
   @media (max-width: 991px) {
-    display: none;
+    width: 100%;
   }
   &.isVisible {
     pointer-events: auto;
@@ -26,6 +26,9 @@ export const TeamMembersContainer = styled("div")`
   > article {
     &:first-child {
       margin-right: 2.1428rem;
+      @media (max-width: 991px) {
+        margin-right: 1.4444rem;
+      }
     }
   }
   &.oneItem {
@@ -63,13 +66,6 @@ export const PhotoContainer = styled("div")`
   @media (max-width: 1199px) {
     width: calc(50% - 2.1428rem / 2);
     max-width: none;
-  }
-  @media (max-width: 991px) {
-    will-change: opacity, transform;
-    width: 100%;
-    height: 100%;
-    border-radius: 0.1428rem;
-    box-shadow: 0 0.8571rem 0.8571rem 0 rgba(10, 18, 33, 0.1);
   }
 `;
 

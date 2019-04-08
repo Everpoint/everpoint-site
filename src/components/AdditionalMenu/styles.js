@@ -32,9 +32,6 @@ export const Menu = styled("menu")`
         @media (max-width: 1199px) {
           font-size: 1.1428rem;
         }
-        @media (max-width: 991px) {
-          font-size: 1rem;
-        }
         @media (max-width: 812px) and (orientation: landscape) {
           font-size: 0.8571rem;
         }
@@ -44,9 +41,6 @@ export const Menu = styled("menu")`
           margin: 0.64rem 0 0 1rem;
           font-size: 1rem;
         }
-      }
-      @media (max-width: 940px) {
-        margin-bottom: 0.6rem;
       }
       &:last-child {
         margin-bottom: 0;

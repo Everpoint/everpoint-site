@@ -54,8 +54,6 @@ export class MainLayoutProviderComponent extends Component {
       thresholdIsActive: false,
 
       // sections
-      isSwipeEvent: null,
-      isClickEvent: null,
       selectedSectionIndex: selectedSectionIndexFromStorage,
       sections: (currentRoute && currentRoute.sections) || [],
       sectionDirection: 1,
@@ -112,27 +110,10 @@ export class MainLayoutProviderComponent extends Component {
   };
 
   onResize = () => {
-    const { currentRoute, selectedSectionIndex } = this.state;
     const { width } = this.getSize();
 
     if (width > mobileMenuWidth) {
       this.setState({ mobileMenuIsOpen: false });
-    }
-
-    if (currentRoute && currentRoute.scrollable) {
-      if (this.scrollbar && width <= mobileMenuWidth) {
-        this.setState(
-          {
-            scrollTop: 0,
-            coloredNav: false,
-          },
-          () => {
-            this.scrollbar.scrollTo(0, 0, 0);
-          },
-        );
-      } else {
-        this.scrollToBlock(selectedSectionIndex, true);
-      }
     }
   };
 
@@ -143,8 +124,6 @@ export class MainLayoutProviderComponent extends Component {
     this.setState({
       currentRoute: currentRoute || "404",
       coloredNav: false,
-      isSwipeEvent: false,
-      isClickEvent: false,
       sections: (currentRoute && currentRoute.sections) || [],
     });
   };
@@ -183,9 +162,8 @@ export class MainLayoutProviderComponent extends Component {
 
     const { sections, maxItemCount } = currentRoute;
 
-    const { isClickEvent } = this.state;
     const sectionsLength = maxItemCount || (sections && sections.length) || 1;
-    const indexFromDirection = direction < 0 && !isClickEvent ? sectionsLength - 1 : 0;
+    const indexFromDirection = direction < 0 ? sectionsLength - 1 : 0;
 
     return indexFromDirection;
   };
@@ -217,16 +195,10 @@ export class MainLayoutProviderComponent extends Component {
   };
 
   onScroll = e => {
-    const { width } = this.getSize();
-
-    const { disableHover, scrollTop, currentRoute } = this.state;
+    const { disableHover, scrollTop } = this.state;
     const { offset, limit } = e;
     const { y: offsetY } = offset;
     const { y: limitY } = limit;
-
-    if (width <= mobileMenuWidth && currentRoute && currentRoute.scrollable) {
-      return;
-    }
 
     clearTimeout(this.timer);
 
@@ -253,7 +225,6 @@ export class MainLayoutProviderComponent extends Component {
 
         this.checkBlockIsCenter(direction);
         this.checkNavbarIntoContent();
-
         if (offsetY >= limitY || offsetY === 0) {
           this.threshold = 0;
         }
@@ -263,19 +234,22 @@ export class MainLayoutProviderComponent extends Component {
 
   onWheel = e => {
     const { thresholdIsActive, scrollTop, currentRoute } = this.state;
+    const { location, navigate } = this.props;
     const direction = e.deltaY > 0 ? 1 : -1;
     const normalizeDeltaY = direction > 0 ? 53 : -53;
-
+    const is404Page = location.pathname.indexOf("404") === 1;
     if (thresholdIsActive || (scrollTop === 0 && direction < 0)) {
       this.threshold = this.threshold + normalizeDeltaY;
     }
 
-    this.setState({ direction, isSwipeEvent: false, damping: this.defaultDamping });
+    this.setState({ direction, damping: this.defaultDamping });
 
     this.checkNavbarIntoContent();
     const isPortfolioPage = currentRoute && currentRoute.id === "portfolio";
 
-    if (isPortfolioPage) {
+    if (is404Page) {
+      navigate("/");
+    } else if (isPortfolioPage) {
       this.onNavigateTo(direction);
     } else {
       this.onNavigateToDebounced(direction);
@@ -292,7 +266,7 @@ export class MainLayoutProviderComponent extends Component {
     });
   };
 
-  onNavLinkClick = ({ id, event, navigate, selectedSectionIndex, isClickEvent, transitionEnd }) => {
+  onNavLinkClick = ({ id, event, navigate, selectedSectionIndex, transitionEnd }) => {
     const { currentRoute } = this.state;
 
     const prevIndex = routes.findIndex(route => route.id === currentRoute && currentRoute.id);
@@ -318,7 +292,6 @@ export class MainLayoutProviderComponent extends Component {
       {
         selectedSectionIndex: selectedSectionIndex || selectedSectionIndexFromIndex,
         direction,
-        isClickEvent,
         mobileMenuIsOpen: false,
         disableBackgroundTransition,
         transitionEnd,
@@ -378,15 +351,7 @@ export class MainLayoutProviderComponent extends Component {
     }
   };
 
-  onSectionChange = ({
-    value,
-    id,
-    pageId,
-    isSwipeEvent = false,
-    isClickEvent = false,
-    index = null,
-  }) => {
-    const { width } = this.getSize();
+  onSectionChange = ({ value, id, pageId, index = null, scrollToBlock = false }) => {
     const { navigate } = this.props;
     const { selectedSectionIndex, sections, currentRoute } = this.state;
 
@@ -405,7 +370,6 @@ export class MainLayoutProviderComponent extends Component {
       const index = sections.findIndex(item => item.id === id);
 
       this.onNavLinkClick({
-        isClickEvent,
         selectedSectionIndex: index,
         id: pageId,
         navigate,
@@ -416,13 +380,11 @@ export class MainLayoutProviderComponent extends Component {
 
       const sectionDirection = selectedSectionIndex > nextValue ? -1 : 1;
 
-      if (currentRoute.scrollable && isClickEvent && width >= mobileMenuWidth) {
+      if (currentRoute.scrollable && scrollToBlock) {
         this.scrollToBlock(nextValue);
       }
 
       this.setState({
-        isSwipeEvent,
-        isClickEvent,
         sectionDirection,
         selectedSectionIndex: nextValue,
         disableBackgroundTransition: false,
@@ -435,13 +397,47 @@ export class MainLayoutProviderComponent extends Component {
   };
 
   onSwiping = ({ isUp, isDown, yRatio }) => {
-    const { damping } = this.state;
+    const { damping, sections, selectedSectionIndex, currentRoute, scrollTop, limitY } = this.state;
+    const { location, navigate } = this.props;
+    const is404Page = location.pathname.indexOf("404") === 1;
+    const sectionsLength = (currentRoute && currentRoute.maxItemCount) || sections.length;
+    const scrollable = currentRoute && currentRoute.scrollable;
+
+    const isEdge = scrollTop === 0 || limitY === scrollTop;
 
     if (isUp && yRatio > 25 && !this.disableSwipeNavigation) {
-      this.onNavigateTo(1, true);
+      if (is404Page) {
+        navigate("/");
+      } else if (selectedSectionIndex < sectionsLength - 1 && !scrollable) {
+        this.setState({
+          sectionDirection: 1,
+          selectedSectionIndex: selectedSectionIndex + 1,
+          disableBackgroundTransition: false,
+        });
+      } else if (scrollable) {
+        if (isEdge) {
+          this.onNavigateTo(1, true);
+        }
+      } else {
+        this.onNavigateTo(1, true);
+      }
       this.disableSwipeNavigation = true;
     } else if (isDown && yRatio > 25 && !this.disableSwipeNavigation) {
-      this.onNavigateTo(-1, true);
+      if (is404Page) {
+        navigate("/");
+      } else if (selectedSectionIndex > 0 && !scrollable) {
+        this.setState({
+          sectionDirection: -1,
+          selectedSectionIndex: selectedSectionIndex - 1,
+          disableBackgroundTransition: false,
+        });
+      } else if (scrollable) {
+        if (isEdge) {
+          this.onNavigateTo(-1, true);
+        }
+      } else {
+        this.onNavigateTo(-1, true);
+      }
       this.disableSwipeNavigation = true;
     }
 
@@ -547,7 +543,6 @@ export class MainLayoutProviderComponent extends Component {
       damping,
 
       // sections
-      isSwipeEvent,
       selectedSectionIndex,
       sections,
       sectionDirection,
@@ -576,7 +571,6 @@ export class MainLayoutProviderComponent extends Component {
           titles,
           scrollToBlock: this.scrollToBlock,
           onLeftSideSectionRef: this.onLeftSideSectionRef,
-          isSwipeEvent,
           onSectionChange: this.onSectionChange,
           selectedSectionIndex,
           sections,

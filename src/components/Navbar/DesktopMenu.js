@@ -92,7 +92,7 @@ export class DesktopMenu extends Component {
                 <AdditionalMenu
                   onSectionChange={({ id: sectionId }) => {
                     onCloseAdditionalMenu();
-                    onSectionChange({ pageId: id, id: sectionId, isClickEvent: true });
+                    onSectionChange({ pageId: id, id: sectionId, scrollToBlock: true });
                   }}
                   selectedId={selectedId}
                   fadeIn

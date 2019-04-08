@@ -18,45 +18,8 @@ export class LinkComponent extends Component {
     leftSide: PropTypes.bool,
   };
 
-  state = {
-    isMobile: false,
-  };
-
-  componentDidMount() {
-    this.onResize();
-
-    window.addEventListener("resize", this.onResize);
-  }
-
-  componentWillUnmount() {
-    window.removeEventListener("resize", this.onResize);
-  }
-
-  onResize = () => {
-    const vw = window.innerWidth;
-    this.setState({ isMobile: vw <= 991 });
-  };
-
-  shouldComponentUpdate({ selectedId: nextSelectedId }, { isMobile: nextIsMobile }) {
-    const { isMobile } = this.state;
-    const { selectedId, id } = this.props;
-
-    return (
-      (selectedId !== nextSelectedId && (nextSelectedId === id || selectedId === id)) ||
-      nextIsMobile !== isMobile
-    );
-  }
-
   render() {
-    const { isMobile } = this.state;
-    const {
-      text,
-      id,
-      selectedId,
-      onSectionChange,
-      isPortfolioPage,
-      leftSide,
-    } = this.props;
+    const { text, id, selectedId, onSectionChange, leftSide } = this.props;
 
     const isActive = selectedId === id;
 
@@ -64,9 +27,8 @@ export class LinkComponent extends Component {
       <Link
         onClick={() =>
           onSectionChange({
+            scrollToBlock: true,
             id,
-            isClickEvent: !isMobile,
-            isSwipeEvent: isMobile && isPortfolioPage,
           })
         }
         isActive={isActive}

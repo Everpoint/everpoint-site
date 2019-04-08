@@ -57,9 +57,8 @@ export class HeaderBase extends Component {
 
   onScrollDown = () => {
     const { scrollbar, nativeScrollbar } = this.props;
-
     const viewportHeight = Math.max(document.documentElement.clientHeight, window.innerHeight || 0);
-    const y = viewportHeight - getLongreadNavbarHeight();
+    const y = viewportHeight - getLongreadNavbarHeight() - window.pageYOffset;
 
     if (nativeScrollbar) {
       window.scrollBy({ top: y, behavior: "smooth" });

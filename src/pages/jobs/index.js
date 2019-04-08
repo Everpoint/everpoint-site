@@ -5,7 +5,6 @@ import { MainLayoutConsumer } from "../../components/MainLayoutProvider/MainLayo
 import { AdditionalMenu } from "../../components/AdditionalMenu/AdditionalMenu";
 import { ScrollableTeamMembers } from "../../components/ScrollableTeamMembers/ScrollableTeamMembers";
 import { getRouteByLocation } from "../../routes";
-import { JobsCard } from "../../components/JobsCard/JobsCard";
 import styles, {
   Main,
   BackgroundWrapper,
@@ -39,11 +38,8 @@ export class JobsBase extends Component {
       onLeftSideSectionRef,
       scrollToBlock,
       transitionEnd,
-      isSwipeEvent,
-      sectionDirection,
       scrollTop,
       status,
-      lastSectionIndex,
     } = this.props;
     const currentRoute = getRouteByLocation(location);
     const { sections } = currentRoute;
@@ -83,14 +79,6 @@ export class JobsBase extends Component {
               scrollToBlock={scrollToBlock}
               selectedId={selectedId}
               onSectionChange={onSectionChange}
-            />
-            <JobsCard
-              lastSectionIndex={lastSectionIndex}
-              isSwipeEvent={isSwipeEvent}
-              sections={sections}
-              selectedSectionIndex={selectedSectionIndex}
-              onSectionChange={onSectionChange}
-              sectionDirection={sectionDirection}
             />
           </RightSideContent>
         </RightSide>

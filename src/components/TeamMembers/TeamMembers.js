@@ -2,28 +2,14 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 
 import { NoVacancyCard } from "./NoVacancyCard";
-import noVacancy from "../../assets/img/vacancy/no-vacancy.svg";
 import { GoNextLink } from "../../components/GoNextLink/GoNextLink";
 import { TeamMemberCard } from "../../components/TeamMemberCard/TeamMemberCard";
 import { getVacancyAvatarByType } from "./getVacancyAvatarByType";
 import { TeamMembersContainer, PhotoContainer } from "./styles";
 import { HowWeAreWorking } from "../HowWeAreWorking/HowWeAreWorking";
 
-function getColumns({ items, id, onSectionChange }) {
+function getColumns({ items }) {
   const newArray = items.slice();
-
-  if (id === "employees") {
-    newArray.push({
-      avatar: noVacancy,
-      name: "Стать частью </br> команды",
-      id: "nobody",
-      control: (
-        <GoNextLink onClick={() => onSectionChange({ id: "vacancy", isClickEvent: true })}>
-          Наши вакансии
-        </GoNextLink>
-      ),
-    });
-  }
 
   const firstCol = [];
   const lastCol = [];
@@ -44,6 +30,8 @@ export class TeamMembers extends Component {
 
   state = {
     cardHeight: 320,
+    photoHeight: 225,
+    margin: 30,
   };
 
   componentDidMount() {
@@ -72,24 +60,24 @@ export class TeamMembers extends Component {
   onResize = () => {
     const viewportWidth = Math.max(document.documentElement.clientWidth, window.innerWidth || 0);
     if (viewportWidth <= 992) {
-      this.setState({ cardHeight: 297 });
+      this.setState({ cardHeight: 309, photoHeight: 164, margin: 30 });
     } else {
-      this.setState({ cardHeight: 320 });
+      this.setState({ cardHeight: 320, photoHeight: 225, margin: 20 });
     }
   };
 
   render() {
-    const { cardHeight } = this.state;
-    const { items, id, onSectionChange, selectedId } = this.props;
+    const { cardHeight, photoHeight, margin } = this.state;
+    const { items, id, selectedId } = this.props;
     const isVisible = id === selectedId;
 
     const isPhoto = id === "photo";
-    const data = getColumns({ items, id, onSectionChange });
-    const height = isPhoto ? 225 : cardHeight;
+    const data = getColumns({ items });
+    const height = isPhoto ? photoHeight : cardHeight;
     const top = height / 2;
-    const margin = 30;
     const half = Math.round(data.length / 2);
-    const containerHeight = height * half + margin * half + (data.length % 2 ? 0 : 160);
+    const containerHeight =
+      (height + margin) * (data.length / 2) + (data.length % 2 === 0 ? height / 2 : 0) + 14;
 
     const noVacancies = id === "vacancy" && items && items.length === 0;
 
