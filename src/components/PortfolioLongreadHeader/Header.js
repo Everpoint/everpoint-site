@@ -18,6 +18,7 @@ import styles, {
   Description,
 } from "./styles";
 import { ImagesDownloadListener } from "../ImagesDownloadListener/ImagesDownloadListener";
+import { animate, ease } from "../../utils/animate";
 
 export class HeaderBase extends Component {
   static propTypes = {
@@ -59,9 +60,17 @@ export class HeaderBase extends Component {
     const { scrollbar, nativeScrollbar } = this.props;
     const viewportHeight = Math.max(document.documentElement.clientHeight, window.innerHeight || 0);
     const y = viewportHeight - getLongreadNavbarHeight() - window.pageYOffset;
+    const scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+    const diff = viewportHeight - scrollTop - getLongreadNavbarHeight();
 
     if (nativeScrollbar) {
-      window.scrollBy({ top: y, behavior: "smooth" });
+      animate({
+        duration: 400,
+        timing: ease,
+        draw: progress => {
+          window.scrollTo(0, scrollTop + diff * progress);
+        },
+      });
     } else if (scrollbar) {
       scrollbar.scrollTo(0, y, 400);
     }
