@@ -125,20 +125,22 @@ class MobileMainPage extends Component {
           scrollTo={this.scrollTo}
           mobileMenuIsOpen={mobileMenuIsOpen}
         />
-        {is404Page
-          ? null
-          : sections.map(item => (
-              <Section
-                key={item.id}
-                titles={titles}
-                navigate={navigate}
-                onRef={(ref, id) => this.onSectionRef(ref, id || item.id)}
-                routes={routes}
-                news={news}
-                ratio={ratio}
-                {...item}
-              />
-            ))}
+        {is404Page ? (
+          <Page404 location={location} />
+        ) : (
+          sections.map(item => (
+            <Section
+              key={item.id}
+              titles={titles}
+              navigate={navigate}
+              onRef={(ref, id) => this.onSectionRef(ref, id || item.id)}
+              routes={routes}
+              news={news}
+              ratio={ratio}
+              {...item}
+            />
+          ))
+        )}
       </Main>
     );
   }

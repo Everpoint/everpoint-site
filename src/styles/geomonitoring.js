@@ -77,9 +77,9 @@ export const Footer = styled("footer")`
 
 const styles = css`
   .headerRightSide {
-    @media (max-width: 767px) and (orientation: portrait) and (max-height: 524px) {
+    @media (max-width: 767px) and (orientation: portrait) {
       flex-shrink: 1;
-      flex-grow: 1;
+      flex-grow: 0;
     }
   }
   .headerLeftSide {
@@ -88,6 +88,11 @@ const styles = css`
     p {
       display: block;
       margin-bottom: 0;
+    }
+    @media (max-width: 767px) and (orientation: portrait) {
+      position: absolute;
+      bottom: 0;
+      left: 0;
     }
     @media (max-width: 767px) and (orientation: portrait) and (max-height: 524px) {
       p {

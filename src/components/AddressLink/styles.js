@@ -8,8 +8,8 @@ const styles = css`
     }
     @media (max-width: 812px) and (orientation: landscape),
       (max-width: 767px) and (orientation: portrait) {
-      font-size: 0.85714rem;
-      margin-bottom: 0.6rem;
+      font-size: 1rem;
+      margin-bottom: 1rem;
     }
   }
 `;
