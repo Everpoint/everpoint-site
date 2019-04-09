@@ -2,7 +2,6 @@ import React, { Component } from "react";
 
 import { getRouteById } from "../../../routes";
 import { PaddingBlock, Title } from "../styles";
-import { HowWeAreWorking } from "../../HowWeAreWorking/HowWeAreWorking";
 import { TeamMemberCard } from "../../../components/TeamMemberCard/TeamMemberCard";
 import { getVacancyAvatarByType } from "../../TeamMembers/getVacancyAvatarByType";
 import { NoVacancyCard } from "../../../components/TeamMembers/NoVacancyCard";
@@ -11,27 +10,28 @@ import styles, {
   VacancySection,
   Tab,
   TabItem,
-  EmployeesContainer,
+  PhotoContainer,
   VacanciesContainer,
   Row,
-  Employee,
+  Photo,
   Padding,
 } from "./styles";
 import { GoNextLink } from "../../GoNextLink/GoNextLink";
 
 export class Jobs extends Component {
   state = {
-    isEmployees: true,
+    photoId: "employees",
     photoRows: [],
   };
 
   componentDidMount() {
-    this.setRow();
+    const { photoId } = this.state;
+    this.setRow(photoId);
   }
 
-  setRow = () => {
+  setRow = id => {
     const { sections } = getRouteById("jobs");
-    const { items } = sections.find(section => section.id === "employees");
+    const { items } = sections.find(section => section.id === id);
 
     const photoRows = [[], []];
 
@@ -42,8 +42,16 @@ export class Jobs extends Component {
     this.setState({ photoRows });
   };
 
+  componentDidUpdate(prevProps, { photoId: prevPhotoId }) {
+    const { photoId } = this.state;
+
+    if (prevPhotoId !== photoId) {
+      this.setRow(photoId);
+    }
+  }
+
   render() {
-    const { isEmployees, photoRows } = this.state;
+    const { photoId, photoRows } = this.state;
     const { onRef } = this.props;
     const { sections } = getRouteById("jobs");
     const { text, items: vacancies, groupName, id: vacancyId } = sections.find(
@@ -55,27 +63,34 @@ export class Jobs extends Component {
         <TeamSection ref={ref => onRef(ref, "employees")}>
           <Title>{groupName}</Title>
           <Tab>
-            <TabItem isActive={isEmployees} onClick={() => this.setState({ isEmployees: true })}>
+            <TabItem
+              isActive={photoId === "employees"}
+              onClick={() => this.setState({ photoId: "employees" })}
+            >
               Cотрудники
             </TabItem>
-            <TabItem isActive={!isEmployees} onClick={() => this.setState({ isEmployees: false })}>
+            <TabItem
+              isActive={photoId === "photo"}
+              onClick={() => this.setState({ photoId: "photo" })}
+            >
               Рабочий процесс
             </TabItem>
           </Tab>
-          {isEmployees ? (
-            <EmployeesContainer>
-              {photoRows.map((row, index, array) => (
-                <Row key={`employees-row-${index}`}>
-                  {row.map(({ id, avatar }) => (
-                    <Employee key={id} style={{ backgroundImage: `url(${avatar})` }} />
-                  ))}
-                  {array.length - 1 === index && <Padding as="div" />}
-                </Row>
-              ))}
-            </EmployeesContainer>
-          ) : (
-            <HowWeAreWorking />
-          )}
+          <PhotoContainer>
+            {photoRows.map((row, index, array) => (
+              <Row key={`employees-row-${index}`}>
+                {row.map(item => (
+                  <Photo
+                    key={item.id}
+                    style={{
+                      backgroundImage: `url(${photoId === "employees" ? item.avatar : item})`,
+                    }}
+                  />
+                ))}
+                {array.length - 1 === index && <Padding as="div" />}
+              </Row>
+            ))}
+          </PhotoContainer>
         </TeamSection>
         <VacancySection ref={ref => onRef(ref, vacancyId)}>
           <Title>{text}</Title>
