@@ -157,7 +157,7 @@ const styles = css`
     }
   }
   .headerLeftSide {
-    @media (max-height: 600px) and (max-width: 767px) {
+    @media (max-height: 600px) and (max-width: 767px) and (orientation: portrait) {
       p {
         display: none;
       }

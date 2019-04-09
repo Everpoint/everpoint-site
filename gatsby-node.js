@@ -12,6 +12,7 @@ const longreadPages = [
   "geomonitoring",
   "evertrack",
   "evergisOnline",
+  "vacancy",
 ];
 
 exports.onCreatePage = ({ page }) => {

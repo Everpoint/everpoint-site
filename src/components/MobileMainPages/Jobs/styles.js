@@ -52,6 +52,7 @@ export const Padding = styled(PaddingBlock)`
 `;
 
 export const Employee = styled("div")`
+  background-color: rgb(56, 58, 61);
   flex-shrink: 0;
   width: 11.4285rem;
   height: 11.4285rem;

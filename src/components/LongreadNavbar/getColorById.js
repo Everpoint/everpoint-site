@@ -21,6 +21,6 @@ export const getColorById = (id, fixed) => {
         ? cn(color.defaultLight, color.defaultFixed, color.mobileMspFixed)
         : color.defaultLight;
     default:
-      return fixed ? cn(color.defaultLight, color.defaultFixed) : color.defaultLight;
+      return fixed ? cn(color.defaultDark, color.defaultFixed) : color.defaultDark;
   }
 };
