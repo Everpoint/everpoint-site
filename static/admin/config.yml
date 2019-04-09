@@ -1,5 +1,5 @@
 backend:
-  name: github
+  name: test-repo
   repo: Everpoint/everpoint-site
   branch: master
 
@@ -42,14 +42,48 @@ collections:
           - {label: "Телефон", name: "phone", widget: "string"}
           - {label: "Email", name: "email", widget: "string"}
   - name: "vacancy"
-      label: "Вакансии"
-      widget: "string"
-      folder: "src/data/vacancy"
-      slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
-      create: true
-      fields:
-        - {label: "Template Key", name: "templateKey", widget: "hidden", default: "vacancy"}
-        - {label: "Название вакансии", name: "vacancyName", widget: "string"}
-        - {label: "Аватар", name: "avatar", widget: image}
-        - {label: "Формат работы", name: "workFormat", widget: "string"}
-        - {label: "Занятость", name: "employment", widget: "string"}
+    label: "Вакансии"
+    widget: "string"
+    folder: "src/data/vacancy"
+    identifier_field: vacancyName
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    create: true
+    fields:
+      - {label: "Template Key", name: "templateKey", widget: "hidden", default: "vacancy"}
+      - {label: "Название вакансии", name: "vacancyName", widget: "string"}
+      - {label: "Аватар", name: "avatar", widget: image}
+      - {label: "Формат работы", name: "workFormat", widget: "string"}
+      - {label: "Занятость", name: "employment", widget: "string"}
+      - {label: "Оклад", name: "salary", widget: "string", required: false}
+      - label: "Контакты"
+        name: "contacts"
+        widget: "object"
+        fields:
+          - {label: "ФИО", name: "fullName", widget: "string"}
+          - {label: "Telegram", name: "telegram", widget: "string", required: false}
+          - {label: "Email", name: "email", widget: "string"}
+      - {label: "Ключевые навыки", name: "skills", widget: "list", required: false}
+      - label: 'Блок "Что мы ждем от вас"'
+        name: "expectations"
+        widget: "object"
+        fields:
+          - {label: "Название блока", name: "expectationsTitle", widget: "string", default: "Что мы ждем от вас"}
+          - {label: 'Перечень требований', name: 'body', widget: 'markdown'}
+      - label: 'Блок с вложением"'
+        name: "expectations"
+        widget: "object"
+        required: false
+        fields:
+          - {label: "Пояснительный текст", name: "explanatoryText", widget: "string", default: "На данную вакансию требуется выполнить тестовое задание"}
+          - {label: 'Файл', name: 'file', widget: 'file'}
+      - label: 'Текстовый блок "Что предлагаем взамен"'
+        name: "sentence"
+        widget: "object"
+        fields:
+          - {label: "Название блока", name: "sentenceTitle", widget: "string", default: "Что предлагаем взамен"}
+          - {label: 'Перечень требований', name: 'body', widget: 'markdown'}
+      - label: "Последний блок"
+        name: "footerText"
+        widget: "markdown"
+        default: "Хотите у нас работать? <br /> Пишите в чат или по указанным в вакансии контактам!"
+
