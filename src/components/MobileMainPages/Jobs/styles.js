@@ -8,9 +8,10 @@ export const TeamSection = styled(Section)`
 
 export const VacancySection = styled(Section)``;
 
-export const EmployeesContainer = styled(XScrollContainer)`
+export const PhotoContainer = styled(XScrollContainer)`
   padding-left: 1rem;
   flex-direction: column;
+  min-height: 23.4285rem;
 `;
 
 export const VacanciesContainer = styled(XScrollContainer)`
@@ -51,7 +52,7 @@ export const Padding = styled(PaddingBlock)`
   width: 0.5rem;
 `;
 
-export const Employee = styled("div")`
+export const Photo = styled("div")`
   background-color: rgb(56, 58, 61);
   flex-shrink: 0;
   width: 11.4285rem;

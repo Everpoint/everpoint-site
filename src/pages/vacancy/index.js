@@ -2,13 +2,14 @@ import React from "react";
 
 import { ReactComponent as DocIcon } from "../../assets/img/icons/doc.svg";
 import { getVacancyAvatarByType } from "../../components/TeamMembers/getVacancyAvatarByType";
-import { BigH1, H2 } from "../../components/Typography/Headlines";
-import { Article } from "../../components/Elements/Article";
+import { H2 } from "../../components/Typography/Headlines";
 import { Field } from "../../components/Vacancy/Field/Field";
 import { TelegramButton } from "../../components/Buttons/TelegramButton";
 import { Conditions } from "../../components/Vacancy/Conditions/Conditions";
 import styles, {
   VacancyContainer,
+  VacancyTitle,
+  VacancyArticle,
   VacancyAvatar,
   SkillSection,
   Ul,
@@ -23,9 +24,9 @@ import styles, {
 export const Vacancy = React.memo(() => {
   return (
     <VacancyContainer>
-      <Article>
+      <VacancyArticle>
         <VacancyAvatar>{getVacancyAvatarByType("developer")}</VacancyAvatar>
-        <BigH1>Middle front-end разработчик на React</BigH1>
+        <VacancyTitle>Middle front-end разработчик на React</VacancyTitle>
         <Field name="Формат работы" value="Офис / Удалённая работа" />
         <Field name="Занятость" value="Полная" />
         <Field name="Оклад" value="100 000 - 120 000 руб." />
@@ -51,9 +52,9 @@ export const Vacancy = React.memo(() => {
             "Git",
           ]}
         />
-      </Article>
+      </VacancyArticle>
       <SkillSection>
-        <Article>
+        <VacancyArticle>
           <H2>Что мы ждем от вас</H2>
           <Ul>
             <li>
@@ -78,19 +79,19 @@ export const Vacancy = React.memo(() => {
               <DocIcon /> Тестовое задание.docx
             </DownloadTest>
           </Test>
-        </Article>
+        </VacancyArticle>
       </SkillSection>
       <ConditionsSection>
-        <Article>
+        <VacancyArticle>
           <H2>Что предлагаем взамен</H2>
           <Conditions />
-        </Article>
+        </VacancyArticle>
         <Footer>
-          <Article>
+          <VacancyArticle>
             <FooterTitle>
               Хотите у нас работать? <br /> Пишите в чат или по указанным в вакансии контактам!
             </FooterTitle>
-          </Article>
+          </VacancyArticle>
           <TelegramButton className={styles.telegramBtn} />
         </Footer>
       </ConditionsSection>

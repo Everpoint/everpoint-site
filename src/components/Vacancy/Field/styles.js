@@ -4,6 +4,10 @@ export const Row = styled("div")`
   font-size: 1.2857rem;
   display: flex;
   margin: 0 0 2.8571rem 0;
+  @media (max-width: 991px) {
+    font-size: 1.1428rem;
+    margin: 0 0 1.8571rem 0;
+  }
 `;
 
 export const ContactIcon = styled("div")`
@@ -56,4 +60,8 @@ export const Badge = styled("div")`
   color: #fff;
   border-radius: 1px;
   margin: 0 0.5rem 0.5rem 0;
+  @media (max-width: 991px) {
+    font-size: 0.8571rem;
+    padding: 0 0.6rem;
+  }
 `;
