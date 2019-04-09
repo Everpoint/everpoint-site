@@ -8,6 +8,14 @@ export const Row = styled("div")`
     font-size: 1.1428rem;
     margin: 0 0 1.8571rem 0;
   }
+  @media (max-width: 767px) and (orientation: portrait) {
+    flex-direction: column;
+  }
+  @media (max-width: 812px) and (orientation: landscape),
+    (max-width: 767px) and (orientation: portrait) {
+    font-size: 1rem;
+    margin: 0 0 1rem 0;
+  }
 `;
 
 export const ContactIcon = styled("div")`
@@ -24,6 +32,11 @@ export const Name = styled("div")`
   line-height: 1.33;
   width: calc(100% / 3);
   flex-shrink: 0;
+  @media (max-width: 767px) and (orientation: portrait) {
+    width: 100%;
+    padding: 0;
+    margin-bottom: 0.8rem;
+  }
 `;
 
 export const Value = styled("div")`
@@ -46,6 +59,13 @@ export const Contact = styled("a")`
   margin-bottom: 1.4rem;
   &.isField {
     font-size: 1.1428rem;
+    @media (max-width: 991px) {
+      font-size: 1rem;
+    }
+    @media (max-width: 812px) and (orientation: landscape),
+      (max-width: 767px) and (orientation: portrait) {
+      font-size: 0.8571rem;
+    }
   }
   &:last-child {
     margin-bottom: 0;
