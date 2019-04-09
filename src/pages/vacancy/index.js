@@ -1,5 +1,6 @@
 import React from "react";
 
+import developer from "../../assets/img/vacancy/developer.svg";
 import { ReactComponent as DocIcon } from "../../assets/img/icons/doc.svg";
 import { getVacancyAvatarByType } from "../../components/TeamMembers/getVacancyAvatarByType";
 import { H2 } from "../../components/Typography/Headlines";
@@ -25,8 +26,8 @@ import styles, {
 export const Vacancy = React.memo(() => {
   return (
     <VacancyContainer>
-      <VacancyArticle>
-        <VacancyAvatar>{getVacancyAvatarByType("developer")}</VacancyAvatar>
+      <VacancyArticle as="header" className={styles.header}>
+        <VacancyAvatar style={{ backgroundImage: `url(${developer})` }} />
         <VacancyTitle>Middle front-end разработчик на React</VacancyTitle>
         <Field name="Формат работы" value="Офис / Удалённая работа" />
         <Field name="Занятость" value="Полная" />
