@@ -17,6 +17,7 @@ import styles, {
   TestTitle,
   DownloadTest,
   ConditionsSection,
+  ConditionTitle,
   Footer,
   FooterTitle,
 } from "../../styles/vacancy";
@@ -83,7 +84,7 @@ export const Vacancy = React.memo(() => {
       </SkillSection>
       <ConditionsSection>
         <VacancyArticle>
-          <H2>Что предлагаем взамен</H2>
+          <ConditionTitle>Что предлагаем взамен</ConditionTitle>
           <Conditions />
         </VacancyArticle>
         <Footer>

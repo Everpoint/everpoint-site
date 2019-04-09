@@ -41,3 +41,15 @@ collections:
           - {label: "Адрес", name: "address", widget: "string"}
           - {label: "Телефон", name: "phone", widget: "string"}
           - {label: "Email", name: "email", widget: "string"}
+  - name: "vacancy"
+      label: "Вакансии"
+      widget: "string"
+      folder: "src/data/vacancy"
+      slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+      create: true
+      fields:
+        - {label: "Template Key", name: "templateKey", widget: "hidden", default: "vacancy"}
+        - {label: "Название вакансии", name: "vacancyName", widget: "string"}
+        - {label: "Аватар", name: "avatar", widget: image}
+        - {label: "Формат работы", name: "workFormat", widget: "string"}
+        - {label: "Занятость", name: "employment", widget: "string"}
