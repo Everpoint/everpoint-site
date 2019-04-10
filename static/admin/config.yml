@@ -79,7 +79,10 @@ collections:
         name: "sentence"
         widget: "object"
         fields:
-          - {label: "Название блока", name: "sentenceTitle", widget: "string", default: "Что предлагаем взамен"}
+          - label: "Название блока"
+            name: "sentenceTitle"
+            widget: "string"
+            default: "Что предлагаем взамен"
           - label: 'Перечень требований'
             name: 'sentence'
             widget: 'markdown'
