@@ -5819,7 +5819,7 @@ gatsby-plugin-layout@1.0.14:
   dependencies:
     "@babel/runtime" "^7.0.0"
 
-gatsby-plugin-netlify-cms@^3.0.17:
+gatsby-plugin-netlify-cms@^3.0.15:
   version "3.0.17"
   resolved "https://registry.yarnpkg.com/gatsby-plugin-netlify-cms/-/gatsby-plugin-netlify-cms-3.0.17.tgz#fd06a9cb061800a6519cd94b3647f6f058de5102"
   integrity sha512-M63gKFa9/ARvpl8Uh3GrT8FSkOhm6MoQBFUGCDb4ogUWMKHm98Ki4Re2XsV19Z87y5uaDuKxQfo5geZjwt7uyA==
@@ -5832,7 +5832,7 @@ gatsby-plugin-netlify-cms@^3.0.17:
     netlify-identity-widget "^1.4.11"
     webpack "^4.16.0"
 
-gatsby-plugin-netlify@^2.0.13:
+gatsby-plugin-netlify@^2.0.6:
   version "2.0.13"
   resolved "https://registry.yarnpkg.com/gatsby-plugin-netlify/-/gatsby-plugin-netlify-2.0.13.tgz#8cd3bfed759c514548338b1def8321a78c7d77f4"
   integrity sha512-jDTsCggApexizXphNDksAF3u4g3b5+O8K72R+6I1BdsFnLxY4BE2V2tSbEZZKUwkggVWQbNGmvQrCt2JVjRPyQ==
@@ -9420,7 +9420,7 @@ netlify-cms-widget-text@^2.2.1:
   dependencies:
     react-textarea-autosize "^7.1.0"
 
-netlify-cms@2.9.0:
+netlify-cms@^2.6.1:
   version "2.9.0"
   resolved "https://registry.yarnpkg.com/netlify-cms/-/netlify-cms-2.9.0.tgz#8a7a372223638bf5cf93ff44b1c93bc72e4d6c4d"
   integrity sha512-Q/+aAkXLTjjMlGGW5u9a6zPmJPdYje3W12dky3qRrvYU8MG2+2ZxI9aEGTlTUXCdEmwyvvQX1xcR3PXycSaTpQ==

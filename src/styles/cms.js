@@ -20,6 +20,13 @@ export const Row = styled("div")`
   padding: 4.4rem;
 `;
 
-const styles = css``;
+const styles = css`
+  .aboutBg {
+    background-image: url(../assets/img/main-slides/russia.svg);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+`;
 
 export default styles;

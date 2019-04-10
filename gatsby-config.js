@@ -6,27 +6,6 @@ module.exports = {
     "gatsby-plugin-react-helmet",
     "gatsby-plugin-postcss",
     "gatsby-plugin-sass",
-    "gatsby-plugin-layout",
-    {
-      resolve: "gatsby-plugin-svgr",
-      options: {
-        prettier: true, // use prettier to format JS code output (default)
-        svgo: true, // use svgo to optimize SVGs (default)
-        svgoConfig: {
-          removeViewBox: true, // remove viewBox even when doing so is possible (default)
-          cleanupIDs: true, // remove unused IDs and minify remaining IDs (default)
-        },
-      },
-    },
-    {
-      resolve: "gatsby-plugin-astroturf",
-      // defaults:
-      options: {
-        tagName: "css",
-        styledTag: "styled",
-        extension: ".module.scss",
-      },
-    },
     {
       resolve: `gatsby-source-filesystem`,
       options: {
@@ -47,13 +26,6 @@ module.exports = {
       options: {
         path: `${__dirname}/src/pages`,
         name: "pages",
-      },
-    },
-    {
-      resolve: "gatsby-source-filesystem",
-      options: {
-        path: `${__dirname}/src/assets/img`,
-        name: "images",
       },
     },
     "gatsby-plugin-sharp",
@@ -81,6 +53,27 @@ module.exports = {
       },
     },
     `gatsby-transformer-remark`,
+    "gatsby-plugin-layout",
+    {
+      resolve: "gatsby-plugin-svgr",
+      options: {
+        prettier: true, // use prettier to format JS code output (default)
+        svgo: true, // use svgo to optimize SVGs (default)
+        svgoConfig: {
+          removeViewBox: true, // remove viewBox even when doing so is possible (default)
+          cleanupIDs: true, // remove unused IDs and minify remaining IDs (default)
+        },
+      },
+    },
+    {
+      resolve: "gatsby-plugin-astroturf",
+      // defaults:
+      options: {
+        tagName: "css",
+        styledTag: "styled",
+        extension: ".module.scss",
+      },
+    },
     {
       resolve: "gatsby-plugin-netlify-cms",
       options: {

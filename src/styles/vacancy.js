@@ -22,6 +22,27 @@ export const VacancyArticle = styled(Article)`
   }
 `;
 
+export const VacancyAvatar = styled("div")`
+  width: 100%;
+  height: 11.4285rem;
+  margin-bottom: 3.2857rem;
+  background-position: left bottom;
+  background-repeat: no-repeat;
+  background-size: contain;
+  @media (max-width: 1199px) {
+    height: 9.14285rem;
+    margin-bottom: 2.2857rem;
+  }
+  @media (max-width: 991px) {
+    height: 7.4285rem;
+    margin-bottom: 1.2857rem;
+  }
+  @media (max-width: 812px) and (orientation: landscape),
+    (max-width: 767px) and (orientation: portrait) {
+    height: 5.7142rem;
+  }
+`;
+
 export const VacancyTitle = styled(BigH1)`
   margin-bottom: 5rem;
   @media (max-width: 991px) {
@@ -35,25 +56,6 @@ export const VacancyTitle = styled(BigH1)`
   @media (max-width: 767px) and (orientation: portrait) {
     font-size: 1.7142rem;
     margin-bottom: 1.8rem;
-  }
-`;
-
-export const VacancyAvatar = styled("div")`
-  padding-top: 13.8571rem;
-  margin-bottom: 3.2857rem;
-  @media (max-width: 1199px) {
-    padding-top: 12rem;
-    margin-bottom: 2.2857rem;
-  }
-  @media (max-width: 991px) {
-    padding-top: 8rem;
-    margin-bottom: 1.2857rem;
-  }
-  @media (max-width: 812px) and (orientation: landscape) {
-    padding-top: 7rem;
-  }
-  @media (max-width: 767px) and (orientation: portrait) {
-    padding-top: 5.2857rem;
   }
 `;
 
@@ -252,6 +254,21 @@ const styles = css`
         width: 1.05rem;
         height: 0.9rem;
       }
+    }
+  }
+  .header {
+    padding-top: 15.8571rem;
+    @media (max-width: 1199px) {
+      padding-top: 14rem;
+    }
+    @media (max-width: 991px) {
+      padding-top: 8rem;
+    }
+    @media (max-width: 812px) and (orientation: landscape) {
+      padding-top: 7rem;
+    }
+    @media (max-width: 767px) and (orientation: portrait) {
+      padding-top: 5.2857rem;
     }
   }
 `;

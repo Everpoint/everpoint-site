@@ -45,7 +45,6 @@ collections:
     label: "Вакансии"
     widget: "string"
     folder: "src/data/vacancy"
-    identifier_field: vacancyName
     slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
     create: true
     fields:
@@ -81,7 +80,10 @@ collections:
         widget: "object"
         fields:
           - {label: "Название блока", name: "sentenceTitle", widget: "string", default: "Что предлагаем взамен"}
-          - {label: 'Перечень требований', name: 'body', widget: 'markdown'}
+          - label: 'Перечень требований'
+            name: 'sentence'
+            widget: 'markdown'
+            default: "test"
       - label: "Последний блок"
         name: "footerText"
         widget: "markdown"
