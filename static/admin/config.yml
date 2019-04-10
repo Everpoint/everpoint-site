@@ -1,5 +1,5 @@
 backend:
-  name: github
+  name: test-repo
   repo: Everpoint/everpoint-site
   branch: master
 
@@ -49,6 +49,7 @@ collections:
     create: true
     fields:
       - {label: "Template Key", name: "templateKey", widget: "hidden", default: "vacancy"}
+      - {label: "Отображать на главной", name: "isVisible", widget: "boolean", default: true}
       - {label: "Название вакансии", name: "name", widget: "string"}
       - {label: "Аватар", name: "avatar", widget: image}
       - {label: "Формат работы", name: "workFormat", widget: "string"}

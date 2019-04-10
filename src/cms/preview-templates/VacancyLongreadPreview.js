@@ -1,11 +1,21 @@
 import React from "react";
 import PropTypes from "prop-types";
+import ReactHelmet from "react-helmet";
 
 import VacancyLongread from "../../templates/vacancy";
 import { PreviewContainer } from "../../components/CmsPreviewContainer/CmsPreviewContainer";
+import styles from "../../styles/longread";
 
 const VacancyLongreadPreview = ({ entry, widgetFor }) => (
-  <PreviewContainer>
+  <PreviewContainer scrollable>
+    <ReactHelmet
+      htmlAttributes={{
+        class: styles.longreadHtml,
+      }}
+      bodyAttributes={{
+        class: styles.longreadBody,
+      }}
+    />
     <VacancyLongread />
     {/*<Row>*/}
     {/*  <NewsContainer>*/}

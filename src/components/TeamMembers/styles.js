@@ -43,8 +43,11 @@ export const TeamMembersContainer = styled("div")`
 export const NoVacancyDescription = styled("p")`
   font-size: 0.8571rem;
   font-weight: 400;
-  margin-top: 1.4rem;
   margin-bottom: 0;
+  @media (max-width: 812px) and (orientation: landscape),
+    (max-width: 767px) and (orientation: portrait) {
+    font-weight: 600;
+  }
 `;
 
 export const PhotoContainer = styled("div")`
@@ -71,17 +74,13 @@ export const PhotoContainer = styled("div")`
 
 const styles = css`
   .noVacancyCard {
-    @media (max-width: 767px) and (orientation: portrait) {
-      > div:nth-child(2) {
-        margin-bottom: 0;
-      }
-      p {
-        margin-top: 0.6rem;
-      }
+    width: 20rem;
+    @media (max-width: 911px) {
+      width: 18rem;
     }
     @media (max-width: 812px) and (orientation: landscape),
       (max-width: 767px) and (orientation: portrait) {
-      max-width: 20rem;
+      width: 17rem;
       background-color: transparent;
       box-shadow: none;
       margin: 0 auto;

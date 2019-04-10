@@ -44,6 +44,10 @@ export const VacancyAvatar = styled("div")`
   background-position: top;
   background-repeat: no-repeat;
   background-size: contain;
+  margin-bottom: 2rem;
+  @media (max-width: 991px) {
+    margin-bottom: 1rem;
+  }
 `;
 
 export const Name = styled("div")`
@@ -58,7 +62,7 @@ export const Name = styled("div")`
     padding-left: 1rem;
     padding-right: 1rem;
     font-size: 1rem;
-    margin-bottom: 0;
+    margin-bottom: 1rem;
     @media (max-width: 812px) and (orientation: landscape),
       (max-width: 767px) and (orientation: portrait) {
       padding-left: 0;

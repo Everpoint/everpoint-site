@@ -20,7 +20,9 @@ exports.createPages = ({ actions, graphql }) => {
 
   return graphql(`
     {
-      vacancy: allMarkdownRemark(filter: { frontmatter: { templateKey: { eq: "vacancy" } } }) {
+      vacancy: allMarkdownRemark(
+        filter: { frontmatter: { templateKey: { eq: "vacancy" }, isVisible: { eq: true } } }
+      ) {
         edges {
           node {
             id

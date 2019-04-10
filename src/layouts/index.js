@@ -60,7 +60,7 @@ class Index extends Component {
               }
             }
             vacancy: allMarkdownRemark(
-              filter: { frontmatter: { templateKey: { eq: "vacancy" } } }
+              filter: { frontmatter: { templateKey: { eq: "vacancy" }, isVisible: { eq: true } } }
             ) {
               totalCount
               edges {

@@ -22,7 +22,8 @@ import styles, {
   FooterTitle,
 } from "../../styles/vacancy";
 
-export const Vacancy = React.memo(() => {
+export const Vacancy = React.memo(props => {
+  console.info("--> Vacancy ggwp 4444", props);
   return (
     <VacancyContainer>
       <VacancyArticle as="header" className={styles.header}>
