@@ -1,5 +1,6 @@
 import React, { PureComponent } from "react";
 
+import { routes } from "../../routes";
 import { OutsideLink } from "../../components/OutsideLink/OutsideLink";
 import { MspRightSide } from "../../components/MspLongread/MspRightSide/MspRightSide";
 import { Header } from "../../components/PortfolioLongreadHeader/Header";
@@ -23,7 +24,7 @@ import step5Video from "../../videos/msp/5.mp4";
 import step5VideoPoster from "../../videos/msp/posters/5_000.jpg";
 import { MspAnalyticsSection } from "../../components/MspLongread/MspAnalyticsSection/MspAnalyticsSection";
 import { MspFooter } from "../../components/MspLongread/MspFooter/MspFooter";
-import { getProject } from "../../routes";
+import { getProject } from "../../routes/utils";
 
 import layer1 from "../../assets/img/portfolio/msp/layer-1.png";
 import layer2 from "../../assets/img/portfolio/msp/layer-2.png";
@@ -67,14 +68,15 @@ class Msp extends PureComponent {
   render() {
     const { animate } = this.state;
     const { location, projectId } = this.props;
-    const msp = getProject({ projectId });
-    const mobileMsp = getProject({ projectId: "mobileMsp" });
+    const msp = getProject({ projectId, routes });
+    const mobileMsp = getProject({ projectId: "mobileMsp", routes });
     const { ios, android, id } = mobileMsp;
     const { link, achievements, videos } = msp;
 
     return (
       <>
         <Header
+          routes={routes}
           animate={animate}
           images={images}
           onLoad={() => this.setState({ animate: true })}

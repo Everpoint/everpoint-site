@@ -1,13 +1,13 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-import { getRouteById } from "../../../routes";
+import { getRouteById } from "../../../routes/utils";
 import { ProjectCard } from "./ProjectCard";
 import { PaddingBlock, XScrollContainer } from "../styles";
 import { Section, Title } from "./styles";
 
-export const Portfolio = ({ onRef, ratio, navigate }) => {
-  const { text, sections } = getRouteById("portfolio");
+export const Portfolio = ({ onRef, ratio, navigate, routes }) => {
+  const { text, sections } = getRouteById("portfolio", routes);
 
   return (
     <Section ref={onRef}>

@@ -16,7 +16,6 @@ import styles, {
 import { common } from "../../styles/common";
 import { DesktopMenu } from "./DesktopMenu";
 import { MobileMenu } from "./MobileMenu";
-import { routes } from "../../routes";
 
 class NavbarBase extends PureComponent {
   state = {
@@ -46,6 +45,7 @@ class NavbarBase extends PureComponent {
       onSectionChange,
       transitionEnd,
       titles,
+      routes,
     } = this.props;
 
     const transform = `translateY(${scrollTop}px)`;

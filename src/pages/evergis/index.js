@@ -1,7 +1,8 @@
 import React, { PureComponent } from "react";
 
+import { routes } from '../../routes';
 import { Header } from "../../components/PortfolioLongreadHeader/Header";
-import { getProject } from "../../routes";
+import { getProject } from "../../routes/utils";
 
 import { EvergisContainer } from "../../styles/evergis";
 
@@ -12,11 +13,11 @@ class Evergis extends PureComponent {
 
   render() {
     const { location, projectId } = this.props;
-    const evergis = getProject({ projectId });
+    const evergis = getProject({ projectId, routes });
 
     return (
       <EvergisContainer>
-        <Header projectId={projectId} location={location} {...evergis} />
+        <Header projectId={projectId} location={location} routes={routes} {...evergis} />
         <p>
           Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad amet architecto blanditiis
           consectetur consequuntur cupiditate deleniti dolorum itaque laudantium, nulla pariatur

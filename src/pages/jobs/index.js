@@ -4,7 +4,7 @@ import { Background } from "../../components/MainPageElements/Background";
 import { MainLayoutConsumer } from "../../components/MainLayoutProvider/MainLayoutProvider";
 import { AdditionalMenu } from "../../components/AdditionalMenu/AdditionalMenu";
 import { ScrollableTeamMembers } from "../../components/ScrollableTeamMembers/ScrollableTeamMembers";
-import { getRouteByLocation } from "../../routes";
+import { getRouteByLocation } from "../../routes/utils";
 import styles, {
   Main,
   BackgroundWrapper,
@@ -40,8 +40,9 @@ export class JobsBase extends Component {
       transitionEnd,
       scrollTop,
       status,
+      routes,
     } = this.props;
-    const currentRoute = getRouteByLocation(location);
+    const currentRoute = getRouteByLocation(location, routes);
     const { sections } = currentRoute;
     const section = sections[selectedSectionIndex];
     const selectedId = section && section.id;

@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import cn from "classnames";
 
 import { isMobile, isTablet } from "../utils/browser";
-import { getProject, getBackRouteByLocationPathName } from "../routes";
+import { getProject, getBackRouteByLocationPathName } from "../routes/utils";
 import { ViewportHeight } from "../components/ViewportHeight/ViewportHeight";
 import { Helmet } from "../components/Helmet/Helmet";
 import { ScrollbarProvider } from "../components/ScrollbarProvider/ScrollbarProvider";
@@ -18,12 +18,12 @@ export class LongreadLayout extends Component {
   };
 
   componentDidMount() {
-    const { location } = this.props;
+    const { location, routes } = this.props;
 
-    const prevPage = getBackRouteByLocationPathName(location.pathname);
+    const prevPage = getBackRouteByLocationPathName(location.pathname, routes);
 
     if (prevPage.includes("portfolio")) {
-      const projects = getProject({ allProject: true }).map(({ id }) => id);
+      const projects = getProject({ allProject: true, routes }).map(({ id }) => id);
       this.setState({ projects });
     }
 
@@ -32,7 +32,7 @@ export class LongreadLayout extends Component {
 
   render() {
     const { projects, isMobile, isTablet } = this.state;
-    const { children, location } = this.props;
+    const { children, location, routes } = this.props;
 
     if (isTablet === null && isMobile === null) {
       return <div style={{ display: "none" }} />;
@@ -58,6 +58,7 @@ export class LongreadLayout extends Component {
           isMobile={isMobile}
           nativeScrollbar={isMobile || isTablet}
           projects={projects}
+          routes={routes}
           pathname={location.pathname}
         />
         {React.cloneElement(children, {

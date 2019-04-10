@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import sortBy from "lodash/sortBy";
 
+import { mergedRoutes } from "../routes/utils";
 import Mobile from "../components/MobileMainPages";
 import { isMobile } from "../utils/browser";
 import { MainLayoutProvider } from "../components/MainLayoutProvider/MainLayoutProvider";
@@ -12,8 +13,22 @@ import { CookieNotice } from "../components/CookieNotice/CookieNotice";
 import styles from "../styles/longread";
 
 export class MainLayout extends Component {
+  static getDerivedStateFromProps(nextProps, prevState) {
+    const { routes: staticRoutes } = nextProps;
+    const { routes } = prevState;
+
+    if (routes.length === 0) {
+      return {
+        routes: mergedRoutes({ routes: staticRoutes, ...nextProps }),
+      };
+    }
+
+    return null;
+  }
+
   state = {
     isMobile: null,
+    routes: [],
   };
 
   componentDidMount() {
@@ -23,7 +38,7 @@ export class MainLayout extends Component {
   }
 
   render() {
-    const { isMobile } = this.state;
+    const { isMobile, routes } = this.state;
     const { children, location, titles: titlesQl, news, navigate } = this.props;
     const titles = titlesQl ? titlesQl.edges.map(({ node }) => ({ ...node.frontmatter })) : [];
 
@@ -52,11 +67,19 @@ export class MainLayout extends Component {
         <CookieNotice />
         <ViewportHeight />
         {isMobile ? (
-          <Mobile news={newsSection} titles={titles} navigate={navigate} location={location} />
+          <Mobile
+            routes={routes}
+            news={newsSection}
+            titles={titles}
+            navigate={navigate}
+            location={location}
+          />
         ) : (
-          <MainLayoutProvider news={newsSection} titles={titles}>
-            <Navbar location={location} data={titles} />
-            <PageTransition location={location}>{children}</PageTransition>
+          <MainLayoutProvider routes={routes} news={newsSection} titles={titles}>
+            <Navbar location={location} data={titles} routes={routes} />
+            <PageTransition location={location} routes={routes}>
+              {children}
+            </PageTransition>
           </MainLayoutProvider>
         )}
       </>

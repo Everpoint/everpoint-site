@@ -6,7 +6,7 @@ import { Link } from "gatsby";
 import { ReactComponent as Close } from "../../assets/img/icons/close.svg";
 import { ReactComponent as Arrow } from "../../assets/img/icons/arrow.svg";
 import { ScrollbarConsumer } from "../ScrollbarProvider/ScrollbarProvider";
-import { getBackRouteByLocationPathName } from "../../routes";
+import { getBackRouteByLocationPathName } from "../../routes/utils";
 import { getColorById } from "./getColorById";
 import styles, { LongreadNavbarContainer } from "./styles";
 
@@ -37,7 +37,7 @@ export class LongreadNavbarBase extends Component {
   };
 
   render() {
-    const { pathname, scrollTop, className, children, projects, nativeScrollbar } = this.props;
+    const { pathname, scrollTop, className, children, projects, nativeScrollbar, routes } = this.props;
 
     const transform = `translateY(${nativeScrollbar ? 0 : scrollTop}px)`;
     const fixed = Math.floor(scrollTop) > 0;
@@ -59,7 +59,7 @@ export class LongreadNavbarBase extends Component {
             Предыдущий
           </Link>
         )}
-        <Link className={styles.longreadCloseBtn} to={getBackRouteByLocationPathName(pathname)}>
+        <Link className={styles.longreadCloseBtn} to={getBackRouteByLocationPathName(pathname, routes)}>
           <Close />
         </Link>
         {arrowControl && nextProjectPage && (

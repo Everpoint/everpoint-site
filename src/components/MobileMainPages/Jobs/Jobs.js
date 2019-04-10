@@ -1,9 +1,8 @@
 import React, { Component } from "react";
 
-import { getRouteById } from "../../../routes";
+import { getRouteById } from "../../../routes/utils";
 import { PaddingBlock, Title } from "../styles";
 import { TeamMemberCard } from "../../../components/TeamMemberCard/TeamMemberCard";
-import { getVacancyAvatarByType } from "../../TeamMembers/getVacancyAvatarByType";
 import { NoVacancyCard } from "../../../components/TeamMembers/NoVacancyCard";
 import styles, {
   TeamSection,
@@ -30,7 +29,8 @@ export class Jobs extends Component {
   }
 
   setRow = id => {
-    const { sections } = getRouteById("jobs");
+    const { routes } = this.props;
+    const { sections } = getRouteById("jobs", routes);
     const { items } = sections.find(section => section.id === id);
 
     const photoRows = [[], []];
@@ -52,9 +52,10 @@ export class Jobs extends Component {
 
   render() {
     const { photoId, photoRows } = this.state;
-    const { onRef } = this.props;
-    const { sections } = getRouteById("jobs");
-    const { text, items: vacancies, groupName, id: vacancyId } = sections.find(
+    const { onRef, routes } = this.props;
+    const { sections } = getRouteById("jobs", routes);
+
+    const { text, groupName, items: vacancies, id: vacancyId } = sections.find(
       section => section.id === "vacancy",
     );
 
@@ -103,7 +104,7 @@ export class Jobs extends Component {
                     vacancy
                     className={styles.vacancyBlock}
                     control={<GoNextLink>Описание вакансии</GoNextLink>}
-                    avatar={getVacancyAvatarByType(vacancy.type)}
+                    avatar={vacancy.avatar}
                   />
                   {array.length - 1 === index && <PaddingBlock />}
                 </React.Fragment>

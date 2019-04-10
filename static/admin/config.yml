@@ -49,7 +49,7 @@ collections:
     create: true
     fields:
       - {label: "Template Key", name: "templateKey", widget: "hidden", default: "vacancy"}
-      - {label: "Название вакансии", name: "vacancyName", widget: "string"}
+      - {label: "Название вакансии", name: "name", widget: "string"}
       - {label: "Аватар", name: "avatar", widget: image}
       - {label: "Формат работы", name: "workFormat", widget: "string"}
       - {label: "Занятость", name: "employment", widget: "string"}

@@ -15,50 +15,65 @@ const longreadPages = [
   "vacancy",
 ];
 
-// exports.createPages = ({ actions, graphql }) => {
-//   const { createPage } = actions;
-//
-//   return graphql(`
-//     {
-//       allMarkdownRemark(limit: 1000) {
-//         edges {
-//           node {
-//             id
-//             fields {
-//               slug
-//             }
-//             frontmatter {
-//               tags
-//               templateKey
-//             }
-//           }
-//         }
-//       }
-//     }
-//   `).then(result => {
-//     if (result.errors) {
-//       result.errors.forEach(e => console.error(e.toString()));
-//       return Promise.reject(result.errors);
-//     }
-//
-//     const posts = result.data.allMarkdownRemark.edges;
-//
-//     posts.forEach(edge => {
-//       const id = edge.node.id
-//       createPage({
-//         path: edge.node.fields.slug,
-//         tags: edge.node.frontmatter.tags,
-//         component: path.resolve(
-//           `src/templates/${String(edge.node.frontmatter.templateKey)}.js`
-//         ),
-//         // additional data can be passed via context
-//         context: {
-//           id,
-//         },
-//       })
-//     })
-//   });
-// };
+exports.createPages = ({ actions, graphql }) => {
+  const { createPage } = actions;
+
+  return graphql(`
+    {
+      vacancy: allMarkdownRemark(filter: { frontmatter: { templateKey: { eq: "vacancy" } } }) {
+        edges {
+          node {
+            id
+            frontmatter {
+              name
+              avatar
+              workFormat
+              employment
+              salary
+              contacts {
+                email
+                fullName
+                telegram
+              }
+              skills
+              attachmentBlock {
+                explanatoryText
+                file
+              }
+              sentence {
+                sentenceBody
+                sentenceTitle
+              }
+              footerText
+            }
+          }
+        }
+      }
+    }
+  `).then(result => {
+    if (result.errors) {
+      result.errors.forEach(e => console.error(e.toString()));
+      return Promise.reject(result.errors);
+    }
+
+    const vacancy = result.data.vacancy.edges;
+
+    // posts.forEach(edge => {
+    //   const id = edge.node.id
+    //   createPage({
+    //     path: edge.node.fields.slug,
+    //     tags: edge.node.frontmatter.tags,
+    //     component: path.resolve(
+    //       `src/templates/${String(edge.node.frontmatter.templateKey)}.js`
+    //     ),
+    //     // additional data can be passed via context
+    //     context: {
+    //       id,
+    //     },
+    //   })
+    // })
+  });
+};
 
 exports.onCreatePage = ({ page }) => {
   if (longreadPages.some(route => page.path.match(route))) {

@@ -38,6 +38,14 @@ export const TeamMemberCardContainer = styled(Blank)`
   }
 `;
 
+export const VacancyAvatar = styled("div")`
+  width: 100%;
+  height: 11.4285rem;
+  background-position: top;
+  background-repeat: no-repeat;
+  background-size: contain;
+`;
+
 export const Name = styled("div")`
   font-size: 1.2857rem;
   font-weight: 600;

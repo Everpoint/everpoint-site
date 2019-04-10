@@ -1,7 +1,8 @@
 import React, { Component } from "react";
 
+import { routes } from '../../routes';
 import { Header } from "../../components/PortfolioLongreadHeader/Header";
-import { getProject } from "../../routes";
+import { getProject } from "../../routes/utils";
 import { OutsideLink } from "../../components/OutsideLink/OutsideLink";
 import { Section } from "../../components/Elements/Section";
 import { Article } from "../../components/Elements/Article";
@@ -86,7 +87,7 @@ class EvergisOnline extends Component {
     const { ratio, animate } = this.state;
     const { location, projectId } = this.props;
 
-    const evergisOnline = getProject({ projectId });
+    const evergisOnline = getProject({ projectId, routes });
     const { longreadImages } = evergisOnline;
 
     const imagesWithRatio = images.map(img => img[ratio]);
@@ -94,6 +95,7 @@ class EvergisOnline extends Component {
     return (
       <>
         <Header
+          routes={routes}
           images={imagesWithRatio}
           onLoad={() => this.setState({ animate: true })}
           animate={animate}
