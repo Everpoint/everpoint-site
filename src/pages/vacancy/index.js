@@ -2,7 +2,6 @@ import React from "react";
 
 import developer from "../../assets/img/vacancy/developer.svg";
 import { ReactComponent as DocIcon } from "../../assets/img/icons/doc.svg";
-import { getVacancyAvatarByType } from "../../components/TeamMembers/getVacancyAvatarByType";
 import { H2 } from "../../components/Typography/Headlines";
 import { Field } from "../../components/Vacancy/Field/Field";
 import { TelegramButton } from "../../components/Buttons/TelegramButton";

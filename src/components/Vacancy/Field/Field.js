@@ -48,11 +48,10 @@ const getContactLink = (type, value) => {
 
 const getValue = value => {
   if (isSkills(value)) {
-    return value.map((skill, index) => (
+    return value.slice(0, 10).map((skill, index) => (
       <Badge
         style={{
-          backgroundColor:
-            skillColors[index < skillColors.length ? index : index % skillColors.length],
+          backgroundColor: skillColors[index],
         }}
         key={`${skill}-${index}`}
       >
