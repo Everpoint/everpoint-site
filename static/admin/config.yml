@@ -67,9 +67,9 @@ collections:
         widget: "object"
         fields:
           - {label: "Название блока", name: "expectationsTitle", widget: "string", default: "Что мы ждем от вас"}
-          - {label: 'Перечень требований', name: 'body', widget: 'markdown'}
+          - {label: 'Перечень требований', name: 'requirementsList', widget: 'markdown'}
       - label: 'Блок с вложением"'
-        name: "expectations"
+        name: "attachmentBlock"
         widget: "object"
         required: false
         fields:
@@ -84,7 +84,7 @@ collections:
             widget: "string"
             default: "Что предлагаем взамен"
           - label: 'Перечень требований'
-            name: 'sentence'
+            name: 'sentenceBody'
             widget: 'markdown'
             default: "test"
       - label: "Последний блок"
