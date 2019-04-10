@@ -14,6 +14,8 @@ skills:
   - HTML
   - CSS
   - React.js
+  - Typescript
+  - Redux
 expectations:
   explanatoryText: На данную вакансию требуется выполнить тестовое задание
   file: /img/тестовое-задание.docx
