@@ -100,5 +100,6 @@ Field.propTypes = {
     PropTypes.string,
     PropTypes.arrayOf(PropTypes.string),
     PropTypes.arrayOf(PropTypes.object),
+    PropTypes.any,
   ]),
 };
