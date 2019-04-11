@@ -43,8 +43,7 @@ const styles = css`
     color: #90c53d;
   }
   .readAll {
-    align-self: center;
-    margin-top: 1.4rem;
+    margin: 1.4rem 0 0 1rem;
   }
 `;
 

@@ -54,15 +54,15 @@ collections:
       - {label: "Аватар", name: "avatar", widget: image}
       - {label: "Формат работы", name: "workFormat", widget: "string"}
       - {label: "Занятость", name: "employment", widget: "string"}
-      - {label: "Оклад", name: "salary", widget: "string", required: false}
+      - {label: "Оклад", name: "salary", widget: "string", required: false, default: ""}
       - label: "Контакты"
         name: "contacts"
         widget: "object"
         fields:
           - {label: "ФИО", name: "fullName", widget: "string"}
-          - {label: "Telegram", name: "telegram", widget: "string", required: false}
+          - {label: "Telegram", name: "telegram", widget: "string", required: false, default: ""}
           - {label: "Email", name: "email", widget: "string"}
-      - {label: "Ключевые навыки", name: "skills", widget: "list", required: false}
+      - {label: "Ключевые навыки", name: "skills", widget: "list", required: false, default: []}
       - label: 'Блок "Что мы ждем от вас"'
         name: "expectations"
         widget: "object"
@@ -75,7 +75,7 @@ collections:
         required: false
         fields:
           - {label: "Пояснительный текст", name: "explanatoryText", widget: "string", default: "На данную вакансию требуется выполнить тестовое задание"}
-          - {label: 'Файл', name: 'file', widget: 'file'}
+          - {label: 'Файл', name: 'file', widget: 'file',  default: ""}
       - label: 'Текстовый блок "Что предлагаем взамен"'
         name: "sentence"
         widget: "object"
