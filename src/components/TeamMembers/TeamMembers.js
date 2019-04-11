@@ -77,7 +77,7 @@ export class TeamMembers extends Component {
     const top = height / 2;
     const half = Math.round(data.length / 2);
     const containerHeight =
-      (height + margin) * (data.length / 2) + (data.length % 2 === 0 ? height / 2 : 0) + 14;
+      Math.ceil(data.length / 2) * (height + margin) + (data.length % 2 === 0 ? height / 2 : 0);
 
     const noVacancies = id === "vacancy" && items && items.length === 0;
 

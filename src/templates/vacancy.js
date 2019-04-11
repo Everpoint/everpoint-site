@@ -66,7 +66,7 @@ export const Vacancy = React.memo(
               { type: "email", value: email },
             ]}
           />
-          {skills && <Field name="Ключевые навыки" value={skills} />}
+          {Array.isArray(skills) && skills[0] && <Field name="Ключевые навыки" value={skills} />}
         </VacancyArticle>
         <SkillSection>
           <VacancyArticle>
@@ -87,7 +87,6 @@ export const Vacancy = React.memo(
         <ConditionsSection>
           <VacancyArticle>
             <ConditionTitle>{sentenceTitle}</ConditionTitle>
-            {/*<ConditionBlock dangerouslySetInnerHTML={{ __html: sentenceBody }} />*/}
             <SentenceBodyContent Element={ConditionBlock} content={sentenceBody} />
           </VacancyArticle>
           <Footer>

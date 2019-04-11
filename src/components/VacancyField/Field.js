@@ -6,7 +6,8 @@ import email from "../../assets/img/vacancyIcons/email.svg";
 import { Row, Name, Value, ContactIcon, Contact, Badge } from "./styles";
 
 const isSkills = value =>
-  Array.isArray(value) && value.every(v => typeof v === "string" || v instanceof String);
+  Array.isArray(value) &&
+  value.every(v => typeof v === "string" || v instanceof String || v === null);
 
 const isContacts = value =>
   Array.isArray(value) && value.every(v => typeof v === "object" || v instanceof Object);
@@ -60,7 +61,7 @@ const getValue = value => {
     ));
   } else if (isContacts(value)) {
     return value.map(({ type, value: contactValue }, index) => {
-      if (type === "telegram") {
+      if (type === "telegram" && !contactValue) {
         return null;
       }
 
