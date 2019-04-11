@@ -49,18 +49,16 @@ export const mergedRoutes = ({ routes, vacancy }) => {
   const jobs = getRouteById("jobs", mergedRoutes);
   const { sections: jobsSections } = jobs;
 
-  const vacancyIsContain = jobsSections.find(({ id }) => id === "vacancy");
+  const vacancies = jobsSections.find(({ id }) => id === "vacancy");
 
-  if (!vacancyIsContain) {
+  if (vacancies && !vacancies.items) {
     const normalizedVacancy = vacancy
       ? vacancy.edges.map(({ node }) => ({ ...node.frontmatter, id: node.id }))
       : [];
 
-    jobsSections.splice(1, 0, {
-      id: "vacancy",
-      text: "Вакансии",
+    jobsSections.splice(1, 1, {
+      ...vacancies,
       items: normalizedVacancy,
-      groupName: "Команда",
     });
   }
 

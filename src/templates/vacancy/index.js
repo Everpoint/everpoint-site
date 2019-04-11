@@ -1,11 +1,11 @@
 import React from "react";
 
-import developer from "../../assets/img/vacancy/developer.svg";
+import { Content } from "../../cms/common/Content";
+import noVacancy from "../../assets/img/vacancy/no-vacancy.svg";
 import { ReactComponent as DocIcon } from "../../assets/img/icons/doc.svg";
 import { H2 } from "../../components/Typography/Headlines";
-import { Field } from "../../components/Vacancy/Field/Field";
+import { Field } from "../../components/VacancyField/Field";
 import { TelegramButton } from "../../components/Buttons/TelegramButton";
-import { Conditions } from "../../components/Vacancy/Conditions/Conditions";
 import styles, {
   VacancyContainer,
   VacancyTitle,
@@ -18,87 +18,83 @@ import styles, {
   DownloadTest,
   ConditionsSection,
   ConditionTitle,
+  ConditionBlock,
   Footer,
   FooterTitle,
 } from "../../styles/vacancy";
 
-export const Vacancy = React.memo(props => {
-  console.info("--> Vacancy ggwp 4444", props);
-  return (
-    <VacancyContainer>
-      <VacancyArticle as="header" className={styles.header}>
-        <VacancyAvatar style={{ backgroundImage: `url(${developer})` }} />
-        <VacancyTitle>Middle front-end разработчик на React</VacancyTitle>
-        <Field name="Формат работы" value="Офис / Удалённая работа" />
-        <Field name="Занятость" value="Полная" />
-        <Field name="Оклад" value="100 000 - 120 000 руб." />
-        <Field
-          name="Контакты"
-          value={[
-            { type: "name", value: "Эльдар Мамедов" },
-            { type: "telegram", value: "eldarmamedov" },
-            { type: "email", value: "em@everpoint.ru" },
-          ]}
-        />
-        <Field
-          name="Ключевые навыки"
-          value={[
-            "JavaScript",
-            "Веб-разработка",
-            "HTML",
-            "CSS",
-            "React.js",
-            "Typescript",
-            "Redux",
-            "Soft skills",
-            "Git",
-          ]}
-        />
-      </VacancyArticle>
-      <SkillSection>
-        <VacancyArticle>
-          <H2>Что мы ждем от вас</H2>
-          <Ul>
-            <li>
-              JS ES6, включая scope’ы, классы, наследование, замыкания, Promise’ы и
-              деструктуризацию, умение писать на чистом JS;
-            </li>
-            <li>Опыт разработки sрpa в экосистеме react не менее 2 лет;</li>
-            <li>webpack, npm + scripts;</li>
-            <li>HTML5;</li>
-            <li>CSS3, Less или Sass (используем styled-components);</li>
-            <li>Понимание принципов Unit-тестирования (используем jest);</li>
-            <li>Обучаемость: искреннее желание учиться и развиваться в своем направлении;</li>
-            <li>Знание и применение в работе систем контроля версий;</li>
-            <li>
-              Личностные качества: креативность, целеустремленность, ответственность,
-              инициативность, энтузиазм, готовность глубоко погружаться в задачи.
-            </li>
-          </Ul>
-          <Test>
-            <TestTitle>На данную вакансию требуется выполнить тестовое задание</TestTitle>
-            <DownloadTest>
-              <DocIcon /> Тестовое задание.docx
-            </DownloadTest>
-          </Test>
+export const Vacancy = React.memo(
+  ({
+    name,
+    avatar,
+    workFormat,
+    employment,
+    salary,
+    contacts,
+    skills,
+    expectations,
+    attachmentBlock,
+    sentence,
+    footerText,
+    footerTextComponent,
+  }) => {
+    const { fullName, telegram, email } = contacts;
+    const { expectationsTitle, requirementsList } = expectations;
+    const { explanatoryText, file } = attachmentBlock;
+    const { sentenceTitle, sentenceBody } = sentence;
+    const fileNameSplit = file && file.split("/");
+    const fileName = Array.isArray(fileNameSplit) ? fileNameSplit[fileNameSplit.length - 1] : "";
+    const FooterContent = footerTextComponent || Content;
+
+    return (
+      <VacancyContainer>
+        <VacancyArticle as="header" className={styles.header}>
+          <VacancyAvatar style={{ backgroundImage: `url(${avatar || noVacancy})` }} />
+          <VacancyTitle>{name}</VacancyTitle>
+          <Field name="Формат работы" value={workFormat} />
+          <Field name="Занятость" value={employment} />
+          {salary && <Field name="Оклад" value={salary} />}
+          <Field
+            name="Контакты"
+            value={[
+              { type: "name", value: fullName },
+              { type: "telegram", value: telegram },
+              { type: "email", value: email },
+            ]}
+          />
+          {skills && <Field name="Ключевые навыки" value={skills} />}
         </VacancyArticle>
-      </SkillSection>
-      <ConditionsSection>
-        <VacancyArticle>
-          <ConditionTitle>Что предлагаем взамен</ConditionTitle>
-          <Conditions />
-        </VacancyArticle>
-        <Footer>
+        <SkillSection>
           <VacancyArticle>
-            <FooterTitle>
-              Хотите у нас работать? <br /> Пишите в чат или по указанным в вакансии контактам!
-            </FooterTitle>
+            <H2>{expectationsTitle}</H2>
+            <Ul dangerouslySetInnerHTML={{ __html: requirementsList }} />
+            {(explanatoryText || file) && (
+              <Test>
+                <TestTitle>{explanatoryText}</TestTitle>
+                {file && (
+                  <DownloadTest href={file}>
+                    <DocIcon /> {fileName}
+                  </DownloadTest>
+                )}
+              </Test>
+            )}
           </VacancyArticle>
-          <TelegramButton className={styles.telegramBtn} />
-        </Footer>
-      </ConditionsSection>
-    </VacancyContainer>
-  );
-});
+        </SkillSection>
+        <ConditionsSection>
+          <VacancyArticle>
+            <ConditionTitle>{sentenceTitle}</ConditionTitle>
+            <ConditionBlock dangerouslySetInnerHTML={{ __html: sentenceBody }} />
+          </VacancyArticle>
+          <Footer>
+            <VacancyArticle>
+              <FooterContent Element={FooterTitle} content={footerText} />
+            </VacancyArticle>
+            <TelegramButton className={styles.telegramBtn} />
+          </Footer>
+        </ConditionsSection>
+      </VacancyContainer>
+    );
+  },
+);
 
 export default Vacancy;

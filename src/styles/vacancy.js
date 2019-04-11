@@ -122,10 +122,9 @@ export const Test = styled(Blank)`
   @media (max-width: 991px) {
     padding: 1.4rem;
   }
-  @media (max-width: 812px) and (orientation: landscape) {
+  @media (max-width: 812px) and (orientation: landscape),
+    (max-width: 767px) and (orientation: portrait) {
     padding: 1.2rem;
-  }
-  @media (max-width: 767px) and (orientation: portrait) {
   }
 `;
 
@@ -153,6 +152,12 @@ export const DownloadTest = styled("a")`
   display: inline-flex;
   align-items: center;
   font-size: 1.1428rem;
+  text-decoration: none;
+  @media (hover: hover) {
+    &:hover {
+      text-decoration: underline;
+    }
+  }
   svg {
     margin-right: 1.2857rem;
   }
@@ -229,6 +234,58 @@ export const FooterTitle = styled("h3")`
   }
   @media (max-width: 767px) and (orientation: portrait) {
     font-size: 0.8571rem;
+  }
+`;
+
+export const ConditionBlock = styled("div")`
+  margin: 0 0 5rem 0;
+  ul {
+    margin: 0;
+    list-style: none;
+    li {
+      display: flex;
+      align-items: center;
+      font-size: 1.2857rem;
+      line-height: 1.33;
+      margin-bottom: 1.4rem;
+      @media (max-width: 1199px) {
+        font-size: 1.1428rem;
+        line-height: 1.5;
+        margin-bottom: 1.2rem;
+      }
+      @media (max-width: 991px) {
+        font-size: 1rem;
+        line-height: 1.43;
+        margin-bottom: 1rem;
+      }
+      @media (max-width: 812px) and (orientation: landscape),
+        (max-width: 767px) and (orientation: portrait) {
+        font-size: 0.8571rem;
+        line-height: 1.5;
+      }
+      img {
+        align-self: flex-start;
+        margin-right: 1.7142rem;
+        width: 2.2857rem;
+        height: auto;
+        flex-shrink: 0;
+        @media (max-width: 1199px) {
+          margin-right: 1.6rem;
+          width: 2rem;
+        }
+        @media (max-width: 991px) {
+          width: 1.4285rem;
+          margin-right: 1.4rem;
+        }
+        @media (max-width: 812px) and (orientation: landscape),
+          (max-width: 767px) and (orientation: portrait) {
+          margin-right: 1rem;
+        }
+      }
+    }
+  }
+  @media (max-width: 991px) {
+    margin: 0 0 3.4rem 0;
   }
 `;
 

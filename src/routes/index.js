@@ -20,6 +20,7 @@ export const routes = [
     route: "/jobs",
     sections: [
       { id: "employees", text: "Наши сотрудники", items: employees, groupName: "Команда" },
+      { id: "vacancy", text: "Вакансии", groupName: "Команда" },
       {
         id: "process",
         text: "Рабочий процесс",
