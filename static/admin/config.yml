@@ -62,7 +62,7 @@ collections:
           - {label: "ФИО", name: "fullName", widget: "string"}
           - {label: "Telegram", name: "telegram", widget: "string", required: false, default: ""}
           - {label: "Email", name: "email", widget: "string"}
-      - {label: "Ключевые навыки", name: "skills", widget: "list", required: false, default: []}
+      - {label: "Ключевые навыки", name: "skills", widget: "list", required: false, default: [""]}
       - label: 'Блок "Что мы ждем от вас"'
         name: "expectations"
         widget: "object"
