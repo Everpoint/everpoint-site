@@ -1,5 +1,6 @@
 const { createFilePath } = require("gatsby-source-filesystem");
 const { fmImagesToRelative } = require("gatsby-remark-relative-images");
+const path = require("path");
 
 const longreadPages = [
   "news",
@@ -26,7 +27,11 @@ exports.createPages = ({ actions, graphql }) => {
         edges {
           node {
             id
+            fields {
+              slug
+            }
             frontmatter {
+              templateKey
               name
               avatar
               workFormat
@@ -60,20 +65,21 @@ exports.createPages = ({ actions, graphql }) => {
 
     const vacancy = result.data.vacancy.edges;
 
-    // posts.forEach(edge => {
-    //   const id = edge.node.id
-    //   createPage({
-    //     path: edge.node.fields.slug,
-    //     tags: edge.node.frontmatter.tags,
-    //     component: path.resolve(
-    //       `src/templates/${String(edge.node.frontmatter.templateKey)}.js`
-    //     ),
-    //     // additional data can be passed via context
-    //     context: {
-    //       id,
-    //     },
-    //   })
-    // })
+    vacancy.forEach(edge => {
+      const data = {
+        ...edge.node.frontmatter,
+        id: edge.node.id,
+      };
+
+      createPage({
+        path: edge.node.fields.slug,
+        component: path.resolve(`src/templates/${String(edge.node.frontmatter.templateKey)}.js`),
+        // additional data can be passed via context
+        context: {
+          ...data,
+        },
+      });
+    });
   });
 };
 

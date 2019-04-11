@@ -1,12 +1,12 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-import VacancyLongread from "../../templates/vacancy";
+import { Vacancy } from "../../templates/vacancy";
 import { PreviewContainer } from "../../components/CmsPreviewContainer/CmsPreviewContainer";
 
 const VacancyLongreadPreview = ({ entry, widgetFor }) => (
   <PreviewContainer scrollable>
-    <VacancyLongread
+    <Vacancy
       name={entry.getIn(["data", "name"])}
       avatar={entry.getIn(["data", "avatar"])}
       workFormat={entry.getIn(["data", "workFormat"])}
@@ -17,7 +17,6 @@ const VacancyLongreadPreview = ({ entry, widgetFor }) => (
       expectations={entry.getIn(["data", "expectations"]).toJS()}
       attachmentBlock={entry.getIn(["data", "attachmentBlock"]).toJS()}
       sentence={entry.getIn(["data", "sentence"]).toJS()}
-      // footerText={entry.getIn(["data", "footerText"])}
       footerText={widgetFor("footerText")}
     />
   </PreviewContainer>

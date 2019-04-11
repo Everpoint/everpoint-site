@@ -44,6 +44,9 @@ export const getBackRouteByLocationPathName = (pathname, routes) => {
   }
 };
 
+export const normalizeEdges = items =>
+  items.edges.map(({ node }) => ({ ...node.frontmatter, id: node.id }));
+
 export const mergedRoutes = ({ routes, vacancy }) => {
   const mergedRoutes = cloneDeep(routes);
   const jobs = getRouteById("jobs", mergedRoutes);
@@ -52,9 +55,7 @@ export const mergedRoutes = ({ routes, vacancy }) => {
   const vacancies = jobsSections.find(({ id }) => id === "vacancy");
 
   if (vacancies && !vacancies.items) {
-    const normalizedVacancy = vacancy
-      ? vacancy.edges.map(({ node }) => ({ ...node.frontmatter, id: node.id }))
-      : [];
+    const normalizedVacancy = vacancy ? normalizeEdges(vacancy) : [];
 
     jobsSections.splice(1, 1, {
       ...vacancies,

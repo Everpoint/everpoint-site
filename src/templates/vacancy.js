@@ -1,11 +1,11 @@
 import React from "react";
 
-import { Content } from "../../cms/common/Content";
-import noVacancy from "../../assets/img/vacancy/no-vacancy.svg";
-import { ReactComponent as DocIcon } from "../../assets/img/icons/doc.svg";
-import { H2 } from "../../components/Typography/Headlines";
-import { Field } from "../../components/VacancyField/Field";
-import { TelegramButton } from "../../components/Buttons/TelegramButton";
+import { Content } from "../cms/common/Content";
+import noVacancy from "../assets/img/vacancy/no-vacancy.svg";
+import { ReactComponent as DocIcon } from "../assets/img/icons/doc.svg";
+import { H2 } from "../components/Typography/Headlines";
+import { Field } from "../components/VacancyField/Field";
+import { TelegramButton } from "../components/Buttons/TelegramButton";
 import styles, {
   VacancyContainer,
   VacancyTitle,
@@ -21,7 +21,7 @@ import styles, {
   ConditionBlock,
   Footer,
   FooterTitle,
-} from "../../styles/vacancy";
+} from "../styles/vacancy";
 
 export const Vacancy = React.memo(
   ({
@@ -97,4 +97,4 @@ export const Vacancy = React.memo(
   },
 );
 
-export default Vacancy;
+export default ({ pageContext }, ...props) => <Vacancy {...props} {...pageContext} />;
