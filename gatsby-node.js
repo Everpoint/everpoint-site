@@ -70,7 +70,7 @@ exports.createPages = ({ actions, graphql }) => {
         ...edge.node.frontmatter,
         id: edge.node.id,
       };
-      console.info("--> edge ggwp 4444", edge);
+
       createPage({
         path: edge.node.fields.slug,
         component: path.resolve(`src/templates/${String(edge.node.frontmatter.templateKey)}.js`),
