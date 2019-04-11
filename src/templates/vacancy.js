@@ -37,6 +37,8 @@ export const Vacancy = React.memo(
     sentence,
     footerText,
     footerTextComponent,
+    requirementsListComponent,
+    sentenceBodyComponent,
   }) => {
     const { fullName, telegram, email } = contacts;
     const { expectationsTitle, requirementsList } = expectations;
@@ -45,6 +47,8 @@ export const Vacancy = React.memo(
     const fileNameSplit = file && file.split("/");
     const fileName = Array.isArray(fileNameSplit) ? fileNameSplit[fileNameSplit.length - 1] : "";
     const FooterContent = footerTextComponent || Content;
+    const RequirementsListContent = requirementsListComponent || Content;
+    const SentenceBodyContent = sentenceBodyComponent || Content;
 
     return (
       <VacancyContainer>
@@ -67,7 +71,7 @@ export const Vacancy = React.memo(
         <SkillSection>
           <VacancyArticle>
             <H2>{expectationsTitle}</H2>
-            <Ul dangerouslySetInnerHTML={{ __html: requirementsList }} />
+            <RequirementsListContent Element={Ul} content={requirementsList} />
             {(explanatoryText || file) && (
               <Test>
                 <TestTitle>{explanatoryText}</TestTitle>
@@ -83,7 +87,8 @@ export const Vacancy = React.memo(
         <ConditionsSection>
           <VacancyArticle>
             <ConditionTitle>{sentenceTitle}</ConditionTitle>
-            <ConditionBlock dangerouslySetInnerHTML={{ __html: sentenceBody }} />
+            {/*<ConditionBlock dangerouslySetInnerHTML={{ __html: sentenceBody }} />*/}
+            <SentenceBodyContent Element={ConditionBlock} content={sentenceBody} />
           </VacancyArticle>
           <Footer>
             <VacancyArticle>
