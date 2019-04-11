@@ -1,5 +1,6 @@
 import React, { PureComponent } from "react";
 
+import { routes } from "../../routes";
 import { getPixelRatioPropName } from "../../utils/utils";
 import { isMobile, isTablet } from "../../utils/browser";
 import { SectionWithIcon } from "../../components/MobileMspLongread/SectionWithIcon/SectionWithIcon";
@@ -12,7 +13,7 @@ import { Paragraph } from "../../components/Typography/Paragraph";
 import { AndroidStoreLink, IosStoreLink } from "../../components/StoreLinks/StoreLinks";
 import { OutsideLink } from "../../components/OutsideLink/OutsideLink";
 import { BnSection } from "../../components/MobileMspLongread/BnSection/BnSection";
-import { getProject } from "../../routes";
+import { getProject } from "../../routes/utils";
 import { Footer } from "../../components/MobileMspLongread/Footer/Footer";
 import styles, {
   MobileMspContainer,
@@ -25,6 +26,7 @@ const images = [phones];
 class MobileMsp extends PureComponent {
   static defaultProps = {
     projectId: "mobileMsp",
+    routes: [],
   };
 
   state = {
@@ -40,12 +42,14 @@ class MobileMsp extends PureComponent {
   render() {
     const { ratio, isMobileOrTablet, animate } = this.state;
     const { location, projectId } = this.props;
-    const mobileMsp = getProject({ projectId });
+
+    const mobileMsp = getProject({ projectId, routes });
     const { ios, android, iosMsp, androidMsp, iosSupport, androidSupport } = mobileMsp;
 
     return (
       <MobileMspContainer>
         <Header
+          routes={routes}
           images={images}
           animate={animate}
           onLoad={() => this.setState({ animate: true })}

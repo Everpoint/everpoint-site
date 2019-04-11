@@ -2,7 +2,13 @@ import React from "react";
 import PropTypes from "prop-types";
 
 import { Avatar } from "../../components/Avatar/Avatar";
-import styles, { TeamMemberCardContainer, Name, Position, Description } from "./styles";
+import styles, {
+  TeamMemberCardContainer,
+  VacancyAvatar,
+  Name,
+  Position,
+  Description,
+} from "./styles";
 
 export const TeamMemberCard = ({
   avatar,
@@ -23,7 +29,11 @@ export const TeamMemberCard = ({
       vacancy={vacancy}
       style={{ height, marginBottom: margin, marginTop: withMarginTop && top }}
     >
-      {vacancy ? avatar : <Avatar source={avatar} className={styles.avatarBlock} />}
+      {vacancy ? (
+        <VacancyAvatar style={{ backgroundImage: `url(${avatar})` }} />
+      ) : (
+        <Avatar source={avatar} className={styles.avatarBlock} />
+      )}
       <Name
         vacancy={vacancy}
         dangerouslySetInnerHTML={{

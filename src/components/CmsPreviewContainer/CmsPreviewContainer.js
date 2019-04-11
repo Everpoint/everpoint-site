@@ -35,14 +35,14 @@ export class PreviewContainer extends Component {
 
   render() {
     const { width, height } = this.state;
-    const { children, ...props } = this.props;
+    const { children, scrollable, ...props } = this.props;
 
     return (
       <>
         <Viewport>
           {width}x{height}
         </Viewport>
-        <Container ref={this.onRef} {...props}>
+        <Container ref={this.onRef} scrollable={scrollable} {...props}>
           {children}
         </Container>
       </>

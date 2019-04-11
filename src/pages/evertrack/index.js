@@ -1,7 +1,8 @@
 import React, { PureComponent } from "react";
 
+import { routes } from '../../routes';
 import { Header } from "../../components/PortfolioLongreadHeader/Header";
-import { getProject } from "../../routes";
+import { getProject } from "../../routes/utils";
 
 import { EvergisContainer } from "../../styles/evertrack";
 
@@ -12,11 +13,11 @@ class Evertrack extends PureComponent {
 
   render() {
     const { location, projectId } = this.props;
-    const evertrack = getProject({ projectId });
+    const evertrack = getProject({ projectId, routes });
 
     return (
       <EvergisContainer>
-        <Header projectId={projectId} location={location} {...evertrack} />
+        <Header routes={routes} projectId={projectId} location={location} {...evertrack} />
         <p>
           Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad amet architecto blanditiis
           consectetur consequuntur cupiditate deleniti dolorum itaque laudantium, nulla pariatur

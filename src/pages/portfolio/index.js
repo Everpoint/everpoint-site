@@ -2,7 +2,7 @@ import React, { Component } from "react";
 
 import { Background } from "../../components/MainPageElements/Background";
 import { MainLayoutConsumer } from "../../components/MainLayoutProvider/MainLayoutProvider";
-import { getRouteByLocation } from "../../routes";
+import { getRouteByLocation } from "../../routes/utils";
 import { AdditionalMenu } from "../../components/AdditionalMenu/AdditionalMenu";
 import { PortfolioSlide } from "../../components/PortfolioSlide/PortfolioSlide";
 import styles, { Main, LeftSide, Rightside } from "../../styles/portfolio";
@@ -26,8 +26,9 @@ class PortfolioBase extends Component {
       disableBackgroundTransition,
       lastSectionIndex,
       onExited,
+      routes,
     } = this.props;
-    const currentRoute = getRouteByLocation(location);
+    const currentRoute = getRouteByLocation(location, routes);
     const { sections } = currentRoute;
     const section = sections[lastSectionIndex || selectedSectionIndex];
 

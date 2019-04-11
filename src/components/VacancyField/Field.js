@@ -1,8 +1,8 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-import telegram from "../../../assets/img/vacancyIcons/telegram.svg";
-import email from "../../../assets/img/vacancyIcons/email.svg";
+import telegram from "../../assets/img/vacancyIcons/telegram.svg";
+import email from "../../assets/img/vacancyIcons/email.svg";
 import { Row, Name, Value, ContactIcon, Contact, Badge } from "./styles";
 
 const isSkills = value =>
@@ -59,19 +59,25 @@ const getValue = value => {
       </Badge>
     ));
   } else if (isContacts(value)) {
-    return value.map(({ type, value: contactValue }, index) => (
-      <Contact
-        as={type === "name" ? "div" : "a"}
-        key={`${type}-${index}`}
-        href={getContactLink(type, contactValue)}
-        isField={type !== "name"}
-      >
-        {type !== "name" && (
-          <ContactIcon style={{ backgroundImage: `url(${getContactIconUrl(type)})` }} />
-        )}
-        {contactValue}
-      </Contact>
-    ));
+    return value.map(({ type, value: contactValue }, index) => {
+      if (type === "telegram") {
+        return null;
+      }
+
+      return (
+        <Contact
+          as={type === "name" ? "div" : "a"}
+          key={`${type}-${index}`}
+          href={getContactLink(type, contactValue)}
+          isField={type !== "name"}
+        >
+          {type !== "name" && (
+            <ContactIcon style={{ backgroundImage: `url(${getContactIconUrl(type)})` }} />
+          )}
+          {contactValue}
+        </Contact>
+      );
+    });
   } else {
     return value;
   }

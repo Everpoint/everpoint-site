@@ -1,6 +1,7 @@
 ---
 templateKey: vacancy
-vacancyName: Middle front-end разработчик на React
+name: Middle front-end разработчик на React
+isVisible: true
 avatar: /img/developer.svg
 workFormat: Офис / Удалённая работа
 employment: Полная
@@ -16,11 +17,11 @@ skills:
   - React.js
   - Typescript
   - Redux
-expectations:
+attachmentBlock:
   explanatoryText: На данную вакансию требуется выполнить тестовое задание
   file: /img/тестовое-задание.docx
 sentence:
-  sentence: >-
+  sentenceBody: >-
     * Официальное оформление по ТК РФ;
 
     * Удобный и светлый офис рядом с метро Цветной бульвар; кофе, чай и прочие

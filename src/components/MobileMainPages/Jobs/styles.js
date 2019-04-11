@@ -16,8 +16,9 @@ export const PhotoContainer = styled(XScrollContainer)`
 
 export const VacanciesContainer = styled(XScrollContainer)`
   padding-left: 1rem;
-  height: 21rem;
+  height: 22.4rem;
   &.noVacancy {
+    height: 28rem;
     padding-right: 1rem;
   }
 `;

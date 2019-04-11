@@ -3,14 +3,12 @@ import React, { Component } from "react";
 import Page404 from "../../pages/404";
 import { MobileNavbar } from "../../components/MobileNavbar/MobileNavbar";
 import { Section } from "../../components/MobileMainPages/Section";
-import { routes } from "../../routes";
 import { Main, Background } from "../../styles/mobile";
 import { getPixelRatioPropName } from "../../utils/utils";
 import { animate, ease } from "../../utils/animate";
 
 class MobileMainPage extends Component {
   state = {
-    sections: routes,
     mobileMenuIsOpen: false,
     ratio: 1,
     scrollToId: null,
@@ -93,8 +91,8 @@ class MobileMainPage extends Component {
   toggleMenu = () => this.setState({ mobileMenuIsOpen: !this.state.mobileMenuIsOpen });
 
   render() {
-    const { sections, mobileMenuIsOpen, ratio } = this.state;
-    const { news, titles, navigate, location } = this.props;
+    const { mobileMenuIsOpen, ratio } = this.state;
+    const { news, titles, navigate, location, routes } = this.props;
 
     const is404Page = location.pathname.indexOf("404") === 1;
 
@@ -102,7 +100,7 @@ class MobileMainPage extends Component {
       <Main>
         <Background />
         <MobileNavbar
-          routes={sections}
+          routes={routes}
           titles={titles}
           toggleMenu={this.toggleMenu}
           scrollTo={this.scrollTo}
@@ -111,7 +109,7 @@ class MobileMainPage extends Component {
         {is404Page ? (
           <Page404 location={location} />
         ) : (
-          sections.map(item => (
+          routes.map(item => (
             <Section
               key={item.id}
               titles={titles}

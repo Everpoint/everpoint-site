@@ -1,5 +1,6 @@
 import React, { PureComponent } from "react";
 
+import { routes } from '../../routes';
 import { HeaderRightSide } from "../../components/GeomonitoringLongread/HeaderRightSide/HeaderRightSide";
 import { LocalLink } from "../../components/LocalLink/LocalLink";
 import { UnorderedList } from "../../components/Typography/UnorderedList";
@@ -11,7 +12,7 @@ import { Paragraph } from "../../components/Typography/Paragraph";
 import { TelegramButton } from "../../components/Buttons/TelegramButton";
 import { Header } from "../../components/PortfolioLongreadHeader/Header";
 import { Figures } from "../../components/Figures/Figures";
-import { getProject } from "../../routes";
+import { getProject } from "../../routes/utils";
 
 import { ReactComponent as Ic1 } from "../../assets/img/portfolio/geomonitoring/icons/ic-1.svg";
 import { ReactComponent as Ic2 } from "../../assets/img/portfolio/geomonitoring/icons/ic-2.svg";
@@ -58,11 +59,12 @@ class Geomonitoring extends PureComponent {
   render() {
     const { animate } = this.state;
     const { location, projectId } = this.props;
-    const geomonitoring = getProject({ projectId });
+    const geomonitoring = getProject({ projectId, routes });
 
     return (
       <>
         <Header
+          routes={routes}
           images={images}
           onLoad={() => this.setState({ animate: true })}
           animate={animate}

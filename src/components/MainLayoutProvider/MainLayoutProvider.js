@@ -8,7 +8,7 @@ import styles, { ScrollBar } from "./styles";
 import { ImagesDownloadListener } from "../../components/ImagesDownloadListener/ImagesDownloadListener";
 import { Swiper } from "../../components/Swiper/Swiper";
 import { mobileMenu as mobileMenuWidth } from "../../components/Navbar/styles";
-import { navigateTo, getRouteByLocation, getRouteById, routes } from "../../routes";
+import { navigateTo, getRouteByLocation, getRouteById } from "../../routes/utils";
 
 import "../ScrollbarProvider/plugins/disableScrollByDirection";
 
@@ -26,8 +26,8 @@ export class MainLayoutProviderComponent extends Component {
       trailing: false,
     });
 
-    const { location } = props;
-    const currentRoute = getRouteByLocation(location);
+    const { location, routes } = props;
+    const currentRoute = getRouteByLocation(location, routes);
     const id = currentRoute && currentRoute.id;
     const sections = (currentRoute && currentRoute.sections) || [];
 
@@ -118,8 +118,8 @@ export class MainLayoutProviderComponent extends Component {
   };
 
   setCurrentRoute = () => {
-    const { location } = this.props;
-    const currentRoute = getRouteByLocation(location);
+    const { location, routes } = this.props;
+    const currentRoute = getRouteByLocation(location, routes);
 
     this.setState({
       currentRoute: currentRoute || "404",
@@ -267,6 +267,7 @@ export class MainLayoutProviderComponent extends Component {
   };
 
   onNavLinkClick = ({ id, event, navigate, selectedSectionIndex, transitionEnd }) => {
+    const { routes } = this.props;
     const { currentRoute } = this.state;
 
     const prevIndex = routes.findIndex(route => route.id === currentRoute && currentRoute.id);
@@ -352,7 +353,7 @@ export class MainLayoutProviderComponent extends Component {
   };
 
   onSectionChange = ({ value, id, pageId, index = null, scrollToBlock = false }) => {
-    const { navigate } = this.props;
+    const { navigate, routes } = this.props;
     const { selectedSectionIndex, sections, currentRoute } = this.state;
 
     const pageIsChanged = pageId && currentRoute && currentRoute.id !== pageId;
@@ -366,7 +367,7 @@ export class MainLayoutProviderComponent extends Component {
       : selectedSectionIndex + value;
 
     if (pageIsChanged) {
-      const { sections } = getRouteById(pageId);
+      const { sections } = getRouteById(pageId, routes);
       const index = sections.findIndex(item => item.id === id);
 
       this.onNavLinkClick({
@@ -466,7 +467,7 @@ export class MainLayoutProviderComponent extends Component {
       sections,
       transitionEnd,
     } = this.state;
-    const { navigate, location } = this.props;
+    const { navigate, location, routes } = this.props;
     const { pathname } = location;
 
     if (!currentRoute) {
@@ -507,7 +508,7 @@ export class MainLayoutProviderComponent extends Component {
       });
     } else {
       // page change
-      const nextPage = navigateTo({ navigate, pathname, direction });
+      const nextPage = navigateTo({ navigate, pathname, direction, routes });
       const prevPageId = currentRoute && currentRoute.id;
       const nextPageId = nextPage && nextPage.id;
 

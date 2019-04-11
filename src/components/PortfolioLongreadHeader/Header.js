@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import cn from "classnames";
 
 import { OutsideLink } from "../../components/OutsideLink/OutsideLink";
-import { getBackRouteByLocationPathName } from "../../routes";
+import { getBackRouteByLocationPathName } from "../../routes/utils";
 import { ScrollDownButton } from "../../components/Buttons/ScrollDownButton";
 import { getLongreadNavbarHeight } from "../../components/LongreadNavbar/LongreadNavbar";
 import { ScrollbarConsumer } from "../ScrollbarProvider/ScrollbarProvider";
@@ -38,8 +38,11 @@ export class HeaderBase extends Component {
   };
 
   componentDidMount() {
-    const { location, projectId } = this.props;
-    const replacedSlash = getBackRouteByLocationPathName(location.pathname).replace(/\//g, "");
+    const { location, projectId, routes } = this.props;
+    const replacedSlash = getBackRouteByLocationPathName(location.pathname, routes).replace(
+      /\//g,
+      "",
+    );
     localStorage.setItem(replacedSlash, projectId);
   }
 

@@ -9,8 +9,7 @@ import { enterTimeout, exitTimeout } from "./animation";
 
 export class PageTransition extends PureComponent {
   render() {
-    const { children, location } = this.props;
-
+    const { children, location, routes } = this.props;
     return (
       <MainLayoutConsumer>
         {({ onExited, onEnter }) => (
@@ -26,7 +25,7 @@ export class PageTransition extends PureComponent {
             >
               {status => (
                 <MainTransitionContainer>
-                  {React.cloneElement(children, { status, location })}
+                  {React.cloneElement(children, { status, location, routes })}
                 </MainTransitionContainer>
               )}
             </ReactTransition>

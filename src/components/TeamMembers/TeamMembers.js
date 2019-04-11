@@ -60,7 +60,7 @@ export class TeamMembers extends Component {
   onResize = () => {
     const viewportWidth = Math.max(document.documentElement.clientWidth, window.innerWidth || 0);
     if (viewportWidth <= 992) {
-      this.setState({ cardHeight: 309, photoHeight: 164, margin: 30 });
+      this.setState({ cardHeight: 320, photoHeight: 164, margin: 30 });
     } else {
       this.setState({ cardHeight: 320, photoHeight: 225, margin: 20 });
     }

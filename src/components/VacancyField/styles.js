@@ -1,4 +1,4 @@
-import styled from "astroturf";
+import styled from "astroturf/index";
 
 export const Row = styled("div")`
   font-size: 1.2857rem;
