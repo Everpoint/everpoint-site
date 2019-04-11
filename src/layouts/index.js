@@ -66,6 +66,9 @@ class Index extends Component {
               edges {
                 node {
                   id
+                  fields {
+                    slug
+                  }
                   frontmatter {
                     name
                     avatar

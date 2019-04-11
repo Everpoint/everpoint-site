@@ -17,7 +17,7 @@ expectations:
   requirementsList: saddasdasdasdadasdas
 attachmentBlock:
   explanatoryText: На данную вакансию требуется выполнить тестовое задание
-  file: /img/1280px-rbk_logo.svg.png
+  file: /img/тестовое-задание.docx
 sentence:
   sentenceBody: >-
     <ul> <li> <img src="/img/doc.svg" /> Официальное оформление по ТК РФ; </li>

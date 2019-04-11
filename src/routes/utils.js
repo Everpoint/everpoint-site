@@ -45,7 +45,11 @@ export const getBackRouteByLocationPathName = (pathname, routes) => {
 };
 
 export const normalizeEdges = items =>
-  items.edges.map(({ node }) => ({ ...node.frontmatter, id: node.id }));
+  items.edges.map(({ node }) => ({
+    ...node.frontmatter,
+    id: node.id,
+    longreadLink: node.fields.slug,
+  }));
 
 export const mergedRoutes = ({ routes, vacancy }) => {
   const mergedRoutes = cloneDeep(routes);
