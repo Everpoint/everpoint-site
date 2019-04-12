@@ -3,15 +3,16 @@ import styled from "astroturf";
 export const UnorderedList = styled("ul")`
   margin: 0 0 1.4rem 0;
   li {
-    display: flex;
     font-size: 1rem;
     line-height: normal;
     position: relative;
     list-style-type: none;
+    padding-left: 3rem;
     &:before {
       top: 0.5rem;
       display: inline-block;
-      position: relative;
+      position: absolute;
+      left: 0;
       content: "";
       flex-shrink: 0;
       width: 6px;
@@ -23,11 +24,14 @@ export const UnorderedList = styled("ul")`
     &:last-child {
       margin-bottom: 0;
     }
+    @media (max-width: 1199px) {
+      padding-left: 2rem;
+    }
     @media (max-width: 991px) {
       font-size: 0.8571rem;
     }
     @media (max-width: 812px) and (orientation: landscape),
-    (max-width: 767px) and (orientation: portrait) {
+      (max-width: 767px) and (orientation: portrait) {
       font-size: 0.7142rem;
       &:before {
         top: 0.4rem;
@@ -47,7 +51,7 @@ export const UnorderedList = styled("ul")`
       line-height: 1.43;
     }
     @media (max-width: 812px) and (orientation: landscape),
-    (max-width: 767px) and (orientation: portrait) {
+      (max-width: 767px) and (orientation: portrait) {
       font-size: 0.8571rem;
       line-height: 1.5;
       margin-bottom: 0.6rem;

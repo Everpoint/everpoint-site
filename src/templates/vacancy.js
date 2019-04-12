@@ -70,7 +70,11 @@ export const Vacancy = React.memo(
         <SkillSection>
           <VacancyArticle>
             <H2>{expectationsTitle}</H2>
-            <RequirementsListContent Element={Ul} content={requirementsList} />
+            <RequirementsListContent
+              className={styles.greenLinks}
+              Element={Ul}
+              content={requirementsList}
+            />
             {(explanatoryText || file) && (
               <Test>
                 <TestTitle>{explanatoryText}</TestTitle>
@@ -86,11 +90,19 @@ export const Vacancy = React.memo(
         <ConditionsSection>
           <VacancyArticle>
             <ConditionTitle>{sentenceTitle}</ConditionTitle>
-            <SentenceBodyContent Element={ConditionBlock} content={sentenceBody} />
+            <SentenceBodyContent
+              className={styles.grayLinks}
+              Element={ConditionBlock}
+              content={sentenceBody}
+            />
           </VacancyArticle>
           <Footer>
             <VacancyArticle>
-              <FooterContent Element={FooterTitle} content={footerText} />
+              <FooterContent
+                className={styles.grayLinks}
+                Element={FooterTitle}
+                content={footerText}
+              />
             </VacancyArticle>
             <TelegramButton className={styles.telegramBtn} />
           </Footer>

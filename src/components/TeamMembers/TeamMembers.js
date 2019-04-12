@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 
+import { rateLimit } from "../../utils/number";
 import { NoVacancyCard } from "./NoVacancyCard";
 import { GoNextLink } from "../../components/GoNextLink/GoNextLink";
 import { TeamMemberCard } from "../../components/TeamMemberCard/TeamMemberCard";
@@ -81,7 +82,7 @@ export class TeamMembers extends Component {
         ? Math.ceil(data.length / 2) * (height + margin) +
           (data.length % 2 === 0 ? height / 2 : 0) +
           20
-        : Math.ceil(data.length / 2) * height + 4;
+        : rateLimit(Math.ceil(data.length / 2), 1) * height + 4;
 
     const noVacancies = isVacancy && items && items.length === 0;
 
