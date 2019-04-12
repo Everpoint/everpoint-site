@@ -66,17 +66,22 @@ export class TeamMembers extends Component {
   };
 
   render() {
-    const { cardHeight, photoHeight, margin } = this.state;
+    const { cardHeight, photoHeight, margin: marginFromState } = this.state;
     const { items, id, selectedId } = this.props;
     const isVisible = id === selectedId;
     const isVacancy = id === "vacancy";
     const isPhoto = id === "photo";
     const data = getColumns({ items });
+    const margin = data.length > 2 ? marginFromState : 0;
     const height = isPhoto ? photoHeight : cardHeight;
     const top = height / 2;
     const half = Math.round(data.length / 2);
     const containerHeight =
-      Math.ceil(data.length / 2) * (height + margin) + (data.length % 2 === 0 ? height / 2 : 0);
+      data.length > 2
+        ? Math.ceil(data.length / 2) * (height + margin) +
+          (data.length % 2 === 0 ? height / 2 : 0) +
+          20
+        : Math.ceil(data.length / 2) * height + 4;
 
     const noVacancies = isVacancy && items && items.length === 0;
 

@@ -135,7 +135,6 @@ export class MainLayoutProviderComponent extends Component {
           const index = sections.findIndex(section => section.id === state.scrollTo);
           this.scrollToBlock({
             index,
-            onlyScrollIfNeeded: false,
           });
         }
       },
@@ -342,14 +341,14 @@ export class MainLayoutProviderComponent extends Component {
       mobileMenuIsOpen: !mobileMenuIsOpen,
     }));
 
-  scrollToBlock = ({ index, onlyScrollIfNeeded = false, damping = 0.2, offsetTop = 0 }) => {
+  scrollToBlock = ({ index, damping = 0.2 }) => {
     if (this.scrollbar && this.scrollable && this.scrollable.children[index]) {
       const { height } = this.getSize();
 
-      let totalOffset = height / 2;
+      let offsetTop = height / 2;
 
       if (this.lefsideSection) {
-        totalOffset = this.lefsideSection.offsetTop;
+        offsetTop = this.lefsideSection.offsetTop;
       }
 
       this.setState(
@@ -358,8 +357,8 @@ export class MainLayoutProviderComponent extends Component {
         },
         () => {
           this.scrollbar.scrollIntoView(this.scrollable.children[index], {
-            offsetTop: totalOffset + offsetTop + 14,
-            onlyScrollIfNeeded,
+            offsetTop: offsetTop + 14,
+            onlyScrollIfNeeded: false,
           });
         },
       );

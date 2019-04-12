@@ -95,7 +95,10 @@ export class Jobs extends Component {
         </TeamSection>
         <VacancySection ref={ref => onRef(ref, vacancyId)}>
           <Title>{text}</Title>
-          <VacanciesContainer noVacancy={vacancies.length === 0}>
+          <VacanciesContainer
+            noVacancy={vacancies.length === 0}
+            oneVacancy={vacancies.length === 1}
+          >
             {vacancies.length > 0 ? (
               vacancies.map((vacancy, index, array) => (
                 <React.Fragment key={vacancy.id}>

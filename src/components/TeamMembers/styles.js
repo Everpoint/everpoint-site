@@ -9,7 +9,6 @@ export const TeamMembersContainer = styled("div")`
   flex-wrap: wrap;
   align-content: flex-start;
   align-items: flex-start;
-  min-height: 26.7857rem;
   opacity: 0;
   pointer-events: none;
   transition: opacity 200ms linear;

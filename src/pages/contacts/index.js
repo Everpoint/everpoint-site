@@ -22,6 +22,7 @@ import styles, {
   Link,
   PrimaryButton,
   StopeButton,
+  Copyright,
 } from "../../styles/contacts";
 import { animation } from "../../components/MainPageElements/Section";
 import { MainLayoutConsumer } from "../../components/MainLayoutProvider/MainLayoutProvider";
@@ -96,6 +97,7 @@ class ContactsBase extends Component {
           target="_blank"
           href="https://telegram.me/redditr"
         />
+        <Copyright as="footer">© 2019 ООО «Эверпоинт». Все права защищены.</Copyright>
       </Main>
     );
   }
