@@ -120,12 +120,26 @@ export class MainLayoutProviderComponent extends Component {
   setCurrentRoute = () => {
     const { location, routes } = this.props;
     const currentRoute = getRouteByLocation(location, routes);
+    const { state } = location;
 
-    this.setState({
-      currentRoute: currentRoute || "404",
-      coloredNav: false,
-      sections: (currentRoute && currentRoute.sections) || [],
-    });
+    const sections = (currentRoute && currentRoute.sections) || [];
+
+    this.setState(
+      {
+        currentRoute: currentRoute || "404",
+        coloredNav: false,
+        sections,
+      },
+      () => {
+        if (state && state.scrollTo && this.scrollbar) {
+          const index = sections.findIndex(section => section.id === state.scrollTo);
+          this.scrollToBlock({
+            index,
+            onlyScrollIfNeeded: false,
+          });
+        }
+      },
+    );
   };
 
   checkNavbarIntoContent = () => {
@@ -328,23 +342,23 @@ export class MainLayoutProviderComponent extends Component {
       mobileMenuIsOpen: !mobileMenuIsOpen,
     }));
 
-  scrollToBlock = (index, onlyScrollIfNeeded = false) => {
+  scrollToBlock = ({ index, onlyScrollIfNeeded = false, damping = 0.2, offsetTop = 0 }) => {
     if (this.scrollbar && this.scrollable && this.scrollable.children[index]) {
       const { height } = this.getSize();
 
-      let offsetTop = height / 2;
+      let totalOffset = height / 2;
 
       if (this.lefsideSection) {
-        offsetTop = this.lefsideSection.offsetTop;
+        totalOffset = this.lefsideSection.offsetTop;
       }
 
       this.setState(
         {
-          damping: 0.2,
+          damping,
         },
         () => {
           this.scrollbar.scrollIntoView(this.scrollable.children[index], {
-            offsetTop,
+            offsetTop: totalOffset + offsetTop + 14,
             onlyScrollIfNeeded,
           });
         },
@@ -382,7 +396,7 @@ export class MainLayoutProviderComponent extends Component {
       const sectionDirection = selectedSectionIndex > nextValue ? -1 : 1;
 
       if (currentRoute.scrollable && scrollToBlock) {
-        this.scrollToBlock(nextValue);
+        this.scrollToBlock({ index: nextValue });
       }
 
       this.setState({

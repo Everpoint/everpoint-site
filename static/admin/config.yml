@@ -1,5 +1,5 @@
 backend:
-  name: test-repo
+  name: github
   repo: Everpoint/everpoint-site
   branch: master
 
@@ -74,8 +74,8 @@ collections:
         widget: "object"
         required: false
         fields:
-          - {label: "Пояснительный текст", name: "explanatoryText", widget: "string", default: "На данную вакансию требуется выполнить тестовое задание"}
-          - {label: 'Файл', name: 'file', widget: 'file',  default: ""}
+          - {label: "Пояснительный текст", name: "explanatoryText", widget: "string", required: false, default: "На данную вакансию требуется выполнить тестовое задание"}
+          - {label: 'Файл', name: 'file', widget: 'file', required: false,  default: ""}
       - label: 'Текстовый блок "Что предлагаем взамен"'
         name: "sentence"
         widget: "object"

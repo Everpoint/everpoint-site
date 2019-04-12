@@ -2,7 +2,8 @@ import { css } from "astroturf";
 
 const color = css`
   .defaultDark {
-    a {
+    a,
+    button {
       color: rgba(38, 44, 55, 0.5);
       svg path {
         fill: rgba(38, 44, 55, 0.5);
@@ -24,7 +25,8 @@ const color = css`
     }
   }
   .defaultLight {
-    a {
+    a,
+    button {
       color: rgba(255, 255, 255, 0.5);
       svg path {
         fill: rgba(255, 255, 255, 0.5);
@@ -46,7 +48,8 @@ const color = css`
     }
   }
   .defaultFixed {
-    a {
+    a,
+    button {
       color: #262c37;
       svg path {
         fill: #262c37;
@@ -67,7 +70,8 @@ const color = css`
     }
   }
   .mspFixed {
-    a {
+    a,
+    button {
       @media (hover: hover) {
         &:hover {
           color: #4a90e2;
@@ -83,7 +87,8 @@ const color = css`
     }
   }
   .geomonitoringFixed {
-    a {
+    a,
+    button {
       @media (hover: hover) {
         &:hover {
           color: #009aeb;
@@ -98,7 +103,8 @@ const color = css`
     }
   }
   .evergisOnlineFixed {
-    a {
+    a,
+    button {
       @media (hover: hover) {
         &:hover {
           color: #00aaff;
@@ -113,7 +119,8 @@ const color = css`
     }
   }
   .mobileMspFixed {
-    a {
+    a,
+    button {
       @media (hover: hover) {
         &:hover {
           color: #44c3f8;

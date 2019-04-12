@@ -14,14 +14,6 @@ class Index extends Component {
   render() {
     const { children, pageContext, ...props } = this.props;
 
-    if (pageContext.layout === "longread") {
-      return (
-        <LongreadLayout routes={routes} {...props}>
-          {children}
-        </LongreadLayout>
-      );
-    }
-
     return (
       <StaticQuery
         query={graphql`
@@ -78,11 +70,21 @@ class Index extends Component {
             }
           }
         `}
-        render={data => (
-          <MainLayout routes={routes} {...data} {...props}>
-            {children}
-          </MainLayout>
-        )}
+        render={data => {
+          if (pageContext.layout === "longread") {
+            return (
+              <LongreadLayout routes={routes} {...data} {...props}>
+                {children}
+              </LongreadLayout>
+            );
+          }
+
+          return (
+            <MainLayout routes={routes} {...data} {...props}>
+              {children}
+            </MainLayout>
+          );
+        }}
       />
     );
   }

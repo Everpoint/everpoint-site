@@ -2,7 +2,9 @@ import cn from "classnames";
 
 import color from "./color";
 
-export const getColorById = (id, fixed) => {
+export const getColorById = ({ id: argId = "", fixed }) => {
+  const id = argId.split("/")[1];
+
   switch (id) {
     case "evergisOnline":
       return fixed

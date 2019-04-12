@@ -6,7 +6,6 @@ import { Link } from "gatsby";
 import { ReactComponent as Close } from "../../assets/img/icons/close.svg";
 import { ReactComponent as Arrow } from "../../assets/img/icons/arrow.svg";
 import { ScrollbarConsumer } from "../ScrollbarProvider/ScrollbarProvider";
-import { getBackRouteByLocationPathName } from "../../routes/utils";
 import { getColorById } from "./getColorById";
 import styles, { LongreadNavbarContainer } from "./styles";
 
@@ -28,42 +27,45 @@ export const getLongreadNavbarHeight = () => {
 
 export class LongreadNavbarBase extends Component {
   static propTypes = {
-    pathname: PropTypes.string,
     scrollTop: PropTypes.number,
     className: PropTypes.string,
-    projects: PropTypes.arrayOf(PropTypes.string),
+    pages: PropTypes.arrayOf(PropTypes.string),
     nativeScrollbar: PropTypes.bool,
     isMobile: PropTypes.bool,
+    currentPage: PropTypes.number,
+    goBack: PropTypes.func,
   };
 
   render() {
-    const { pathname, scrollTop, className, children, projects, nativeScrollbar, routes } = this.props;
-
+    const {
+      scrollTop,
+      className,
+      children,
+      pages,
+      currentPage,
+      nativeScrollbar,
+      goBack,
+    } = this.props;
     const transform = `translateY(${nativeScrollbar ? 0 : scrollTop}px)`;
     const fixed = Math.floor(scrollTop) > 0;
-    const arrowControl = !!projects;
-    const currentPageIndex =
-      projects && projects.findIndex(id => id === pathname.replace(/\//g, ""));
-    const currentProject = projects && projects[currentPageIndex];
-    const prevProjectPage = projects && projects[currentPageIndex - 1];
-    const nextProjectPage = projects && projects[currentPageIndex + 1];
-
-    const color = getColorById(currentProject, fixed);
+    const color = getColorById({ id: pages[currentPage], fixed });
+    const prev = pages[currentPage - 1];
+    const next = pages[currentPage + 1];
 
     return (
       <LongreadNavbarContainer className={cn(className, color)} style={{ transform }} fixed={fixed}>
         {children}
-        {arrowControl && prevProjectPage && (
-          <Link to={`/${prevProjectPage}`} className={cn(styles.arrowBtn, styles.leftArrowBtn)}>
+        {prev && (
+          <Link to={prev} className={cn(styles.arrowBtn, styles.leftArrowBtn)}>
             <Arrow />
             Предыдущий
           </Link>
         )}
-        <Link className={styles.longreadCloseBtn} to={getBackRouteByLocationPathName(pathname, routes)}>
+        <button className={styles.longreadCloseBtn} onClick={goBack}>
           <Close />
-        </Link>
-        {arrowControl && nextProjectPage && (
-          <Link to={`/${nextProjectPage}`} className={cn(styles.arrowBtn, styles.rightArrowBtn)}>
+        </button>
+        {next && (
+          <Link to={next} className={cn(styles.arrowBtn, styles.rightArrowBtn)}>
             Следующий
             <Arrow />
           </Link>

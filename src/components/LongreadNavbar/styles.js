@@ -9,7 +9,8 @@ export const LongreadNavbarContainer = styled("nav")`
   height: 5.7142rem;
   will-change: transform;
   transition: background 200ms linear;
-  a {
+  a,
+  button {
     font-size: 1.0714rem;
     padding: 0.4rem;
     position: absolute;
@@ -47,7 +48,8 @@ export const LongreadNavbarContainer = styled("nav")`
   @media (max-width: 812px) and (orientation: landscape),
     (max-width: 767px) and (orientation: portrait) {
     height: 3.5rem;
-    a {
+    a,
+    button {
       font-size: 0.9285rem;
       svg {
         max-width: 0.8rem;
@@ -59,6 +61,9 @@ export const LongreadNavbarContainer = styled("nav")`
 
 const styles = css`
   .longreadCloseBtn {
+    cursor: pointer;
+    border: none;
+    outline: none;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);

@@ -23,12 +23,23 @@ export const getRouteByLocation = (location, routes) => {
 
 export const getRouteById = (id, routes) => routes.find(route => route.id === id);
 
-export const getProject = ({ projectId, parentId = "portfolio", allProject = false, routes }) => {
+export const getProject = ({
+  projectId,
+  parentId = "portfolio",
+  allProject = false,
+  routes,
+  childrenId,
+}) => {
   const { sections } = getRouteById(parentId, routes);
   const projects = sections || [];
 
   if (allProject) {
-    return projects;
+    const route = projects.find(item => item.id === childrenId);
+    if (route) {
+      return route;
+    } else {
+      return projects;
+    }
   } else {
     return projects.find(({ id }) => id === projectId);
   }
@@ -39,6 +50,8 @@ export const getBackRouteByLocationPathName = (pathname, routes) => {
     return "/portfolio";
   } else if (pathname.includes("news")) {
     return "/about";
+  } else if (pathname.includes("vacancy")) {
+    return "/jobs";
   } else {
     return "/";
   }

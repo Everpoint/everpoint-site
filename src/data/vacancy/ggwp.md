@@ -16,8 +16,8 @@ expectations:
   expectationsTitle: Что мы ждем от вас
   requirementsList: saddasdasdasdadasdas
 attachmentBlock:
-  explanatoryText: На данную вакансию требуется выполнить тестовое задание
-  file: /img/тестовое-задание.docx
+  explanatoryText: ''
+  file: ''
 sentence:
   sentenceBody: >-
     <ul> <li> <img src="/img/doc.svg" /> Официальное оформление по ТК РФ; </li>
