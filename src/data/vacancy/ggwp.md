@@ -1,23 +1,42 @@
 ---
 templateKey: vacancy
 isVisible: true
-name: ggwp
-avatar: /img/cossa.png
-workFormat: dasdasd
-employment: dsadasdasdas
-salary: ''
+name: Middle front-end разработчик на React
+avatar: /img/developer.svg
+workFormat: Офис / Удалённая работа
+employment: Полная
+salary: 100 000 - 120 000 руб.
 contacts:
-  email: dsadasdasda
-  fullName: dsadasdsadasda
-  telegram: ''
+  email: em@everpoint.ru
+  fullName: Эльдар Мамедов
+  telegram: eldarmamedov
 skills:
-  - ''
+  - JavaScript
+  - Веб-разработка
+  - HTML
+  - CSS
+  - React.js
+  - Typescript
+  - Redux
+  - Soft skills
+  - ES6
 expectations:
   expectationsTitle: Что мы ждем от вас
-  requirementsList: saddasdasdasdadasdas
+  requirementsList: |-
+    *  JS ES6, включая scope’ы, классы, наследование, замыкания, Promise’ы и
+        деструктуризацию, умение писать на чистом JS;
+    * Опыт разработки sрpa в экосистеме react не менее 2 лет;
+    * webpack, npm + scripts;
+    * HTML5;
+    * CSS3, Less или Sass (используем styled-components);
+    * Понимание принципов Unit-тестирования (используем jest);
+    * Обучаемость: искреннее желание учиться и развиваться в своем направлении;
+    * Знание и применение в работе систем контроля версий;
+    * Личностные качества: креативность, целеустремленность, ответственность,
+      инициативность, энтузиазм, готовность глубоко погружаться в задачи.
 attachmentBlock:
-  explanatoryText: ''
-  file: ''
+  explanatoryText: На данную вакансию требуется выполнить тестовое задание
+  file: /img/тестовое-задание.docx
 sentence:
   sentenceBody: >-
     <ul> <li> <img src="/img/doc.svg" /> Официальное оформление по ТК РФ; </li>
