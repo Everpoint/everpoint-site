@@ -42,7 +42,7 @@ export class ScrollbarProvider extends Component {
     const { nativeScrollbar } = this.props;
 
     if (nativeScrollbar) {
-      window.removeEventListener("scroll", this.onNativeScroll, true);
+      window.removeEventListener("scroll", this.onNativeScroll);
     }
   }
 
@@ -62,7 +62,7 @@ export class ScrollbarProvider extends Component {
     }
 
     if (nativeScrollbar) {
-      document.addEventListener("scroll", this.onNativeScroll, true);
+      document.addEventListener("scroll", this.onNativeScroll);
     }
   }
 
@@ -96,8 +96,13 @@ export class ScrollbarProvider extends Component {
   };
 
   onNativeScroll = () => {
-    const top = window.pageYOffset || document.documentElement.scrollTop;
-    this.setState({ scrollTop: top });
+    const scrollTop = Math.max(
+      window.pageYOffset,
+      document.documentElement.scrollTop,
+      document.body.scrollTop,
+    );
+
+    this.setState({ scrollTop });
   };
 
   render() {
