@@ -16,7 +16,7 @@ export class ScrollableTeamMembers extends PureComponent {
   componentDidUpdate({ transitionEnd: prevTransitionEnd }, prevState) {
     const { transitionEnd, scrollToBlock, selectedSectionIndex } = this.props;
     if (prevTransitionEnd !== transitionEnd && transitionEnd) {
-      scrollToBlock(selectedSectionIndex, true);
+      scrollToBlock({ index: selectedSectionIndex, onlyScrollIfNeeded: true });
     }
   }
 

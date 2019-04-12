@@ -103,7 +103,11 @@ export class Jobs extends Component {
                     {...vacancy}
                     vacancy
                     className={styles.vacancyBlock}
-                    control={<GoNextLink>Описание вакансии</GoNextLink>}
+                    control={
+                      <GoNextLink gatsby to={vacancy.longreadLink}>
+                        Описание вакансии
+                      </GoNextLink>
+                    }
                     avatar={vacancy.avatar}
                   />
                   {array.length - 1 === index && <PaddingBlock />}

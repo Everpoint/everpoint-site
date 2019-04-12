@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import cn from "classnames";
 
 import { isMobile, isTablet } from "../utils/browser";
-import { getProject, getBackRouteByLocationPathName } from "../routes/utils";
+import { getProject, getBackRouteByLocationPathName, mergedRoutes } from "../routes/utils";
 import { ViewportHeight } from "../components/ViewportHeight/ViewportHeight";
 import { Helmet } from "../components/Helmet/Helmet";
 import { ScrollbarProvider } from "../components/ScrollbarProvider/ScrollbarProvider";
@@ -11,28 +11,90 @@ import { CookieNotice } from "../components/CookieNotice/CookieNotice";
 import styles from "../styles/longread";
 
 export class LongreadLayout extends Component {
+  static getDerivedStateFromProps(nextProps, prevState) {
+    const { routes: staticRoutes, location } = nextProps;
+    const { routes: prevRoutes, pages } = prevState;
+
+    const state = {};
+
+    if (prevRoutes.length === 0) {
+      return {
+        routes: mergedRoutes({ routes: staticRoutes, ...nextProps }),
+      };
+    }
+
+    if (pages.length === 0) {
+      const routes = mergedRoutes({ routes: staticRoutes, ...nextProps });
+      const projects = getProject({ allProject: true, routes }).map(({ id }) => `/${id}`);
+      const vacancy = getProject({
+        allProject: true,
+        routes,
+        parentId: "jobs",
+        childrenId: "vacancy",
+      });
+      const isPortfolioLongread = projects.some(project =>
+        project.includes(location.pathname.replace(/\//g, "")),
+      );
+      const isVacancyPage = location.pathname.includes("vacancy");
+
+      if (isPortfolioLongread && projects) {
+        state.pages = projects;
+      } else if (isVacancyPage && vacancy && vacancy.items) {
+        state.pages = vacancy.items.map(item => item.longreadLink);
+      }
+    }
+
+    return state;
+  }
+
   state = {
-    projects: null,
+    routes: [],
+    pages: [],
     isTablet: null,
     isMobile: null,
+    currentPage: 0,
   };
 
   componentDidMount() {
-    const { location, routes } = this.props;
-
-    const prevPage = getBackRouteByLocationPathName(location.pathname, routes);
-
-    if (prevPage.includes("portfolio")) {
-      const projects = getProject({ allProject: true, routes }).map(({ id }) => id);
-      this.setState({ projects });
-    }
-
-    this.setState({ isMobile: isMobile(), isTablet: isTablet() });
+    this.setState({
+      isMobile: isMobile(),
+      isTablet: isTablet(),
+    });
   }
 
+  componentDidUpdate({ location: prevLocation }, { pages: prevPages }) {
+    const { pages } = this.state;
+    const { location } = this.props;
+
+    if (prevLocation.pathname !== location.pathname || prevPages.length !== pages.length) {
+      const currentPage = pages.findIndex(page => {
+        const isVacancyPage = location.pathname.includes("vacancy");
+        const pathname = decodeURI(location.pathname);
+        return isVacancyPage ? page.includes(pathname) : page.includes(pathname.split("/")[1]);
+      });
+
+      this.setState({ currentPage: currentPage < 0 ? 0 : currentPage });
+    }
+  }
+
+  goBack = e => {
+    const { routes } = this.state;
+    const { location, navigate } = this.props;
+    e.preventDefault();
+    const isVacancyPage = location.pathname.includes("vacancy");
+    const to = getBackRouteByLocationPathName(location.pathname, routes);
+    if (isVacancyPage) {
+      navigate(to, {
+        state: { scrollTo: "vacancy" },
+      });
+    } else {
+      navigate(to);
+    }
+  };
+
   render() {
-    const { projects, isMobile, isTablet } = this.state;
-    const { children, location, routes } = this.props;
+    const { pages, isMobile, isTablet, currentPage } = this.state;
+    const { children, location } = this.props;
 
     if (isTablet === null && isMobile === null) {
       return <div style={{ display: "none" }} />;
@@ -55,11 +117,11 @@ export class LongreadLayout extends Component {
         />
         <ViewportHeight />
         <LongreadNavbar
+          currentPage={currentPage}
+          pages={pages}
           isMobile={isMobile}
           nativeScrollbar={isMobile || isTablet}
-          projects={projects}
-          routes={routes}
-          pathname={location.pathname}
+          goBack={this.goBack}
         />
         {React.cloneElement(children, {
           isMobile,

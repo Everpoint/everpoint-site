@@ -1,6 +1,7 @@
 import React from "react";
 
-import { Content } from "../cms/common/Content";
+import { isReactElement } from "../utils/dom";
+import { Content, HTMLContent } from "../cms/common/Content";
 import noVacancy from "../assets/img/vacancy/no-vacancy.svg";
 import { ReactComponent as DocIcon } from "../assets/img/icons/doc.svg";
 import { H2 } from "../components/Typography/Headlines";
@@ -36,9 +37,6 @@ export const Vacancy = React.memo(
     attachmentBlock,
     sentence,
     footerText,
-    footerTextComponent,
-    requirementsListComponent,
-    sentenceBodyComponent,
   }) => {
     const { fullName, telegram, email } = contacts;
     const { expectationsTitle, requirementsList } = expectations;
@@ -46,9 +44,10 @@ export const Vacancy = React.memo(
     const { sentenceTitle, sentenceBody } = sentence;
     const fileNameSplit = file && file.split("/");
     const fileName = Array.isArray(fileNameSplit) ? fileNameSplit[fileNameSplit.length - 1] : "";
-    const FooterContent = footerTextComponent || Content;
-    const RequirementsListContent = requirementsListComponent || Content;
-    const SentenceBodyContent = sentenceBodyComponent || Content;
+
+    const FooterContent = isReactElement(footerText) ? Content : HTMLContent;
+    const RequirementsListContent = isReactElement(requirementsList) ? Content : HTMLContent;
+    const SentenceBodyContent = isReactElement(sentenceBody) ? Content : HTMLContent;
 
     return (
       <VacancyContainer>
@@ -66,7 +65,7 @@ export const Vacancy = React.memo(
               { type: "email", value: email },
             ]}
           />
-          {skills && <Field name="Ключевые навыки" value={skills} />}
+          {Array.isArray(skills) && skills[0] && <Field name="Ключевые навыки" value={skills} />}
         </VacancyArticle>
         <SkillSection>
           <VacancyArticle>
@@ -87,7 +86,6 @@ export const Vacancy = React.memo(
         <ConditionsSection>
           <VacancyArticle>
             <ConditionTitle>{sentenceTitle}</ConditionTitle>
-            {/*<ConditionBlock dangerouslySetInnerHTML={{ __html: sentenceBody }} />*/}
             <SentenceBodyContent Element={ConditionBlock} content={sentenceBody} />
           </VacancyArticle>
           <Footer>

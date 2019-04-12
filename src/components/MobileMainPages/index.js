@@ -23,6 +23,10 @@ class MobileMainPage extends Component {
 
     if (section && section.id) {
       this.scrollTo(section.id);
+    } else {
+      if (location.state && location.state.scrollTo) {
+        this.scrollTo(location.state.scrollTo);
+      }
     }
   }
 
@@ -93,7 +97,6 @@ class MobileMainPage extends Component {
   render() {
     const { mobileMenuIsOpen, ratio } = this.state;
     const { news, titles, navigate, location, routes } = this.props;
-
     const is404Page = location.pathname.indexOf("404") === 1;
 
     return (

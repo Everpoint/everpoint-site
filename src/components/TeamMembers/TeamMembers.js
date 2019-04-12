@@ -4,7 +4,6 @@ import PropTypes from "prop-types";
 import { NoVacancyCard } from "./NoVacancyCard";
 import { GoNextLink } from "../../components/GoNextLink/GoNextLink";
 import { TeamMemberCard } from "../../components/TeamMemberCard/TeamMemberCard";
-import { getVacancyAvatarByType } from "./getVacancyAvatarByType";
 import { TeamMembersContainer, PhotoContainer } from "./styles";
 import { HowWeAreWorking } from "../HowWeAreWorking/HowWeAreWorking";
 
@@ -70,16 +69,16 @@ export class TeamMembers extends Component {
     const { cardHeight, photoHeight, margin } = this.state;
     const { items, id, selectedId } = this.props;
     const isVisible = id === selectedId;
-
+    const isVacancy = id === "vacancy";
     const isPhoto = id === "photo";
     const data = getColumns({ items });
     const height = isPhoto ? photoHeight : cardHeight;
     const top = height / 2;
     const half = Math.round(data.length / 2);
     const containerHeight =
-      (height + margin) * (data.length / 2) + (data.length % 2 === 0 ? height / 2 : 0) + 14;
+      Math.ceil(data.length / 2) * (height + margin) + (data.length % 2 === 0 ? height / 2 : 0);
 
-    const noVacancies = id === "vacancy" && items && items.length === 0;
+    const noVacancies = isVacancy && items && items.length === 0;
 
     if (id === "process") {
       return (
@@ -113,9 +112,15 @@ export class TeamMembers extends Component {
 
             return (
               <TeamMemberCard
-                control={id === "vacancy" ? <GoNextLink>Описание вакансии</GoNextLink> : null}
-                avatar={item.type ? getVacancyAvatarByType(item.type) : item.avatar}
-                vacancy={id === "vacancy"}
+                control={
+                  isVacancy ? (
+                    <GoNextLink gatsby to={item.longreadLink}>
+                      Описание вакансии
+                    </GoNextLink>
+                  ) : null
+                }
+                avatar={item.avatar}
+                vacancy={isVacancy}
                 withMarginTop={index === half}
                 height={height}
                 top={top}

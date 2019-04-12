@@ -57,3 +57,6 @@ export const fillElementsInViewport = ({
 
   return itemsInViewPort;
 };
+
+export const isReactElement = Element =>
+  typeof Element === "object" && Element !== null && !!Element.$$typeof;
