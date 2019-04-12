@@ -14,13 +14,17 @@ export const Main = styled(MainBlock)`
 `;
 
 export const Content = styled(Side)`
+  position: relative;
+  z-index: 1;
   display: flex;
   justify-content: space-between;
   align-items: flex-end;
   width: 100%;
+  flex-shrink: 0;
   @media (max-width: 812px) and (orientation: landscape),
     (max-width: 767px) and (orientation: portrait) {
     height: 100%;
+    padding-bottom: 1.4rem;
   }
 `;
 
@@ -64,8 +68,14 @@ export const SocialLink = styled("a")`
   height: 1.7142rem;
   margin-right: 1rem;
   background-repeat: no-repeat;
+  transition: opacity 200ms ease;
   &:last-child {
     margin-right: 0;
+  }
+  @media (hover: hover) {
+    &:hover {
+      opacity: 1;
+    }
   }
   @media (max-width: 991px) {
     margin-top: 1.7142rem;
@@ -73,6 +83,20 @@ export const SocialLink = styled("a")`
   @media (max-width: 812px) and (orientation: landscape),
     (max-width: 767px) and (orientation: portrait) {
     margin-top: 0.8rem;
+  }
+`;
+
+export const Copyright = styled(MainBlock)`
+  color: rgba(38, 44, 55, 0.5);
+  position: absolute;
+  left: 50%;
+  bottom: 4.5714rem;
+  transform: translateX(-50%);
+  align-items: flex-end;
+  @media (max-width: 812px) and (orientation: landscape),
+    (max-width: 767px) and (orientation: portrait) {
+    bottom: 0.5rem;
+    font-size: 0.7142rem;
   }
 `;
 
@@ -92,6 +116,7 @@ const styles = css`
     }
   }
   .telegramBtn {
+    z-index: 4;
     background-color: #90c53d;
     position: absolute;
     right: 6rem;
@@ -102,7 +127,7 @@ const styles = css`
     @media (max-width: 812px) and (orientation: landscape),
       (max-width: 767px) and (orientation: portrait) {
       right: 1.7857rem;
-      bottom: 1.4142rem;
+      bottom: 2.8142rem;
     }
   }
   div.background {

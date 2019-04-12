@@ -21,6 +21,10 @@ export const VacanciesContainer = styled(XScrollContainer)`
     height: 28rem;
     padding-right: 1rem;
   }
+  &.oneVacancy {
+    flex-direction: column;
+    align-items: center;
+  }
 `;
 
 export const Row = styled("div")`
