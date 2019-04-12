@@ -8,7 +8,7 @@ import { NewsContainer } from "../../styles/about";
 import { News } from "../../components/NewsCard/NewsCard";
 import styles, { Row } from "../../styles/cms";
 
-const AboutPreview = ({ entry, widgetFor }) => (
+const AboutPreview = ({ entry }) => (
   <PreviewContainer className={styles.aboutBg}>
     <Row>
       <NewsContainer>
