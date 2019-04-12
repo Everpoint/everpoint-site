@@ -85,6 +85,7 @@ export const Ul = withProps(() => ({ as: "div" }))(styled(UnorderedList)`
     li {
       margin: 0 0 1.4rem 0.8rem;
       font-size: 1.2857rem;
+      padding-left: 3rem;
       &:before {
         width: 8px;
         height: 8px;
@@ -106,6 +107,7 @@ export const Ul = withProps(() => ({ as: "div" }))(styled(UnorderedList)`
       }
       @media (max-width: 812px) and (orientation: landscape),
         (max-width: 767px) and (orientation: portrait) {
+        padding-left: 1.6rem;
         font-size: 0.8571rem;
       }
     }
@@ -246,11 +248,26 @@ export const ConditionBlock = styled("div")`
     margin: 0;
     list-style: none;
     li {
-      display: flex;
-      align-items: center;
+      position: relative;
       font-size: 1.2857rem;
       line-height: 1.33;
       margin-bottom: 1.4rem;
+      &:after {
+        content: "";
+        display: table;
+        clear: both;
+      }
+      p {
+        padding-top: 0.4rem;
+        overflow: hidden;
+        @media (max-width: 991px) {
+          padding-top: 0.2rem;
+        }
+        @media (max-width: 812px) and (orientation: landscape),
+          (max-width: 767px) and (orientation: portrait) {
+          padding-top: 0;
+        }
+      }
       @media (max-width: 1199px) {
         font-size: 1.1428rem;
         line-height: 1.5;
@@ -267,11 +284,11 @@ export const ConditionBlock = styled("div")`
         line-height: 1.5;
       }
       img {
-        align-self: flex-start;
+        float: left;
+        vertical-align: middle;
         margin-right: 1.7142rem;
         width: 2.2857rem;
         height: auto;
-        flex-shrink: 0;
         @media (max-width: 1199px) {
           margin-right: 1.6rem;
           width: 2rem;
