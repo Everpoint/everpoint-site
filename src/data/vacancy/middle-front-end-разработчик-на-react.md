@@ -67,7 +67,7 @@ sentence:
     выставках и конференциях (HollyJS, курсы и т.д.). Мы всегда за новые идеи и
     новые технологии; </li> <li><img src="/img/ic_14.svg" /> Компенсацию фитнеса
     премиум-класса &nbsp;<a href="https://milon-russia.ru/" target="_blank"
-    />Milon </a>. </li> </ul>
+    />Milon</a>.</li></ul>
   sentenceTitle: Что предлагаем взамен
 footerText: >-
   Хотите у нас работать? <br /> Пишите в чат или по указанным в вакансии

@@ -316,6 +316,30 @@ const styles = css`
       }
     }
   }
+  .grayLinks {
+    a {
+      font-weight: 600;
+      color: hsla(0, 0%, 100%, 0.5);
+      text-decoration: none;
+      @media (hover: hover) {
+        &:hover {
+          text-decoration: underline;
+        }
+      }
+    }
+  }
+  .greenLinks {
+    a {
+      font-weight: 600;
+      color: #00b27b;
+      text-decoration: none;
+      @media (hover: hover) {
+        &:hover {
+          text-decoration: underline;
+        }
+      }
+    }
+  }
   .header {
     padding-top: 15.8571rem;
     @media (max-width: 1199px) {

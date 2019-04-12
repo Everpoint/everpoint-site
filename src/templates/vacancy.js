@@ -86,11 +86,19 @@ export const Vacancy = React.memo(
         <ConditionsSection>
           <VacancyArticle>
             <ConditionTitle>{sentenceTitle}</ConditionTitle>
-            <SentenceBodyContent Element={ConditionBlock} content={sentenceBody} />
+            <SentenceBodyContent
+              className={styles.grayLinks}
+              Element={ConditionBlock}
+              content={sentenceBody}
+            />
           </VacancyArticle>
           <Footer>
             <VacancyArticle>
-              <FooterContent Element={FooterTitle} content={footerText} />
+              <FooterContent
+                className={styles.greenLinks}
+                Element={FooterTitle}
+                content={footerText}
+              />
             </VacancyArticle>
             <TelegramButton className={styles.telegramBtn} />
           </Footer>
