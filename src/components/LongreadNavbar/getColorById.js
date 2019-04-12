@@ -22,7 +22,9 @@ export const getColorById = ({ id: argId = "", fixed }) => {
       return fixed
         ? cn(color.defaultLight, color.defaultFixed, color.mobileMspFixed)
         : color.defaultLight;
-    default:
+    case "vacancy":
       return fixed ? cn(color.defaultDark, color.defaultFixed) : color.defaultDark;
+    default:
+      return fixed ? cn(color.defaultLight, color.defaultFixed) : color.defaultLight;
   }
 };
