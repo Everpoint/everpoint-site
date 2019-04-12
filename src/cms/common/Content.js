@@ -1,13 +1,16 @@
 import React from "react";
 import PropTypes from "prop-types";
+import showdown from "showdown";
+
+const converter = new showdown.Converter();
 
 export const Content = ({ Element, content }) => <Element>{content}</Element>;
 
 export const HTMLContent = ({ Element, content }) => (
-  <Element dangerouslySetInnerHTML={{ __html: content }} />
+  <Element dangerouslySetInnerHTML={{ __html: converter.makeHtml(content) }} />
 );
 
-HTMLContent.propTypes = Content.propTypes
+HTMLContent.propTypes = Content.propTypes;
 
 Content.propTypes = {
   Element: PropTypes.oneOfType([PropTypes.object, PropTypes.element]),

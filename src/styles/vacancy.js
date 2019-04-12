@@ -1,4 +1,5 @@
 import styled, { css } from "astroturf";
+import withProps from "recompose/withProps";
 
 import { Article } from "../components/Elements/Article";
 import { Blank } from "../components/Blank/Blank";
@@ -78,42 +79,44 @@ export const SkillSection = styled(Section)`
   }
 `;
 
-export const Ul = styled(UnorderedList)`
-  margin-bottom: 4rem;
-  li {
-    margin: 0 0 1.4rem 0.8rem;
-    font-size: 1.2857rem;
-    &:before {
-      width: 8px;
-      height: 8px;
-      margin-right: 1.7142rem;
-      background-color: rgba(38, 44, 55, 0.25);
+export const Ul = withProps(() => ({ as: "div" }))(styled(UnorderedList)`
+  ul {
+    margin: 0 0 4rem 0;
+    li {
+      margin: 0 0 1.4rem 0.8rem;
+      font-size: 1.2857rem;
+      &:before {
+        width: 8px;
+        height: 8px;
+        margin-right: 1.7142rem;
+        background-color: rgba(38, 44, 55, 0.25);
+        @media (max-width: 812px) and (orientation: landscape),
+          (max-width: 767px) and (orientation: portrait) {
+          width: 6px;
+          height: 6px;
+          margin: 0 0.6rem;
+        }
+      }
+      @media (max-width: 1199px) {
+        font-size: 1.1428rem;
+        margin: 0 0 1.4rem 0;
+      }
+      @media (max-width: 991px) {
+        font-size: 1rem;
+      }
       @media (max-width: 812px) and (orientation: landscape),
         (max-width: 767px) and (orientation: portrait) {
-        width: 6px;
-        height: 6px;
-        margin: 0 0.6rem;
+        font-size: 0.8571rem;
       }
     }
     @media (max-width: 1199px) {
-      font-size: 1.1428rem;
-      margin: 0 0 1.4rem 0;
+      margin: 0 0 3rem 0;
     }
     @media (max-width: 991px) {
-      font-size: 1rem;
-    }
-    @media (max-width: 812px) and (orientation: landscape),
-      (max-width: 767px) and (orientation: portrait) {
-      font-size: 0.8571rem;
+      margin: 0 0 2rem 0;
     }
   }
-  @media (max-width: 1199px) {
-    margin-bottom: 3rem;
-  }
-  @media (max-width: 991px) {
-    margin-bottom: 2rem;
-  }
-`;
+`);
 
 export const Test = styled(Blank)`
   padding: 1.6rem;
