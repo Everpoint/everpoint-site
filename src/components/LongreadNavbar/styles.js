@@ -102,11 +102,13 @@ const styles = css`
       font-size: 0;
     }
     .leftArrowBtn {
+      left: 1rem;
       svg {
         margin-right: 0;
       }
     }
     .rightArrowBtn {
+      right: 1rem;
       svg {
         margin-left: 0;
       }
