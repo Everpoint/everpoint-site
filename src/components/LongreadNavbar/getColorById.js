@@ -4,7 +4,6 @@ import color from "./color";
 
 export const getColorById = ({ id: argId = "", fixed }) => {
   const id = argId.split("/")[1];
-
   switch (id) {
     case "evergisOnline":
       return fixed
@@ -24,6 +23,8 @@ export const getColorById = ({ id: argId = "", fixed }) => {
         : color.defaultLight;
     case "vacancy":
       return fixed ? cn(color.defaultDark, color.defaultFixed) : color.defaultDark;
+    case "work":
+      return fixed ? cn(color.defaultDark, color.defaultFixed) : color.defaultLight;
     default:
       return fixed ? cn(color.defaultLight, color.defaultFixed) : color.defaultLight;
   }

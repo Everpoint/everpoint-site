@@ -80,9 +80,9 @@ export class Jobs extends Component {
           <PhotoContainer>
             {photoRows.map((row, index, array) => (
               <Row key={`employees-row-${index}`}>
-                {row.map(item => (
+                {row.map((item, index) => (
                   <Photo
-                    key={item.id}
+                    key={`${item.id || index}-employees`}
                     style={{
                       backgroundImage: `url(${photoId === "employees" ? item.avatar : item})`,
                     }}

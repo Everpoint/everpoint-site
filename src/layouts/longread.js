@@ -82,10 +82,15 @@ export class LongreadLayout extends Component {
     const { location, navigate } = this.props;
     e.preventDefault();
     const isVacancyPage = location.pathname.includes("vacancy");
+    const isWorkPage = location.pathname.includes("work");
     const to = getBackRouteByLocationPathName(location.pathname, routes);
     if (isVacancyPage) {
       navigate(to, {
         state: { scrollTo: "vacancy" },
+      });
+    } else if (isWorkPage) {
+      navigate(to, {
+        state: { scrollTo: "process" },
       });
     } else {
       navigate(to);
@@ -122,6 +127,7 @@ export class LongreadLayout extends Component {
           isMobile={isMobile}
           nativeScrollbar={isMobile || isTablet}
           goBack={this.goBack}
+          location={location}
         />
         {React.cloneElement(children, {
           isMobile,

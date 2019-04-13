@@ -43,7 +43,7 @@ export class SeparateBase extends Component {
     const strokeOpacity = width > fullWidth / 2 ? "0.25" : "0";
 
     return (
-      <Svg innerRef={this.onRef}>
+      <Svg ref={this.onRef} viewBox="0 0 900 81" x={0} y={0} xmlns="http://www.w3.org/2000/svg">
         <FirstLine height={Math.min(width, 40)} width={width > 40 ? Math.min(width, 269) : 0} />
         <SecondLine
           width={width > 309 ? Math.min(width - 309, 269) : 0}
