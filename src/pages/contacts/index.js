@@ -3,7 +3,7 @@ import cn from "classnames";
 
 import { Background } from "../../components/MainPageElements/Background";
 import { ImagesDownloadListener } from "../../components/ImagesDownloadListener/ImagesDownloadListener";
-import busInterlaced from "../../assets/img/main-slides/bus.png";
+import metroInterlaced from "../../assets/img/main-slides/metro.png";
 import bus from "../../assets/img/main-slides/bus.svg";
 import metro from "../../assets/img/main-slides/metro.svg";
 import { isMobile, isTablet } from "../../utils/browser";
@@ -49,7 +49,7 @@ class ContactsBase extends Component {
           onLoad={() => this.setState({ imagesIsLoaded: true })}
         />
         <Background
-          backgroundImage={imagesIsLoaded ? (stope ? metro : bus) : busInterlaced}
+          backgroundImage={imagesIsLoaded ? (stope ? metro : bus) : metroInterlaced}
           className={styles.background}
           status={status}
           location={location}
@@ -97,7 +97,9 @@ class ContactsBase extends Component {
           target="_blank"
           href="https://telegram.me/redditr"
         />
-        <Copyright  className={cn(animation(status))} as="footer">© 2019 ООО «Эверпоинт». Все права защищены.</Copyright>
+        <Copyright className={cn(animation(status))} as="footer">
+          © 2019 ООО «Эверпоинт». Все права защищены.
+        </Copyright>
       </Main>
     );
   }
