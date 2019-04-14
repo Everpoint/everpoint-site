@@ -27,7 +27,7 @@ export const routes = [
         items: principles,
         groupName: "Как мы работаем",
       },
-      { id: "photo", text: "Фото", items: photo, groupName: "Как мы работаем" },
+      { id: "photo", text: "Фото",  mobileText: "Cотрудники", items: photo, groupName: "Как мы работаем" },
     ],
     scrollable: true,
   },

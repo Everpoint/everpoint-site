@@ -2,14 +2,8 @@ import React from "react";
 import PropTypes from "prop-types";
 
 import { GoNextLink } from "../../components/GoNextLink/GoNextLink";
-import styles, {
-  HowWeAreWorkingContainer,
-  Title,
-  Paragraph,
-  PrinciplesContainer,
-  Principle,
-  Badge,
-} from "./styles";
+import { Principle } from "./Principle/Principle";
+import styles, { HowWeAreWorkingContainer, Title, Paragraph } from "./styles";
 
 export const HowWeAreWorking = ({ items, className }) => {
   return (
@@ -28,16 +22,7 @@ export const HowWeAreWorking = ({ items, className }) => {
       </Paragraph>
       <br />
       <Title>Наши принципы:</Title>
-      {items && (
-        <PrinciplesContainer>
-          {items.map(({ icon, title }) => (
-            <Principle key={title}>
-              <Badge style={{ backgroundImage: `url(${icon})` }} />
-              <span>{title}</span>
-            </Principle>
-          ))}
-        </PrinciplesContainer>
-      )}
+      <Principle items={items} />
       <GoNextLink to="/work" gatsby className={styles.howWeAreWorkingLink}>
         Подробнее о работе в Everpoint
       </GoNextLink>

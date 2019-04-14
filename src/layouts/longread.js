@@ -98,7 +98,7 @@ export class LongreadLayout extends Component {
   };
 
   render() {
-    const { pages, isMobile, isTablet, currentPage } = this.state;
+    const { pages, isMobile, isTablet, currentPage, routes } = this.state;
     const { children, location } = this.props;
 
     if (isTablet === null && isMobile === null) {
@@ -130,6 +130,7 @@ export class LongreadLayout extends Component {
           location={location}
         />
         {React.cloneElement(children, {
+          routes,
           isMobile,
           isTablet,
           isMobileOrTablet: isMobile || isTablet,

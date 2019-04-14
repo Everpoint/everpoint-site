@@ -16,6 +16,7 @@ const styles = css`
 
   .londreadBodyMobile {
     height: auto;
+    overflow: visible;
     :global(#___gatsby) {
       height: auto;
       > div:first-child {
