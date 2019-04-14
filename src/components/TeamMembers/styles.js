@@ -12,6 +12,7 @@ export const TeamMembersContainer = styled("div")`
   opacity: 0;
   pointer-events: none;
   transition: opacity 200ms linear;
+  margin-bottom: 1.4444rem;
   @media (max-width: 1199px) {
     width: calc(20rem * 2 + 2.1428rem);
   }

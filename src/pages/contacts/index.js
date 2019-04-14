@@ -97,7 +97,7 @@ class ContactsBase extends Component {
           target="_blank"
           href="https://telegram.me/redditr"
         />
-        <Copyright as="footer">© 2019 ООО «Эверпоинт». Все права защищены.</Copyright>
+        <Copyright  className={cn(animation(status))} as="footer">© 2019 ООО «Эверпоинт». Все права защищены.</Copyright>
       </Main>
     );
   }

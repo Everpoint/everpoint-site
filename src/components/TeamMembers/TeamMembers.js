@@ -81,7 +81,7 @@ export class TeamMembers extends Component {
       data.length > 2
         ? Math.ceil(data.length / 2) * (height + margin) +
           (data.length % 2 === 0 ? height / 2 : 0) +
-          20
+          4
         : rateLimit(Math.ceil(data.length / 2), 1) * height + 4;
 
     const noVacancies = isVacancy && items && items.length === 0;
