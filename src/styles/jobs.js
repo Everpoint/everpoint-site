@@ -43,6 +43,11 @@ export const LeftSide = styled(Side)`
     }
   }
 
+  @media (max-width: 991px) {
+    padding-right: 0;
+    min-width: 12.4444rem;
+  }
+
   @media (max-width: 767px) and (orientation: portrait) {
     width: 100vw;
     padding-left: 1.7142rem;
