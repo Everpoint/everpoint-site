@@ -28,14 +28,5 @@ export const injectGlobals = () => {
         height: 100%;
       }
     }
-    //:global(#__replain_widget) {
-    //  width: 48px !important;
-    //  height: 48px !important;
-    //}
-    //:global(.ctc__show) {
-    //  width: 48px !important;
-    //  height: 48px !important;
-    //  border-radius: 2px !important;
-    //}
   `;
 };
