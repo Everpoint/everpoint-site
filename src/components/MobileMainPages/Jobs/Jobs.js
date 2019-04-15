@@ -80,17 +80,18 @@ export class Jobs extends Component {
             </TabItem>
           </Tab>
           <PhotoContainer>
-            {photoRows.map((row, index, array) => (
+            {photoRows.map((row, index) => (
               <Row key={`employees-row-${index}`}>
-                {row.map((item, index) => (
-                  <Photo
-                    key={`${item.id || index}-employees`}
-                    style={{
-                      backgroundImage: `url(${photoId === "employees" ? item.avatar : item})`,
-                    }}
-                  />
+                {row.map((item, index, array) => (
+                  <React.Fragment key={`${item.id || index}-employees`}>
+                    <Photo
+                      style={{
+                        backgroundImage: `url(${photoId === "employees" ? item.avatar : item})`,
+                      }}
+                    />
+                    {array.length - 1 === index && <Padding as="span" />}
+                  </React.Fragment>
                 ))}
-                {array.length - 1 === index && <Padding as="div" />}
               </Row>
             ))}
           </PhotoContainer>
@@ -115,7 +116,7 @@ export class Jobs extends Component {
                     }
                     avatar={vacancy.avatar}
                   />
-                  {array.length - 1 === index && <PaddingBlock />}
+                  {array.length - 1 === index && array.length > 1 && <PaddingBlock />}
                 </React.Fragment>
               ))
             ) : (

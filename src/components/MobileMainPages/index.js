@@ -10,7 +10,6 @@ import { animate, ease } from "../../utils/animate";
 class MobileMainPage extends Component {
   state = {
     mobileMenuIsOpen: false,
-    ratio: 1,
     scrollToId: null,
   };
 
@@ -18,7 +17,6 @@ class MobileMainPage extends Component {
 
   componentDidMount() {
     const { location } = this.props;
-    this.setState({ ratio: getPixelRatioPropName() });
     const section = this.sectionsRef.find(({ id }) => location.pathname.includes(id));
 
     if (section && section.id) {
@@ -95,7 +93,8 @@ class MobileMainPage extends Component {
   toggleMenu = () => this.setState({ mobileMenuIsOpen: !this.state.mobileMenuIsOpen });
 
   render() {
-    const { mobileMenuIsOpen, ratio } = this.state;
+    const { mobileMenuIsOpen } = this.state;
+    const ratio = getPixelRatioPropName();
     const { news, titles, navigate, location, routes } = this.props;
     const is404Page = location.pathname.indexOf("404") === 1;
 

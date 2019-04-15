@@ -30,18 +30,19 @@ class MobileMsp extends PureComponent {
   };
 
   state = {
-    ratio: "x1",
     isMobileOrTablet: false,
     animate: false,
   };
 
   componentDidMount() {
-    this.setState({ ratio: getPixelRatioPropName(), isMobileOrTablet: isMobile() || isTablet() });
+    this.setState({ isMobileOrTablet: isMobile() || isTablet() });
   }
 
   render() {
-    const { ratio, isMobileOrTablet, animate } = this.state;
+    const { isMobileOrTablet, animate } = this.state;
     const { location, projectId } = this.props;
+
+    const ratio = getPixelRatioPropName();
 
     const mobileMsp = getProject({ projectId, routes });
     const { ios, android, iosMsp, androidMsp, iosSupport, androidSupport } = mobileMsp;

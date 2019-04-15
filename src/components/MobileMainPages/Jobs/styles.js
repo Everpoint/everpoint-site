@@ -54,7 +54,9 @@ export const TabItem = styled("span")`
 `;
 
 export const Padding = styled(PaddingBlock)`
-  width: 0.5rem;
+  &:first-of-type {
+    margin-left: 0;
+  }
 `;
 
 export const Photo = styled("div")`
@@ -65,6 +67,9 @@ export const Photo = styled("div")`
   background-size: cover;
   background-position: top;
   margin-right: 0.5rem;
+  &:last-of-type {
+    margin-right: 0;
+  }
 `;
 
 const styles = css`
