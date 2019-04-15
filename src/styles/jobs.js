@@ -66,15 +66,6 @@ export const RightSide = styled(Side)`
   @media (max-width: 991px) {
     height: 17rem;
   }
-  @media (max-width: 812px) and (orientation: landscape),
-    (max-width: 767px) and (orientation: portrait) {
-    max-width: 18rem;
-    max-height: 18rem;
-    margin-bottom: 3.4rem;
-  }
-  @media (max-width: 767px) and (orientation: portrait) and (max-height: 490px) {
-    margin-bottom: 2.4rem;
-  }
 `;
 
 export const RightSideContent = styled("div")`

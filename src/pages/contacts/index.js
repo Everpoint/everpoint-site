@@ -30,16 +30,17 @@ class ContactsBase extends Component {
   state = {
     stope: true,
     isMobileOrTablet: false,
+    isMobile: null,
     imagesIsLoaded: false,
   };
 
   componentDidMount() {
-    this.setState({ isMobileOrTablet: isMobile() || isTablet() });
+    this.setState({ isMobileOrTablet: isMobile() || isTablet(), isMobile: isMobile() });
   }
 
   render() {
     const { status, location, titles } = this.props;
-    const { stope, isMobileOrTablet, imagesIsLoaded } = this.state;
+    const { stope, isMobileOrTablet, imagesIsLoaded, isMobile } = this.state;
 
     return (
       <Main>
@@ -49,7 +50,7 @@ class ContactsBase extends Component {
         />
         <Background
           backgroundImage={imagesIsLoaded ? (stope ? metro : bus) : metroInterlaced}
-          className={styles.background}
+          className={cn(styles.background, { [styles.hideBackground]: isMobile})}
           status={status}
           location={location}
         />
