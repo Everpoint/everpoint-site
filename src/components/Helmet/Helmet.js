@@ -12,11 +12,6 @@ export const Helmet = props => {
       meta={[
         { name: "title", content: "Everpoint" },
         {
-          name: "viewport",
-          content:
-            "width=device-width, height=device-height, initial-scale=1.0, initial-scale=1.0, minimum-scale=1.0, viewport-fit=cover",
-        },
-        {
           name: "keywords",
           content: "GIS, LOCATION INTELLIGENCE, MAPS, DATA ANALYTICS, DATA VISUALIZATION",
         },

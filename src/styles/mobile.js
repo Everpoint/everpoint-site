@@ -14,6 +14,7 @@ export const Background = styled("div")`
   left: 0;
   width: 100%;
   height: 100vh;
+  height: calc(var(--vh, 1vh) * 100);
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
