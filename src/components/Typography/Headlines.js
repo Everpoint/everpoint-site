@@ -96,6 +96,13 @@ export const H3 = styled("h3")`
   }
 `;
 
+export const H4 = styled("h4")`
+  font-size: 1.4285rem;
+  font-weight: 600;
+  line-height: 1.2;
+  margin-bottom: 1rem;
+`;
+
 export const Paragraph = styled("p")`
   font-size: 1.1428rem;
   line-height: 1.5;

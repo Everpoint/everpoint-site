@@ -50,7 +50,7 @@ export const getBackRouteByLocationPathName = (pathname, routes) => {
     return "/portfolio";
   } else if (pathname.includes("news")) {
     return "/about";
-  } else if (pathname.includes("vacancy")) {
+  } else if (pathname.includes("vacancy") || pathname.includes("work")) {
     return "/jobs";
   } else {
     return "/";

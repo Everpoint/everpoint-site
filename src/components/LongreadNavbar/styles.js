@@ -4,7 +4,6 @@ export const LongreadNavbarContainer = styled("nav")`
   z-index: 10;
   width: 100%;
   top: 0;
-  left: 0;
   position: fixed;
   height: 5.7142rem;
   will-change: transform;
@@ -102,11 +101,13 @@ const styles = css`
       font-size: 0;
     }
     .leftArrowBtn {
+      left: 1rem;
       svg {
         margin-right: 0;
       }
     }
     .rightArrowBtn {
+      right: 1rem;
       svg {
         margin-left: 0;
       }

@@ -1,9 +1,9 @@
 import styled from "astroturf";
 import withProps from "recompose/withProps";
 
-export const Svg = withProps(() => ({ viewBox: "0 0 900 81", x: 0, y: 0 }))(styled("svg")`
+export const Svg = styled("svg")`
   fill: none;
-`);
+`;
 
 const paths = {
   stroke: "#262C37",

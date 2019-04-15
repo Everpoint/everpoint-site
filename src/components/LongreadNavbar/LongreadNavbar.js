@@ -45,10 +45,12 @@ export class LongreadNavbarBase extends Component {
       currentPage,
       nativeScrollbar,
       goBack,
+      location,
     } = this.props;
     const transform = `translateY(${nativeScrollbar ? 0 : scrollTop}px)`;
     const fixed = Math.floor(scrollTop) > 0;
-    const color = getColorById({ id: pages[currentPage], fixed });
+
+    const color = getColorById({ id: pages[currentPage] || location.pathname, fixed });
     const prev = pages[currentPage - 1];
     const next = pages[currentPage + 1];
 

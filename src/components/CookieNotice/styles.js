@@ -35,6 +35,9 @@ export const CookieNoticeContainer = styled("div")`
   &.transitionDisabled {
     transition: none;
   }
+  a {
+    white-space: nowrap;
+  }
 `;
 
 export const PrimaryButton = styled(Button)`

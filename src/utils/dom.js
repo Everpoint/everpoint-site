@@ -18,14 +18,16 @@ export const getElementWidthAndHeight = element => {
 };
 
 export const isElementInViewport = ({ el, offsetY = 0, offsetTop = 0 }) => {
-  const { top, left, bottom, right } = el.getBoundingClientRect();
+  if (el) {
+    const { top, left, bottom, right } = el.getBoundingClientRect();
 
-  return (
-    top + offsetY - offsetTop >= 0 &&
-    left >= 0 &&
-    bottom - offsetY <= (window.innerHeight || document.documentElement.clientHeight) &&
-    right <= (window.innerWidth || document.documentElement.clientWidth)
-  );
+    return (
+      top + offsetY - offsetTop >= 0 &&
+      left >= 0 &&
+      bottom - offsetY <= (window.innerHeight || document.documentElement.clientHeight) &&
+      right <= (window.innerWidth || document.documentElement.clientWidth)
+    );
+  }
 };
 
 export const fillElementsInViewport = ({

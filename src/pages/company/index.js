@@ -17,7 +17,7 @@ import styles, { CompanyContainer, Footer, ChatRow } from "../../styles/company"
 
 class Company extends PureComponent {
   render() {
-    const { isMobileOrTablet } = this.props;
+    const { isMobileOrTablet, isMobile } = this.props;
 
     return (
       <CompanyContainer>
@@ -99,7 +99,7 @@ class Company extends PureComponent {
             <H2>Развитие</H2>
           </Article>
         </Section>
-        <Development items={development} />
+        <Development items={development} isMobile={isMobile} />
         <Footer as="footer">
           <Article>
             <Paragraph>

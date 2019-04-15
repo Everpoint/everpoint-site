@@ -16,6 +16,7 @@ import {
 export class Development extends Component {
   static propTypes = {
     items: PropTypes.arrayOf(PropTypes.object),
+    isMobile: PropTypes.bool,
   };
 
   static defaultProps = {
@@ -30,6 +31,15 @@ export class Development extends Component {
   };
 
   componentDidMount() {
+    const { isMobile } = this.props;
+
+    if (isMobile) {
+      this.setState({
+        sectionWidth: 244,
+        padding: 20,
+      });
+    }
+
     window.addEventListener("mousemove", this.onMouseMove);
   }
 
