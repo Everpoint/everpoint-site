@@ -111,39 +111,6 @@ const styles = css`
   .whatIsHeDoing {
     background-color: #ebf1f9;
   }
-  .telegramBtn {
-    right: 3.4285rem;
-    bottom: 3.4285rem;
-    position: absolute;
-    background-color: #90c53d;
-    @media (max-width: 1199px) {
-      right: 2.2857rem;
-      bottom: 2.2857rem;
-    }
-    @media (max-width: 991px) {
-      width: 2.2857rem;
-      height: 2.2857rem;
-      right: 1.1428rem;
-      bottom: 1.1428rem;
-      svg {
-        width: 1.1rem;
-        height: 1rem;
-      }
-    }
-    @media (max-width: 812px) and (orientation: landscape),
-      (max-width: 767px) and (orientation: portrait) {
-      width: 1.7142rem;
-      height: 1.7142rem;
-      svg {
-        width: 1rem;
-        height: 0.8rem;
-      }
-    }
-    @media (max-width: 767px) and (orientation: portrait) {
-      right: 0.6rem;
-      bottom: 0.6rem;
-    }
-  }
 `;
 
 export default styles;
