@@ -1,5 +1,4 @@
 import igor from "./img/team-members/igor.jpg";
-import alla from "./img/team-members/alla.jpg";
 import yuliya from "./img/team-members/yuliya.jpg";
 import anton from "./img/team-members/anton.jpg";
 import yevgeniya from "./img/team-members/yevgeniya.jpg";
@@ -7,7 +6,6 @@ import eldar from "./img/team-members/eldar.jpg";
 import yakov from "./img/team-members/yakov.jpg";
 import boris from "./img/team-members/boris.jpg";
 import timofey from "./img/team-members/timofey.jpg";
-import petrI from "./img/team-members/petr.i.jpg";
 import petrB from "./img/team-members/petr.b.jpg";
 import maksim from "./img/team-members/maksim.jpg";
 import pavel from "./img/team-members/pavel.jpg";
@@ -15,7 +13,6 @@ import natalya from "./img/team-members/natalya.png";
 import mariana from "./img/team-members/mariana.jpg";
 import yevgeniy from "./img/team-members/yevgeniy.jpg";
 import ekaterina from "./img/team-members/ekaterina.jpg";
-import designer from "./img/vacancy/designer.svg";
 
 import eldar1 from "./img/team-members-portret/15-mamedov_2019-01-09/15-mamedov.jpg";
 import eldar2 from "./img/team-members-portret/15-mamedov_2019-01-09/15-mamedov@2x.jpg";
@@ -49,10 +46,6 @@ import petrB1 from "./img/team-members-portret/12-birukov_2019-01-09/12-birukov.
 import petrB2 from "./img/team-members-portret/12-birukov_2019-01-09/12-birukov@2x.jpg";
 import petrB3 from "./img/team-members-portret/12-birukov_2019-01-09/12-birukov@3x.jpg";
 
-import petrI1 from "./img/team-members-portret/13-ilinskiy_2019-01-09/13-ilinskiy.jpg";
-import petrI2 from "./img/team-members-portret/13-ilinskiy_2019-01-09/13-ilinskiy@2x.jpg";
-import petrI3 from "./img/team-members-portret/13-ilinskiy_2019-01-09/13-ilinskiy@3x.jpg";
-
 import yakov1 from "./img/team-members-portret/17-istomin_2019-01-09/17-istomin.jpg";
 import yakov2 from "./img/team-members-portret/17-istomin_2019-01-09/17-istomin@2x.jpg";
 import yakov3 from "./img/team-members-portret/17-istomin_2019-01-09/17-istomin@3x.jpg";
@@ -64,10 +57,6 @@ import timofey3 from "./img/team-members-portret/14-poriadin_2019-01-09/14-poria
 import igor1 from "./img/team-members-portret/7-ivchuk_2019-01-09/7-ivchuk.jpg";
 import igor2 from "./img/team-members-portret/7-ivchuk_2019-01-09/7-ivchuk@2x.jpg";
 import igor3 from "./img/team-members-portret/7-ivchuk_2019-01-09/7-ivchuk@3x.jpg";
-
-import alla1 from "./img/team-members-portret/1-panchenco_2019-01-09/1-panchenco.png";
-import alla2 from "./img/team-members-portret/1-panchenco_2019-01-09/1-panchenco@2x.png";
-import alla3 from "./img/team-members-portret/1-panchenco_2019-01-09/1-panchenco@3x.png";
 
 import maksim1 from "./img/team-members-portret/8-gritsenko_2019-01-09/8-gritsenko.jpg";
 import maksim2 from "./img/team-members-portret/8-gritsenko_2019-01-09/8-gritsenko@2x.jpg";
@@ -127,7 +116,7 @@ export default [
     avatar: yuliya,
     name: "Юлия",
     position: "Руководитель проектной группы",
-    descrition: "Душа команды. Гуру планирования.",
+    descrition: "Душа команды, гуру планирования",
     portret: {
       x1: yuliya1,
       x2: yuliya2,
@@ -170,18 +159,18 @@ export default [
       x3: anton3,
     },
   },
-  {
-    id: "8",
-    avatar: designer,
-    name: "Алексей",
-    position: "UX/UI-дизайнер",
-    descrition: "Рисую интерфейсы попиксельно",
-    portret: {
-      x1: "",
-      x2: "",
-      x3: "",
-    },
-  },
+  // {
+  //   id: "8",
+  //   avatar: designer,
+  //   name: "Алексей",
+  //   position: "UX/UI-дизайнер",
+  //   descrition: "Рисую интерфейсы попиксельно",
+  //   portret: {
+  //     x1: "",
+  //     x2: "",
+  //     x3: "",
+  //   },
+  // },
   {
     id: "9",
     avatar: petrB,
@@ -192,18 +181,6 @@ export default [
       x1: petrB1,
       x2: petrB2,
       x3: petrB3,
-    },
-  },
-  {
-    id: "10",
-    avatar: petrI,
-    name: "Пётр",
-    position: "Python / Django разработчик",
-    descrition: "Повелитель слонов и змей",
-    portret: {
-      x1: petrI1,
-      x2: petrI2,
-      x3: petrI3,
     },
   },
   {
@@ -243,23 +220,11 @@ export default [
     },
   },
   {
-    id: "14",
-    avatar: alla,
-    name: "Алла",
-    position: "Front-end разработчик",
-    descrition: "Оживляю интерфейсы",
-    portret: {
-      x1: alla1,
-      x2: alla2,
-      x3: alla3,
-    },
-  },
-  {
     id: "15",
     avatar: maksim,
     name: "Максим",
     position: "Архитектор / Техлид back-end",
-    descrition: "Изобретаю Боинги, и потом прикручиваю к ним педали для удобства пользователей",
+    descrition: "Изобретаю Боинги и прикручиваю к ним педали для удобства пользователей",
     portret: {
       x1: maksim1,
       x2: maksim2,

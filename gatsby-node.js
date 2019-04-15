@@ -49,6 +49,7 @@ exports.createPages = ({ actions, graphql }) => {
               skills
               attachmentBlock {
                 explanatoryText
+                fileName
                 file
               }
               sentence {

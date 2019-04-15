@@ -40,7 +40,7 @@ export const Phones = styled("img")`
   }
   @media (max-width: 812px) and (orientation: landscape) {
     width: 44rem;
-    left: calc(44rem / 1.64);
+    left: 60%;
     min-width: auto;
     top: calc(44rem / 3.2);
   }
@@ -48,7 +48,7 @@ export const Phones = styled("img")`
     width: 44rem;
     left: calc(44rem / 2.86);
     min-width: auto;
-    top: calc(44rem / 2.86);
+    top: 36%;
   }
   &.animate {
     opacity: 1;

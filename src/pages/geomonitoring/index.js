@@ -1,15 +1,14 @@
 import React, { PureComponent } from "react";
 
-import { routes } from '../../routes';
+import { routes } from "../../routes";
 import { HeaderRightSide } from "../../components/GeomonitoringLongread/HeaderRightSide/HeaderRightSide";
-import { LocalLink } from "../../components/LocalLink/LocalLink";
+// import { LocalLink } from "../../components/LocalLink/LocalLink";
 import { UnorderedList } from "../../components/Typography/UnorderedList";
 import { ImageWithTitle } from "../../components/Multimedia/ImageWithTitle";
 import { Section } from "../../components/Elements/Section";
 import { Article } from "../../components/Elements/Article";
 import { H1, H3 } from "../../components/Typography/Headlines";
 import { Paragraph } from "../../components/Typography/Paragraph";
-import { TelegramButton } from "../../components/Buttons/TelegramButton";
 import { Header } from "../../components/PortfolioLongreadHeader/Header";
 import { Figures } from "../../components/Figures/Figures";
 import { getProject } from "../../routes/utils";
@@ -87,8 +86,9 @@ class Geomonitoring extends PureComponent {
               <Paragraph>
                 Помочь банкам в этом деле может корпоративное геоинформационное веб-приложение
                 «Геомониторинг недвижимости». Эта аналитическая система управления залоговым
-                имуществом разработана на базе нашей собственной{" "}
-                <LocalLink to="/evergis">ГИС-платформы EverGIS</LocalLink>.
+                имуществом разработана на базе нашей собственной ГИС-платформы EverGIS.
+                {/*{" "}*/}
+                {/*<LocalLink to="/evergis">ГИС-платформы EverGIS</LocalLink>.*/}
               </Paragraph>
             </Article>
           </Section>
@@ -198,7 +198,6 @@ class Geomonitoring extends PureComponent {
           </Section>
           <Footer>
             <H3>Хотите такую систему? Есть похожая задача? Напишите нам в чат, отвечаем быстро!</H3>
-            <TelegramButton className={styles.telegramBtn} />
           </Footer>
         </GeomonitoringContainer>
       </>

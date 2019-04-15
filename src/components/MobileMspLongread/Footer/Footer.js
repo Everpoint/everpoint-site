@@ -41,7 +41,7 @@ export class Footer extends PureComponent {
           </LeftSide>
           <RightSide isMobilePlatform={mobilePlatform}>
             <Article>
-              <H3>НавигаторМСП. Меры поддержки</H3>
+              <H3>Навигатор МСП. Меры поддержки</H3>
               <Store>
                 <IosStoreLink href={iosSupport} target="_blank" />
                 <AndroidStoreLink href={androidSupport} target="_blank" />

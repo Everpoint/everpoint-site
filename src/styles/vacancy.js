@@ -287,12 +287,8 @@ export const ConditionBlock = styled("div")`
         float: left;
         vertical-align: middle;
         margin-right: 1.7142rem;
-        width: 2.2857rem;
+        width: 2rem;
         height: auto;
-        @media (max-width: 1199px) {
-          margin-right: 1.6rem;
-          width: 2rem;
-        }
         @media (max-width: 991px) {
           width: 1.4285rem;
           margin-right: 1.4rem;
@@ -310,29 +306,6 @@ export const ConditionBlock = styled("div")`
 `;
 
 const styles = css`
-  .telegramBtn {
-    right: 3.1428rem;
-    bottom: 3.1428rem;
-    position: absolute;
-    background-color: #90c53d;
-    @media (max-width: 1199px) {
-      right: 2.2857rem;
-      bottom: 2.2857rem;
-    }
-    @media (max-width: 991px) {
-      right: 1rem;
-      bottom: 1rem;
-    }
-    @media (max-width: 812px) and (orientation: landscape),
-      (max-width: 767px) and (orientation: portrait) {
-      width: 1.7142rem;
-      height: 1.7142rem;
-      svg {
-        width: 1.05rem;
-        height: 0.9rem;
-      }
-    }
-  }
   .grayLinks {
     a {
       font-weight: 600;

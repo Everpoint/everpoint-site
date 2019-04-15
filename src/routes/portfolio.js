@@ -5,9 +5,9 @@ import mspX3 from "../assets/img/portfolio/slide-screenshots/msp/msp@3x.png";
 import geomonitoringX1 from "../assets/img/portfolio/slide-screenshots/geomonitoring/bank.png";
 import geomonitoringX2 from "../assets/img/portfolio/slide-screenshots/geomonitoring/bank@2x.png";
 import geomonitoringX3 from "../assets/img/portfolio/slide-screenshots/geomonitoring/bank@3x.png";
-import evergisOnlineX1 from "../assets/img/portfolio/slide-screenshots/evergisOnline/1-ec-header.png";
-import evergisOnlineX2 from "../assets/img/portfolio/slide-screenshots/evergisOnline/1-ec-header@2x.png";
-import evergisOnlineX3 from "../assets/img/portfolio/slide-screenshots/evergisOnline/1-ec-header@3x.png";
+import evergisOnlineX1 from "../assets/img/portfolio/slide-screenshots/evergisOnline/EGO_x1.png";
+import evergisOnlineX2 from "../assets/img/portfolio/slide-screenshots/evergisOnline/EGO_x2.png.png";
+import evergisOnlineX3 from "../assets/img/portfolio/slide-screenshots/evergisOnline/EGO_x3.png.png";
 
 import mobileFirstX1 from "../assets/img/portfolio/slide-screenshots/mobileMsp/phone-1.png";
 import mobileFirstX2 from "../assets/img/portfolio/slide-screenshots/mobileMsp/phone-1@2x.png";
@@ -16,9 +16,7 @@ import mobileSecondX2 from "../assets/img/portfolio/slide-screenshots/mobileMsp/
 import mobileThirdX1 from "../assets/img/portfolio/slide-screenshots/mobileMsp/phone-3.png";
 import mobileThirdX2 from "../assets/img/portfolio/slide-screenshots/mobileMsp/phone-3@2x.png";
 
-import eoPic1X1 from "../assets/img/portfolio/evergisOnline/screenshots/pic-1.png";
-import eoPic1X2 from "../assets/img/portfolio/evergisOnline/screenshots/pic-1@2x.png";
-import eoPic1X3 from "../assets/img/portfolio/evergisOnline/screenshots/pic-1@3x.png";
+import eoPic1X1 from "../assets/img/portfolio/evergisOnline/screenshots/EGO_Удобно и просто.png";
 import eoPic2X1 from "../assets/img/portfolio/evergisOnline/screenshots/pic-2.png";
 import eoPic2X2 from "../assets/img/portfolio/evergisOnline/screenshots/pic-2@2x.png";
 import eoPic2X3 from "../assets/img/portfolio/evergisOnline/screenshots/pic-2@3x.png";
@@ -68,8 +66,8 @@ export default {
       longreadImages: [
         {
           x1: eoPic1X1,
-          x2: eoPic1X2,
-          x3: eoPic1X3,
+          x2: eoPic1X1,
+          x3: eoPic1X1,
         },
         {
           x1: eoPic2X1,
@@ -87,8 +85,8 @@ export default {
           x3: eoPic4X3,
         },
       ],
-      link: "public.everpoint.ru",
-      description: "Картографический сервис для анализа геоданных и создания интерактивных карт",
+      // link: "public.everpoint.ru",
+      description: "Картографический сервис для анализа геоданных и создания интерактивных карт.",
     },
     {
       groupName: "Решения",
@@ -97,7 +95,7 @@ export default {
       text: "Бизнес-навигатор МСП",
       projectBackgroundColor: "#387bc7",
       description:
-        "Бесплатный сервис для предпринимателей. Найдите лучшее место для открытия бизнеса и получите готовый бизнес-план.",
+        "Бесплатный сервис для предпринимателей. Найдите лучшее место для открытия бизнеса и получите готовый типовой бизнес-план.",
       screenshots: {
         x1: mspX1,
         x2: mspX2,
@@ -106,12 +104,12 @@ export default {
       link: "navigator.smbn.ru",
       achievements: [
         {
-          amount: "172",
+          amount: "177",
           text: "Столиц субъектов РФ и городов с населением более 100 тыс. чел.",
         },
         { amount: "103", text: "Концепций бизнеса доступны для расчёта бизнес-плана" },
-        { amount: "450 000", text: "Пользователей воспользовались сервисом за два года" },
-        { amount: "270 000", text: "Предпринимателей зарегистрированы в бизнес-навигаторе" },
+        { amount: "650 000", text: "Пользователей воспользовались сервисом за 2.5 года" },
+        { amount: "400 000", text: "Предпринимателей зарегистрированы в бизнес-навигаторе" },
         { icon: rrIcon, text: "Подключена публичная кадастровая карта Росреестра" },
         { icon: bankIcon, text: "Бизнес-планы принимаются банками-партнёрами Корпорации МСП" },
       ],
@@ -149,7 +147,7 @@ export default {
         },
       ],
       description:
-        "Приложение для расчёта бизнес-планов и справочник мер поддержки предпринимателей",
+        "Приложение для расчёта бизнес-планов и справочник мер поддержки предпринимателей.",
       ios: "https://itunes.apple.com/ru/developer/корпорация-мсп/id1253348895?mt=8",
       android: "https://play.google.com/store/apps/developer?id=АО+«Корпорация+«МСП»",
       iosMsp:

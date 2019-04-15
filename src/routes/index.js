@@ -1,5 +1,5 @@
 import employees from "../assets/employees";
-import principles from "../assets/principles";
+// import principles from "../assets/principles";
 import photo from "../assets/photo";
 
 import portfolio from "./portfolio";
@@ -21,13 +21,19 @@ export const routes = [
     sections: [
       { id: "employees", text: "Наши сотрудники", items: employees, groupName: "Команда" },
       { id: "vacancy", text: "Вакансии", groupName: "Команда" },
+      // {
+      //   id: "process",
+      //   text: "Рабочий процесс",
+      //   items: principles,
+      //   groupName: "Как мы работаем",
+      // },
       {
-        id: "process",
-        text: "Рабочий процесс",
-        items: principles,
+        id: "photo",
+        text: "Фото",
+        mobileText: "Cотрудники",
+        items: photo,
         groupName: "Как мы работаем",
       },
-      { id: "photo", text: "Фото",  mobileText: "Cотрудники", items: photo, groupName: "Как мы работаем" },
     ],
     scrollable: true,
   },

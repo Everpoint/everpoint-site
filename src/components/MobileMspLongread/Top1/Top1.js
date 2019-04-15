@@ -11,7 +11,7 @@ import { ReactComponent as Right1 } from "../../../assets/img/portfolio/mobileMs
 import { ReactComponent as Right2 } from "../../../assets/img/portfolio/mobileMsp/icons/right-2.svg";
 import { ReactComponent as Right3 } from "../../../assets/img/portfolio/mobileMsp/icons/right-3.svg";
 import { ReactComponent as Right4 } from "../../../assets/img/portfolio/mobileMsp/icons/right-4.svg";
-import { ReactComponent as Badge } from "../../../assets/img/badges/top1.svg";
+import { ReactComponent as Badge } from "../../../assets/img/badges/mobileMspBigTop1.svg";
 import { halfPhoneTop1 } from "../images";
 import { isElementInViewport } from "../../../utils/dom";
 

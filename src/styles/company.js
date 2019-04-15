@@ -92,15 +92,6 @@ const styles = css`
       }
     }
   }
-  button.companyTelegramBtn {
-    flex-shrink: 0;
-    background-color: #fff;
-    svg {
-      path {
-        fill: #90c53d;
-      }
-    }
-  }
 `;
 
 export default styles;

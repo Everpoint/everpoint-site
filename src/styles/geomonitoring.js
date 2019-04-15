@@ -40,7 +40,7 @@ export const GeomonitoringContainer = styled("div")`
 
 export const Footer = styled("footer")`
   position: relative;
-  background-color: rgba(38, 44, 55, 0.1);
+  background-color: #d7dce5;
   padding: 5.2857rem 0;
   text-align: center;
   h3 {
@@ -79,7 +79,7 @@ const styles = css`
   .headerRightSide {
     @media (max-width: 767px) and (orientation: portrait) {
       flex-shrink: 1;
-      flex-grow: 0;
+      flex-grow: 1;
     }
   }
   .headerLeftSide {
@@ -89,14 +89,9 @@ const styles = css`
       display: block;
       margin-bottom: 0;
     }
-    @media (max-width: 767px) and (orientation: portrait) {
-      position: absolute;
-      bottom: 0;
-      left: 0;
-    }
-    @media (max-width: 767px) and (orientation: portrait) and (max-height: 524px) {
+    @media (max-width: 767px) and (orientation: portrait) and (max-height: 540px) {
       p {
-        margin-bottom: 2rem;
+        display: none;
       }
     }
   }

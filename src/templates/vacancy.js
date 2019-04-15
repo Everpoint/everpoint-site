@@ -6,7 +6,6 @@ import noVacancy from "../assets/img/vacancy/no-vacancy.svg";
 import { ReactComponent as DocIcon } from "../assets/img/icons/doc.svg";
 import { H2 } from "../components/Typography/Headlines";
 import { Field } from "../components/VacancyField/Field";
-import { TelegramButton } from "../components/Buttons/TelegramButton";
 import styles, {
   VacancyContainer,
   VacancyTitle,
@@ -40,10 +39,8 @@ export const Vacancy = React.memo(
   }) => {
     const { fullName, telegram, email } = contacts;
     const { expectationsTitle, requirementsList } = expectations;
-    const { explanatoryText, file } = attachmentBlock;
+    const { explanatoryText, fileName, file } = attachmentBlock;
     const { sentenceTitle, sentenceBody } = sentence;
-    const fileNameSplit = file && file.split("/");
-    const fileName = Array.isArray(fileNameSplit) ? fileNameSplit[fileNameSplit.length - 1] : "";
 
     const FooterContent = isReactElement(footerText) ? Content : HTMLContent;
     const RequirementsListContent = isReactElement(requirementsList) ? Content : HTMLContent;
@@ -104,7 +101,6 @@ export const Vacancy = React.memo(
                 content={footerText}
               />
             </VacancyArticle>
-            <TelegramButton className={styles.telegramBtn} />
           </Footer>
         </ConditionsSection>
       </VacancyContainer>

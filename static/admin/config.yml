@@ -75,6 +75,7 @@ collections:
         required: false
         fields:
           - {label: "Пояснительный текст", name: "explanatoryText", widget: "string", required: false, default: "На данную вакансию требуется выполнить тестовое задание"}
+          - {label: 'Имя файла', name: 'fileName', widget: 'string', required: false,  default: "Тестовое задание"}
           - {label: 'Файл', name: 'file', widget: 'file', required: false,  default: ""}
       - label: 'Текстовый блок "Что предлагаем взамен"'
         name: "sentence"

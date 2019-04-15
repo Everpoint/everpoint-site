@@ -70,6 +70,11 @@ export class CompanyPhoto extends Component {
 
   updatePhoto = () => {
     const { visibleItems, hiddenItems } = this.state;
+
+    if (hiddenItems.length === 0) {
+      return;
+    }
+
     const newVisibleItems = visibleItems.slice();
     const newHiddenItems = hiddenItems.slice();
     const randomIndex = random(newVisibleItems.length - 1);
@@ -100,7 +105,6 @@ export class CompanyPhoto extends Component {
   };
 
   onAllAvatarsLoaded = () => {
-    clearInterval(this.interval);
     this.interval = setInterval(() => this.updatePhoto(), 2000);
   };
 

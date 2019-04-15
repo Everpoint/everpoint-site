@@ -10,9 +10,21 @@ import { MobileTitle } from "../../components/PortfolioSlide/styles";
 import { common } from "../../styles/common";
 import withRouter from "../../hoc/withRouter";
 import { animation } from "../../components/MainPageElements/Section";
+import { getPixelRatioPropName } from "../../utils/utils";
 
 class PortfolioBase extends Component {
+  state = {
+    ratio: "x1",
+  };
+
+  componentDidMount() {
+    this.setState({
+      ratio: getPixelRatioPropName(),
+    });
+  }
+
   render() {
+    const { ratio } = this.state;
     const {
       location,
       navigate,
@@ -54,6 +66,7 @@ class PortfolioBase extends Component {
         </LeftSide>
         <Rightside className={animation(status)}>
           <PortfolioSlide
+            ratio={ratio}
             onExited={onExited}
             lastSectionIndex={lastSectionIndex}
             transitionEnd={transitionEnd}
