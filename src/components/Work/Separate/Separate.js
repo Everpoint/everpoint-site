@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 
 import { ScrollbarConsumer } from "../../../components/ScrollbarProvider/ScrollbarProvider";
-import { isElementInViewport } from "../../../utils/dom";
 import { Svg, FirstLine, SecondLine, LightBulb, Filament } from "./styles";
 
 export class SeparateBase extends Component {
@@ -17,10 +16,6 @@ export class SeparateBase extends Component {
   state = {
     width: 0,
   };
-
-  shouldComponentUpdate(nextProps, nextState) {
-    return isElementInViewport({ el: this.svg });
-  }
 
   componentDidUpdate({ scrollTop: prevScrollTop }, prevState) {
     const { scrollTop, elementYPosition, fullWidth } = this.props;
