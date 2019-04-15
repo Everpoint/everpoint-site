@@ -7,7 +7,6 @@ import metroInterlaced from "../../assets/img/main-slides/metro.png";
 import bus from "../../assets/img/main-slides/bus.svg";
 import metro from "../../assets/img/main-slides/metro.svg";
 import { isMobile, isTablet } from "../../utils/browser";
-import { TelegramButton } from "../../components/Buttons/TelegramButton";
 import { H2 } from "../../components/Atoms/Atoms";
 import { socials } from "../../assets/social";
 import { AddressLink } from "../../components/AddressLink/AddressLink";
@@ -91,12 +90,6 @@ class ContactsBase extends Component {
             </StopeButton>
           </RightSide>
         </Content>
-        <TelegramButton
-          as="a"
-          className={cn(styles.telegramBtn, animation(status))}
-          target="_blank"
-          href="https://telegram.me/redditr"
-        />
         <Copyright className={cn(animation(status))} as="footer">
           © 2019 ООО «Эверпоинт». Все права защищены.
         </Copyright>

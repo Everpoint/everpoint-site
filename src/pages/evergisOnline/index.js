@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 
-import { routes } from '../../routes';
+import { routes } from "../../routes";
 import { Header } from "../../components/PortfolioLongreadHeader/Header";
 import { getProject } from "../../routes/utils";
 import { OutsideLink } from "../../components/OutsideLink/OutsideLink";
@@ -137,9 +137,9 @@ class EvergisOnline extends Component {
               <Paragraph>
                 Сервис прост и удобен в использовании. Он работает онлайн в любом браузере, не нужно
                 устанавливать дополнительные программы и приложения. Специальные навыки работы в
-                ГИС-системах не требуются. Доступ к сервису бесплатный. Нужно только пройти по
-                ссылке и зарегистрироваться. В личном каталоге пользователя есть три вида ресурсов:
-                данные, слои и карты. Карта - основная рабочая область пользователя, его проект.
+                ГИС-системах не требуются. Доступ к сервису бесплатный. В личном каталоге
+                пользователя есть три вида ресурсов: данные, слои и карты. Карта - основная рабочая
+                область пользователя, его проект.
               </Paragraph>
               <ImageWithTitle title="Все для создания карт" src={longreadImages[1][ratio]} />
               <Paragraph>

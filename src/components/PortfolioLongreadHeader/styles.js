@@ -73,6 +73,9 @@ export const LeftSide = styled(Section)`
     margin-right: 0;
     margin-bottom: 3rem;
   }
+  @media (max-width: 812px) and (orientation: landscape) {
+    margin-right: 2rem;
+  }
   &.animate {
     opacity: 1;
   }
@@ -89,10 +92,9 @@ export const RightSide = styled(Section)`
   @media (max-width: 1199px) and (min-width: 768px) and (orientation: portrait) {
     width: 60%;
   }
-  @media (max-width: 812px) and (max-height: 320px) and (orientation: landscape),
-    only screen and (min-device-width: 320px) and (max-device-width: 568px) and (-webkit-min-device-pixel-ratio: 2) and (orientation: landscape) {
-    margin-top: 2rem;
-    width: 34%;
+  @media (max-width: 812px) and (max-height: 320px) and (orientation: landscape) {
+    width: 40%;
+    margin: 0 auto;
   }
 `;
 

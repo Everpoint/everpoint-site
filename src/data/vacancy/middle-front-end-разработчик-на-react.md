@@ -36,6 +36,7 @@ expectations:
       инициативность, энтузиазм, готовность глубоко погружаться в задачи.
 attachmentBlock:
   explanatoryText: На данную вакансию требуется выполнить тестовое задание
+  fileName: Тестовое задание front
   file: /img/тестовое_задание_front.docx
 sentence:
   sentenceBody: >-

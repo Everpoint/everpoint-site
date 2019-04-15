@@ -115,21 +115,6 @@ const styles = css`
       margin-bottom: 1rem;
     }
   }
-  .telegramBtn {
-    z-index: 4;
-    background-color: #90c53d;
-    position: absolute;
-    right: 6rem;
-    bottom: 4.5714rem;
-    @media (max-width: 1024px) {
-      right: 3.5714rem;
-    }
-    @media (max-width: 812px) and (orientation: landscape),
-      (max-width: 767px) and (orientation: portrait) {
-      right: 1.7857rem;
-      bottom: 2.8142rem;
-    }
-  }
   div.background {
     background-position: 75% center;
     @media (max-width: 991px) {

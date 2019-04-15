@@ -3,7 +3,6 @@ import PropTypes from "prop-types";
 import debounce from "lodash/debounce";
 import { Transition } from "react-transition-group";
 
-import { getPixelRatioPropName } from "../../utils/utils";
 import { ImagesDownloadListener } from "../../components/ImagesDownloadListener/ImagesDownloadListener";
 import { ContainerTransitionGroup, LongreadBackground } from "./styles";
 import { TransitionSlide } from "./TransitionSlide";
@@ -37,7 +36,6 @@ export class PortfolioSlide extends Component {
   state = {
     id: null,
     goToLongread: false,
-    ratio: "x1",
     images: [],
 
     top: 0,
@@ -52,6 +50,13 @@ export class PortfolioSlide extends Component {
     this.onResize();
     this.setImages();
     window.addEventListener("resize", this.onResize);
+  }
+
+  componentDidUpdate({ ratio: prevRatio }, prevState) {
+    const { ratio } = this.props;
+    if (prevRatio !== ratio) {
+      this.setImages();
+    }
   }
 
   componentWillUnmount() {
@@ -97,9 +102,8 @@ export class PortfolioSlide extends Component {
   };
 
   setImages = () => {
-    const { sections } = this.props;
+    const { sections, ratio } = this.props;
 
-    const ratio = getPixelRatioPropName();
     const images = [];
 
     sections.forEach(({ screenshots }) => {
@@ -110,7 +114,7 @@ export class PortfolioSlide extends Component {
       }
     });
 
-    this.setState({ ratio, images });
+    this.setState({ images });
   };
 
   goToLongread = () => {
@@ -134,8 +138,8 @@ export class PortfolioSlide extends Component {
   };
 
   render() {
-    const { top, down, up, left, width, height, goToLongread, ratio, images } = this.state;
-    const { projectBackgroundColor, id, screenshots } = this.props;
+    const { top, down, up, left, width, height, goToLongread, images } = this.state;
+    const { projectBackgroundColor, id, screenshots, ratio } = this.props;
 
     const sectionImages = Array.isArray(screenshots)
       ? screenshots.map(img => img[ratio])

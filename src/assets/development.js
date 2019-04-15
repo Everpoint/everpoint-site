@@ -105,7 +105,7 @@ export default [
   },
   {
     year: "2019",
-    month: "Февраль",
-    description: "Разработан бесплатный публичный геосервис EverGIS Online",
+    month: "Апрель",
+    description: "Разработана alpha-версия бесплатного публичного геосервиса EverGIS Online",
   },
 ];

@@ -7,9 +7,8 @@ import { Main } from "../components/MainPageElements/Main";
 import { Background } from "../components/MainPageElements/Background";
 import { Side, animation } from "../components/MainPageElements/Section";
 import { HorizontalRule } from "../components/Typography/HorizontalRule";
-import { BigH1 } from "../components/Typography/Headlines";
 
-import styles from "../styles/index";
+import styles, { Title } from "../styles/index";
 
 export class IndexPage extends Component {
   render() {
@@ -23,9 +22,9 @@ export class IndexPage extends Component {
         {/*</CoveringImage>*/}
         <Side className={animation(status)}>
           <HorizontalRule />
-          <BigH1>
+          <Title>
             Геосервисы для <br /> принятия решений
-          </BigH1>
+          </Title>
           <GoNextLink to="/company" gatsby big>
             О компании
           </GoNextLink>

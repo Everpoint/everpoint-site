@@ -1,7 +1,6 @@
 import React, { PureComponent } from "react";
 
 import { getPixelRatioPropName } from "../../utils/utils";
-import { TelegramButton } from "../../components/Buttons/TelegramButton";
 import { Section } from "../../components/Elements/Section";
 import { Article } from "../../components/Elements/Article";
 import { H2 } from "../../components/Typography/Headlines";
@@ -25,9 +24,10 @@ class Company extends PureComponent {
           title="Everpoint - это мы!"
           // add designer photo
           isMobileOrTablet={isMobileOrTablet}
-          items={employees
-            .filter(({ id }) => id !== "8")
-            .map(({ portret, id }) => ({ avatar: portret[getPixelRatioPropName()], id }))}
+          items={employees.map(({ portret, id }) => ({
+            avatar: portret[getPixelRatioPropName()],
+            id,
+          }))}
         />
         <Section>
           <Article>
@@ -112,7 +112,6 @@ class Company extends PureComponent {
           </Article>
           <ChatRow>
             <Paragraph withoutMargin>Есть задача? Напишите нам в чат, отвечаем быстро!</Paragraph>
-            <TelegramButton className={styles.companyTelegramBtn} />
           </ChatRow>
         </Footer>
       </CompanyContainer>

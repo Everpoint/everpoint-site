@@ -9,8 +9,8 @@ import styles, {
   Nav,
   LogoLink,
   Logo,
-  LanguageSwitch,
-  LanguageLink,
+  // LanguageSwitch,
+  // LanguageLink,
   LeftSide,
 } from "./styles";
 import { common } from "../../styles/common";
@@ -78,10 +78,10 @@ class NavbarBase extends PureComponent {
             >
               <Logo as="img" src={logo} alt="logo" />
             </LogoLink>
-            <LanguageSwitch>
-              <LanguageLink isActive>ru</LanguageLink>
-              <LanguageLink>en</LanguageLink>
-            </LanguageSwitch>
+            {/*<LanguageSwitch>*/}
+            {/*  <LanguageLink isActive>ru</LanguageLink>*/}
+            {/*  <LanguageLink>en</LanguageLink>*/}
+            {/*</LanguageSwitch>*/}
             <Hamburger
               isOpen={mobileMenuIsOpen}
               onClick={toggleMobileMenu}

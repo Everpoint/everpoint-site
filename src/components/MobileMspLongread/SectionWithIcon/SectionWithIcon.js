@@ -26,9 +26,9 @@ export class SectionWithIcon extends PureComponent {
     return (
       <SectionWithIconContainer>
         <Section>
-          <img src={msp[ratio]} alt="Бизес-навигатор МСП" />
+          <img src={msp[ratio]} alt="Бизнес-навигатор МСП" />
           <Content>
-            <Title as="h4">Бизес-навигатор МСП</Title>
+            <Title as="h4">Бизнес-навигатор МСП</Title>
             <Description as="p">
               Приложение по расчету бизнес-планов для предпринимателей и тех, кто мечтает открыть
               свое дело

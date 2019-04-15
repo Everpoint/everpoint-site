@@ -59,7 +59,7 @@ export class Jobs extends Component {
       section => section.id === "vacancy",
     );
     const { mobileText } = sections.find(section => section.id === "photo");
-    const { text: processText } = sections.find(section => section.id === "process");
+    // const { text: processText } = sections.find(section => section.id === "process");
 
     return (
       <>
@@ -76,7 +76,7 @@ export class Jobs extends Component {
               isActive={photoId === "photo"}
               onClick={() => this.setState({ photoId: "photo" })}
             >
-              {processText}
+              Рабочий процесс
             </TabItem>
           </Tab>
           <PhotoContainer>

@@ -89,4 +89,5 @@ export const ListHeader = styled("h2")`
   margin-bottom: 2rem;
   font-weight: 600;
   line-height: normal;
+  white-space: nowrap;
 `;

@@ -5,8 +5,8 @@ import {
   NavbarContainer,
   Nav,
   LeftSide,
-  LanguageSwitch,
-  LanguageLink,
+  // LanguageSwitch,
+  // LanguageLink,
   Logo,
 } from "../../components/Navbar/styles";
 import logo from "../../assets/img/assets/logo.svg";
@@ -89,10 +89,10 @@ export class MobileNavbar extends PureComponent {
         <Nav className={common.container} mobileMenuIsOpen={mobileMenuIsOpen}>
           <LeftSide>
             <Logo as="img" src={logo} alt="logo" onClick={() => scrollTo("index")} />
-            <LanguageSwitch>
-              <LanguageLink isActive>ru</LanguageLink>
-              <LanguageLink>en</LanguageLink>
-            </LanguageSwitch>
+            {/*<LanguageSwitch>*/}
+            {/*  <LanguageLink isActive>ru</LanguageLink>*/}
+            {/*  <LanguageLink>en</LanguageLink>*/}
+            {/*</LanguageSwitch>*/}
             <Hamburger
               isOpen={mobileMenuIsOpen}
               onClick={toggleMenu}
