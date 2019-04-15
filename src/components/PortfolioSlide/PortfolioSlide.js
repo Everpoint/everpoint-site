@@ -52,13 +52,6 @@ export class PortfolioSlide extends Component {
     window.addEventListener("resize", this.onResize);
   }
 
-  componentDidUpdate({ ratio: prevRatio }, prevState) {
-    const { ratio } = this.props;
-    if (prevRatio !== ratio) {
-      this.setImages();
-    }
-  }
-
   componentWillUnmount() {
     window.removeEventListener("resize", this.onResize);
   }
