@@ -120,8 +120,7 @@ const styles = css`
     @media (max-width: 991px) {
       background-position: 66% center;
     }
-    @media (max-width: 812px) and (orientation: landscape),
-      (max-width: 767px) and (orientation: portrait) {
+    &.hideBackground {
       display: none;
     }
   }

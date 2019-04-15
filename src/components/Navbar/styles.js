@@ -148,8 +148,7 @@ export const MobileMenu = styled("ul")`
     display: none;
   }
 
-  @media (max-width: 812px) and (orientation: landscape),
-    (max-width: 767px) and (orientation: portrait) {
+  &.isMobile {
     width: 0;
     height: 0;
     visibility: hidden;

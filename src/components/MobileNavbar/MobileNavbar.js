@@ -100,6 +100,7 @@ export class MobileNavbar extends PureComponent {
             />
           </LeftSide>
           <MenuMobile
+            isMobile
             routes={additionalRoutes}
             titles={titles}
             isOpen={mobileMenuIsOpen}

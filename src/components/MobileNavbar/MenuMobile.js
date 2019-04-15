@@ -4,9 +4,9 @@ import PropTypes from "prop-types";
 import { LinkContainer, MobileMenu } from "../../components/Navbar/styles";
 import { Link as OutsideLink } from "../Atoms/Atoms";
 
-export const MenuMobile = ({ routes, isOpen, scrollTo, titles }) => {
+export const MenuMobile = ({ routes, isOpen, scrollTo, titles, isMobile }) => {
   return (
-    <MobileMenu isOpen={isOpen}>
+    <MobileMenu isOpen={isOpen} isMobile={isMobile}>
       {routes.map(({ text, id, outsideLink }) => {
         const item = titles.find(item => item.id === id);
         return (
