@@ -1,4 +1,8 @@
 # Gatsby + Netlify CMS Starter
+- [demo](https://kre1z0.github.io/) - everpoint site 
+- [netlify-cms](https://www.netlifycms.org/docs/intro/) - netlify-cms docs
+- [gatsby](https://www.gatsbyjs.org/) - gatsby docs
+- [react](https://reactjs.org/docs/getting-started.html) - react docs
 
 **Note:** This starter uses the [Gatsby v2 Beta](https://www.gatsbyjs.org/blog/2018-06-16-announcing-gatsby-v2-beta-launch/).
 

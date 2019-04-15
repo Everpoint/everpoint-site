@@ -3,7 +3,7 @@ import React, { Component } from "react";
 import { routes } from "../../routes";
 import { Header } from "../../components/PortfolioLongreadHeader/Header";
 import { getProject } from "../../routes/utils";
-import { OutsideLink } from "../../components/OutsideLink/OutsideLink";
+// import { OutsideLink } from "../../components/OutsideLink/OutsideLink";
 import { Section } from "../../components/Elements/Section";
 import { Article } from "../../components/Elements/Article";
 import { H1 } from "../../components/Typography/Headlines";
@@ -75,18 +75,13 @@ class EvergisOnline extends Component {
   };
 
   state = {
-    ratio: "x1",
     animate: false,
   };
 
-  componentDidMount() {
-    this.setState({ ratio: getPixelRatioPropName() });
-  }
-
   render() {
-    const { ratio, animate } = this.state;
+    const { animate } = this.state;
     const { location, projectId } = this.props;
-
+    const ratio = getPixelRatioPropName();
     const evergisOnline = getProject({ projectId, routes });
     const { longreadImages } = evergisOnline;
 
@@ -111,14 +106,15 @@ class EvergisOnline extends Component {
           <Section>
             <Article>
               <Paragraph>
-                <OutsideLink>EverGIS Online</OutsideLink> — это картографический сервис, который
-                позволяет оценить местность по различным параметрам. Он будет полезен тем, кто хочет
-                открыть бизнес и планирует провести экономический анализ территории в масштабах
-                района, города или целой страны. Тем, кто проводит социологические исследования и
-                заинтересован в гибком анализе социальных изменений конкретных территорий. Тем, кто
-                изучает природные явления. И даже для тех, кто занимается развитием и обновлением
-                городской среды и заинтересован в детальном изучении транспортной сети перед
-                проектированием новой дороги или объектов инфраструктуры у нового жилого дома.
+                {/*<OutsideLink>EverGIS Online</OutsideLink>*/}
+                EverGIS Online — это картографический сервис, который позволяет оценить местность по
+                различным параметрам. Он будет полезен тем, кто хочет открыть бизнес и планирует
+                провести экономический анализ территории в масштабах района, города или целой
+                страны. Тем, кто проводит социологические исследования и заинтересован в гибком
+                анализе социальных изменений конкретных территорий. Тем, кто изучает природные
+                явления. И даже для тех, кто занимается развитием и обновлением городской среды и
+                заинтересован в детальном изучении транспортной сети перед проектированием новой
+                дороги или объектов инфраструктуры у нового жилого дома.
               </Paragraph>
               <FiguresTitle>
                 Как использовать возможности карты в сервисе EverGIS Online — решать только вам!
