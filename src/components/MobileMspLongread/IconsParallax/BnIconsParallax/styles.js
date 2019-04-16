@@ -7,6 +7,9 @@ const styles = css`
     transform: translate(-50%, -50.4%);
     margin-left: 6vh;
     margin-left: calc(var(--vh, 1vh) * 6);
+    @media (max-height: 750px) {
+      margin-left: 0;
+    }
     svg {
       width: 2.8571rem;
       height: 2.8571rem;
@@ -51,7 +54,7 @@ const styles = css`
         top: 56%;
       }
       &:nth-child(11) {
-        right: 65%;
+        right: 70%;
         top: 62%;
       }
       &:nth-child(12) {
