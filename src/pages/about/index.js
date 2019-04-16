@@ -35,6 +35,7 @@ export class AboutBase extends Component {
       sectionDirection,
       transitionEnd,
       currentRoute,
+      direction,
       disableBackgroundTransition,
     } = this.props;
     const { isMobile } = this.state;
@@ -49,7 +50,7 @@ export class AboutBase extends Component {
           status={status}
           location={location}
         />
-        <LeftSide className={animation(status)}>
+        <LeftSide className={animation(status, direction)}>
           <Content>
             <H2 as="h1">{titles && titles.find(({ id }) => id === "about").title}</H2>
             <GoNextLink to="/news" gatsby big>
@@ -66,7 +67,7 @@ export class AboutBase extends Component {
           />
         </LeftSide>
         <NewsContainer>
-          <RightSide className={animation(status)}>
+          <RightSide className={animation(status, direction)}>
             <NewsCard
               onSectionChange={onSectionChange}
               direction={sectionDirection}

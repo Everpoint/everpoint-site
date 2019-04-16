@@ -7,12 +7,13 @@ import { Main } from "../components/MainPageElements/Main";
 import { Background } from "../components/MainPageElements/Background";
 import { Side, animation } from "../components/MainPageElements/Section";
 import { HorizontalRule } from "../components/Typography/HorizontalRule";
+import { MainLayoutConsumer } from "../components/MainLayoutProvider/MainLayoutProvider";
 
 import styles, { Title } from "../styles/index";
 
 export class IndexPage extends Component {
   render() {
-    const { status, location } = this.props;
+    const { status, location, direction } = this.props;
 
     return (
       <Main>
@@ -20,7 +21,7 @@ export class IndexPage extends Component {
         {/*<CoveringImage>*/}
         {/*<Earth />*/}
         {/*</CoveringImage>*/}
-        <Side className={animation(status)}>
+        <Side className={animation(status, direction)}>
           <HorizontalRule />
           <Title>
             Геосервисы для <br /> принятия решений
@@ -34,4 +35,8 @@ export class IndexPage extends Component {
   }
 }
 
-export default IndexPage;
+export default props => (
+  <MainLayoutConsumer>
+    {({ direction }) => <IndexPage direction={direction} {...props} />}
+  </MainLayoutConsumer>
+);
