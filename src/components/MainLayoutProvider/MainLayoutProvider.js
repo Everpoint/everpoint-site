@@ -86,7 +86,6 @@ export class MainLayoutProviderComponent extends Component {
   componentDidUpdate(prevProps) {
     const { location: prevLocation } = prevProps;
     const { location } = this.props;
-
     if (prevLocation.pathname !== location.pathname) {
       this.setCurrentRoute();
     }
@@ -121,7 +120,6 @@ export class MainLayoutProviderComponent extends Component {
     const { location, routes } = this.props;
     const currentRoute = getRouteByLocation(location, routes);
     const { state } = location;
-
     const sections = (currentRoute && currentRoute.sections) || [];
 
     this.setState(
@@ -283,7 +281,7 @@ export class MainLayoutProviderComponent extends Component {
     const { routes } = this.props;
     const { currentRoute } = this.state;
 
-    const prevIndex = routes.findIndex(route => route.id === currentRoute && currentRoute.id);
+    const prevIndex = routes.findIndex(route => route.id === currentRoute.id);
     const currentIndex = routes.findIndex(route => route.id === id);
     const direction = currentIndex > prevIndex ? 1 : -1;
 
@@ -293,8 +291,8 @@ export class MainLayoutProviderComponent extends Component {
     }
 
     const nextPage = routes[currentIndex];
-    const prevPageId = currentRoute && currentRoute.id;
-    const nextPageId = nextPage && nextPage.id;
+    const prevPageId = currentRoute ? currentRoute.id : "";
+    const nextPageId = nextPage ? nextPage.id : "";
 
     const selectedSectionIndexFromIndex = this.getIndexFromDirection(nextPage, direction);
 
@@ -522,8 +520,8 @@ export class MainLayoutProviderComponent extends Component {
     } else {
       // page change
       const nextPage = navigateTo({ navigate, pathname, direction, routes });
-      const prevPageId = currentRoute && currentRoute.id;
-      const nextPageId = nextPage && nextPage.id;
+      const prevPageId = currentRoute ? currentRoute.id : "";
+      const nextPageId = nextPage ? nextPage.id : "";
 
       const disableBackgroundTransition =
         (prevPageId === "portfolio" && nextPageId === "about") ||
