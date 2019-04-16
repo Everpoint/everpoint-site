@@ -1,10 +1,10 @@
 import React, { Component } from "react";
+import Helmet from "react-helmet";
 import cn from "classnames";
 
 import { isMobile, isTablet } from "../utils/browser";
 import { getProject, getBackRouteByLocationPathName, mergedRoutes } from "../routes/utils";
 import { ViewportHeight } from "../components/ViewportHeight/ViewportHeight";
-import { Helmet } from "../components/Helmet/Helmet";
 import { ScrollbarProvider } from "../components/ScrollbarProvider/ScrollbarProvider";
 import { LongreadNavbar } from "../components/LongreadNavbar/LongreadNavbar";
 import { CookieNotice } from "../components/CookieNotice/CookieNotice";

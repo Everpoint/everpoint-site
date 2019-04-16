@@ -67,14 +67,15 @@ export class Development extends Component {
 
   render() {
     const { sectionWidth, padding } = this.state;
-    const { items } = this.props;
+    const { items, isMobile } = this.props;
 
     return (
       <Scrollbar onScrollbarRef={this.onScrollbarRef}>
         <DevelopmentContainer style={{ width: items.length * sectionWidth + padding }}>
           {items.map(({ year, month, description }, index) => {
+            const isMobileFirstChildPadding = isMobile ? 12 : 0;
             const firstChild = index === 0;
-            const additional = firstChild ? padding : 0;
+            const additional = firstChild ? padding + isMobileFirstChildPadding : 0;
 
             return (
               <DevelopmentItem

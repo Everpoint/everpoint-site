@@ -1,5 +1,10 @@
 import React from "react";
 
+import favicon from "./assets/img/assets/favicon.png";
+
+const siteUrl = "http://www.everpoint.ru";
+const ogImage = `${siteUrl}/img/ogImage.png`;
+
 const pixelFacebook = `
  !function(f,b,e,v,n,t,s)
  {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
@@ -73,7 +78,30 @@ class HTML extends React.Component {
         <head>
           <meta charSet="utf-8" />
           <meta httpEquiv="x-ua-compatible" content="ie=edge" />
+          <title>Everpoint</title>
+          <link rel="icon" type="image/png" href={favicon} />
           <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+          <meta
+            name="keywords"
+            content="GIS, LOCATION INTELLIGENCE, MAPS, DATA ANALYTICS, DATA VISUALIZATION"
+          />
+          <meta name="description" content="Разработчик геоинформационных систем и сервисов." />
+          <meta property="og:title" content="Everpoint" />
+          <meta property="og:url" content={siteUrl} />
+          <meta property="og:image" content={ogImage} />
+          <meta property="og:image:type" content="image/png" />
+          <meta
+            property="og:description"
+            content="Разработчик геоинформационных систем и сервисов."
+          />
+          <meta property="og:site_name" content="Everpoint" />
+          <meta property="twitter:title" content="Everpoint" />
+          <meta property="twitter:image:src" content={ogImage} />
+          <meta
+            property="twitter:description"
+            content="Разработчик геоинформационных систем и сервисов."
+          />
+          <meta property="og:type" content="website" />
           {headComponents}
           <script
             dangerouslySetInnerHTML={{
