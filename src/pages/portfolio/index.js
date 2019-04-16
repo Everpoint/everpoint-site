@@ -41,7 +41,7 @@ class PortfolioBase extends Component {
           status={status}
           location={location}
         />
-        <LeftSide className={animation(status)}>
+        <LeftSide className={animation(status, direction)}>
           <MobileTitle>{section && section.parentTitle}</MobileTitle>
           <AdditionalMenu
             isPortfolioPage={isPortfolioPage()}
@@ -53,7 +53,7 @@ class PortfolioBase extends Component {
             isOpen={true}
           />
         </LeftSide>
-        <Rightside className={animation(status)}>
+        <Rightside className={animation(status, direction)}>
           <PortfolioSlide
             ratio={getPixelRatioPropName()}
             onExited={onExited}

@@ -52,6 +52,18 @@ export const slideUp = css`
   }
 `;
 
+export const slideDown = css`
+  .entering {
+    transform: translateY(-100%);
+  }
+  .entered {
+    transform: translateY(0px);
+  }
+  .exiting {
+    transform: translateY(100%);
+  }
+`;
+
 export const fade = css`
   .entering {
     opacity: 0;

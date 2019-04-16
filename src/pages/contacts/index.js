@@ -39,7 +39,7 @@ class ContactsBase extends Component {
   }
 
   render() {
-    const { status, location, titles } = this.props;
+    const { status, location, titles, direction } = this.props;
     const { stope, isMobileOrTablet, imagesIsLoaded, isMobile } = this.state;
 
     return (
@@ -50,11 +50,11 @@ class ContactsBase extends Component {
         />
         <Background
           backgroundImage={imagesIsLoaded ? (stope ? metro : bus) : metroInterlaced}
-          className={cn(styles.background, { [styles.hideBackground]: isMobile})}
+          className={cn(styles.background, { [styles.hideBackground]: isMobile })}
           status={status}
           location={location}
         />
-        <Content className={animation(status)}>
+        <Content className={animation(status, direction)}>
           <LeftSide>
             <H2 as="h1">{titles && titles.find(({ id }) => id === "contacts").title}</H2>
             <Link as="address" className={styles.address}>
@@ -91,7 +91,7 @@ class ContactsBase extends Component {
             </StopeButton>
           </RightSide>
         </Content>
-        <Copyright className={cn(animation(status))} as="footer">
+        <Copyright className={cn(animation(status, direction))} as="footer">
           © 2019 ООО «Эверпоинт». Все права защищены.
         </Copyright>
       </Main>

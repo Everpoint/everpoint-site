@@ -41,6 +41,7 @@ export class JobsBase extends Component {
       scrollTop,
       status,
       routes,
+      direction,
     } = this.props;
     const currentRoute = getRouteByLocation(location, routes);
     const { sections } = currentRoute;
@@ -55,7 +56,7 @@ export class JobsBase extends Component {
           <Background className={styles.background} status={status} location={location} />
         </BackgroundWrapper>
         <WillChange style={{ transform }} ref={onLeftSideSectionRef}>
-          <LeftSide className={animation(status)}>
+          <LeftSide className={animation(status, direction)}>
             <AdditionalMenu
               className={styles.menu}
               selectedId={section && section.id}
@@ -66,7 +67,7 @@ export class JobsBase extends Component {
             />
           </LeftSide>
         </WillChange>
-        <RightSide className={animation(status)}>
+        <RightSide className={animation(status, direction)}>
           <RightSideContent
             ref={onScrollableRef}
             style={{
