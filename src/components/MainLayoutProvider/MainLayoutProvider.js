@@ -291,8 +291,8 @@ export class MainLayoutProviderComponent extends Component {
     }
 
     const nextPage = routes[currentIndex];
-    const prevPageId = currentRoute && currentRoute.id;
-    const nextPageId = nextPage && nextPage.id;
+    const prevPageId = currentRoute ? currentRoute.id : "";
+    const nextPageId = nextPage ? nextPage.id : "";
 
     const selectedSectionIndexFromIndex = this.getIndexFromDirection(nextPage, direction);
 
@@ -520,8 +520,8 @@ export class MainLayoutProviderComponent extends Component {
     } else {
       // page change
       const nextPage = navigateTo({ navigate, pathname, direction, routes });
-      const prevPageId = currentRoute && currentRoute.id;
-      const nextPageId = nextPage && nextPage.id;
+      const prevPageId = currentRoute ? currentRoute.id : "";
+      const nextPageId = nextPage ? nextPage.id : "";
 
       const disableBackgroundTransition =
         (prevPageId === "portfolio" && nextPageId === "about") ||
