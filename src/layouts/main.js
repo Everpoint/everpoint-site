@@ -1,11 +1,11 @@
 import React, { Component } from "react";
+import Helmet from "react-helmet";
 import sortBy from "lodash/sortBy";
 
 import { mergedRoutes } from "../routes/utils";
 import Mobile from "../components/MobileMainPages";
 import { isMobile } from "../utils/browser";
 import { MainLayoutProvider } from "../components/MainLayoutProvider/MainLayoutProvider";
-import { Helmet } from "../components/Helmet/Helmet";
 import { ViewportHeight } from "../components/ViewportHeight/ViewportHeight";
 import { Navbar } from "../components/Navbar/Navbar";
 import { PageTransition } from "../components/Transition/PageTransition";
