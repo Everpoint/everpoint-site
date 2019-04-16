@@ -1,4 +1,4 @@
-# Gatsby + Netlify CMS Starter
+# Gatsby + Netlify CMS
 - [demo](https://kre1z0.github.io/) - everpoint site 
 - [netlify-cms](https://www.netlifycms.org/docs/intro/) - netlify-cms docs
 - [gatsby](https://www.gatsbyjs.org/) - gatsby docs

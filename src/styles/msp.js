@@ -3,6 +3,7 @@ import styled, { css } from "astroturf";
 import { H3 } from "../components/Typography/Headlines";
 
 export const MspLongreadContainer = styled("div")`
+  overflow: hidden;
   h1 {
     margin-bottom: 3.5rem;
     @media (max-width: 991px) {

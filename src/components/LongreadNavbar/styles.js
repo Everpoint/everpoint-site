@@ -2,7 +2,7 @@ import styled, { css } from "astroturf";
 
 export const LongreadNavbarContainer = styled("nav")`
   z-index: 10;
-  width: 100%;
+  width: 100vw;
   top: 0;
   position: fixed;
   height: 5.7142rem;
