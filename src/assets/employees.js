@@ -13,6 +13,7 @@ import natalya from "./img/team-members/natalya.png";
 import mariana from "./img/team-members/mariana.jpg";
 import yevgeniy from "./img/team-members/yevgeniy.jpg";
 import ekaterina from "./img/team-members/ekaterina.jpg";
+import inessa from "./img/team-members/inessa.jpg";
 
 import eldar1 from "./img/team-members-portret/15-mamedov_2019-01-09/15-mamedov.jpg";
 import eldar2 from "./img/team-members-portret/15-mamedov_2019-01-09/15-mamedov@2x.jpg";
@@ -73,6 +74,10 @@ import yevgeniy3 from "./img/team-members-portret/4-volodin_2019-01-09/4-volodin
 import boris1 from "./img/team-members-portret/3-borisov_2019-01-09/3-borisov.jpg";
 import boris2 from "./img/team-members-portret/3-borisov_2019-01-09/3-borisov@2x.jpg";
 import boris3 from "./img/team-members-portret/3-borisov_2019-01-09/3-borisov@3x.jpg";
+
+import inessa1 from "./img/team-members-portret/inessa/18-kuzuberdina.jpg";
+import inessa2 from "./img/team-members-portret/inessa/18-kuzuberdina@2x.jpg";
+import inessa3 from "./img/team-members-portret/inessa/18-kuzuberdina@3x.jpg";
 
 export default [
   {
@@ -205,6 +210,18 @@ export default [
       x1: igor1,
       x2: igor2,
       x3: igor3,
+    },
+  },
+  {
+    id: "44",
+    avatar: inessa,
+    name: "Инесса",
+    position: "Front-end разработчик",
+    descrition: "Вдыхаю жизнь в интерфейсы",
+    portret: {
+      x1: inessa1,
+      x2: inessa2,
+      x3: inessa3,
     },
   },
   {

@@ -140,18 +140,13 @@ export class MainLayoutProviderComponent extends Component {
   };
 
   checkNavbarIntoContent = () => {
-    const { currentRoute, selectedSectionIndex, damping } = this.state;
+    const { currentRoute, damping } = this.state;
 
-    if (
-      this.scrollable &&
-      this.scrollable.children[selectedSectionIndex] &&
-      damping === this.defaultDamping
-    ) {
+    if (this.scrollable && this.scrollable.children[0] && damping === this.defaultDamping) {
       const headerHeight = 80;
-      const { top } = this.scrollable.children[selectedSectionIndex].getBoundingClientRect();
+      const { top } = this.scrollable.children[0].getBoundingClientRect();
 
       const scrollable = currentRoute && currentRoute.scrollable;
-
       if (top <= headerHeight && scrollable) {
         this.setState({
           coloredNav: true,
@@ -224,7 +219,6 @@ export class MainLayoutProviderComponent extends Component {
         disableHover: false,
       });
     }, 200);
-
     this.setState(
       {
         scrollTop: offsetY,
@@ -249,6 +243,7 @@ export class MainLayoutProviderComponent extends Component {
     const direction = e.deltaY > 0 ? 1 : -1;
     const normalizeDeltaY = direction > 0 ? 53 : -53;
     const is404Page = location.pathname.indexOf("404") === 1;
+    const isJobsPage = location.pathname.indexOf("jobs") === 1;
     if (thresholdIsActive || (scrollTop === 0 && direction < 0)) {
       this.threshold = this.threshold + normalizeDeltaY;
     }
@@ -260,7 +255,7 @@ export class MainLayoutProviderComponent extends Component {
 
     if (is404Page) {
       navigate("/");
-    } else if (isPortfolioPage) {
+    } else if (isPortfolioPage || isJobsPage) {
       this.onNavigateTo(direction);
     } else {
       this.onNavigateToDebounced(direction);
@@ -487,7 +482,13 @@ export class MainLayoutProviderComponent extends Component {
 
     const scrollable = currentRoute && currentRoute.scrollable;
 
-    if (scrollable && (scrollTop === 0 || limitY === scrollTop) && !routeSwipeUpAndDown) {
+    const toContancts = scrollable && scrollTop + 144 >= limitY;
+    if (
+      scrollable &&
+      !toContancts &&
+      (scrollTop === 0 || limitY === scrollTop) &&
+      !routeSwipeUpAndDown
+    ) {
       const ratio = height / 4.8;
 
       if (Math.abs(this.threshold) < ratio) {
@@ -495,7 +496,11 @@ export class MainLayoutProviderComponent extends Component {
       }
     }
 
-    if ((scrollable && scrollTop > 0 && limitY !== scrollTop) || !transitionEnd) {
+    if (
+      (scrollable && scrollTop > 0 && limitY !== scrollTop && !toContancts) ||
+      !transitionEnd ||
+      (scrollable && !limitY)
+    ) {
       return;
     }
 

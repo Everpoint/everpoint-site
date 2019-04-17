@@ -39,11 +39,11 @@ class ContactsBase extends Component {
   }
 
   render() {
-    const { status, location, titles, direction } = this.props;
+    const { status, location, titles, direction, scrollTop } = this.props;
     const { stope, isMobileOrTablet, imagesIsLoaded, isMobile } = this.state;
 
     return (
-      <Main>
+      <Main style={{ transform: `translateY(${scrollTop}px)` }}>
         <ImagesDownloadListener
           images={[bus, metro]}
           onLoad={() => this.setState({ imagesIsLoaded: true })}

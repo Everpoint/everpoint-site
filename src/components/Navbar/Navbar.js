@@ -58,7 +58,10 @@ class NavbarBase extends PureComponent {
           willChange: transitionEnd && currentRoute && currentRoute.scrollable && "transform",
         }}
         className={cn({
-          [styles.coloredNav]: coloredNav || additionalMenuIsOpenId,
+          [styles.coloredNav]:
+            coloredNav ||
+            additionalMenuIsOpenId ||
+            (selectedSectionIndex > 0 && currentRoute && currentRoute.scrollable),
         })}
         onMouseLeave={this.onCloseAdditionalMenu}
         mobileMenuIsOpen={mobileMenuIsOpen}

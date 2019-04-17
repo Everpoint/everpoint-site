@@ -31,7 +31,6 @@ export class TeamMembers extends Component {
   state = {
     cardHeight: 320,
     photoHeight: 225,
-    margin: 30,
   };
 
   componentDidMount() {
@@ -60,20 +59,19 @@ export class TeamMembers extends Component {
   onResize = () => {
     const viewportWidth = Math.max(document.documentElement.clientWidth, window.innerWidth || 0);
     if (viewportWidth <= 992) {
-      this.setState({ cardHeight: 320, photoHeight: 164, margin: 30 });
+      this.setState({ photoHeight: 164 });
     } else {
-      this.setState({ cardHeight: 320, photoHeight: 225, margin: 20 });
+      this.setState({ photoHeight: 225 });
     }
   };
 
   render() {
-    const { cardHeight, photoHeight, margin: marginFromState } = this.state;
-    const { items, id, selectedId } = this.props;
-    const isVisible = id === selectedId;
+    const { cardHeight, photoHeight } = this.state;
+    const margin = 30;
+    const { items, id } = this.props;
     const isVacancy = id === "vacancy";
     const isPhoto = id === "photo";
     const data = getColumns({ items });
-    const margin = data.length > 2 ? marginFromState : 0;
     const height = isPhoto ? photoHeight : cardHeight;
     const top = height / 2;
     const half = Math.round(data.length / 2);
@@ -88,18 +86,14 @@ export class TeamMembers extends Component {
 
     if (id === "process") {
       return (
-        <TeamMembersContainer isVisible={isVisible}>
+        <TeamMembersContainer>
           <HowWeAreWorking items={items} />
         </TeamMembersContainer>
       );
     }
 
     return (
-      <TeamMembersContainer
-        isVisible={isVisible}
-        oneItem={data.length <= 1}
-        style={{ height: containerHeight + "px" }}
-      >
+      <TeamMembersContainer oneItem={data.length <= 1} style={{ height: containerHeight + "px" }}>
         {noVacancies ? (
           <NoVacancyCard />
         ) : (
@@ -130,7 +124,7 @@ export class TeamMembers extends Component {
                 withMarginTop={index === half}
                 height={height}
                 top={top}
-                margin={data.length > 1 ? margin : 0}
+                margin={margin}
                 key={item.id}
                 {...item}
               />
