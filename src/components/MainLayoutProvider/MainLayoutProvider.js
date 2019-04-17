@@ -52,6 +52,7 @@ export class MainLayoutProviderComponent extends Component {
       mobileMenuIsOpen: false,
       damping: 0.1,
       thresholdIsActive: false,
+      scrollEvent: false,
 
       // sections
       selectedSectionIndex: selectedSectionIndexFromStorage,
@@ -83,11 +84,26 @@ export class MainLayoutProviderComponent extends Component {
     window.removeEventListener("keydown", this.onKeyDown);
   }
 
-  componentDidUpdate(prevProps) {
-    const { location: prevLocation } = prevProps;
+  componentDidUpdate({ location: prevLocation }, { transitionEnd: prevTransitionEnd }) {
+    const { transitionEnd, currentRoute, selectedSectionIndex, scrollEvent } = this.state;
     const { location } = this.props;
+
     if (prevLocation.pathname !== location.pathname) {
       this.setCurrentRoute();
+    }
+
+    if (
+      prevTransitionEnd !== transitionEnd &&
+      currentRoute &&
+      currentRoute.scrollable &&
+      transitionEnd
+    ) {
+      const scrollToEndBlock =
+        scrollEvent &&
+        selectedSectionIndex ===
+          (currentRoute && currentRoute.sections && currentRoute.sections.length - 1);
+
+      this.scrollToBlock({ index: selectedSectionIndex, scrollToEndBlock });
     }
   }
 
@@ -121,7 +137,6 @@ export class MainLayoutProviderComponent extends Component {
     const currentRoute = getRouteByLocation(location, routes);
     const { state } = location;
     const sections = (currentRoute && currentRoute.sections) || [];
-
     this.setState(
       {
         currentRoute: currentRoute || "404",
@@ -243,19 +258,18 @@ export class MainLayoutProviderComponent extends Component {
     const direction = e.deltaY > 0 ? 1 : -1;
     const normalizeDeltaY = direction > 0 ? 53 : -53;
     const is404Page = location.pathname.indexOf("404") === 1;
-    const isJobsPage = location.pathname.indexOf("jobs") === 1;
     if (thresholdIsActive || (scrollTop === 0 && direction < 0)) {
       this.threshold = this.threshold + normalizeDeltaY;
     }
 
-    this.setState({ direction, damping: this.defaultDamping });
+    this.setState({ direction, damping: this.defaultDamping, scrollEvent: true });
 
     this.checkNavbarIntoContent();
     const isPortfolioPage = currentRoute && currentRoute.id === "portfolio";
 
     if (is404Page) {
       navigate("/");
-    } else if (isPortfolioPage || isJobsPage) {
+    } else if (isPortfolioPage) {
       this.onNavigateTo(direction);
     } else {
       this.onNavigateToDebounced(direction);
@@ -297,6 +311,7 @@ export class MainLayoutProviderComponent extends Component {
 
     this.setState(
       {
+        scrollEvent: false,
         selectedSectionIndex: selectedSectionIndex || selectedSectionIndexFromIndex,
         direction,
         mobileMenuIsOpen: false,
@@ -334,14 +349,19 @@ export class MainLayoutProviderComponent extends Component {
       mobileMenuIsOpen: !mobileMenuIsOpen,
     }));
 
-  scrollToBlock = ({ index, damping = 0.2 }) => {
+  scrollToBlock = ({ index, damping = 0.2, scrollToEndBlock = false }) => {
     if (this.scrollbar && this.scrollable && this.scrollable.children[index]) {
+      const { height: blockHeight } = this.scrollable.children[index].getBoundingClientRect();
       const { height } = this.getSize();
 
       let offsetTop = height / 2;
 
       if (this.lefsideSection) {
         offsetTop = this.lefsideSection.offsetTop;
+      }
+
+      if (scrollToEndBlock) {
+        offsetTop -= blockHeight;
       }
 
       this.setState(
@@ -377,6 +397,7 @@ export class MainLayoutProviderComponent extends Component {
       const index = sections.findIndex(item => item.id === id);
 
       this.onNavLinkClick({
+        scrollEvent: false,
         selectedSectionIndex: index,
         id: pageId,
         navigate,
@@ -392,6 +413,7 @@ export class MainLayoutProviderComponent extends Component {
       }
 
       this.setState({
+        scrollEvent: false,
         sectionDirection,
         selectedSectionIndex: nextValue,
         disableBackgroundTransition: false,
@@ -482,12 +504,12 @@ export class MainLayoutProviderComponent extends Component {
 
     const scrollable = currentRoute && currentRoute.scrollable;
 
-    const toContancts = scrollable && scrollTop + 144 >= limitY;
+    const toContancts = scrollable && scrollTop + 53 >= limitY;
     if (
       scrollable &&
-      !toContancts &&
       (scrollTop === 0 || limitY === scrollTop) &&
-      !routeSwipeUpAndDown
+      !routeSwipeUpAndDown &&
+      !toContancts
     ) {
       const ratio = height / 4.8;
 
@@ -496,11 +518,7 @@ export class MainLayoutProviderComponent extends Component {
       }
     }
 
-    if (
-      (scrollable && scrollTop > 0 && limitY !== scrollTop && !toContancts) ||
-      !transitionEnd ||
-      (scrollable && !limitY)
-    ) {
+    if ((scrollable && scrollTop > 0 && limitY !== scrollTop && !toContancts) || !transitionEnd) {
       return;
     }
 
@@ -586,7 +604,6 @@ export class MainLayoutProviderComponent extends Component {
           // sections
           news,
           titles,
-          scrollToBlock: this.scrollToBlock,
           onLeftSideSectionRef: this.onLeftSideSectionRef,
           onSectionChange: this.onSectionChange,
           selectedSectionIndex,

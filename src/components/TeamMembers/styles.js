@@ -11,7 +11,7 @@ export const TeamMembersContainer = styled("div")`
   align-items: flex-start;
   margin-bottom: 30vh;
   &:last-of-type {
-    margin-bottom: 60vh;
+    margin-bottom: 66vh;
   }
   @media (max-width: 1199px) {
     width: calc(20rem * 2 + 2.1428rem);

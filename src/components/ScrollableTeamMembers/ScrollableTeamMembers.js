@@ -5,21 +5,10 @@ import { TeamMembers } from "../TeamMembers/TeamMembers";
 
 export class ScrollableTeamMembers extends PureComponent {
   static propTypes = {
-    selectedId: PropTypes.string,
     onSectionChange: PropTypes.func,
-    scrollToBlock: PropTypes.func.isRequired,
-    selectedSectionIndex: PropTypes.number,
     transitionEnd: PropTypes.bool,
     sections: PropTypes.arrayOf(PropTypes.object),
   };
-
-  componentDidUpdate({ transitionEnd: prevTransitionEnd }, prevState) {
-    const { transitionEnd, scrollToBlock, selectedSectionIndex } = this.props;
-    if (prevTransitionEnd !== transitionEnd && transitionEnd) {
-      console.info("--> ggwp no re 4444");
-      scrollToBlock({ index: selectedSectionIndex, damping: 1 });
-    }
-  }
 
   render() {
     const { selectedId, onSectionChange, sections } = this.props;
