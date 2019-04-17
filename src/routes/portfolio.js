@@ -56,8 +56,7 @@ export default {
       groupName: "Продукты",
       text: "EverGIS Online",
       id: "evergisOnline",
-      projectBackgroundColor:
-        "linear-gradient(to bottom, #1c1f30, #323747), linear-gradient(to bottom, #282c3d, #282c3d)",
+      projectBackgroundColor: "linear-gradient(to bottom, #08061b, #2a0f22)",
       screenshots: {
         x1: evergisOnlineX1,
         x2: evergisOnlineX2,
