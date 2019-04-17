@@ -426,47 +426,35 @@ export class MainLayoutProviderComponent extends Component {
   };
 
   onSwiping = ({ isUp, isDown, yRatio }) => {
-    const { damping, sections, selectedSectionIndex, currentRoute, scrollTop, limitY } = this.state;
+    const { damping, sections, selectedSectionIndex, currentRoute } = this.state;
     const { location, navigate } = this.props;
     const is404Page = location.pathname.indexOf("404") === 1;
     const sectionsLength = (currentRoute && currentRoute.maxItemCount) || sections.length;
     const scrollable = currentRoute && currentRoute.scrollable;
 
-    const isEdge = scrollTop === 0 || limitY === scrollTop;
+    const page = sectionsLength === 0 && !scrollable;
+    const goUp = isUp && yRatio > 25;
+    const goDown = isDown && yRatio > 25;
+    const goPrevSection = goDown && selectedSectionIndex - 1 >= 0;
+    const goNextSection = goUp && selectedSectionIndex + 1 <= sectionsLength;
+    const goPrevPage = goDown && (selectedSectionIndex === 0 || page);
+    const goNextPage = goUp && (selectedSectionIndex + 1 === sectionsLength || page);
 
-    if (isUp && yRatio > 25 && !this.disableSwipeNavigation) {
-      if (is404Page) {
-        navigate("/");
-      } else if (selectedSectionIndex < sectionsLength - 1 && !scrollable) {
-        this.setState({
-          sectionDirection: 1,
-          selectedSectionIndex: selectedSectionIndex + 1,
-          disableBackgroundTransition: false,
-        });
-      } else if (scrollable) {
-        if (isEdge) {
-          this.onNavigateTo(1, true);
-        }
-      } else {
-        this.onNavigateTo(1, true);
+    if (is404Page) {
+      navigate("/");
+    } else if ((goPrevPage || goNextPage) && !this.disableSwipeNavigation) {
+      if (scrollable) {
+        this.setState({ scrollEvent: true });
       }
+
+      this.onNavigateTo(goNextPage ? 1 : -1, true);
       this.disableSwipeNavigation = true;
-    } else if (isDown && yRatio > 25 && !this.disableSwipeNavigation) {
-      if (is404Page) {
-        navigate("/");
-      } else if (selectedSectionIndex > 0 && !scrollable) {
-        this.setState({
-          sectionDirection: -1,
-          selectedSectionIndex: selectedSectionIndex - 1,
-          disableBackgroundTransition: false,
-        });
-      } else if (scrollable) {
-        if (isEdge) {
-          this.onNavigateTo(-1, true);
-        }
-      } else {
-        this.onNavigateTo(-1, true);
-      }
+    } else if ((goPrevSection || goNextSection) && !this.disableSwipeNavigation) {
+      this.setState({
+        sectionDirection: goNextSection ? 1 : -1,
+        selectedSectionIndex: selectedSectionIndex + (goNextSection ? 1 : -1),
+        disableBackgroundTransition: false,
+      });
       this.disableSwipeNavigation = true;
     }
 
