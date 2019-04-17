@@ -16,7 +16,8 @@ export class ScrollableTeamMembers extends PureComponent {
   componentDidUpdate({ transitionEnd: prevTransitionEnd }, prevState) {
     const { transitionEnd, scrollToBlock, selectedSectionIndex } = this.props;
     if (prevTransitionEnd !== transitionEnd && transitionEnd) {
-      scrollToBlock({ index: selectedSectionIndex });
+      console.info("--> ggwp no re 4444");
+      scrollToBlock({ index: selectedSectionIndex, damping: 1 });
     }
   }
 

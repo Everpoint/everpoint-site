@@ -87,7 +87,7 @@ export class ScrollbarProvider extends Component {
     const { bottom, height: elementHeight } = element.getBoundingClientRect();
     const height = window.innerHeight;
 
-    const value = bottom - height - elementHeight;
+    const value = bottom - height - elementHeight / 2;
     const diff = value < -height ? -height : value > 0 ? 0 : value;
 
     return percent

@@ -22,7 +22,7 @@ export class SeparateBase extends Component {
     const svg = this.svg;
 
     if (prevScrollTop !== scrollTop && svg) {
-      const percent = elementYPosition({ element: svg, percent: true });
+      const percent = elementYPosition({ element: svg, percent: true }) * 2;
       const width = (fullWidth * percent) / 100;
 
       this.setState({ width: Math.round(width) });

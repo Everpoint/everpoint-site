@@ -1,6 +1,6 @@
 import React, { PureComponent } from "react";
 
-import { getRouteById } from "../../routes/utils";
+import principles from "../../assets/principles";
 import { Separate } from "../../components/Work/Separate/Separate";
 import { Section } from "../../components/Elements/Section";
 import { Article } from "../../components/Elements/Article";
@@ -12,18 +12,14 @@ import styles, { WorkMain } from "../../styles/work";
 
 class Work extends PureComponent {
   render() {
-    const { routes } = this.props;
-    const { sections } = getRouteById("jobs", routes);
-    const { items, text } = sections.find(item => item.id === "process");
-
     return (
       <>
-        <Header title={text} />
+        <Header title="Рабочий процесс" />
         <WorkMain>
           <Section>
             <Article>
               <H2>Наши принципы</H2>
-              <Principle longread items={items} itemClassName={styles.principleItemLongread} />
+              <Principle longread items={principles} itemClassName={styles.principleItemLongread} />
               <Separate />
               <H2>Цикл разработки</H2>
               {Array.from({ length: 24 }, (_, index) => (
