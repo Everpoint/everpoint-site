@@ -440,13 +440,13 @@ export class MainLayoutProviderComponent extends Component {
     const goPrevPage = goDown && (selectedSectionIndex === 0 || page);
     const goNextPage = goUp && (selectedSectionIndex + 1 === sectionsLength || page);
 
+    if (scrollable) {
+      this.setState({ scrollEvent: true });
+    }
+
     if (is404Page) {
       navigate("/");
     } else if ((goPrevPage || goNextPage) && !this.disableSwipeNavigation) {
-      if (scrollable) {
-        this.setState({ scrollEvent: true });
-      }
-
       this.onNavigateTo(goNextPage ? 1 : -1, true);
       this.disableSwipeNavigation = true;
     } else if ((goPrevSection || goNextSection) && !this.disableSwipeNavigation) {
