@@ -14,6 +14,7 @@ const longreadPages = [
   "evertrack",
   "evergisOnline",
   "vacancy",
+  "politics",
 ];
 
 exports.createPages = ({ actions, graphql }) => {
