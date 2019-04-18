@@ -12,6 +12,7 @@ import { socials } from "../../assets/social";
 import { AddressLink } from "../../components/AddressLink/AddressLink";
 
 import styles, {
+  Container,
   Main,
   Content,
   LeftSide,
@@ -39,11 +40,11 @@ class ContactsBase extends Component {
   }
 
   render() {
-    const { status, location, titles, direction, scrollTop } = this.props;
+    const { status, location, titles, direction, scrollTop, scrollLeft } = this.props;
     const { stope, isMobileOrTablet, imagesIsLoaded, isMobile } = this.state;
 
     return (
-      <>
+      <Container style={{ transform: `translateX(${scrollLeft}px)` }}>
         <Background
           style={{ top: `${scrollTop}px` }}
           backgroundImage={imagesIsLoaded ? (stope ? metro : bus) : metroInterlaced}
@@ -97,7 +98,7 @@ class ContactsBase extends Component {
             © 2019 ООО «Эверпоинт». Все права защищены.
           </Copyright>
         </Main>
-      </>
+      </Container>
     );
   }
 }

@@ -4,7 +4,7 @@ import debounce from "lodash/debounce";
 import throttle from "lodash/throttle";
 
 import { backgrounds } from "../../components/MainPageElements/Background";
-import styles, { ScrollBar, Block } from "./styles";
+import styles, { ScrollBar } from "./styles";
 import { ImagesDownloadListener } from "../../components/ImagesDownloadListener/ImagesDownloadListener";
 import { Swiper } from "../../components/Swiper/Swiper";
 import { mobileMenu as mobileMenuWidth } from "../../components/Navbar/styles";
@@ -490,7 +490,7 @@ export class MainLayoutProviderComponent extends Component {
     if (this.scrollbar) {
       this.scrollbar.scrollTop = 0;
     }
-    this.setState({ transitionEnd: false });
+    this.setState({ transitionEnd: false, scrollLeft: 0 });
   };
 
   onNavigateTo = (direction, routeSwipeUpAndDown = false) => {
@@ -515,10 +515,11 @@ export class MainLayoutProviderComponent extends Component {
 
     const toContancts = scrollable && scrollTop + 53 >= limitY;
     if (
-      scrollable &&
-      (scrollTop === 0 || limitY === scrollTop) &&
-      !routeSwipeUpAndDown &&
-      !toContancts
+      (scrollable &&
+        (scrollTop === 0 || limitY === scrollTop) &&
+        !routeSwipeUpAndDown &&
+        !toContancts) ||
+      (!limitY && !scrollTop && scrollable && direction > 0)
     ) {
       const ratio = height / 4.8;
 
@@ -649,7 +650,7 @@ export class MainLayoutProviderComponent extends Component {
             onScroll={this.onScroll}
             onWheel={this.onWheel}
           >
-            <Block style={{ left: `${scrollLeft}px` }}>{children}</Block>
+            {children}
           </ScrollBar>
         </Swiper>
       </ScrollContext.Provider>

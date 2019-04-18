@@ -27,13 +27,6 @@ export const ScrollBar = styled(Scrollbar)`
   }
 `;
 
-export const Block = styled("div")`
-  position: relative;
-  width: 100%;
-  height: 100%;
-  will-change: left;
-`;
-
 const styles = css`
   .swiper {
     width: 100%;
