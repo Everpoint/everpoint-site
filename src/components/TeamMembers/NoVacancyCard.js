@@ -4,7 +4,6 @@ import PropTypes from "prop-types";
 import { TeamMemberCard } from "../TeamMemberCard/TeamMemberCard";
 import noVacancy from "../../assets/img/vacancy/no-vacancy.svg";
 import { NoVacancyDescription } from "./styles";
-import { GoNextLink } from "../GoNextLink/GoNextLink";
 
 import styles from "./styles";
 
@@ -20,7 +19,7 @@ export const NoVacancyCard = ({ height }) => {
         <NoVacancyDescription>
           <span>Но если вы отличный специалист,</span>
           <br />
-          <GoNextLink withArrow={false}>напишите нам в чат</GoNextLink>.
+          напишите нам в чат.
           <br />
           <br />
           <span>Возможно, мы еще не знаем, что вы нам нужны!</span>

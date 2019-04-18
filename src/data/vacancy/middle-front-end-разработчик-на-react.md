@@ -1,7 +1,7 @@
 ---
 templateKey: vacancy
 isVisible: true
-name: Middle front-end разработчик на React
+name: Middle frontend-разработчик на React
 avatar: /img/developer.svg
 workFormat: Офис / Удалённая работа
 employment: Полная

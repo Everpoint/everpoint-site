@@ -36,7 +36,6 @@ export class JobsBase extends Component {
       onSectionChange,
       onScrollableRef,
       onLeftSideSectionRef,
-      scrollToBlock,
       transitionEnd,
       scrollTop,
       status,
@@ -46,7 +45,6 @@ export class JobsBase extends Component {
     const currentRoute = getRouteByLocation(location, routes);
     const { sections } = currentRoute;
     const section = sections[selectedSectionIndex];
-    const selectedId = section && section.id;
 
     const transform = `translateY(${scrollTop}px)`;
 
@@ -77,9 +75,6 @@ export class JobsBase extends Component {
             <ScrollableTeamMembers
               sections={sections}
               transitionEnd={transitionEnd}
-              selectedSectionIndex={selectedSectionIndex}
-              scrollToBlock={scrollToBlock}
-              selectedId={selectedId}
               onSectionChange={onSectionChange}
             />
           </RightSideContent>
