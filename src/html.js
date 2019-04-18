@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Component } from "react";
 
 import favicon from "./assets/img/assets/favicon.png";
 
@@ -62,7 +62,7 @@ const googleMetrika = `
   gtag('config', 'UA-134915866-4');
 `;
 
-class HTML extends React.Component {
+class HTML extends Component {
   render() {
     const {
       htmlAttributes,

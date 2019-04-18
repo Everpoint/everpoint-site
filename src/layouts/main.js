@@ -64,7 +64,7 @@ export class MainLayout extends Component {
             class: isMobile && styles.londreadBodyMobile,
           }}
         />
-        <CookieNotice />
+        <CookieNotice navigate={navigate} location={location} />
         <ViewportHeight />
         {isMobile ? (
           <Mobile

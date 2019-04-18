@@ -41,6 +41,20 @@ collections:
           - {label: "Адрес", name: "address", widget: "string"}
           - {label: "Телефон", name: "phone", widget: "string"}
           - {label: "Email", name: "email", widget: "string"}
+      - file: "src/data/pages/politics-page.md"
+        label: "Страница политики конфиденциальности, родительский маршрут /politics"
+        name: "politics-page"
+        fields:
+          - {label: "Template Key", name: "templateKey", widget: "hidden", default: "politics-page"}
+          - {label: "Заголовок", name: "title", widget: "string"}
+          - {label: "Город", name: "city", widget: "string"}
+          - {label: "Дата обновления", name: "updateDate", widget: "string"}
+          - {label: "Введение", name: "introduction", widget: "markdown"}
+          - label: "Блоки"
+            name: "blocks"
+            widget: "list"
+            fields:
+              - {label: "Блок", name: "block", widget: "markdown"}
   - name: "vacancy"
     label: "Вакансии"
     widget: "string"
@@ -141,4 +155,3 @@ collections:
         name: "footerText"
         widget: "markdown"
         default: "Хотите у нас работать? <br /> Пишите в чат или по указанным в вакансии контактам!"
-

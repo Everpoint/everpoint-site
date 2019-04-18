@@ -71,4 +71,11 @@ export const UnorderedList = styled("ul")`
       }
     }
   }
+  &.gray {
+    li {
+      &:before {
+        background-color: rgba(38, 44, 55, 0.25);
+      }
+    }
+  }
 `;
