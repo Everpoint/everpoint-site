@@ -4,7 +4,7 @@ import debounce from "lodash/debounce";
 import throttle from "lodash/throttle";
 
 import { backgrounds } from "../../components/MainPageElements/Background";
-import styles, { ScrollBar } from "./styles";
+import styles, { ScrollBar, Block } from "./styles";
 import { ImagesDownloadListener } from "../../components/ImagesDownloadListener/ImagesDownloadListener";
 import { Swiper } from "../../components/Swiper/Swiper";
 import { mobileMenu as mobileMenuWidth } from "../../components/Navbar/styles";
@@ -43,6 +43,7 @@ export class MainLayoutProviderComponent extends Component {
 
     this.state = {
       scrollTop: 0,
+      scrollLeft: 0,
       limitY: 0,
       coloredNav: false,
       currentRoute: null,
@@ -84,26 +85,11 @@ export class MainLayoutProviderComponent extends Component {
     window.removeEventListener("keydown", this.onKeyDown);
   }
 
-  componentDidUpdate({ location: prevLocation }, { transitionEnd: prevTransitionEnd }) {
-    const { transitionEnd, currentRoute, selectedSectionIndex, scrollEvent } = this.state;
+  componentDidUpdate({ location: prevLocation }) {
     const { location } = this.props;
 
     if (prevLocation.pathname !== location.pathname) {
       this.setCurrentRoute();
-    }
-
-    if (
-      prevTransitionEnd !== transitionEnd &&
-      currentRoute &&
-      currentRoute.scrollable &&
-      transitionEnd
-    ) {
-      const scrollToEndBlock =
-        scrollEvent &&
-        selectedSectionIndex ===
-          (currentRoute && currentRoute.sections && currentRoute.sections.length - 1);
-
-      this.scrollToBlock({ index: selectedSectionIndex, scrollToEndBlock });
     }
   }
 
@@ -134,6 +120,7 @@ export class MainLayoutProviderComponent extends Component {
 
   setCurrentRoute = () => {
     const { location, routes } = this.props;
+    const { selectedSectionIndex, scrollEvent } = this.state;
     const currentRoute = getRouteByLocation(location, routes);
     const { state } = location;
     const sections = (currentRoute && currentRoute.sections) || [];
@@ -144,10 +131,44 @@ export class MainLayoutProviderComponent extends Component {
         sections,
       },
       () => {
+        const margin = 30;
+
         if (state && state.scrollTo && this.scrollbar) {
           const index = sections.findIndex(section => section.id === state.scrollTo);
+
+          let offsetTop = 0;
+
+          if (this.lefsideSection) {
+            const { top } = this.lefsideSection.getBoundingClientRect();
+            offsetTop = top + margin / 2;
+          }
+
           this.scrollToBlock({
             index,
+            offsetTop,
+            damping: 0.4,
+          });
+        } else if (currentRoute && currentRoute.scrollable) {
+          const { height: vh } = this.getSize();
+          const scrollToEndBlock =
+            scrollEvent && selectedSectionIndex === (currentRoute && sections.length - 1);
+
+          let offsetTop = 0;
+          if (this.lefsideSection) {
+            const { height } = this.lefsideSection.getBoundingClientRect();
+            offsetTop = vh / 2 + height / 2 - margin / 2;
+          }
+
+          if (scrollToEndBlock && this.scrollable.children[selectedSectionIndex]) {
+            const { height: rightBlockHeight } = this.scrollable.children[
+              selectedSectionIndex
+            ].getBoundingClientRect();
+            offsetTop -= rightBlockHeight + vh * 0.3;
+          }
+          this.scrollToBlock({
+            index: selectedSectionIndex,
+            damping: scrollEvent ? 1 : 0.2,
+            offsetTop,
           });
         }
       },
@@ -218,7 +239,7 @@ export class MainLayoutProviderComponent extends Component {
   onScroll = e => {
     const { disableHover, scrollTop } = this.state;
     const { offset, limit } = e;
-    const { y: offsetY } = offset;
+    const { y: offsetY, x: offsetX } = offset;
     const { y: limitY } = limit;
 
     clearTimeout(this.timer);
@@ -237,6 +258,7 @@ export class MainLayoutProviderComponent extends Component {
     this.setState(
       {
         scrollTop: offsetY,
+        scrollLeft: offsetX,
         limitY,
         thresholdIsActive: offsetY >= limitY || offsetY === 0,
       },
@@ -269,7 +291,7 @@ export class MainLayoutProviderComponent extends Component {
 
     if (is404Page) {
       navigate("/");
-    } else if (isPortfolioPage) {
+    } else if (isPortfolioPage || (currentRoute && currentRoute.scrollable)) {
       this.onNavigateTo(direction);
     } else {
       this.onNavigateToDebounced(direction);
@@ -281,6 +303,7 @@ export class MainLayoutProviderComponent extends Component {
       transitionEnd: true,
       coloredNav: false,
       scrollTop: 0,
+      scrollLeft: 0,
       limitY: 0,
       lastSectionIndex: 0,
     });
@@ -349,28 +372,15 @@ export class MainLayoutProviderComponent extends Component {
       mobileMenuIsOpen: !mobileMenuIsOpen,
     }));
 
-  scrollToBlock = ({ index, damping = 0.2, scrollToEndBlock = false }) => {
+  scrollToBlock = ({ index, damping = 0.2, offsetTop = 0 }) => {
     if (this.scrollbar && this.scrollable && this.scrollable.children[index]) {
-      const { height: blockHeight } = this.scrollable.children[index].getBoundingClientRect();
-      const { height } = this.getSize();
-
-      let offsetTop = height / 2;
-
-      if (this.lefsideSection) {
-        offsetTop = this.lefsideSection.offsetTop;
-      }
-
-      if (scrollToEndBlock) {
-        offsetTop -= blockHeight;
-      }
-
       this.setState(
         {
           damping,
         },
         () => {
           this.scrollbar.scrollIntoView(this.scrollable.children[index], {
-            offsetTop: offsetTop + 14,
+            offsetTop,
             onlyScrollIfNeeded: false,
           });
         },
@@ -397,7 +407,6 @@ export class MainLayoutProviderComponent extends Component {
       const index = sections.findIndex(item => item.id === id);
 
       this.onNavLinkClick({
-        scrollEvent: false,
         selectedSectionIndex: index,
         id: pageId,
         navigate,
@@ -409,7 +418,11 @@ export class MainLayoutProviderComponent extends Component {
       const sectionDirection = selectedSectionIndex > nextValue ? -1 : 1;
 
       if (currentRoute.scrollable && scrollToBlock) {
-        this.scrollToBlock({ index: nextValue });
+        const margin = 30;
+        this.scrollToBlock({
+          index: nextValue,
+          offsetTop: this.lefsideSection ? this.lefsideSection.offsetTop + margin / 2 : 0,
+        });
       }
 
       this.setState({
@@ -426,7 +439,7 @@ export class MainLayoutProviderComponent extends Component {
   };
 
   onSwiping = ({ isUp, isDown, yRatio }) => {
-    const { damping, sections, selectedSectionIndex, currentRoute } = this.state;
+    const { damping, sections, selectedSectionIndex, currentRoute, scrollEvent } = this.state;
     const { location, navigate } = this.props;
     const is404Page = location.pathname.indexOf("404") === 1;
     const sectionsLength = (currentRoute && currentRoute.maxItemCount) || sections.length;
@@ -440,7 +453,7 @@ export class MainLayoutProviderComponent extends Component {
     const goPrevPage = goDown && (selectedSectionIndex === 0 || page);
     const goNextPage = goUp && (selectedSectionIndex + 1 === sectionsLength || page);
 
-    if (scrollable) {
+    if (!scrollEvent) {
       this.setState({ scrollEvent: true });
     }
 
@@ -557,6 +570,7 @@ export class MainLayoutProviderComponent extends Component {
   render() {
     const {
       scrollTop,
+      scrollLeft,
       coloredNav,
       direction,
       transitionEnd,
@@ -578,6 +592,7 @@ export class MainLayoutProviderComponent extends Component {
       <ScrollContext.Provider
         value={{
           scrollTop,
+          scrollLeft,
           onScrollableRef: this.onScrollableRef,
           coloredNav,
           onEnter: this.onEnter,
@@ -626,7 +641,7 @@ export class MainLayoutProviderComponent extends Component {
             onScroll={this.onScroll}
             onWheel={this.onWheel}
           >
-            {children}
+            <Block style={{ transform: `translateX(${scrollLeft}px)` }}>{children}</Block>
           </ScrollBar>
         </Swiper>
       </ScrollContext.Provider>

@@ -27,6 +27,12 @@ export const ScrollBar = styled(Scrollbar)`
   }
 `;
 
+export const Block = styled("div")`
+  width: 100%;
+  height: 100%;
+  will-change: transform;
+`;
+
 const styles = css`
   .swiper {
     width: 100%;
