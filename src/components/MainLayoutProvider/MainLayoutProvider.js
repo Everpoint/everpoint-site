@@ -649,7 +649,7 @@ export class MainLayoutProviderComponent extends Component {
             onScroll={this.onScroll}
             onWheel={this.onWheel}
           >
-            <Block style={{ transform: `translateX(${scrollLeft}px)` }}>{children}</Block>
+            <Block style={{ left: `${scrollLeft}px` }}>{children}</Block>
           </ScrollBar>
         </Swiper>
       </ScrollContext.Provider>

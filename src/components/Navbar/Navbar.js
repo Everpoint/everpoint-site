@@ -46,6 +46,7 @@ class NavbarBase extends PureComponent {
       transitionEnd,
       titles,
       routes,
+      scrollLeft,
     } = this.props;
 
     const transform = `translateY(${scrollTop}px)`;
@@ -54,6 +55,7 @@ class NavbarBase extends PureComponent {
     return (
       <NavbarContainer
         style={{
+          left: `${scrollLeft}px`,
           transform,
           willChange: transitionEnd && currentRoute && currentRoute.scrollable && "transform",
         }}

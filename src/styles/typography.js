@@ -67,7 +67,7 @@ const styles = css`
       }
     }
 
-    h3 {
+    h1 {
       line-height: normal;
       font-size: 1.7142rem;
       @media (max-width: 1199px) {
@@ -82,7 +82,7 @@ const styles = css`
       }
     }
 
-    h5 {
+    h2 {
       font-size: 1.2857rem;
       line-height: 1.33;
       @media (max-width: 1199px) {

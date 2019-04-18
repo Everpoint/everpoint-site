@@ -50,6 +50,11 @@ collections:
           - {label: "Город", name: "city", widget: "string"}
           - {label: "Дата обновления", name: "updateDate", widget: "string"}
           - {label: "Введение", name: "introduction", widget: "markdown"}
+          - label: "Блоки"
+            name: "blocks"
+            widget: "list"
+            fields:
+              - {label: "Блок", name: "block", widget: "markdown"}
   - name: "vacancy"
     label: "Вакансии"
     widget: "string"
@@ -150,11 +155,3 @@ collections:
         name: "footerText"
         widget: "markdown"
         default: "Хотите у нас работать? <br /> Пишите в чат или по указанным в вакансии контактам!"
-
-  - name: "politics"
-    label: "Политика конфиденциальности"
-    widget: "string"
-    folder: "src/data/vacancy"
-    identifier_field: "name"
-    create: true
-    fields:
