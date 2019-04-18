@@ -159,17 +159,25 @@ export class MainLayoutProviderComponent extends Component {
             offsetTop = vh / 2 + height / 2 - margin / 2;
           }
 
-          if (scrollToEndBlock && this.scrollable.children[selectedSectionIndex]) {
-            const { height: rightBlockHeight } = this.scrollable.children[
-              selectedSectionIndex
-            ].getBoundingClientRect();
-            offsetTop -= rightBlockHeight + vh * 0.3;
-          }
-          this.scrollToBlock({
-            index: selectedSectionIndex,
-            damping: scrollEvent ? 1 : 0.2,
-            offsetTop,
-          });
+          let timetout = this.scrollable ? 0 : 44;
+
+          setTimeout(() => {
+            if (
+              scrollToEndBlock &&
+              this.scrollable &&
+              this.scrollable.children[selectedSectionIndex]
+            ) {
+              const { height: rightBlockHeight } = this.scrollable.children[
+                selectedSectionIndex
+              ].getBoundingClientRect();
+              offsetTop -= rightBlockHeight + vh * 0.3;
+            }
+            this.scrollToBlock({
+              index: selectedSectionIndex,
+              damping: scrollEvent ? 1 : 0.2,
+              offsetTop,
+            });
+          }, timetout);
         }
       },
     );
