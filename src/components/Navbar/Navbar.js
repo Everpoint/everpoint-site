@@ -46,10 +46,9 @@ class NavbarBase extends PureComponent {
       transitionEnd,
       titles,
       routes,
-      scrollLeft,
     } = this.props;
 
-    const transform = `translate(${scrollLeft}px, ${scrollTop}px)`;
+    const transform = `translateY(${scrollTop}px)`;
     const section = sections[selectedSectionIndex];
 
     return (
