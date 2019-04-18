@@ -244,6 +244,7 @@ export class MainLayoutProviderComponent extends Component {
   };
 
   onScroll = e => {
+    this.scrollbar.scrollLeft = 0;
     const { disableHover, scrollTop } = this.state;
     const { offset, limit } = e;
     const { y: offsetY } = offset;
@@ -308,7 +309,6 @@ export class MainLayoutProviderComponent extends Component {
     this.setState({
       transitionEnd: true,
       coloredNav: false,
-      scrollTop: 0,
       limitY: 0,
       lastSectionIndex: 0,
     });
@@ -485,6 +485,7 @@ export class MainLayoutProviderComponent extends Component {
 
   onEnter = () => {
     if (this.scrollbar) {
+      this.scrollbar.scrollLeft = 0;
       this.scrollbar.scrollTop = 0;
     }
     this.setState({ transitionEnd: false });
