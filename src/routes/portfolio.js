@@ -38,7 +38,7 @@ import mspVideo3Poster from "../videos/msp/posters/1_3_000.jpg";
 
 export default {
   id: "portfolio",
-  text: "Продукты и Решения",
+  text: "Продукты и решения",
   route: "/portfolio",
   sections: [
     // {

@@ -228,6 +228,11 @@ export const FooterTitle = styled("h3")`
   font-size: 1.7142rem;
   line-height: normal;
   margin-bottom: 0;
+  p {
+    &:last-of-type {
+      margin-bottom: 0;
+    }
+  }
   @media (max-width: 1199px) {
     font-size: 1.4285rem;
   }

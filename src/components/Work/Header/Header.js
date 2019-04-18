@@ -4,7 +4,7 @@ import { OutsideLink } from "../../../components/OutsideLink/OutsideLink";
 import { Section } from "../../../components/Elements/Section";
 import { Article } from "../../../components/Elements/Article";
 
-import photo from "../../../assets/img/team-members-photos/11.jpg";
+import photo from "../../../assets/img/team-members-photos/11.png";
 
 import styles, {
   HeaderContainer,

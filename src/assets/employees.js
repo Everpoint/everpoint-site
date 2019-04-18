@@ -13,6 +13,7 @@ import natalya from "./img/team-members/natalya.png";
 import mariana from "./img/team-members/mariana.jpg";
 import yevgeniy from "./img/team-members/yevgeniy.jpg";
 import ekaterina from "./img/team-members/ekaterina.jpg";
+import inessa from "./img/team-members/inessa.jpg";
 
 import eldar1 from "./img/team-members-portret/15-mamedov_2019-01-09/15-mamedov.jpg";
 import eldar2 from "./img/team-members-portret/15-mamedov_2019-01-09/15-mamedov@2x.jpg";
@@ -74,6 +75,10 @@ import boris1 from "./img/team-members-portret/3-borisov_2019-01-09/3-borisov.jp
 import boris2 from "./img/team-members-portret/3-borisov_2019-01-09/3-borisov@2x.jpg";
 import boris3 from "./img/team-members-portret/3-borisov_2019-01-09/3-borisov@3x.jpg";
 
+import inessa1 from "./img/team-members-portret/inessa/18-kuzuberdina.jpg";
+import inessa2 from "./img/team-members-portret/inessa/18-kuzuberdina@2x.jpg";
+import inessa3 from "./img/team-members-portret/inessa/18-kuzuberdina@3x.jpg";
+
 export default [
   {
     id: "1",
@@ -102,8 +107,8 @@ export default [
   {
     id: "9",
     avatar: petrB,
-    name: "Пётр",
-    position: "Python разработчик / ГИС-специалист",
+    name: "Петр",
+    position: "Python-разработчик, ГИС-специалист",
     descrition: "Решаю все вопросы по пространственным данным",
     portret: {
       x1: petrB1,
@@ -115,7 +120,7 @@ export default [
     id: "12",
     avatar: timofey,
     name: "Тимофей",
-    position: "Техлид front-end",
+    position: "Техлид frontend",
     descrition: "Регулярно переписываю все на новый фреймворк",
     portret: {
       x1: timofey1,
@@ -127,7 +132,7 @@ export default [
     id: "15",
     avatar: maksim,
     name: "Максим",
-    position: "Архитектор / Техлид back-end",
+    position: "Архитектор, техлид backend",
     descrition: "Изобретаю Боинги и прикручиваю к ним педали для удобства пользователей",
     portret: {
       x1: maksim1,
@@ -163,7 +168,7 @@ export default [
     id: "16",
     avatar: pavel,
     name: "Павел",
-    position: "Back-end разработчик",
+    position: "Backend-разработчик",
     descrition: "Главный по серверу EverGIS",
     portret: {
       x1: pavel1,
@@ -187,7 +192,7 @@ export default [
     id: "11",
     avatar: yakov,
     name: "Яков",
-    position: "Python разработчик",
+    position: "Python-разработчик",
     descrition: "Создаю сложные алгоритмы быстро и без ошибок",
     portret: {
       x1: yakov1,
@@ -199,8 +204,8 @@ export default [
     id: "13",
     avatar: igor,
     name: "Игорь",
-    position: "Front-end разработчик",
-    descrition: "CSS архиепископ, гуру каскадного программирования",
+    position: "Frontend-разработчик",
+    descrition: "CSS-архиепископ, гуру каскадного программирования",
     portret: {
       x1: igor1,
       x2: igor2,
@@ -208,10 +213,22 @@ export default [
     },
   },
   {
+    id: "44",
+    avatar: inessa,
+    name: "Инесса",
+    position: "Frontend-разработчик",
+    descrition: "Вдыхаю жизнь в интерфейсы",
+    portret: {
+      x1: inessa1,
+      x2: inessa2,
+      x3: inessa3,
+    },
+  },
+  {
     id: "17",
     avatar: yevgeniy,
     name: "Евгений",
-    position: "Back-end разработчик",
+    position: "Backend-разработчик",
     descrition: "Поддерживаю корпоративную культуру",
     portret: {
       x1: yevgeniy1,
@@ -247,7 +264,7 @@ export default [
     id: "18",
     avatar: boris,
     name: "Борис",
-    position: "ГИС-специалист / Системный администратор",
+    position: "ГИС-специалист, системный администратор",
     descrition: "Боец невидимого фронта",
     portret: {
       x1: boris1,

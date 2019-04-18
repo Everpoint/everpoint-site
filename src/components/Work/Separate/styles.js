@@ -11,6 +11,7 @@ const paths = {
   strokeLinecap: "round",
   strokeLinejoin: "round",
   strokeOpacity: ".25",
+  strokeWidth: "2px",
 };
 
 export const FirstLine = withProps(({ height, width }) => ({

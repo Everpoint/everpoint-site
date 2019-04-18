@@ -9,19 +9,15 @@ export const TeamMembersContainer = styled("div")`
   flex-wrap: wrap;
   align-content: flex-start;
   align-items: flex-start;
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity 200ms linear;
-  margin-bottom: 1.4444rem;
+  margin-bottom: 30vh;
+  &:last-of-type {
+    margin-bottom: 66vh;
+  }
   @media (max-width: 1199px) {
     width: calc(20rem * 2 + 2.1428rem);
   }
   @media (max-width: 991px) {
     width: 100%;
-  }
-  &.isVisible {
-    pointer-events: auto;
-    opacity: 1;
   }
   > article {
     &:first-child {
