@@ -14,6 +14,7 @@ const styles = css`
         position: relative;
         list-style-type: none;
         padding-left: 4rem;
+        margin-bottom: 1.64rem;
 
         &:before {
           width: 8px;
@@ -34,19 +35,34 @@ const styles = css`
         }
 
         @media (max-width: 1199px) {
-          padding-left: 2rem;
+          font-size: 1.1428rem;
+          padding-left: 3rem;
+          &:before {
+            margin: 0 0 0 1rem;
+            top: 0.54rem;
+          }
         }
         @media (max-width: 991px) {
-          font-size: 0.8571rem;
+          font-size: 1rem;
+          &:before {
+            top: 0.44rem;
+          }
         }
         @media (max-width: 812px) and (orientation: landscape),
           (max-width: 767px) and (orientation: portrait) {
-          font-size: 0.7142rem;
+          //font-size: 0.7142rem;
           &:before {
             top: 0.5rem;
             width: 6px;
             height: 6px;
           }
+        }
+        @media (max-width: 812px) and (orientation: landscape) {
+          margin-bottom: 1rem;
+        }
+
+        @media (max-width: 767px) and (orientation: portrait) {
+          margin-bottom: 0.6rem;
         }
       }
     }
@@ -54,8 +70,11 @@ const styles = css`
     h3 {
       line-height: normal;
       font-size: 1.7142rem;
-      @media (max-width: 991px) {
+      @media (max-width: 1199px) {
         font-size: 1.4285rem;
+      }
+      @media (max-width: 991px) {
+        font-size: 1.2857rem;
       }
       @media (max-width: 812px) and (orientation: landscape),
         (max-width: 767px) and (orientation: portrait) {
@@ -78,20 +97,17 @@ const styles = css`
 
     p {
       font-size: 1.2857rem;
-      line-height: 1.5;
+      line-height: 1.33;
       margin-bottom: 1.6rem;
       @media (max-width: 1199px) {
+        line-height: 1.5;
         font-size: 1.1428rem;
       }
-      //@media (max-width: 991px) {
-      //  font-size: 1.1428rem;
-      //  margin-bottom: 1.4rem;
-      //}
-      //@media (max-width: 812px) and (orientation: landscape),
-      //  (max-width: 767px) and (orientation: portrait) {
-      //  font-size: 1rem;
-      //  margin-bottom: 1.2rem;
-      //}
+      @media (max-width: 991px) {
+        font-size: 1rem;
+        line-height: normal;
+        margin-bottom: 1.2rem;
+      }
     }
   }
 `;

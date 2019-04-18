@@ -81,10 +81,15 @@ export class LongreadLayout extends Component {
     const { routes } = this.state;
     const { location, navigate } = this.props;
     e.preventDefault();
+
+    const isPoliticsPage = location.pathname.indexOf("politics") === 1;
     const isVacancyPage = location.pathname.includes("vacancy");
     const isWorkPage = location.pathname.includes("work");
     const to = getBackRouteByLocationPathName(location.pathname, routes);
-    if (isVacancyPage) {
+
+    if (isPoliticsPage && location.state && location.state.prevPathname) {
+      navigate(location.state.prevPathname);
+    } else if (isVacancyPage) {
       navigate(to, {
         state: { scrollTo: "vacancy" },
       });
@@ -99,7 +104,7 @@ export class LongreadLayout extends Component {
 
   render() {
     const { pages, isMobile, isTablet, currentPage, routes } = this.state;
-    const { children, location } = this.props;
+    const { children, location, navigate } = this.props;
 
     if (isTablet === null && isMobile === null) {
       return <div style={{ display: "none" }} />;
@@ -135,7 +140,7 @@ export class LongreadLayout extends Component {
           isTablet,
           isMobileOrTablet: isMobile || isTablet,
         })}
-        <CookieNotice />
+        <CookieNotice navigate={navigate} location={location} />
       </ScrollbarProvider>
     );
   }

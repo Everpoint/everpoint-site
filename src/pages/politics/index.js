@@ -1,28 +1,21 @@
 import React from "react";
 
 import styles from "../../styles/typography";
-import {
-  PoliticsContainer,
-  Header,
-  MainTitle,
-  SubTitle,
-  Block,
-  UpdateDate,
-} from "../../styles/politics";
+import { PoliticsContainer, MainTitle, City, Block, UpdateDate } from "../../styles/politics";
 
 const Politics = React.memo(() => {
   return (
     <PoliticsContainer as="main" className={styles.typography}>
-      <Header>
+      <Block as="header">
         <MainTitle>Политика конфиденциальности</MainTitle>
-        <SubTitle>г. Москва</SubTitle>
+        <City>г. Москва</City>
         <p>
           Настоящая Политика конфиденциальности персональных данных (далее – Политика
           конфиденциальности) действует в отношении всей информации, которую Интернет-сайт
           everpoint.ru, расположенный на доменном имени www.everpoint.ru, может получить о
           Пользователе во время использования сайта everpoint.ru.
         </p>
-      </Header>
+      </Block>
       <Block>
         <h3>1. Определение терминов</h3>
         <p>
