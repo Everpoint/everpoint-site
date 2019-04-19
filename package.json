@@ -25,6 +25,7 @@
     "smooth-scrollbar": "^8.3.1"
   },
   "devDependencies": {
+    "@pake/react-color": "^3.0.0",
     "@svgr/webpack": "^4.1.0",
     "babel-preset-gatsby": "0.1.10",
     "gatsby-image": "^2.0.10",
@@ -45,6 +46,7 @@
     "gatsby-transformer-sharp": "^2.1.1",
     "gh-pages": "^2.0.1",
     "lodash-webpack-plugin": "^0.11.4",
+    "netlify-cms-widget-color": "^3.0.1",
     "node-sass": "^4.11.0",
     "parcel-bundler": "^1.9.4",
     "prettier": "^1.7.4",

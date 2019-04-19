@@ -7,3 +7,7 @@ export function rateLimit(n, min, max) {
     return n;
   }
 }
+
+export function isNumeric(n) {
+  return !isNaN(parseFloat(n)) && isFinite(n);
+}

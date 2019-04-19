@@ -17,6 +17,7 @@ const VacancyLongreadPreview = ({ entry, widgetFor, widgetsFor }) => {
       <Vacancy
         name={entry.getIn(["data", "name"])}
         avatar={entry.getIn(["data", "avatar"])}
+        themeColor={entry.getIn(["data", "themeColor"])}
         workFormat={entry.getIn(["data", "workFormat"])}
         employment={entry.getIn(["data", "employment"])}
         salary={entry.getIn(["data", "salary"])}
