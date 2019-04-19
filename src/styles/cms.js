@@ -1,6 +1,7 @@
 import styled, { css } from "astroturf";
 
 export const Viewport = styled("div")`
+  color: rgba(38, 44, 55, 0.44);
   position: absolute;
   top: 0.4rem;
   left: 0.4rem;
