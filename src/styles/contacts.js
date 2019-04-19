@@ -5,11 +5,6 @@ import { Link as ContactLink } from "../components/Atoms/Atoms";
 import { Main as MainBlock } from "../components/MainPageElements/Main";
 import { Side } from "../components/MainPageElements/Section";
 
-export const Container = styled("div")`
-  width: 100%;
-  height: 100%;
-`;
-
 export const Main = styled(MainBlock)`
   @media (max-width: 812px) and (orientation: landscape),
     (max-width: 767px) and (orientation: portrait) {

@@ -38,7 +38,6 @@ export class JobsBase extends Component {
       onLeftSideSectionRef,
       transitionEnd,
       scrollTop,
-      scrollLeft,
       status,
       routes,
       direction,
@@ -50,7 +49,7 @@ export class JobsBase extends Component {
     const transform = `translateY(${scrollTop}px)`;
 
     return (
-      <Main style={{ transform: `translateX(${scrollLeft}px)` }}>
+      <Main>
         <BackgroundWrapper style={{ transform }}>
           <Background className={styles.background} status={status} location={location} />
         </BackgroundWrapper>
