@@ -95,7 +95,7 @@ export class TransitionSlide extends Component {
         onMouseOver={() => this.setState({ hovered: true })}
         onMouseOut={() => this.setState({ hovered: false })}
         onTransitionEnd={e => {
-          if (e.propertyName === "transform" && e.elapsedTime > 0.4) {
+          if (e.propertyName === "transform" && e.elapsedTime >= 0.4) {
             onResize();
             onExited();
           }

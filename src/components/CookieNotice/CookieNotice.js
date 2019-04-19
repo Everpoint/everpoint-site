@@ -53,9 +53,9 @@ export class CookieNotice extends Component {
           <Portal>
             <CookieNoticeContainer isVisible={isVisible} transitionDisabled={transitionDisabled}>
               <div>
-                Сайт everpoint.ru использует файлы cookies, IP адрес вашего браузера, историю o
+                Сайт everpoint.ru использует файлы cookies, IP-адрес вашего браузера, историю o
                 посещённых страницах сайта, данные геолокации. Эта информация поможет нам улучшить
-                работу сайта. <Link onClick={this.goToPolitics}>Условия использования.</Link>
+                работу сайта. <Link onClick={this.goToPolitics}>Политика конфиденциальности.</Link>
               </div>
               <PrimaryButton raisedButton primary onClick={this.gotCookie}>
                 ok
