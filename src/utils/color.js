@@ -1,13 +1,15 @@
-export const hexToRGB = (hex, alpha) => {
+import { isNumeric } from "./number";
+
+export function hexToRGB(hex, alpha) {
   if (!hex) return;
 
   const r = parseInt(hex.slice(1, 3), 16);
   const g = parseInt(hex.slice(3, 5), 16);
   const b = parseInt(hex.slice(5, 7), 16);
 
-  if (alpha) {
-    return "rgba(" + r + ", " + g + ", " + b + ", " + alpha + ")";
+  if (isNumeric(alpha)) {
+    return `rgba(${r}, ${g}, ${b}, ${alpha})`;
   } else {
-    return "rgb(" + r + ", " + g + ", " + b + ")";
+    return `rgb(${r}, ${g}, ${b})`;
   }
-};
+}

@@ -26,7 +26,7 @@ import styles, {
 export const Vacancy = React.memo(
   ({
     name,
-    avatar,
+    avatar, // themeColor,
     workFormat,
     employment,
     salary,
@@ -84,7 +84,9 @@ export const Vacancy = React.memo(
             )}
           </VacancyArticle>
         </SkillSection>
-        <ConditionsSection>
+        <ConditionsSection
+          // style={{ backgroundColor: "ggwp" }}
+        >
           <VacancyArticle>
             <ConditionTitle>{sentenceTitle}</ConditionTitle>
             <SentenceBodyContent

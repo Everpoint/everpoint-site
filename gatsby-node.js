@@ -35,6 +35,7 @@ exports.createPages = ({ actions, graphql }) => {
               templateKey
               name
               avatar
+              themeColor
               workFormat
               employment
               salary

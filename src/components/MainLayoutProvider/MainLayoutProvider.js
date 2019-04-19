@@ -48,7 +48,6 @@ export class MainLayoutProviderComponent extends Component {
       currentRoute: null,
       direction: 1,
       transitionEnd: true,
-      disableHover: false,
       mobileMenuIsOpen: false,
       damping: 0.1,
       thresholdIsActive: false,
@@ -68,7 +67,6 @@ export class MainLayoutProviderComponent extends Component {
   scrollbar = null;
   scrollable = null;
   lefsideSection = null;
-  timer = 0;
   disableSwipeNavigation = false;
 
   componentDidMount() {
@@ -78,8 +76,6 @@ export class MainLayoutProviderComponent extends Component {
   }
 
   componentWillUnmount() {
-    clearTimeout(this.timer);
-
     window.removeEventListener("resize", this.onResize);
     window.removeEventListener("keydown", this.onKeyDown);
   }
@@ -242,24 +238,11 @@ export class MainLayoutProviderComponent extends Component {
 
   onScroll = e => {
     this.scrollbar.scrollLeft = 0;
-    const { disableHover, scrollTop } = this.state;
+    const { scrollTop } = this.state;
     const { offset, limit } = e;
     const { y: offsetY } = offset;
     const { y: limitY } = limit;
 
-    clearTimeout(this.timer);
-
-    if (!disableHover) {
-      this.setState({
-        disableHover: true,
-      });
-    }
-
-    this.timer = setTimeout(() => {
-      this.setState({
-        disableHover: false,
-      });
-    }, 200);
     this.setState(
       {
         scrollTop: offsetY,
@@ -567,7 +550,6 @@ export class MainLayoutProviderComponent extends Component {
       coloredNav,
       direction,
       transitionEnd,
-      disableHover,
       currentRoute,
       mobileMenuIsOpen,
       damping,
@@ -618,7 +600,6 @@ export class MainLayoutProviderComponent extends Component {
           <ScrollBar
             ref={this.onScrollBarRef}
             damping={damping}
-            disableHover={disableHover || !transitionEnd}
             plugins={{
               disableScrollByDirection: {
                 direction: {

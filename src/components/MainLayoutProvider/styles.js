@@ -16,12 +16,6 @@ export const ScrollBar = styled(Scrollbar)`
     }
   }
 
-  &.disableHover {
-    * {
-      pointer-events: none;
-    }
-  }
-
   :global(.scrollbar-track) {
     display: none !important;
   }
