@@ -3,7 +3,7 @@ templateKey: vacancy
 isVisible: true
 name: Middle frontend-разработчик на React
 avatar: /img/developer.svg
-themeColor: "#0747a6"
+themeColor: '#00b27b'
 workFormat: Офис / Удалённая работа
 employment: Полная
 salary: 150 000 - 170 000 руб.
