@@ -171,6 +171,7 @@ export class MainLayoutProviderComponent extends Component {
               ].getBoundingClientRect();
               offsetTop -= rightBlockHeight + vh * 0.3;
             }
+
             this.scrollToBlock({
               index: selectedSectionIndex,
               damping: scrollEvent ? 1 : 0.2,
@@ -183,9 +184,9 @@ export class MainLayoutProviderComponent extends Component {
   };
 
   checkNavbarIntoContent = () => {
-    const { currentRoute, damping } = this.state;
+    const { currentRoute } = this.state;
 
-    if (this.scrollable && this.scrollable.children[0] && damping === this.defaultDamping) {
+    if (this.scrollable && this.scrollable.children[0]) {
       const headerHeight = 80;
       const { top } = this.scrollable.children[0].getBoundingClientRect();
 
@@ -199,10 +200,6 @@ export class MainLayoutProviderComponent extends Component {
           coloredNav: false,
         });
       }
-    } else {
-      this.setState({
-        coloredNav: false,
-      });
     }
   };
 
@@ -337,7 +334,8 @@ export class MainLayoutProviderComponent extends Component {
     this.setState(
       {
         scrollEvent: false,
-        selectedSectionIndex: selectedSectionIndex || selectedSectionIndexFromIndex,
+        selectedSectionIndex:
+          selectedSectionIndex >= 0 ? selectedSectionIndex : selectedSectionIndexFromIndex,
         direction,
         mobileMenuIsOpen: false,
         disableBackgroundTransition,
