@@ -282,7 +282,7 @@ export class MainLayoutProviderComponent extends Component {
   };
 
   onWheel = e => {
-    const { thresholdIsActive, scrollTop, currentRoute } = this.state;
+    const { thresholdIsActive, scrollTop } = this.state;
     const { location, navigate } = this.props;
     const direction = e.deltaY > 0 ? 1 : -1;
     const normalizeDeltaY = direction > 0 ? 53 : -53;
@@ -294,12 +294,9 @@ export class MainLayoutProviderComponent extends Component {
     this.setState({ direction, damping: this.defaultDamping, scrollEvent: true });
 
     this.checkNavbarIntoContent();
-    const isPortfolioPage = currentRoute && currentRoute.id === "portfolio";
 
     if (is404Page) {
       navigate("/");
-    } else if (isPortfolioPage || (currentRoute && currentRoute.scrollable)) {
-      this.onNavigateTo(direction);
     } else {
       this.onNavigateToDebounced(direction);
     }
@@ -510,66 +507,54 @@ export class MainLayoutProviderComponent extends Component {
     }
 
     const scrollable = currentRoute && currentRoute.scrollable;
+    const ratio = height / 4.8;
+    const scrollableToTop =
+      scrollable && Math.abs(this.threshold) > ratio && direction < 0 && scrollTop === 0;
+    const scrollToBottom =
+      scrollable && direction > 0 && limitY && scrollTop && scrollTop + 144 >= limitY;
 
-    const toContancts = scrollable && scrollTop + 53 >= limitY;
-    if (
-      (scrollable &&
-        (scrollTop === 0 || limitY === scrollTop) &&
-        !routeSwipeUpAndDown &&
-        !toContancts) ||
-      (!limitY && !scrollTop && scrollable && direction > 0)
-    ) {
-      const ratio = height / 4.8;
+    if ((!scrollable || scrollableToTop || scrollToBottom) && transitionEnd) {
+      const slider = currentRoute && currentRoute.slider;
+      const isPortfolioPage = currentRoute && currentRoute.id === "portfolio";
+      const up = selectedSectionIndex === 0 && direction < 0;
+      const nextIndex = selectedSectionIndex + direction;
+      const sectionsLength = currentRoute.maxItemCount || sections.length;
 
-      if (Math.abs(this.threshold) < ratio) {
-        return;
-      }
-    }
+      const down = nextIndex === sectionsLength;
 
-    if ((scrollable && scrollTop > 0 && limitY !== scrollTop && !toContancts) || !transitionEnd) {
-      return;
-    }
+      if (slider && !up && !down && !routeSwipeUpAndDown) {
+        // section change
+        const sectionDirection = selectedSectionIndex > nextIndex ? -1 : 1;
 
-    const slider = currentRoute && currentRoute.slider;
-    const isPortfolioPage = currentRoute && currentRoute.id === "portfolio";
-    const up = selectedSectionIndex === 0 && direction < 0;
-    const nextIndex = selectedSectionIndex + direction;
-    const sectionsLength = currentRoute.maxItemCount || sections.length;
-
-    const down = nextIndex === sectionsLength;
-
-    if (slider && !up && !down && !routeSwipeUpAndDown) {
-      // section change
-      const sectionDirection = selectedSectionIndex > nextIndex ? -1 : 1;
-
-      this.setState({
-        disableBackgroundTransition: false,
-        transitionEnd: !isPortfolioPage,
-        sectionDirection,
-        selectedSectionIndex: nextIndex,
-      });
-    } else {
-      // page change
-      const nextPage = navigateTo({ navigate, pathname, direction, routes });
-      const prevPageId = currentRoute ? currentRoute.id : "";
-      const nextPageId = nextPage ? nextPage.id : "";
-
-      const disableBackgroundTransition =
-        (prevPageId === "portfolio" && nextPageId === "about") ||
-        (prevPageId === "about" && nextPageId === "portfolio");
-
-      const selectedSectionIndexFromIndex = this.getIndexFromDirection(nextPage, direction);
-
-      if (nextPage) {
         this.setState({
-          transitionEnd: false,
-          selectedSectionIndex: selectedSectionIndexFromIndex,
-          lastSectionIndex: selectedSectionIndex,
-          direction,
-          disableBackgroundTransition,
+          disableBackgroundTransition: false,
+          transitionEnd: !isPortfolioPage,
+          sectionDirection,
+          selectedSectionIndex: nextIndex,
         });
+      } else {
+        // page change
+        const nextPage = navigateTo({ navigate, pathname, direction, routes });
+        const prevPageId = currentRoute ? currentRoute.id : "";
+        const nextPageId = nextPage ? nextPage.id : "";
 
-        this.threshold = 0;
+        const disableBackgroundTransition =
+          (prevPageId === "portfolio" && nextPageId === "about") ||
+          (prevPageId === "about" && nextPageId === "portfolio");
+
+        const selectedSectionIndexFromIndex = this.getIndexFromDirection(nextPage, direction);
+
+        if (nextPage) {
+          this.setState({
+            transitionEnd: false,
+            selectedSectionIndex: selectedSectionIndexFromIndex,
+            lastSectionIndex: selectedSectionIndex,
+            direction,
+            disableBackgroundTransition,
+          });
+
+          this.threshold = 0;
+        }
       }
     }
   };
