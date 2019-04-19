@@ -21,7 +21,7 @@ export class MainLayoutProviderComponent extends Component {
     this.checkBlockIsCenter = throttle(this.checkBlockIsCenter, 100);
     this.checkNavbarIntoContent = throttle(this.checkNavbarIntoContent, 100);
     this.scrollToBlock = debounce(this.scrollToBlock, 100);
-    this.onNavigateToDebounced = debounce(this.onNavigateTo, 200, {
+    this.onNavigateToThrottled = throttle(this.onNavigateTo, 200, {
       leading: true,
       trailing: false,
     });
@@ -295,7 +295,7 @@ export class MainLayoutProviderComponent extends Component {
     if (is404Page) {
       navigate("/");
     } else {
-      this.onNavigateToDebounced(direction);
+      this.onNavigateToThrottled(direction);
     }
   };
 
