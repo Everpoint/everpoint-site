@@ -21,7 +21,7 @@ export class MainLayoutProviderComponent extends Component {
     this.checkBlockIsCenter = throttle(this.checkBlockIsCenter, 100);
     this.checkNavbarIntoContent = throttle(this.checkNavbarIntoContent, 100);
     this.scrollToBlock = debounce(this.scrollToBlock, 100);
-    this.onNavigateToThrottled = throttle(this.onNavigateTo, 200, {
+    this.onNavigateToThrottled = throttle(this.onNavigateTo, 400, {
       leading: true,
       trailing: false,
     });
@@ -504,13 +504,11 @@ export class MainLayoutProviderComponent extends Component {
       const up = selectedSectionIndex === 0 && direction < 0;
       const nextIndex = selectedSectionIndex + direction;
       const sectionsLength = currentRoute.maxItemCount || sections.length;
-
       const down = nextIndex === sectionsLength;
 
       if (slider && !up && !down && !routeSwipeUpAndDown) {
         // section change
         const sectionDirection = selectedSectionIndex > nextIndex ? -1 : 1;
-
         this.setState({
           disableBackgroundTransition: false,
           transitionEnd: !isPortfolioPage,
