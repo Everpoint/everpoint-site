@@ -144,19 +144,20 @@ export class MainLayoutProviderComponent extends Component {
             damping: 0.4,
           });
         } else if (currentRoute && currentRoute.scrollable) {
-          const { height: vh } = this.getSize();
           const scrollToEndBlock =
             scrollEvent && selectedSectionIndex === (currentRoute && sections.length - 1);
-
-          let offsetTop = 0;
-          if (this.lefsideSection) {
-            const { height } = this.lefsideSection.getBoundingClientRect();
-            offsetTop = vh / 2 + height / 2 - margin / 2;
-          }
 
           let timetout = this.scrollable ? 0 : 44;
 
           setTimeout(() => {
+            const { height: vh } = this.getSize();
+
+            let offsetTop = 0;
+            if (this.lefsideSection) {
+              const { height } = this.lefsideSection.getBoundingClientRect();
+              offsetTop = vh / 2 + height / 2 - margin / 2;
+            }
+
             if (
               scrollToEndBlock &&
               this.scrollable &&
