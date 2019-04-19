@@ -6,8 +6,9 @@ updateDate: Обновлено 19 апреля 2019 г.
 introduction: >-
   <p>Настоящая Политика конфиденциальности персональных данных (далее – Политика
   конфиденциальности) действует в отношении всей информации, которую
-  Интернет-сайт everpoint.ru, расположенный на доменном имени www.everpoint.ru,
-  может получить о Пользователе во время использования сайта everpoint.ru.</p>
+  Интернет-сайт everpoint.ru, расположенный на доменном имени <a
+  href="https://www.everpoint.ru/" target="_blank">www.everpoint.ru</a>, может
+  получить о Пользователе во время использования сайта everpoint.ru.</p>
 blocks:
   - block: >-
       # 1. ОПРЕДЕЛЕНИЕ ТЕРМИНОВ
@@ -320,6 +321,7 @@ blocks:
 
 
       <p>9.4. Действующая Политика конфиденциальности размещена на странице по
-      адресу http://www.everpoint.ru/politics</p>
+      адресу <a href="http://www.everpoint.ru/politics"
+      target="_blank">www.everpoint.ru/politics</a></p>
 ---
 
