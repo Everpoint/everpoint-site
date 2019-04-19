@@ -26,7 +26,8 @@ import styles, {
 export const Vacancy = React.memo(
   ({
     name,
-    avatar, // themeColor,
+    avatar,
+    themeColor,
     workFormat,
     employment,
     salary,
@@ -55,6 +56,7 @@ export const Vacancy = React.memo(
           <Field name="Занятость" value={employment} />
           {salary && <Field name="Оклад" value={salary} />}
           <Field
+            themeColor={themeColor}
             name="Контакты"
             value={[
               { type: "name", value: fullName },
@@ -76,17 +78,15 @@ export const Vacancy = React.memo(
               <Test>
                 <TestTitle>{explanatoryText}</TestTitle>
                 {file && (
-                  <DownloadTest href={file}>
-                    <DocIcon /> {fileName}
+                  <DownloadTest href={file} style={{ color: themeColor }}>
+                    <DocIcon style={{ fill: themeColor }} /> {fileName}
                   </DownloadTest>
                 )}
               </Test>
             )}
           </VacancyArticle>
         </SkillSection>
-        <ConditionsSection
-          // style={{ backgroundColor: "ggwp" }}
-        >
+        <ConditionsSection style={{ backgroundColor: themeColor }}>
           <VacancyArticle>
             <ConditionTitle>{sentenceTitle}</ConditionTitle>
             <SentenceBodyContent

@@ -52,11 +52,17 @@ export const Value = styled("div")`
 `;
 
 export const Contact = styled("a")`
+  cursor: pointer;
   color: #262c37;
   text-decoration: none;
   display: flex;
   align-items: center;
   margin-bottom: 1.4rem;
+  @media (hover: hover) {
+    &:hover {
+      text-decoration: underline;
+    }
+  }
   &.isField {
     font-size: 1.1428rem;
     @media (max-width: 991px) {
