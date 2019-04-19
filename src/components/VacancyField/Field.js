@@ -47,7 +47,7 @@ const getContactLink = (type, value) => {
   }
 };
 
-const getValue = value => {
+const getValue = (value, themeColor) => {
   if (isSkills(value)) {
     return value.slice(0, 10).map((skill, index) => (
       <Badge
@@ -65,13 +65,18 @@ const getValue = value => {
         return null;
       }
 
+      const props =
+        type === "name"
+          ? { as: "div" }
+          : {
+              as: "a",
+              style: { color: themeColor },
+              href: getContactLink(type, contactValue),
+              isField: true,
+            };
+
       return (
-        <Contact
-          as={type === "name" ? "div" : "a"}
-          key={`${type}-${index}`}
-          href={getContactLink(type, contactValue)}
-          isField={type !== "name"}
-        >
+        <Contact key={`${type}-${index}`} {...props}>
           {type !== "name" && (
             <ContactIcon style={{ backgroundImage: `url(${getContactIconUrl(type)})` }} />
           )}
@@ -84,18 +89,19 @@ const getValue = value => {
   }
 };
 
-export const Field = ({ name, value }) => {
+export const Field = ({ name, value, themeColor }) => {
   return (
     <Row>
       <Name>{name}</Name>
       <Value isSkills={isSkills(value)} isContacts={isContacts(value)}>
-        {getValue(value)}
+        {getValue(value, themeColor)}
       </Value>
     </Row>
   );
 };
 
 Field.propTypes = {
+  themeColor: PropTypes.string,
   name: PropTypes.string,
   value: PropTypes.oneOfType([
     PropTypes.string,
