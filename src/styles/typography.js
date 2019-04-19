@@ -2,6 +2,16 @@ import { css } from "astroturf";
 
 const styles = css`
   .typography {
+    a {
+      cursor: pointer;
+      color: #90c53d;
+      text-decoration: none;
+      @media (hover: hover) {
+        &:hover {
+          text-decoration: underline;
+        }
+      }
+    }
     ul {
       padding: 0;
       list-style-position: outside;

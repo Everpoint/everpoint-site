@@ -40,6 +40,8 @@ export const MainTitle = styled(BigH1)`
   }
 `;
 
+export const Introduction = styled("div")``;
+
 export const SubTitle = styled("div")`
   color: rgba(38, 44, 55, 0.5);
   margin-bottom: 3.8571rem;

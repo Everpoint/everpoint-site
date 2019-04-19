@@ -509,7 +509,11 @@ export class MainLayoutProviderComponent extends Component {
     const scrollable = currentRoute && currentRoute.scrollable;
     const ratio = height / 4.8;
     const scrollableToTop =
-      scrollable && Math.abs(this.threshold) > ratio && direction < 0 && scrollTop === 0;
+      scrollable &&
+      (Math.abs(this.threshold) > ratio || routeSwipeUpAndDown) &&
+      direction < 0 &&
+      scrollTop === 0;
+
     const scrollToBottom =
       scrollable && direction > 0 && limitY && scrollTop && scrollTop + 144 >= limitY;
 

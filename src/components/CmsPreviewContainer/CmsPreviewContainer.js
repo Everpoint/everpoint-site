@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 
-import { Viewport, Container } from '../../styles/cms';
+import { Viewport, Container } from "../../styles/cms";
 
 export class PreviewContainer extends Component {
   state = {
@@ -40,7 +40,7 @@ export class PreviewContainer extends Component {
     return (
       <>
         <Viewport>
-          {width}x{height}
+          {width}x{height} {`&nbsp;`} - символ пробела
         </Viewport>
         <Container ref={this.onRef} scrollable={scrollable} {...props}>
           {children}

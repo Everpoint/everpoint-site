@@ -1,5 +1,5 @@
 backend:
-  name: github
+  name: test-repo
   repo: Everpoint/everpoint-site
   branch: master
 
@@ -53,8 +53,9 @@ collections:
           - label: "Блоки"
             name: "blocks"
             widget: "list"
+            default: [null]
             fields:
-              - {label: "Блок", name: "block", widget: "markdown"}
+              - {label: "Блок", name: "block", widget: "markdown", default: ""}
   - name: "vacancy"
     label: "Вакансии"
     widget: "string"
