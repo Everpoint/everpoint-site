@@ -49,7 +49,7 @@ export class LongreadNavbarBase extends Component {
     } = this.props;
     const transform = `translateY(${nativeScrollbar ? 0 : scrollTop}px)`;
     const fixed = Math.floor(scrollTop) > 0;
-
+    const isPortfolioLongread = pages.some(page => location.pathname.includes(page));
     const color = getColorById({ id: location.pathname, fixed });
     const prev = pages[currentPage - 1];
     const next = pages[currentPage + 1];
@@ -57,7 +57,7 @@ export class LongreadNavbarBase extends Component {
     return (
       <LongreadNavbarContainer className={cn(className, color)} style={{ transform }} fixed={fixed}>
         {children}
-        {prev && (
+        {prev && isPortfolioLongread && (
           <Link to={prev} className={cn(styles.arrowBtn, styles.leftArrowBtn)}>
             <Arrow />
             Предыдущий
@@ -66,7 +66,7 @@ export class LongreadNavbarBase extends Component {
         <button className={styles.longreadCloseBtn} onClick={goBack}>
           <Close />
         </button>
-        {next && (
+        {next && isPortfolioLongread && (
           <Link to={next} className={cn(styles.arrowBtn, styles.rightArrowBtn)}>
             Следующий
             <Arrow />
