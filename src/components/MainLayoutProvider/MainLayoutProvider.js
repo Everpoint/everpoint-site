@@ -115,7 +115,7 @@ export class MainLayoutProviderComponent extends Component {
 
   setCurrentRoute = () => {
     const { location, routes } = this.props;
-    const { selectedSectionIndex, scrollEvent } = this.state;
+    const { selectedSectionIndex, scrollEvent, direction } = this.state;
     const currentRoute = getRouteByLocation(location, routes);
     const { state } = location;
     const sections = (currentRoute && currentRoute.sections) || [];
@@ -154,8 +154,13 @@ export class MainLayoutProviderComponent extends Component {
 
             let offsetTop = 0;
             if (this.lefsideSection) {
-              const { height } = this.lefsideSection.getBoundingClientRect();
-              offsetTop = vh / 2 + height / 2 - margin / 2;
+              const { height, top } = this.lefsideSection.getBoundingClientRect();
+
+              if (direction < 0) {
+                offsetTop = top - 80 - margin / 2;
+              } else {
+                offsetTop = vh / 2 + height / 2 - margin / 2;
+              }
             }
 
             if (
