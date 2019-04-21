@@ -1,5 +1,5 @@
 backend:
-  name: github
+  name: test-repo
   repo: Everpoint/everpoint-site
   branch: master
 
@@ -25,14 +25,14 @@ collections:
     label: "Страницы"
     files:
       - file: "src/data/pages/about-page.md"
-        label: "Новостная страница, родительский маршрут /about"
+        label: "Новостная страница, /about"
         name: "about-page"
         fields:
           - {label: "Template Key", name: "templateKey", widget: "hidden", default: "about-page"}
           - {label: "page Id", name: "id", widget: "hidden"}
           - {label: "Новостной блок /about", name: "title", widget: "string"}
       - file: "src/data/pages/contact-page.md"
-        label: "Страница контактов, родительский маршрут /contacts"
+        label: "Страница контактов, /contacts"
         name: "contact-page"
         fields:
           - {label: "Template Key", name: "templateKey", widget: "hidden", default: "contact-page"}
@@ -42,7 +42,7 @@ collections:
           - {label: "Телефон", name: "phone", widget: "string"}
           - {label: "Email", name: "email", widget: "string"}
       - file: "src/data/pages/politics-page.md"
-        label: "Страница политики конфиденциальности, родительский маршрут /politics"
+        label: "Страница политики конфиденциальности, /politics"
         name: "politics-page"
         fields:
           - {label: "Template Key", name: "templateKey", widget: "hidden", default: "politics-page"}
@@ -56,6 +56,52 @@ collections:
             default: [null]
             fields:
               - {label: "Блок", name: "block", widget: "markdown", default: ""}
+      - file: "src/data/pages/company-page.md"
+        label: "Страница компании, /company"
+        name: "company-page"
+        fields:
+          - {label: "Template Key", name: "templateKey", widget: "hidden", default: "company-page"}
+          - {label: "Заголовок страницы", name: "title", widget: "string"}
+          - label: "О нас"
+            name: "aboutUs"
+            widget: "object"
+            fields:
+              - {label: "Название блока", name: "aboutUsTitle", widget: "string"}
+              - {label: "Описание", name: "aboutUsDescription", widget: "markdown"}
+          - label: "Про продукты"
+            name: "aboutProducts"
+            widget: "object"
+            fields:
+              - {label: "Название блока", name: "aboutProductsTitle", widget: "string"}
+              - {label: "Описание", name: "aboutProductsDescription", widget: "markdown"}
+          - label: "Про клиентов"
+            name: "aboutСustomers"
+            widget: "object"
+            fields:
+              - {label: "Название блока", name: "aboutСustomersTitle", widget: "string"}
+              - {label: "Описание", name: "aboutСustomersDescription", widget: "markdown"}
+              - label: "Логотипы клиентов"
+                name: "customerLogos"
+                widget: "list"
+                default: [null]
+                fields:
+                  - {label: "Логотип", name: "logo", widget: image}
+                  - {label: "Отображать", name: "isVisibleLogo", widget: "boolean", default: true}
+          - label: "Развитие"
+            name: "development"
+            widget: "object"
+            fields:
+              - {label: "Название ленты", name: "developmentTitle", widget: "string"}
+              - label: "Элемент ленты"
+                name: "tapeItem"
+                widget: "list"
+                default: [null]
+                fields:
+                  - {label: "Отображать элемент ленты", name: "isVisibleTapeItem", widget: "boolean", default: true}
+                  - {label: "Год", name: "year", widget: "string"}
+                  - {label: "Месяц", name: "month", widget: "string"}
+                  - {label: "Событие", name: "event", widget: "text"}
+          - {label: "Последний блок", name: "footer", widget: "markdown"}
   - name: "vacancy"
     label: "Вакансии"
     widget: "string"

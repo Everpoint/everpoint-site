@@ -14,12 +14,26 @@ import ourClients from "../../assets/our-clients";
 
 import styles, { CompanyContainer, Footer, ChatRow } from "../../styles/company";
 
-class Company extends PureComponent {
+export class Company extends PureComponent {
+  state = {
+    container: null,
+  };
+
+  onContainerRef = ref => {
+    const { container } = this.state;
+    if (ref && container === null) {
+      this.setState({
+        container: ref,
+      });
+    }
+  };
+
   render() {
+    const { container } = this.state;
     const { isMobileOrTablet, isMobile } = this.props;
 
     return (
-      <CompanyContainer>
+      <CompanyContainer ref={this.onContainerRef} onMouseMove={this.onMouseMove}>
         <CompanyPhoto
           title="Everpoint - это мы!"
           // add designer photo
@@ -98,7 +112,7 @@ class Company extends PureComponent {
             <H2>Развитие</H2>
           </Article>
         </Section>
-        <Development items={development} isMobile={isMobile} />
+        <Development container={container} items={development} isMobile={isMobile} />
         <Footer as="footer">
           <Article>
             <Paragraph>
@@ -118,4 +132,6 @@ class Company extends PureComponent {
   }
 }
 
-export default Company;
+export default props => {
+  return <Company {...props} />;
+};
