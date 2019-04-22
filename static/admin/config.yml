@@ -108,6 +108,7 @@ collections:
                   - {label: "Отображать элемент ленты", name: "isVisibleTapeItem", widget: "boolean", default: true}
                   - {label: "Событие", name: "event", widget: "text"}
           - {label: "Последний блок", name: "footer", widget: "markdown"}
+          - {label: "Нижний текст футера", name: "chatText", widget: "text"}
   - name: "vacancy"
     label: "Вакансии"
     widget: "string"

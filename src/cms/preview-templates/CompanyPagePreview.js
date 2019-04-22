@@ -20,6 +20,7 @@ const CompanyPagePreview = ({ entry, widgetFor }) => {
         aboutCustomers={aboutCustomers ? aboutCustomers.toJS() : aboutCustomers}
         development={development ? development.toJS() : development}
         footer={widgetFor("footer")}
+        chatText={entry.getIn(["data", "chatText"])}
       />
     </PreviewContainer>
   );

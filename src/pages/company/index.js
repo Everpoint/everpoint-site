@@ -42,6 +42,7 @@ export class Company extends PureComponent {
       aboutCustomers,
       development,
       footer,
+      chatText,
     } = this.props;
     const aboutUsTitle = aboutUs && aboutUs.aboutUsTitle;
     const aboutUsDescription = aboutUs && aboutUs.aboutUsDescription;
@@ -116,7 +117,7 @@ export class Company extends PureComponent {
             <FooterContent className={cn(typo.typography, styles.footerContent)} content={footer} />
           </Article>
           <Paragraph withoutMargin className={styles.chatText}>
-            Есть задача? Напишите нам в чат, отвечаем быстро!
+            {chatText}
           </Paragraph>
         </Footer>
       </CompanyContainer>
@@ -164,6 +165,7 @@ export const companyPageQuery = graphql`
           }
         }
         footer
+        chatText
       }
     }
   }
