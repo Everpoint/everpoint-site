@@ -32,12 +32,6 @@ export class ViewportHeight extends Component {
   onResize = () => {
     const vh = window.innerHeight * 0.01;
 
-    const axis = Math.abs(window.orientation);
-
-    if (axis === 90 && (isMobile() || isTablet())) {
-      window.scrollTo(0, 1);
-    }
-
     document.documentElement.style.setProperty("--vh", `${vh}px`);
   };
 

@@ -1,11 +1,14 @@
 import styled, { css } from "astroturf";
 
 export const Viewport = styled("div")`
-  color: rgba(38, 44, 55, 0.44);
-  position: absolute;
-  top: 0.4rem;
-  left: 0.4rem;
+  background-color: #fff;
+  position: fixed;
+  top: 0;
+  left: 0;
   z-index: 4;
+  border-radius: 0 0 4px 0;
+  padding: 0 4px;
+  font-size: 12px;
 `;
 
 export const Container = styled("div")`

@@ -1,5 +1,4 @@
 import React from "react";
-import PropTypes from "prop-types";
 
 import { PreviewContainer } from "../../components/CmsPreviewContainer/CmsPreviewContainer";
 import { Politics } from "../../pages/politics";
@@ -19,10 +18,6 @@ const PoliticsPagePreview = ({ entry, widgetFor }) => {
       />
     </PreviewContainer>
   );
-};
-
-PoliticsPagePreview.propTypes = {
-  component: PropTypes.bool,
 };
 
 export default PoliticsPagePreview;

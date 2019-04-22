@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { PureComponent } from "react";
 import PropTypes from "prop-types";
 
 import { rateLimit } from "../../utils/number";
@@ -17,15 +17,12 @@ function getColumns({ items }) {
   return firstCol.concat(lastCol);
 }
 
-export class TeamMembers extends Component {
+export class TeamMembers extends PureComponent {
   static propTypes = {
     items: PropTypes.oneOfType([
       PropTypes.arrayOf(PropTypes.object),
       PropTypes.arrayOf(PropTypes.string),
     ]),
-    id: PropTypes.string,
-    onSectionChange: PropTypes.func,
-    selectedId: PropTypes.string,
   };
 
   state = {
@@ -40,16 +37,6 @@ export class TeamMembers extends Component {
 
   componentWillUnmount() {
     window.removeEventListener("resize", this.onResize);
-  }
-
-  shouldComponentUpdate({ selectedId: nextSelectedId }, { cardHeight: nextCardHeight }) {
-    const { cardHeight } = this.state;
-    const { selectedId, id } = this.props;
-
-    return (
-      (selectedId !== nextSelectedId && (nextSelectedId === id || selectedId === id)) ||
-      cardHeight !== nextCardHeight
-    );
   }
 
   static defaultProps = {

@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-import throttle from "lodash/throttle";
+import debounce from "lodash/debounce";
 import random from "lodash/random";
 
 import { ImagesDownloadListener } from "../../components/ImagesDownloadListener/ImagesDownloadListener";
@@ -16,7 +16,7 @@ export class CompanyPhoto extends Component {
 
   constructor(props) {
     super(props);
-    this.onResize = throttle(this.onResize, 100);
+    this.onResize = debounce(this.onResize, 144);
   }
 
   state = {
@@ -46,7 +46,12 @@ export class CompanyPhoto extends Component {
   }
 
   getNeededElements = () => {
-    const viewportWidth = document.documentElement.clientWidth;
+    let viewportWidth = document.documentElement.clientWidth;
+
+    if (this.container) {
+      const { width } = this.container.getBoundingClientRect();
+      viewportWidth = width;
+    }
 
     if (viewportWidth <= 767) {
       return 6;
@@ -108,6 +113,12 @@ export class CompanyPhoto extends Component {
     this.interval = setInterval(() => this.updatePhoto(), 2000);
   };
 
+  onRef = ref => {
+    if (ref) {
+      this.container = ref;
+    }
+  };
+
   render() {
     const { visibleItems, item } = this.state;
     const { title, items } = this.props;
@@ -115,7 +126,7 @@ export class CompanyPhoto extends Component {
     const avatars = items.map(({ avatar }) => avatar);
 
     return (
-      <CompanyPhotoContainer>
+      <CompanyPhotoContainer ref={this.onRef}>
         <ImagesDownloadListener images={avatars} onLoad={() => this.onAllAvatarsLoaded()} />
         {title && (
           <CompanyHeader>

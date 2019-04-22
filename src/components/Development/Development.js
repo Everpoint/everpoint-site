@@ -39,24 +39,39 @@ export class Development extends Component {
         padding: 20,
       });
     }
-
-    window.addEventListener("mousemove", this.onMouseMove);
   }
 
   componentWillUnmount() {
-    window.removeEventListener("mousemove", this.onMouseMove);
+    const { container } = this.props;
+
+    container.removeEventListener("mousemove", this.onMouseMove);
+  }
+
+  componentDidUpdate({ container: prevContainer }, prevState) {
+    const { container } = this.props;
+
+    if (prevContainer !== container) {
+      if (prevContainer) {
+        prevContainer.removeEventListener("mousemove", this.onMouseMove);
+      }
+
+      if (container) {
+        container.addEventListener("mousemove", this.onMouseMove);
+      }
+    }
   }
 
   onMouseMove = e => {
-    const { items } = this.props;
-    const { sectionWidth, padding } = this.state;
-    const offset = sectionWidth + padding;
+    if (this.scrollbar) {
+      const { items } = this.props;
+      const { sectionWidth, padding } = this.state;
+      const offset = sectionWidth + padding;
 
-    const containerWidth = items.length * sectionWidth + padding;
-    const viewportWidth = Math.max(document.documentElement.clientWidth, window.innerWidth || 0);
-    const ratio = (containerWidth - viewportWidth) / (viewportWidth - offset);
-
-    this.scrollbar.scrollTo((e.clientX - offset / 2) * ratio, 0, 0);
+      const containerWidth = items.length * sectionWidth + padding;
+      const viewportWidth = this.scrollbar.size.container.width;
+      const ratio = (containerWidth - viewportWidth) / (viewportWidth - offset);
+      this.scrollbar.scrollTo((e.clientX - offset / 2) * ratio, 0, 0);
+    }
   };
 
   onScrollbarRef = ref => {
