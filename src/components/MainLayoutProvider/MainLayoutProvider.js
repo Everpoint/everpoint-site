@@ -217,11 +217,11 @@ export class MainLayoutProviderComponent extends Component {
   };
 
   checkBlockIsCenter = (direction, divider = 2) => {
-    const { selectedSectionIndex } = this.state;
+    const { selectedSectionIndex, currentRoute } = this.state;
     const value = selectedSectionIndex + direction;
     const currentBlock = this.scrollable && this.scrollable.children[value];
 
-    if (currentBlock) {
+    if (currentBlock && currentRoute && currentRoute.scrollable) {
       const { height } = this.getSize();
 
       const { top, bottom } = currentBlock.getBoundingClientRect();
@@ -307,8 +307,6 @@ export class MainLayoutProviderComponent extends Component {
     const prevPageId = currentRoute ? currentRoute.id : "";
     const nextPageId = nextPage ? nextPage.id : "";
 
-    const selectedSectionIndexFromIndex = this.getIndexFromDirection(nextPage, direction);
-
     const disableBackgroundTransition =
       (prevPageId === "portfolio" && nextPageId === "about") ||
       (prevPageId === "about" && nextPageId === "portfolio");
@@ -316,8 +314,7 @@ export class MainLayoutProviderComponent extends Component {
     this.setState(
       {
         scrollEvent: false,
-        selectedSectionIndex:
-          selectedSectionIndex >= 0 ? selectedSectionIndex : selectedSectionIndexFromIndex,
+        selectedSectionIndex: selectedSectionIndex || 0,
         direction,
         mobileMenuIsOpen: false,
         disableBackgroundTransition,

@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 
 import telegram from "../../assets/img/vacancyIcons/telegram.svg";
 import email from "../../assets/img/vacancyIcons/email.svg";
-import { Row, Name, Value, ContactIcon, Contact, Badge } from "./styles";
+import styles, { Row, Name, Value, ContactIcon, Contact, Badge } from "./styles";
 
 const isSkills = value =>
   Array.isArray(value) &&
@@ -73,6 +73,7 @@ const getValue = (value, themeColor) => {
               style: { color: themeColor },
               href: getContactLink(type, contactValue),
               isField: true,
+              className: styles.contactLink,
             };
 
       return (
