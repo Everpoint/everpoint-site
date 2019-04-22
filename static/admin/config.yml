@@ -97,9 +97,8 @@ collections:
                 widget: "list"
                 default: [null]
                 fields:
+                  - {label: "Год и месяц", name: "date", widget: "string"}
                   - {label: "Отображать элемент ленты", name: "isVisibleTapeItem", widget: "boolean", default: true}
-                  - {label: "Год", name: "year", widget: "string"}
-                  - {label: "Месяц", name: "month", widget: "string"}
                   - {label: "Событие", name: "event", widget: "text"}
           - {label: "Последний блок", name: "footer", widget: "markdown"}
   - name: "vacancy"
