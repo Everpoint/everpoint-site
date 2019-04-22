@@ -47,13 +47,6 @@ collections:
         fields:
           - {label: "Template Key", name: "templateKey", widget: "hidden", default: "politics-page"}
           - {label: "Заголовок", name: "title", widget: "string"}
-          - label: "Сотрудники"
-            name: "employees"
-            widget: "list"
-            fields:
-              - {label: "x1", name: x1, widget: image}
-              - {label: "x2", name: x2, widget: image, required: false, default: ""}
-              - {label: "x3", name: x3, widget: image, required: false, default: ""}
           - {label: "Город", name: "city", widget: "string"}
           - {label: "Дата обновления", name: "updateDate", widget: "string"}
           - {label: "Введение", name: "introduction", widget: "markdown"}
@@ -69,6 +62,13 @@ collections:
         fields:
           - {label: "Template Key", name: "templateKey", widget: "hidden", default: "company-page"}
           - {label: "Заголовок страницы", name: "title", widget: "string"}
+          - label: "Сотрудники"
+            name: "employees"
+            widget: "list"
+            fields:
+              - {label: "x1", name: x1, widget: image}
+              - {label: "x2", name: x2, widget: image, required: false, default: ""}
+              - {label: "x3", name: x3, widget: image, required: false, default: ""}
           - label: "О нас"
             name: "aboutUs"
             widget: "object"
