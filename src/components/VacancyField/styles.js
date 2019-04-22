@@ -1,4 +1,4 @@
-import styled from "astroturf/index";
+import styled, { css } from "astroturf";
 
 export const Row = styled("div")`
   font-size: 1.2857rem;
@@ -52,17 +52,11 @@ export const Value = styled("div")`
 `;
 
 export const Contact = styled("a")`
-  cursor: pointer;
   color: #262c37;
   text-decoration: none;
   display: flex;
   align-items: center;
   margin-bottom: 1.4rem;
-  @media (hover: hover) {
-    &:hover {
-      text-decoration: underline;
-    }
-  }
   &.isField {
     font-size: 1.1428rem;
     @media (max-width: 991px) {
@@ -91,3 +85,16 @@ export const Badge = styled("div")`
     padding: 0 0.6rem;
   }
 `;
+
+const styles = css`
+  .contactLink {
+    cursor: pointer;
+    @media (hover: hover) {
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+`;
+
+export default styles;
