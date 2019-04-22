@@ -1,4 +1,5 @@
 ---
+templateKey: company-page
 title: Everpoint - это мы!
 aboutUs:
   aboutUsDescription: >-

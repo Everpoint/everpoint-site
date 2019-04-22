@@ -24,24 +24,6 @@ export const Footer = styled(Section)`
   }
 `;
 
-export const ChatRow = styled("div")`
-  padding-top: 4rem;
-  display: flex;
-  align-items: center;
-  justify-content: flex-end;
-  p {
-    padding: 0 1.4285rem 0 0;
-  }
-  @media (max-width: 1199px) {
-    position: relative;
-    left: 4rem;
-  }
-  @media (max-width: 991px) {
-    padding-top: 2rem;
-    left: auto;
-  }
-`;
-
 const styles = css`
   .whatAreWeDoing {
     color: #fff;
@@ -89,6 +71,22 @@ const styles = css`
       padding-bottom: 0;
       h2 {
         margin-bottom: 1.2rem;
+      }
+    }
+  }
+
+  .footerContent {
+    > p:last-child {
+      padding: 4.4rem 0 0 0;
+      text-align: right;
+      @media (max-width: 991px) {
+        padding: 2rem 4.4285rem 1.6rem 0;
+      }
+      @media (max-width: 812px) and (orientation: landscape) {
+        padding: 1rem 5.4285rem 1.6rem 0;
+      }
+      @media (max-width: 767px) and (orientation: portrait) {
+        padding: 1rem 5.4285rem 1rem 0;
       }
     }
   }

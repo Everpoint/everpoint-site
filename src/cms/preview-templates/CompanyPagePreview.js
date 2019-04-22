@@ -4,17 +4,20 @@ import { PreviewContainer } from "../../components/CmsPreviewContainer/CmsPrevie
 import { Company } from "../../pages/company";
 
 const CompanyPagePreview = ({ entry, widgetFor }) => {
-  // const blocksData = entry.getIn(["data", "blocks"]);
-  // const blocks = blocksData ? blocksData.toJS().map(item => ({ block: item.block })) : [];
+  const aboutUs = entry.getIn(["data", "aboutUs"]);
+  const aboutProducts = entry.getIn(["data", "aboutProducts"]);
+  const aboutCustomers = entry.getIn(["data", "aboutCustomers"]);
+  const development = entry.getIn(["data", "development"]);
 
   return (
     <PreviewContainer scrollable>
       <Company
-        // title={entry.getIn(["data", "title"])}
-        // city={entry.getIn(["data", "city"])}
-        // updateDate={entry.getIn(["data", "updateDate"])}
-        // introduction={widgetFor("introduction")}
-        // blocks={blocks}
+        title={entry.getIn(["data", "title"])}
+        aboutUs={aboutUs ? aboutUs.toJS() : aboutUs}
+        aboutProducts={aboutProducts ? aboutProducts.toJS() : aboutProducts}
+        aboutCustomers={aboutCustomers ? aboutCustomers.toJS() : aboutCustomers}
+        development={development ? development.toJS() : development}
+        footer={widgetFor("footer")}
       />
     </PreviewContainer>
   );

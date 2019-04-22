@@ -112,11 +112,26 @@ const styles = css`
       @media (max-width: 1199px) {
         line-height: 1.5;
         font-size: 1.1428rem;
+        margin-bottom: 1.4rem;
       }
       @media (max-width: 991px) {
         font-size: 1rem;
         line-height: normal;
         margin-bottom: 1.2rem;
+      }
+    }
+  }
+  .withoutMarginBottom {
+    > ul,
+    > p,
+    > h1,
+    > h2,
+    > h3,
+    > h4,
+    > h5,
+    > h6 {
+      &:last-child {
+        margin-bottom: 0;
       }
     }
   }
