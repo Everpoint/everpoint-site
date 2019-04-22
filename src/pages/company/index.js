@@ -8,7 +8,6 @@ import { Article } from "../../components/Elements/Article";
 import { H2 } from "../../components/Typography/Headlines";
 import { Paragraph } from "../../components/Typography/Paragraph";
 import { CompanyPhoto } from "../../components/CompanyPhoto/CompanyPhoto";
-import employees from "../../assets/employees";
 import { OurClients } from "../../components/OurClients/OurClients";
 import { Development } from "../../components/Development/Development";
 import { isReactElement } from "../../utils/dom";
@@ -37,6 +36,7 @@ export class Company extends PureComponent {
       isMobileOrTablet,
       isMobile,
       title,
+      employees,
       aboutUs,
       aboutProducts,
       aboutCustomers,
@@ -60,19 +60,17 @@ export class Company extends PureComponent {
       aboutCustomers && aboutCustomers.customersLogos ? aboutCustomers.customersLogos : [];
     const developmentTitle = development && development.developmentTitle;
     const developmentItems = development && development.tapeItem ? development.tapeItem : [];
-
     const FooterContent = isReactElement(footer) ? Content : HTMLContent;
+    const employeesPhotos = employees
+      ? employees.map((employee, index) => ({
+          avatar: employee[getPixelRatioPropName()] || employee["x1"],
+          id: `employee-${index}`,
+        }))
+      : [];
 
     return (
       <CompanyContainer ref={this.onContainerRef} onMouseMove={this.onMouseMove}>
-        <CompanyPhoto
-          title={title}
-          isMobileOrTablet={isMobileOrTablet}
-          items={employees.map(({ portret, id }) => ({
-            avatar: portret[getPixelRatioPropName()],
-            id,
-          }))}
-        />
+        <CompanyPhoto title={title} isMobileOrTablet={isMobileOrTablet} items={employeesPhotos} />
         <Section>
           <Article>
             <H2>{aboutUsTitle}</H2>
@@ -117,7 +115,9 @@ export class Company extends PureComponent {
           <Article>
             <FooterContent className={cn(typo.typography, styles.footerContent)} content={footer} />
           </Article>
-          <Paragraph withoutMargin className={styles.chatText}>Есть задача? Напишите нам в чат, отвечаем быстро!</Paragraph>
+          <Paragraph withoutMargin className={styles.chatText}>
+            Есть задача? Напишите нам в чат, отвечаем быстро!
+          </Paragraph>
         </Footer>
       </CompanyContainer>
     );
@@ -134,6 +134,11 @@ export const companyPageQuery = graphql`
     markdownRemark(frontmatter: { templateKey: { eq: "company-page" } }) {
       frontmatter {
         title
+        employees {
+          x1
+          x2
+          x3
+        }
         aboutUs {
           aboutUsTitle
           aboutUsDescription

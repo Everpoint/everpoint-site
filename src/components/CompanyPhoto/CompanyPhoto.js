@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import debounce from "lodash/debounce";
+import isEqual from "lodash/isEqual";
 import random from "lodash/random";
 
 import { ImagesDownloadListener } from "../../components/ImagesDownloadListener/ImagesDownloadListener";
@@ -43,6 +44,14 @@ export class CompanyPhoto extends Component {
     window.removeEventListener("orientationchange", this.onResize);
     window.removeEventListener("resize", this.onResize);
     clearInterval(this.interval);
+  }
+
+  componentDidUpdate({ items: prevItems }, prevState) {
+    const { items } = this.props;
+
+    if (prevItems && items && !isEqual(prevItems, items)) {
+      this.onResize();
+    }
   }
 
   getNeededElements = () => {
@@ -122,7 +131,6 @@ export class CompanyPhoto extends Component {
   render() {
     const { visibleItems, item } = this.state;
     const { title, items } = this.props;
-
     const avatars = items.map(({ avatar }) => avatar);
 
     return (
