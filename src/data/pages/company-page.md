@@ -1,6 +1,55 @@
 ---
 templateKey: company-page
 title: Everpoint - это мы!
+employees:
+  - x1: /img/10-kuznetsova.jpg
+    x2: /img/10-kuznetsova@2x.jpg
+    x3: /img/10-kuznetsova@3x.jpg
+  - x1: /img/12-birukov.jpg
+    x2: /img/12-birukov@2x.jpg
+    x3: /img/12-birukov@3x.jpg
+  - x1: /img/11-belousov.jpg
+    x2: /img/11-belousov@2x.jpg
+    x3: /img/11-belousov@3x.jpg
+  - x1: /img/14-poriadin.jpg
+    x2: /img/14-poriadin@2x.jpg
+    x3: /img/14-poriadin@3x.jpg
+  - x1: /img/15-mamedov.jpg
+    x2: /img/15-mamedov@2x.jpg
+    x3: /img/15-mamedov@3x.jpg
+  - x1: /img/16-vorontsova.jpg
+    x2: /img/16-vorontsova@2x.jpg
+    x3: /img/16-vorontsova@3x.jpg
+  - x1: /img/17-istomin.jpg
+    x2: /img/17-istomin@2x.jpg
+    x3: /img/17-istomin@3x.jpg
+  - x1: /img/18-kuzuberdina.jpg
+    x2: /img/18-kuzuberdina@2x.jpg
+    x3: /img/18-kuzuberdina@3x.jpg
+  - x1: /img/2-podolskiy.jpg
+    x2: /img/2-podolskiy@2x.jpg
+    x3: /img/2-podolskiy@3x.jpg
+  - x1: /img/3-borisov.jpg
+    x2: /img/3-borisov@2x.jpg
+    x3: /img/3-borisov@3x.jpg
+  - x1: /img/4-volodin.jpg
+    x2: /img/4-volodin@2x.jpg
+    x3: /img/4-volodin@3x.jpg
+  - x1: /img/5-kamneva.jpg
+    x2: /img/5-kamneva@2x.jpg
+    x3: /img/5-kamneva@3x.jpg
+  - x1: /img/6-makeeva.jpg
+    x2: /img/6-makeeva@2x.jpg
+    x3: /img/6-makeeva@3x.jpg
+  - x1: /img/7-ivchuk.jpg
+    x2: /img/7-ivchuk@2x.jpg
+    x3: /img/7-ivchuk@3x.jpg
+  - x1: /img/8-gritsenko.jpg
+    x2: /img/8-gritsenko@2x.jpg
+    x3: /img/8-gritsenko@3x.jpg
+  - x1: /img/9-bavshina.jpg
+    x2: /img/9-bavshina@2x.jpg
+    x3: /img/9-bavshina@3x.jpg
 aboutUs:
   aboutUsDescription: >-
     <p>Everpoint — команда профессионалов с большим опытом разработки
