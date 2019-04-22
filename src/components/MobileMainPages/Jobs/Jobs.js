@@ -47,8 +47,17 @@ export class Jobs extends Component {
 
     if (prevPhotoId !== photoId) {
       this.setRow(photoId);
+      if (this.container) {
+        this.container.scrollLeft = 0;
+      }
     }
   }
+
+  onScrollContainerRef = ref => {
+    if (ref) {
+      this.container = ref;
+    }
+  };
 
   render() {
     const { photoId, photoRows } = this.state;
@@ -79,7 +88,7 @@ export class Jobs extends Component {
               Рабочий процесс
             </TabItem>
           </Tab>
-          <PhotoContainer>
+          <PhotoContainer ref={this.onScrollContainerRef}>
             {photoRows.map((row, index) => (
               <Row key={`employees-row-${index}`}>
                 {row.map((item, index, array) => (
