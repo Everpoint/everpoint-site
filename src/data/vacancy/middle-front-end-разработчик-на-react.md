@@ -4,9 +4,9 @@ isVisible: true
 name: Middle frontend-разработчик на React
 avatar: /img/developer.svg
 themeColor: '#00b27b'
-workFormat: Офис / Удалённая работа
+workFormat: Офис / удаленная работа
 employment: Полная
-salary: 150 000 - 170 000 руб.
+salary: 150 000 —170 000 руб.
 contacts:
   email: em@everpoint.ru
   fullName: Эльдар Мамедов
