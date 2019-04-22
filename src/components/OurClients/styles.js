@@ -7,8 +7,8 @@ export const OurClientsContainer = styled("div")`
   justify-content: center;
   flex-wrap: wrap;
   max-width: 85.7142rem;
-  @media (max-width: 991px) {
-    padding-top: 2.4571rem;
+  @media (max-width: 1199px) {
+    padding: 2.4571rem 0 0 0;
   }
   @media (max-width: 812px) and (orientation: landscape),
     (max-width: 767px) and (orientation: portrait) {
@@ -27,12 +27,12 @@ export const OurClientsItem = styled("div")`
   background-color: #f3f4f7;
   background-size: contain;
   margin-bottom: 3.8571rem;
-  @media (max-width: 991px) {
+  @media (max-width: 1199px) {
     margin-bottom: 2.4571rem;
   }
   @media (max-width: 812px) and (orientation: landscape),
     (max-width: 767px) and (orientation: portrait) {
-    padding: 0 1rem;
+    padding: 0.8rem 1rem;
     margin-bottom: 0;
   }
   @media (max-width: 767px) and (orientation: portrait) {

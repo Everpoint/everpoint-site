@@ -4,11 +4,11 @@ import debounce from "lodash/debounce";
 import throttle from "lodash/throttle";
 
 import { backgrounds } from "../../components/MainPageElements/Background";
-import styles, { ScrollBar } from "./styles";
 import { ImagesDownloadListener } from "../../components/ImagesDownloadListener/ImagesDownloadListener";
 import { Swiper } from "../../components/Swiper/Swiper";
 import { mobileMenu as mobileMenuWidth } from "../../components/Navbar/styles";
 import { navigateTo, getRouteByLocation, getRouteById } from "../../routes/utils";
+import styles, { ScrollBar } from "./styles";
 
 import "../ScrollbarProvider/plugins/disableScrollByDirection";
 
@@ -225,19 +225,12 @@ export class MainLayoutProviderComponent extends Component {
       const { height } = this.getSize();
 
       const { top, bottom } = currentBlock.getBoundingClientRect();
-
-      if (direction > 0) {
-        const blockIsCenter = top < height / divider;
-        if (blockIsCenter) {
-          this.onSectionChange({ value: 1 });
-        }
-      }
-
-      if (direction < 0) {
-        const blockIsCenter = bottom > height / divider;
-        if (blockIsCenter) {
-          this.onSectionChange({ value: -1 });
-        }
+      const isTop = top < height / divider;
+      const isBottom = bottom > height / divider;
+      if (isTop && direction > 0) {
+        this.onSectionChange({ value: 1 });
+      } else if (isBottom && direction < 0) {
+        this.onSectionChange({ value: -1 });
       }
     }
   };
@@ -451,7 +444,7 @@ export class MainLayoutProviderComponent extends Component {
     } else if ((goPrevPage || goNextPage) && !this.disableSwipeNavigation) {
       this.onNavigateTo(goNextPage ? 1 : -1, true);
       this.disableSwipeNavigation = true;
-    } else if ((goPrevSection || goNextSection) && !this.disableSwipeNavigation) {
+    } else if ((goPrevSection || goNextSection) && !this.disableSwipeNavigation && !scrollable) {
       this.setState({
         sectionDirection: goNextSection ? 1 : -1,
         selectedSectionIndex: selectedSectionIndex + (goNextSection ? 1 : -1),

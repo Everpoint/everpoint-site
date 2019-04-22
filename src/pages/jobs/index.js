@@ -3,7 +3,7 @@ import React, { Component } from "react";
 import { Background } from "../../components/MainPageElements/Background";
 import { MainLayoutConsumer } from "../../components/MainLayoutProvider/MainLayoutProvider";
 import { AdditionalMenu } from "../../components/AdditionalMenu/AdditionalMenu";
-import { ScrollableTeamMembers } from "../../components/ScrollableTeamMembers/ScrollableTeamMembers";
+import { TeamMembers } from "../../components/TeamMembers/TeamMembers";
 import { getRouteByLocation } from "../../routes/utils";
 import styles, {
   Main,
@@ -72,11 +72,9 @@ export class JobsBase extends Component {
               transform: !transitionEnd && `translateY(-${prevScrollTop}px)`,
             }}
           >
-            <ScrollableTeamMembers
-              sections={sections}
-              transitionEnd={transitionEnd}
-              onSectionChange={onSectionChange}
-            />
+            {sections.map(item => (
+              <TeamMembers key={item.id} {...item} />
+            ))}
           </RightSideContent>
         </RightSide>
       </Main>
