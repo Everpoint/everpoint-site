@@ -6,18 +6,18 @@ import { OurClientsContainer, OurClientsItem } from "./styles";
 export const OurClients = ({ items }) => {
   return (
     <OurClientsContainer>
-      {items.map((url, index) => (
-        <OurClientsItem
-          src={url}
-          alt={index}
-          key={`client-logo-${index}`}
-          style={{ backgroundImage: `url(${url})` }}
-        />
+      {items.map(({ logo }, index) => (
+        <OurClientsItem key={`client-logo-${index}`} style={{ backgroundImage: `url(${logo})` }} />
       ))}
     </OurClientsContainer>
   );
 };
 
 OurClients.propTypes = {
-  items: PropTypes.arrayOf(PropTypes.string),
+  items: PropTypes.arrayOf(
+    PropTypes.shape({
+      logo: PropTypes.string,
+      isVisibleLogo: PropTypes.bool,
+    }),
+  ),
 };

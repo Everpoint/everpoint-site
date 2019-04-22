@@ -87,14 +87,15 @@ export class Development extends Component {
     return (
       <Scrollbar onScrollbarRef={this.onScrollbarRef}>
         <DevelopmentContainer style={{ width: items.length * sectionWidth + padding }}>
-          {items.map(({ year, month, description }, index) => {
+          {items.map(({ date, event }, index) => {
             const isMobileFirstChildPadding = isMobile ? 12 : 0;
             const firstChild = index === 0;
             const additional = firstChild ? padding + isMobileFirstChildPadding : 0;
+            const [year, month] = date.split(" ");
 
             return (
               <DevelopmentItem
-                key={`${year}-${index}-${month}`}
+                key={`${date}-${index}`}
                 style={{
                   width: sectionWidth + additional,
                   paddingRight: padding,
@@ -107,7 +108,7 @@ export class Development extends Component {
                   </DevelopmentTitle>
                   <HorizontalRule />
                 </DevelopmentHeader>
-                <DevelopmentDescription>{description}</DevelopmentDescription>
+                <DevelopmentDescription>{event}</DevelopmentDescription>
               </DevelopmentItem>
             );
           })}
