@@ -75,13 +75,13 @@ collections:
               - {label: "Название блока", name: "aboutProductsTitle", widget: "string"}
               - {label: "Описание", name: "aboutProductsDescription", widget: "markdown"}
           - label: "Про клиентов"
-            name: "aboutСustomers"
+            name: "aboutCustomers"
             widget: "object"
             fields:
-              - {label: "Название блока", name: "aboutСustomersTitle", widget: "string"}
-              - {label: "Описание", name: "aboutСustomersDescription", widget: "markdown"}
+              - {label: "Название блока", name: "aboutCustomersTitle", widget: "string"}
+              - {label: "Описание", name: "aboutCustomersDescription", widget: "markdown"}
               - label: "Логотипы клиентов"
-                name: "customerLogos"
+                name: "customersLogos"
                 widget: "list"
                 default: [null]
                 fields:

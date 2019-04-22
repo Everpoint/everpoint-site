@@ -1,4 +1,5 @@
 import React, { PureComponent } from "react";
+import { graphql } from "gatsby";
 
 import { getPixelRatioPropName } from "../../utils/utils";
 import { Section } from "../../components/Elements/Section";
@@ -135,3 +136,38 @@ export class Company extends PureComponent {
 export default props => {
   return <Company {...props} />;
 };
+
+export const companyPageQuery = graphql`
+  query companyPage {
+    markdownRemark(frontmatter: { templateKey: { eq: "company-page" } }) {
+      frontmatter {
+        title
+        aboutUs {
+          aboutUsTitle
+          aboutUsDescription
+        }
+        aboutProducts {
+          aboutProductsTitle
+          aboutProductsDescription
+        }
+        aboutCustomers {
+          aboutCustomersTitle
+          aboutCustomersDescription
+          customersLogos {
+            logo
+            isVisibleLogo
+          }
+        }
+        development {
+          developmentTitle
+          tapeItem {
+            date
+            isVisibleTapeItem
+            event
+          }
+        }
+        footer
+      }
+    }
+  }
+`;
