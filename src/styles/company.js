@@ -8,7 +8,7 @@ export const CompanyContainer = styled("main")`
 
 export const Footer = styled(Section)`
   padding-top: 5.3571rem;
-  padding-bottom: 3.1428rem;
+  padding-bottom: 2.8rem;
   background-color: #90c53d;
   background-image: url(../assets/img/backgrounds/companyFooter.png);
   background-position: top;
@@ -20,7 +20,7 @@ export const Footer = styled(Section)`
   }
   @media (max-width: 991px) {
     padding-top: 2.1428rem;
-    padding-bottom: 1.4428rem;
+    padding-bottom: 1.1428rem;
   }
 `;
 
@@ -75,19 +75,17 @@ const styles = css`
     }
   }
 
-  .footerContent {
-    > p:last-child {
-      padding: 4.4rem 0 0 0;
-      text-align: right;
-      @media (max-width: 991px) {
-        padding: 2rem 4.4285rem 1.6rem 0;
-      }
-      @media (max-width: 812px) and (orientation: landscape) {
-        padding: 1rem 5.4285rem 1.6rem 0;
-      }
-      @media (max-width: 767px) and (orientation: portrait) {
-        padding: 1rem 5.4285rem 1rem 0;
-      }
+  p.chatText {
+    padding: 4.4rem 0 0 0;
+    text-align: right;
+    @media (max-width: 991px) {
+      padding: 2rem 4.4285rem 1.6rem 0;
+    }
+    @media (max-width: 812px) and (orientation: landscape) {
+      padding: 1rem 5.4285rem 1.6rem 0;
+    }
+    @media (max-width: 767px) and (orientation: portrait) {
+      padding: 1rem 5.4285rem 1rem 0;
     }
   }
 `;
