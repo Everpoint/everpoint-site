@@ -6,6 +6,7 @@ import { getPixelRatioPropName } from "../../utils/utils";
 import { Section } from "../../components/Elements/Section";
 import { Article } from "../../components/Elements/Article";
 import { H2 } from "../../components/Typography/Headlines";
+import { Paragraph } from "../../components/Typography/Paragraph";
 import { CompanyPhoto } from "../../components/CompanyPhoto/CompanyPhoto";
 import employees from "../../assets/employees";
 import { OurClients } from "../../components/OurClients/OurClients";
@@ -114,11 +115,9 @@ export class Company extends PureComponent {
         />
         <Footer as="footer">
           <Article>
-            <FooterContent
-              className={cn(typo.typography, typo.withoutMarginBottom, styles.footerContent)}
-              content={footer}
-            />
+            <FooterContent className={cn(typo.typography, styles.footerContent)} content={footer} />
           </Article>
+          <Paragraph withoutMargin className={styles.chatText}>Есть задача? Напишите нам в чат, отвечаем быстро!</Paragraph>
         </Footer>
       </CompanyContainer>
     );
