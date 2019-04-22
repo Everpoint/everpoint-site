@@ -8,11 +8,13 @@ const CompanyPagePreview = ({ entry, widgetFor }) => {
   const aboutProducts = entry.getIn(["data", "aboutProducts"]);
   const aboutCustomers = entry.getIn(["data", "aboutCustomers"]);
   const development = entry.getIn(["data", "development"]);
+  const employees = entry.getIn(["data", "employees"]);
 
   return (
     <PreviewContainer scrollable>
       <Company
         title={entry.getIn(["data", "title"])}
+        employees={employees ? employees.toJS() : employees}
         aboutUs={aboutUs ? aboutUs.toJS() : aboutUs}
         aboutProducts={aboutProducts ? aboutProducts.toJS() : aboutProducts}
         aboutCustomers={aboutCustomers ? aboutCustomers.toJS() : aboutCustomers}
