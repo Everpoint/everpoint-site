@@ -27,9 +27,25 @@ export const Row = styled("div")`
   padding: 4.4rem;
 `;
 
+export const EmployeesContainer = styled("div")`
+  margin-top: 4.4rem;
+  width: 45.7142rem;
+  > div:first-child {
+    margin-bottom: 4.4rem;
+  }
+`;
+
 const styles = css`
   .aboutBg {
     background-image: url(../assets/img/main-slides/russia.svg);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+  .jobsBg {
+    display: flex;
+    align-items: center;
+    background-image: url(../assets/img/main-slides/moscow.svg);
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
