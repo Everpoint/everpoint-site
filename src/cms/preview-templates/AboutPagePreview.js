@@ -9,7 +9,7 @@ import { News } from "../../components/NewsCard/NewsCard";
 import styles, { Row } from "../../styles/cms";
 
 const AboutPreview = ({ entry }) => (
-  <PreviewContainer className={styles.aboutBg}>
+  <PreviewContainer withExplanations={false} className={styles.aboutBg}>
     <Row>
       <NewsContainer>
         <News

@@ -1,4 +1,5 @@
 import cloneDeep from "lodash/cloneDeep";
+import get from "lodash/get";
 
 export const navigateTo = ({ navigate, pathname, direction, routes }) => {
   const outsideLinkFilteredRoutes = routes.filter(({ outsideLink }) => !outsideLink);
@@ -64,12 +65,13 @@ export const normalizeEdges = items =>
     longreadLink: node.fields.slug,
   }));
 
-export const mergedRoutes = ({ routes, vacancy }) => {
+export const mergedRoutes = ({ routes, vacancy, employees }) => {
   const mergedRoutes = cloneDeep(routes);
   const jobs = getRouteById("jobs", mergedRoutes);
   const { sections: jobsSections } = jobs;
 
   const vacancies = jobsSections.find(({ id }) => id === "vacancy");
+  const employeesSection = jobsSections.find(({ id }) => id === "employees");
 
   if (vacancies && !vacancies.items) {
     const normalizedVacancy = vacancy ? normalizeEdges(vacancy) : [];
@@ -78,6 +80,13 @@ export const mergedRoutes = ({ routes, vacancy }) => {
       ...vacancies,
       items: normalizedVacancy,
     });
+  }
+
+  if (employees && !employees.items) {
+    const normalizedEmployees = employeesSection
+      ? get(employees, "edges[0].node.frontmatter.employees")
+      : [];
+    employeesSection.items = normalizedEmployees;
   }
 
   return mergedRoutes;
