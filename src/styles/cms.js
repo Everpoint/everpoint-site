@@ -30,6 +30,7 @@ export const Row = styled("div")`
 export const EmployeesContainer = styled("div")`
   margin-top: 4.4rem;
   width: 45.7142rem;
+  min-height: 100vh;
   > div:first-child {
     margin-bottom: 2.4rem;
   }

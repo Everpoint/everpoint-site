@@ -11,7 +11,9 @@ const CompanyPagePreview = ({ entry }) => {
   return (
     <PreviewContainer scrollable withExplanations={false} className={styles.jobsBg}>
       <EmployeesContainer>
-        <TeamMembers items={employees ? employees.toJS() : []} />
+        <TeamMembers
+          items={employees ? employees.toJS().filter(employee => employee.isVisible) : []}
+        />
       </EmployeesContainer>
     </PreviewContainer>
   );
