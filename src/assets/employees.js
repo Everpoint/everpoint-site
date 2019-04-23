@@ -85,7 +85,7 @@ export default [
     avatar: eldar,
     name: "Эльдар",
     position: "Директор по развитию бизнеса",
-    descrition: "",
+    description: "",
     portret: {
       x1: eldar1,
       x2: eldar2,
@@ -97,7 +97,7 @@ export default [
     avatar: yuliya,
     name: "Юлия",
     position: "Руководитель проектной группы",
-    descrition: "Душа команды, гуру планирования",
+    description: "Душа команды, гуру планирования",
     portret: {
       x1: yuliya1,
       x2: yuliya2,
@@ -109,7 +109,7 @@ export default [
     avatar: petrB,
     name: "Петр",
     position: "Python-разработчик, ГИС-специалист",
-    descrition: "Решаю все вопросы по пространственным данным",
+    description: "Решаю все вопросы по пространственным данным",
     portret: {
       x1: petrB1,
       x2: petrB2,
@@ -121,7 +121,7 @@ export default [
     avatar: timofey,
     name: "Тимофей",
     position: "Техлид frontend",
-    descrition: "Регулярно переписываю все на новый фреймворк",
+    description: "Регулярно переписываю все на новый фреймворк",
     portret: {
       x1: timofey1,
       x2: timofey2,
@@ -133,7 +133,7 @@ export default [
     avatar: maksim,
     name: "Максим",
     position: "Архитектор, техлид backend",
-    descrition: "Изобретаю Боинги и прикручиваю к ним педали для удобства пользователей",
+    description: "Изобретаю Боинги и прикручиваю к ним педали для удобства пользователей",
     portret: {
       x1: maksim1,
       x2: maksim2,
@@ -145,7 +145,7 @@ export default [
     avatar: ekaterina,
     name: "Екатерина",
     position: "Бизнес-аналитик",
-    descrition: "Мастер на все руки, только код не пишу",
+    description: "Мастер на все руки, только код не пишу",
     portret: {
       x1: ekaterina1,
       x2: ekaterina2,
@@ -157,7 +157,7 @@ export default [
     avatar: anton,
     name: "Антон",
     position: "UX/UI-дизайнер",
-    descrition: "Превращаю абстрактные идеи в конкретные ТЗ",
+    description: "Превращаю абстрактные идеи в конкретные ТЗ",
     portret: {
       x1: anton1,
       x2: anton2,
@@ -169,7 +169,7 @@ export default [
     avatar: pavel,
     name: "Павел",
     position: "Backend-разработчик",
-    descrition: "Главный по серверу EverGIS",
+    description: "Главный по серверу EverGIS",
     portret: {
       x1: pavel1,
       x2: pavel2,
@@ -181,7 +181,7 @@ export default [
     avatar: mariana,
     name: "Марьяна",
     position: "Менеджер проектов",
-    descrition: "Никогда не откладываю на завтра то, что можно поручить кому-то сегодня",
+    description: "Никогда не откладываю на завтра то, что можно поручить кому-то сегодня",
     portret: {
       x1: mariana1,
       x2: mariana2,
@@ -193,7 +193,7 @@ export default [
     avatar: yakov,
     name: "Яков",
     position: "Python-разработчик",
-    descrition: "Создаю сложные алгоритмы быстро и без ошибок",
+    description: "Создаю сложные алгоритмы быстро и без ошибок",
     portret: {
       x1: yakov1,
       x2: yakov2,
@@ -205,7 +205,7 @@ export default [
     avatar: igor,
     name: "Игорь",
     position: "Frontend-разработчик",
-    descrition: "CSS-архиепископ, гуру каскадного программирования",
+    description: "CSS-архиепископ, гуру каскадного программирования",
     portret: {
       x1: igor1,
       x2: igor2,
@@ -217,7 +217,7 @@ export default [
     avatar: inessa,
     name: "Инесса",
     position: "Frontend-разработчик",
-    descrition: "Вдыхаю жизнь в интерфейсы",
+    description: "Вдыхаю жизнь в интерфейсы",
     portret: {
       x1: inessa1,
       x2: inessa2,
@@ -229,7 +229,7 @@ export default [
     avatar: yevgeniy,
     name: "Евгений",
     position: "Backend-разработчик",
-    descrition: "Поддерживаю корпоративную культуру",
+    description: "Поддерживаю корпоративную культуру",
     portret: {
       x1: yevgeniy1,
       x2: yevgeniy2,
@@ -241,7 +241,7 @@ export default [
     avatar: natalya,
     name: "Наталья",
     position: "Главный бухгалтер",
-    descrition: "Виртуозно свожу дебет с кредитом",
+    description: "Виртуозно свожу дебет с кредитом",
     portret: {
       x1: natalya1,
       x2: natalya2,
@@ -253,7 +253,7 @@ export default [
     avatar: yevgeniya,
     name: "Евгения",
     position: "Офис-менеджер",
-    descrition: "Создаю комфорт и уют в офисе",
+    description: "Создаю комфорт и уют в офисе",
     portret: {
       x1: yevgeniya1,
       x2: yevgeniya2,
@@ -265,7 +265,7 @@ export default [
     avatar: boris,
     name: "Борис",
     position: "ГИС-специалист, системный администратор",
-    descrition: "Боец невидимого фронта",
+    description: "Боец невидимого фронта",
     portret: {
       x1: boris1,
       x2: boris2,
@@ -277,7 +277,7 @@ export default [
   //   avatar: "ggwp",
   //   name: "Алексей",
   //   position: "UX/UI-дизайнер",
-  //   descrition: "Рисую интерфейсы попиксельно",
+  //   description: "Рисую интерфейсы попиксельно",
   //   portret: {
   //     x1: "",
   //     x2: "",

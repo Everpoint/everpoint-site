@@ -18,7 +18,7 @@ export const TeamMemberCard = ({
   withMarginTop,
   name,
   position,
-  descrition,
+  description,
   control,
   className,
   vacancy,
@@ -42,7 +42,7 @@ export const TeamMemberCard = ({
       />
       {control}
       {position && <Position>{position}</Position>}
-      {descrition && <Description>{descrition}</Description>}
+      {description && <Description>{description}</Description>}
     </TeamMemberCardContainer>
   );
 };

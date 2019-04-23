@@ -109,6 +109,21 @@ collections:
                   - {label: "Событие", name: "event", widget: "text"}
           - {label: "Последний блок", name: "footer", widget: "markdown"}
           - {label: "Нижний текст футера", name: "chatText", widget: "text"}
+      - file: "src/data/pages/employees.md"
+        label: "Наши сотрудники, /jobs"
+        name: "our-employees"
+        fields:
+          - {label: "Template Key", name: "templateKey", widget: "hidden", default: "our-employees"}
+          - label: "Сотрудники"
+            name: "employees"
+            widget: "list"
+            default: [null]
+            fields:
+              - {label: "Имя", name: "name", widget: "string"}
+              - {label: "Отображать на главной", name: "isVisible", widget: "boolean", default: true}
+              - {label: "Фото", name: "avatar", widget: image}
+              - {label: "Должность", name: "position", widget: "string"}
+              - {label: "Описание", name: "description", widget: "text", required: false,  default: ""}
   - name: "vacancy"
     label: "Вакансии"
     widget: "string"
