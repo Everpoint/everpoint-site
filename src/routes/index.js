@@ -1,4 +1,3 @@
-import employees from "../assets/employees";
 // import principles from "../assets/principles";
 import photo from "../assets/photo";
 
@@ -19,7 +18,7 @@ export const routes = [
     text: "Работа у нас",
     route: "/jobs",
     sections: [
-      { id: "employees", text: "Наши сотрудники", items: employees, groupName: "Команда" },
+      { id: "employees", text: "Наши сотрудники", items: [], groupName: "Команда" },
       { id: "vacancy", text: "Вакансии", groupName: "Команда" },
       // {
       //   id: "process",

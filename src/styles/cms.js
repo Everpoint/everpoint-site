@@ -31,7 +31,7 @@ export const EmployeesContainer = styled("div")`
   margin-top: 4.4rem;
   width: 45.7142rem;
   > div:first-child {
-    margin-bottom: 4.4rem;
+    margin-bottom: 2.4rem;
   }
 `;
 

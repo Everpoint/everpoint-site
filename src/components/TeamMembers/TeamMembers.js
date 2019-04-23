@@ -112,7 +112,7 @@ export class TeamMembers extends PureComponent {
                 height={height}
                 top={top}
                 margin={margin}
-                key={item.id}
+                key={`${item.name}-${index + 1}`}
                 {...item}
               />
             );

@@ -68,6 +68,23 @@ class Index extends Component {
                 }
               }
             }
+            employees: allMarkdownRemark(
+              filter: { frontmatter: { templateKey: { eq: "our-employees" } } }
+            ) {
+              edges {
+                node {
+                  frontmatter {
+                    employees {
+                      name
+                      isVisible
+                      avatar
+                      position
+                      description
+                    }
+                  }
+                }
+              }
+            }
           }
         `}
         render={data => {

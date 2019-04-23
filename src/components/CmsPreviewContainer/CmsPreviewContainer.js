@@ -3,6 +3,10 @@ import React, { Component } from "react";
 import { Viewport, Container } from "../../styles/cms";
 
 export class PreviewContainer extends Component {
+  static defaultProps = {
+    withExplanations: true,
+  };
+
   state = {
     width: 0,
     height: 0,
@@ -35,12 +39,12 @@ export class PreviewContainer extends Component {
 
   render() {
     const { width, height } = this.state;
-    const { children, scrollable, ...props } = this.props;
+    const { children, scrollable, withExplanations, ...props } = this.props;
 
     return (
       <>
         <Viewport>
-          {width}x{height} {`&nbsp;`} - символ пробела
+          {width}x{height} {withExplanations && <span>{`&nbsp;`} - символ пробела</span>}
         </Viewport>
         <Container ref={this.onRef} scrollable={scrollable} {...props}>
           {children}
