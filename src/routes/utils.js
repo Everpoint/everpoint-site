@@ -86,7 +86,8 @@ export const mergedRoutes = ({ routes, vacancy, employees }) => {
     const normalizedEmployees = employeesSection
       ? get(employees, "edges[0].node.frontmatter.employees")
       : [];
-    employeesSection.items = normalizedEmployees;
+
+    employeesSection.items = normalizedEmployees.filter(employee => employee.isVisible);
   }
 
   return mergedRoutes;

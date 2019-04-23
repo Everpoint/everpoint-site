@@ -76,6 +76,7 @@ class Index extends Component {
                   frontmatter {
                     employees {
                       name
+                      isVisible
                       avatar
                       position
                       description
