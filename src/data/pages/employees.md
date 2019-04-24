@@ -45,11 +45,11 @@ employees:
     isVisible: true
     name: Марьяна
     position: Менеджер проектов
-  - avatar: /img/yakov.jpg
-    description: Создаю сложные алгоритмы быстро и без ошибок
+  - avatar: /img/yevgeniy.jpg
+    description: Поддерживаю корпоративную культуру
     isVisible: true
-    name: Яков
-    position: Python-разработчик
+    name: Евгений
+    position: Backend-разработчик
   - avatar: /img/igor.jpg
     description: 'CSS-архиепископ, гуру каскадного программирования'
     isVisible: true
@@ -60,11 +60,11 @@ employees:
     isVisible: true
     name: Инесса
     position: Frontend-разработчик
-  - avatar: /img/yevgeniy.jpg
-    description: Поддерживаю корпоративную культуру
+  - avatar: /img/yakov.jpg
+    description: Создаю сложные алгоритмы быстро и без ошибок
     isVisible: true
-    name: Евгений
-    position: Backend-разработчик
+    name: Яков
+    position: Python-разработчик
   - avatar: /img/natalya.png
     description: Виртуозно свожу дебет с кредитом
     isVisible: true
