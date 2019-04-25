@@ -1,7 +1,7 @@
 import understandingProblemX1 from "./img/development-сycle/1.png";
 import understandingProblemX2 from "./img/development-сycle/1@2x.png";
 import understandingProblemX3 from "./img/development-сycle/1@3x.png";
-import { ReactComponent as Svg1 } from "../assets/img/development-сycle/dividers/separate.svg";
+import { ReactComponent as Svg1 } from "../assets/img/development-сycle/dividers/separate-1.svg";
 
 import planningX1 from "./img/development-сycle/2.png";
 import planningX2 from "./img/development-сycle/2@2x.png";

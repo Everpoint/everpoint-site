@@ -1,8 +1,9 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
+import cn from "classnames";
 
 import { ScrollbarConsumer } from "../../../components/ScrollbarProvider/ScrollbarProvider";
-import { Container, Svg, Line, LineOdd } from "./styles";
+import styles, { Container, Svg, Line, LineOdd } from "./styles";
 
 export class SeparateBase extends Component {
   static propTypes = {
@@ -39,7 +40,6 @@ export class SeparateBase extends Component {
   render() {
     const { width } = this.state;
     const { fullWidth, odd, Element } = this.props;
-    const strokeOpacity = width > fullWidth / 2 ? "0.25" : "0";
 
     return (
       <Container>
@@ -54,7 +54,7 @@ export class SeparateBase extends Component {
         >
           {odd ? <LineOdd width={width} /> : <Line width={width} />}
         </Svg>
-        {Element && <Element style={{ opacity: strokeOpacity }} />}
+        {Element && <Element className={cn({ [styles.isHidden]: width < fullWidth / 2 })} />}
       </Container>
     );
   }

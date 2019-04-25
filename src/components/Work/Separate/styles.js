@@ -1,4 +1,4 @@
-import styled from "astroturf";
+import styled, { css } from "astroturf";
 import withProps from "recompose/withProps";
 
 export const Container = styled("div")`
@@ -8,8 +8,11 @@ export const Container = styled("div")`
   svg {
     position: absolute;
     top: 0;
-    left: 0;
-    transition: opacity 400ms ease;
+    left: 50%;
+    transform: translateX(-50%);
+    * {
+      transition: stroke-opacity 400ms ease-in, fill-opacity 400ms ease;
+    }
   }
 `;
 
@@ -41,3 +44,16 @@ export const LineOdd = withProps(({ width }) => ({
     width > 309 ? Math.min(width - 309, 269) : 0
   }v${width > 578 ? Math.min(width - 578, 618) : 0}`,
 }))(styled("path")``);
+
+const styles = css`
+  .isHidden {
+    path {
+      stroke-opacity: 0;
+    }
+    circle {
+      fill-opacity: 0;
+    }
+  }
+`;
+
+export default styles;
