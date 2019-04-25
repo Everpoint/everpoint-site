@@ -156,9 +156,9 @@ export class MainLayoutProviderComponent extends Component {
               const { height, top } = this.lefsideSection.getBoundingClientRect();
 
               if (direction < 0) {
-                offsetTop = top - 80 - margin / 2;
+                offsetTop = top - 80 - margin * 2;
               } else {
-                offsetTop = vh / 2 + height / 2 - margin / 2;
+                offsetTop = vh / 2 + height / 2 - margin * 2;
               }
             }
 

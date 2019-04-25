@@ -10,6 +10,16 @@ export const TeamMembersContainer = styled("div")`
   align-content: flex-start;
   align-items: flex-start;
   margin-bottom: 30vh;
+  &:nth-of-type(1) {
+    transform: translateY(calc(-50% + 7.8571rem));
+    margin-bottom: calc(30vh - 7.8571rem);
+  }
+  &:nth-of-type(2) {
+    margin-bottom: calc(30vh + 2.1428rem);
+  }
+  &:nth-of-type(3) {
+    margin-bottom: calc(30vh + 3.8571rem);
+  }
   &:last-of-type {
     margin-bottom: 66vh;
   }

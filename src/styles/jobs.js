@@ -82,6 +82,9 @@ const styles = css`
   }
   .menu {
     display: block;
+    h2 {
+      white-space: nowrap;
+    }
     @media (max-width: 1199px) {
       ul {
         margin-right: 0;

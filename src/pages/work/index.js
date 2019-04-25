@@ -21,6 +21,15 @@ class Work extends PureComponent {
     }
   }
 
+  onEGOclick = e => {
+    const { navigate } = this.props;
+    e.preventDefault();
+
+    navigate("/evergisOnline", {
+      state: { prevPathname: "work" },
+    });
+  };
+
   render() {
     const { routes } = this.props;
     const { sections } = getRouteById("jobs", routes);
@@ -35,7 +44,7 @@ class Work extends PureComponent {
 
     return (
       <>
-        <Header title={text} />
+        <Header title={text} onEGOclick={this.onEGOclick} />
         <WorkMain>
           <Section>
             <Article>

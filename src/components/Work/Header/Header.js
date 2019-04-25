@@ -1,6 +1,6 @@
 import React from "react";
 
-import { GatsbyLink } from "../../../components/Typography/Links";
+import { DefaultLink } from "../../../components/Typography/Links";
 import { Section } from "../../../components/Elements/Section";
 import { Article } from "../../../components/Elements/Article";
 
@@ -16,7 +16,7 @@ import {
   Description,
 } from "./styles";
 
-export const Header = ({ title }) => {
+export const Header = ({ title, onEGOclick }) => {
   return (
     <HeaderContainer>
       <OverflowContainer>
@@ -34,7 +34,7 @@ export const Header = ({ title }) => {
         Everpoint - это команда талантливых, целеустремлённых и ответственных людей, в которой
         каждый сотрудник нашел свое место. Мы занимаемся заказной разработкой геосервисов уже более
         15 лет, а с 2018 года развиваем и собственную веб-ГИС{" "}
-        <GatsbyLink to="/evergisOnline">EverGIS Online</GatsbyLink> - бесплатный инструмент для
+        <DefaultLink onClick={onEGOclick}>EverGIS Online</DefaultLink> - бесплатный инструмент для
         работы с геоданными.
       </Description>
     </HeaderContainer>

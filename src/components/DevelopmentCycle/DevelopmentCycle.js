@@ -5,7 +5,6 @@ import { getPixelRatioPropName } from "../../utils/utils";
 import { ImagesDownloadListener } from "../../components/ImagesDownloadListener/ImagesDownloadListener";
 import { Figure, ImgContainer, Img, Content, Title, Description } from "./styles";
 import { Separate } from "../Work/Separate/Separate";
-import { backgrounds } from "../MainPageElements/Background";
 
 export class DevelopmentCycle extends PureComponent {
   static propTypes = {
