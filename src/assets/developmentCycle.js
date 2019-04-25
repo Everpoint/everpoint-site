@@ -67,6 +67,7 @@ export default {
         x3: designX3,
       },
       Element: Svg3,
+      offset: 12,
     },
     {
       name: "Архитектурное проектирование",
@@ -78,6 +79,7 @@ export default {
         x3: architecturalDesignX3,
       },
       Element: Svg4,
+      offset: 26,
     },
     {
       name: "Разработка",
@@ -91,6 +93,7 @@ export default {
         x3: developmentX3,
       },
       Element: Svg5,
+      offset: 16,
     },
     {
       name: "Тестирование",
@@ -104,6 +107,7 @@ export default {
         x3: testingX3,
       },
       Element: Svg6,
+      offset: 26,
     },
     {
       name: "Релиз",

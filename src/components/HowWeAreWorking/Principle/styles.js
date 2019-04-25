@@ -31,6 +31,9 @@ export const Item = styled("article")`
     width: calc(100% / 2 - 3.5714rem);
     margin: 0;
     height: auto;
+    @media (max-width: 991px) {
+      width: calc(100% / 2 - 1.4rem);
+    }
   }
 `;
 
@@ -43,6 +46,13 @@ export const Title = styled(H4)`
   font-size: 1rem;
   &.longread {
     font-size: 1.4285rem;
+    @media (max-width: 1199px) {
+      font-size: 1.2857rem;
+    }
+    @media (max-width: 991px) {
+      font-size: 1.1428rem;
+      margin-bottom: 0;
+    }
   }
 `;
 
@@ -50,6 +60,10 @@ export const Description = styled("p")`
   font-size: 1.1428rem;
   line-height: 1.5;
   color: rgba(38, 44, 55, 0.75);
+  @media (max-width: 1199px) {
+    font-size: 1rem;
+    line-height: 1.43;
+  }
 `;
 
 export const Badge = styled("div")`

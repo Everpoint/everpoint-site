@@ -2,9 +2,10 @@ import styled, { css } from "astroturf";
 import withProps from "recompose/withProps";
 
 export const Container = styled("div")`
+  overflow: hidden;
   position: relative;
   width: 100%;
-  height: 5.7142rem;
+  height: 5.8571rem;
   svg {
     position: absolute;
     top: 0;
@@ -31,18 +32,20 @@ export const paths = {
   strokeWidth: 2,
 };
 
-export const Line = withProps(({ width }) => ({
+export const Line = withProps(({ width, offset }) => ({
   ...paths,
-  d: `M128 1v${Math.min(width, 40)}h${width > 40 ? Math.min(width, 269) : 0}M503 41h${
-    width > 309 ? Math.min(width - 309, 269) : 0
-  }v${width > 578 ? Math.min(width - 578, 618) : 0}`,
+  d: `M128 1v${Math.min(width, 40)}h${width > 40 ? Math.min(width, 269 - offset) : 0}M${503 +
+    offset} 41h${width > 309 ? Math.min(width - 309, 269 - offset) : 0}v${
+    width > 578 ? Math.min(width - 578, 618) : 0
+  }`,
 }))(styled("path")``);
 
-export const LineOdd = withProps(({ width }) => ({
+export const LineOdd = withProps(({ width, offset }) => ({
   ...paths,
-  d: `M772 1v${Math.min(width, 40)}h-${width > 40 ? Math.min(width, 270) : 0}M397 41h-${
-    width > 309 ? Math.min(width - 309, 269) : 0
-  }v${width > 578 ? Math.min(width - 578, 618) : 0}`,
+  d: `M772 1v${Math.min(width, 40)}h-${width > 40 ? Math.min(width, 270 - offset) : 0}M${397 -
+    offset} 41h-${width > 309 ? Math.min(width - 309, 269 - offset) : 0}v${
+    width > 578 ? Math.min(width - 578, 618) : 0
+  }`,
 }))(styled("path")``);
 
 const styles = css`

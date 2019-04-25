@@ -1,36 +1,68 @@
-import React from "react";
+import React, { PureComponent } from "react";
 import PropTypes from "prop-types";
 
 import { getPixelRatioPropName } from "../../utils/utils";
-import { Figure, Img, Content, Title, Description } from "./styles";
+import { Figure, ImgContainer, Img, Content, Title, Description } from "./styles";
 import { Separate } from "../Work/Separate/Separate";
 
-export const DevelopmentCycle = React.memo(({ odd, name, description, img, Element }) => (
-  <>
-    <Figure odd={odd}>
-      <Img src={img[getPixelRatioPropName()]} odd={odd} />
-      <Content odd={odd}>
-        <Title>{name}</Title>
-        {Array.isArray(description) ? (
-          description.map((item, index) => (
-            <Description key={`description-${index}`}>{item}</Description>
-          ))
-        ) : (
-          <Description>{description}</Description>
-        )}
-      </Content>
-    </Figure>
-    {Element && <Separate odd={odd} Element={Element} />}
-  </>
-));
+export class DevelopmentCycle extends PureComponent {
+  static propTypes = {
+    odd: PropTypes.bool,
+    offset: PropTypes.number,
+    name: PropTypes.string,
+    img: PropTypes.shape({
+      x1: PropTypes.string,
+      x2: PropTypes.string,
+      x3: PropTypes.string,
+    }),
+    description: PropTypes.oneOfType([PropTypes.string, PropTypes.arrayOf(PropTypes.string)]),
+  };
 
-DevelopmentCycle.propTypes = {
-  odd: PropTypes.bool,
-  name: PropTypes.string,
-  img: PropTypes.shape({
-    x1: PropTypes.string,
-    x2: PropTypes.string,
-    x3: PropTypes.string,
-  }),
-  description: PropTypes.oneOfType([PropTypes.string, PropTypes.arrayOf(PropTypes.string)]),
-};
+  state = {
+    imgHeight: 360,
+  };
+
+  componentDidMount() {
+    if (this.img) {
+      const ratio = window.devicePixelRatio || 1;
+      this.setState({
+        imgHeight: this.img.naturalHeight / ratio,
+      });
+    }
+  }
+
+  onImgRef = img => {
+    if (img) {
+      this.img = img;
+    }
+  };
+
+  render() {
+    const { imgHeight } = this.state;
+    const { odd, name, description, img, offset, Element } = this.props;
+    return (
+      <>
+        <Figure odd={odd}>
+          <ImgContainer odd={odd}>
+            <Img
+              src={img[getPixelRatioPropName()]}
+              ref={this.onImgRef}
+              style={{ height: imgHeight }}
+            />
+          </ImgContainer>
+          <Content odd={odd}>
+            <Title>{name}</Title>
+            {Array.isArray(description) ? (
+              description.map((item, index) => (
+                <Description key={`description-${index}`}>{item}</Description>
+              ))
+            ) : (
+              <Description>{description}</Description>
+            )}
+          </Content>
+        </Figure>
+        {Element && <Separate odd={odd} Element={Element} offset={offset} />}
+      </>
+    );
+  }
+}

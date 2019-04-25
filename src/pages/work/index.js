@@ -40,7 +40,7 @@ class Work extends PureComponent {
           <Section>
             <Article>
               <H2>Для нас важны</H2>
-              {/*<Principle longread items={items} itemClassName={styles.principleItemLongread} />*/}
+              <Principle longread items={items} itemClassName={styles.principleItemLongread} />
             </Article>
             <DevelopmentCycleContainer>
               <H2 className={styles.developmentCycleTitle}>{developmentCycleTitle}</H2>
