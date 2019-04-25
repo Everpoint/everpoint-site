@@ -5,7 +5,7 @@ import { getPixelRatioPropName } from "../../utils/utils";
 import { Figure, Img, Content, Title, Description } from "./styles";
 import { Separate } from "../Work/Separate/Separate";
 
-export const DevelopmentCycle = React.memo(({ odd, name, description, img }) => (
+export const DevelopmentCycle = React.memo(({ odd, name, description, img, Element }) => (
   <>
     <Figure odd={odd}>
       <Img src={img[getPixelRatioPropName()]} odd={odd} />
@@ -20,7 +20,7 @@ export const DevelopmentCycle = React.memo(({ odd, name, description, img }) => 
         )}
       </Content>
     </Figure>
-    <Separate odd={odd} />
+    {Element && <Separate odd={odd} Element={Element} />}
   </>
 ));
 

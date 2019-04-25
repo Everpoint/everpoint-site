@@ -7,9 +7,7 @@
         </mask>
     </defs>
     <g fill="none" fill-rule="evenodd">
-        <path fill="#FFF" fill-rule="nonzero" d="M0 0h900v80H0z"/>
-        <path stroke="#262C37" stroke-dasharray="4,4" stroke-linecap="round" stroke-linejoin="round" stroke-opacity=".25" stroke-width="2" d="M128 80V40h270M502 40h270V0"/>
-        <g stroke="#262C37" stroke-linecap="round" stroke-linejoin="round" stroke-opacity=".25" transform="translate(422 3)">
+        <g stroke="#262C37" stroke-linecap="round" stroke-linejoin="round" transform="translate(422 3)">
             <use stroke-dasharray="4,4" stroke-width="4" mask="url(#b)" xlink:href="#a"/>
             <g stroke-width="2">
                 <path d="M15 19.5h26M15 31.5h26M15 43.5h26M15 55.5h26"/>

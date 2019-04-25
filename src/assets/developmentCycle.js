@@ -1,26 +1,32 @@
 import understandingProblemX1 from "./img/development-сycle/1.png";
 import understandingProblemX2 from "./img/development-сycle/1@2x.png";
 import understandingProblemX3 from "./img/development-сycle/1@3x.png";
+import { ReactComponent as Svg1 } from "../assets/img/development-сycle/dividers/separate.svg";
 
 import planningX1 from "./img/development-сycle/2.png";
 import planningX2 from "./img/development-сycle/2@2x.png";
 import planningX3 from "./img/development-сycle/2@3x.png";
+import { ReactComponent as Svg2 } from "../assets/img/development-сycle/dividers/separate-2.svg";
 
 import designX1 from "./img/development-сycle/3-3.png";
 import designX2 from "./img/development-сycle/3-3@2x.png";
 import designX3 from "./img/development-сycle/3-3@3x.png";
+import { ReactComponent as Svg3 } from "../assets/img/development-сycle/dividers/separate-3.svg";
 
 import architecturalDesignX1 from "./img/development-сycle/4-2-x.png";
 import architecturalDesignX2 from "./img/development-сycle/4-2-x@2x.png";
 import architecturalDesignX3 from "./img/development-сycle/4-2-x@3x.png";
+import { ReactComponent as Svg4 } from "../assets/img/development-сycle/dividers/separate-4.svg";
 
 import developmentX1 from "./img/development-сycle/5.png";
 import developmentX2 from "./img/development-сycle/5@2x.png";
 import developmentX3 from "./img/development-сycle/5@3x.png";
+import { ReactComponent as Svg5 } from "../assets/img/development-сycle/dividers/separate-5.svg";
 
 import testingX1 from "./img/development-сycle/6.png";
 import testingX2 from "./img/development-сycle/6@2x.png";
 import testingX3 from "./img/development-сycle/6@3x.png";
+import { ReactComponent as Svg6 } from "../assets/img/development-сycle/dividers/separate-6.svg";
 
 import releaseX1 from "./img/development-сycle/7-2.png";
 import releaseX2 from "./img/development-сycle/7-2@2x.png";
@@ -38,6 +44,7 @@ export default {
         x2: understandingProblemX2,
         x3: understandingProblemX3,
       },
+      Element: Svg1,
     },
     {
       name: "Формализация и планирование",
@@ -48,6 +55,7 @@ export default {
         x2: planningX2,
         x3: planningX3,
       },
+      Element: Svg2,
     },
     {
       name: "Проектирование и дизайн",
@@ -58,6 +66,7 @@ export default {
         x2: designX2,
         x3: designX3,
       },
+      Element: Svg3,
     },
     {
       name: "Архитектурное проектирование",
@@ -68,6 +77,7 @@ export default {
         x2: architecturalDesignX2,
         x3: architecturalDesignX3,
       },
+      Element: Svg4,
     },
     {
       name: "Разработка",
@@ -80,6 +90,7 @@ export default {
         x2: developmentX2,
         x3: developmentX3,
       },
+      Element: Svg5,
     },
     {
       name: "Тестирование",
@@ -92,6 +103,7 @@ export default {
         x2: testingX2,
         x3: testingX3,
       },
+      Element: Svg6,
     },
     {
       name: "Релиз",

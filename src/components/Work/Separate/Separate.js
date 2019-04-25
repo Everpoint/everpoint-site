@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 
 import { ScrollbarConsumer } from "../../../components/ScrollbarProvider/ScrollbarProvider";
-import { Svg, Line, LineOdd } from "./styles";
+import { Container, Svg, Line, LineOdd } from "./styles";
 
 export class SeparateBase extends Component {
   static propTypes = {
@@ -38,21 +38,24 @@ export class SeparateBase extends Component {
 
   render() {
     const { width } = this.state;
-    const { fullWidth, odd } = this.props;
+    const { fullWidth, odd, Element } = this.props;
     const strokeOpacity = width > fullWidth / 2 ? "0.25" : "0";
 
     return (
-      <Svg
-        ref={this.onRef}
-        viewBox="0 0 900 81"
-        width={900}
-        height={81}
-        x={0}
-        y={0}
-        xmlns="http://www.w3.org/2000/svg"
-      >
-        {odd ? <LineOdd width={width} /> : <Line width={width} />}
-      </Svg>
+      <Container>
+        <Svg
+          ref={this.onRef}
+          viewBox="0 0 900 81"
+          width={900}
+          height={81}
+          x={0}
+          y={0}
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          {odd ? <LineOdd width={width} /> : <Line width={width} />}
+        </Svg>
+        {Element && <Element style={{ opacity: strokeOpacity }} />}
+      </Container>
     );
   }
 }
