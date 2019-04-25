@@ -2,11 +2,12 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 
 import { ScrollbarConsumer } from "../../../components/ScrollbarProvider/ScrollbarProvider";
-import { Svg, FirstLine, SecondLine, LightBulb, Filament } from "./styles";
+import { Svg, Line, LineOdd } from "./styles";
 
 export class SeparateBase extends Component {
   static propTypes = {
     scrollTop: PropTypes.number,
+    odd: PropTypes.bool,
   };
 
   static defaultProps = {
@@ -37,18 +38,20 @@ export class SeparateBase extends Component {
 
   render() {
     const { width } = this.state;
-    const { fullWidth } = this.props;
+    const { fullWidth, odd } = this.props;
     const strokeOpacity = width > fullWidth / 2 ? "0.25" : "0";
 
     return (
-      <Svg ref={this.onRef} viewBox="0 0 900 81" x={0} y={0} xmlns="http://www.w3.org/2000/svg">
-        <FirstLine height={Math.min(width, 40)} width={width > 40 ? Math.min(width, 269) : 0} />
-        <SecondLine
-          width={width > 309 ? Math.min(width - 309, 269) : 0}
-          height={width > 578 ? Math.min(width - 578, 618) : 0}
-        />
-        <LightBulb strokeOpacity={strokeOpacity} />
-        <Filament strokeOpacity={strokeOpacity} />
+      <Svg
+        ref={this.onRef}
+        viewBox="0 0 900 81"
+        width={900}
+        height={81}
+        x={0}
+        y={0}
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        {odd ? <LineOdd width={width} /> : <Line width={width} />}
       </Svg>
     );
   }

@@ -130,7 +130,6 @@ export class MainLayoutProviderComponent extends Component {
 
         if (state && state.scrollTo && this.scrollbar) {
           const index = sections.findIndex(section => section.id === state.scrollTo);
-
           let offsetTop = 0;
 
           if (this.lefsideSection) {

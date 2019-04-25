@@ -84,7 +84,6 @@ export class LongreadLayout extends Component {
 
     const isPoliticsPage = location.pathname.indexOf("politics") === 1;
     const isVacancyPage = location.pathname.includes("vacancy");
-    const isWorkPage = location.pathname.includes("work");
     const to = getBackRouteByLocationPathName(location.pathname, routes);
 
     if (isPoliticsPage && location.state && location.state.prevPathname) {
@@ -92,10 +91,6 @@ export class LongreadLayout extends Component {
     } else if (isVacancyPage) {
       navigate(to, {
         state: { scrollTo: "vacancy" },
-      });
-    } else if (isWorkPage) {
-      navigate(to, {
-        state: { scrollTo: "process" },
       });
     } else {
       navigate(to);

@@ -61,7 +61,7 @@ export const Title = styled(BigH1)`
 
 export const Description = styled(Paragraph)`
   width: calc(100% - 6.2857rem);
-  padding: 3.1428rem;
+  padding: 3.4444rem;
   background-color: #262c37;
   max-width: 85.7142rem;
   position: absolute;
@@ -100,10 +100,6 @@ export const Photo = styled("img")`
   height: auto;
 `;
 
-const styles = css`
-  .link {
-    color: #90c53d;
-  }
-`;
+const styles = css``;
 
 export default styles;

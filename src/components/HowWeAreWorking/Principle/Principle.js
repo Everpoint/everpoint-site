@@ -3,14 +3,17 @@ import PropTypes from "prop-types";
 
 import { Container, Item, Badge, Content, Title, Description } from "./styles";
 
-export const Principle = ({ items, itemClassName, longread = false }) => (
+export const Principle = ({ items, longread = false }) => (
   <Container longread={longread}>
     {items &&
-      items.map(({ icon, title, description }) => (
-        <Item key={title} className={itemClassName}>
-          <Badge style={{ backgroundImage: `url(${icon})` }} longread={longread} />
+      items.map(({ icon, iconGreen, title, description }) => (
+        <Item key={title} longread={longread}>
+          <Badge
+            style={{ backgroundImage: `url(${longread ? iconGreen : icon})` }}
+            longread={longread}
+          />
           <Content>
-            {longread ? <Title>{title}</Title> : <span>{title}</span>}
+            <Title longread={longread}>{title}</Title>
             {longread && <Description>{description}</Description>}
           </Content>
         </Item>

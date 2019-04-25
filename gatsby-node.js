@@ -123,11 +123,10 @@ exports.onCreateWebpackConfig = ({ stage, getConfig, actions: { replaceWebpackCo
     };
   }
 
-  switch (stage) {
-    case "build-javascript":
-      const app = typeof config.entry.app === "string" ? [config.entry.app] : config.entry.app;
+  if (stage === "build-javascript") {
+    const app = typeof config.entry.app === "string" ? [config.entry.app] : config.entry.app;
 
-      config.entry.app = ["@babel/polyfill", ...app];
-      replaceWebpackConfig(config);
+    config.entry.app = ["@babel/polyfill", ...app];
+    replaceWebpackConfig(config);
   }
 };

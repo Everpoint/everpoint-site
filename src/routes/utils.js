@@ -75,11 +75,7 @@ export const mergedRoutes = ({ routes, vacancy, employees }) => {
 
   if (vacancies && !vacancies.items) {
     const normalizedVacancy = vacancy ? normalizeEdges(vacancy) : [];
-
-    jobsSections.splice(1, 1, {
-      ...vacancies,
-      items: normalizedVacancy,
-    });
+    vacancies.items = normalizedVacancy;
   }
 
   if (employees && !employees.items) {

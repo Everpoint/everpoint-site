@@ -58,10 +58,10 @@ export const LeftSide = styled(Side)`
 
 export const RightSide = styled(Side)`
   position: relative;
-  height: 12.4rem;
+  height: 15.4rem;
   flex-shrink: 1;
   @media (max-width: 1199px) {
-    height: 11.8rem;
+    height: 12.8rem;
     padding: 0;
     margin: 0 auto;
   }

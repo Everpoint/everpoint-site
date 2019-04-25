@@ -8,20 +8,14 @@ import styles, { HowWeAreWorkingContainer, Title, Paragraph } from "./styles";
 export const HowWeAreWorking = ({ items, className }) => {
   return (
     <HowWeAreWorkingContainer className={className}>
-      <Title>Как мы работаем</Title>
-      <Paragraph>
-        Мы считаем, что успех любого дела зависит от команды, поэтому создали атмосферу, комфортную
-        для сотрудников.
-        <br />
-        <br />
-        Стараемся давать задачи подходящего уровня, но если сотрудник хочет прыгнуть выше своей
-        головы — команда ему поможет.
-        <br />
-        <br />
-        Каждый член команды — это человек, с которым приятно работать.
+      <Title>Работа в Everpoint</Title>
+      <Paragraph className={styles.howWeAreWorkingParagraph}>
+        Более 15 лет мы разрабатываем геосервисы для наших заказчиков, а с 2018 года развиваем и
+        собственную геоинформационную систему EverGIS. Работа у нас - это всегда интересные задачи,
+        возможность проявить себя и поддержка коллектива. Будем рады видеть у себя в команде таких
+        же целеустремленных, активных и любознательных людей!
       </Paragraph>
-      <br />
-      <Title>Наши принципы:</Title>
+      <Title>Для нас важны</Title>
       <Principle items={items} />
       <GoNextLink to="/work" gatsby className={styles.howWeAreWorkingLink}>
         Подробнее о работе в Everpoint
