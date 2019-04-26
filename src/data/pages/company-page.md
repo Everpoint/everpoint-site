@@ -126,6 +126,8 @@ aboutCustomers:
       logo: /img/RT@2x.png
     - isVisibleLogo: true
       logo: /img/beeline@2x.png
+    - isVisibleLogo: true
+      logo: /img/tinkoff-2x.png
 development:
   developmentTitle: Развитие
   tapeItem:
@@ -233,6 +235,6 @@ footer: >-
   помогает сотням тысяч человек по всей России. Everpoint — это профессиональная
   команда с большим опытом внедрения ГИС в разных отраслях. Мы открыты для
   общения, готовы помочь и рады сотрудничеству.</p>
-chatText: Есть задача? Напишите нам в чат, отвечаем быстро!
+chatText: 'Есть задача? Напишите нам в чат, отвечаем быстро!'
 ---
 
