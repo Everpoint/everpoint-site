@@ -22,7 +22,6 @@ export const NavbarContainer = styled("nav")`
 
 export const Nav = styled("div")`
   margin: 0 auto;
-  pointer-events: auto !important;
   display: flex;
   align-items: flex-start;
   padding-top: 1.6rem;
@@ -42,10 +41,6 @@ export const Nav = styled("div")`
     (max-width: 767px) and (orientation: portrait) {
     padding-top: 0.64rem;
     padding-bottom: 0.64rem;
-  }
-
-  * {
-    pointer-events: auto !important;
   }
 `;
 
@@ -221,10 +216,41 @@ export const LinkContainer = styled("li")`
     }
   }
 
-  &.outsideLink {
-    padding-left: 1.4rem;
-    border-left: 1px solid rgba(38, 44, 55, 0.2);
+  &.withIcon {
+    position: relative;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    margin-left: 1.2rem;
+    svg {
+      pointer-events: none;
+      position: absolute;
+      top: 50%;
+      left: 0;
+      transform: translateY(-50%);
+      width: 1.7142rem;
+      height: 1.7142rem;
+      path {
+        transition: fill 200ms ease;
+      }
+    }
+    a {
+      padding-left: 2.4rem;
+    }
+    @media (hover: hover) {
+      &:hover {
+        a {
+          color: #90c53d;
+        }
+        svg {
+          path {
+            fill: #90c53d;
+          }
+        }
+      }
+    }
   }
+
   menu {
     width: 0.0001px;
   }
