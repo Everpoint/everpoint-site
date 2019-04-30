@@ -4,7 +4,7 @@ import { DefaultLink } from "../../../components/Typography/Links";
 import { Section } from "../../../components/Elements/Section";
 import { Article } from "../../../components/Elements/Article";
 
-import photo from "../../../assets/img/team-members-photos/11.png";
+import photo from "../../../assets/img/team-members-photos/work.png";
 
 import {
   HeaderContainer,
