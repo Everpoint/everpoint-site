@@ -220,6 +220,11 @@ export const LinkContainer = styled("li")`
       }
     }
   }
+
+  &.outsideLink {
+    padding-left: 1.4rem;
+    border-left: 1px solid rgba(38, 44, 55, 0.2);
+  }
   menu {
     width: 0.0001px;
   }

@@ -60,7 +60,7 @@ export class DesktopMenu extends Component {
 
           if (outsideLink)
             return (
-              <LinkContainer key={outsideLink}>
+              <LinkContainer outsideLink key={outsideLink}>
                 <OutsideLink href={outsideLink} target="_blank" onMouseOver={onCloseAdditionalMenu}>
                   {title}
                 </OutsideLink>
