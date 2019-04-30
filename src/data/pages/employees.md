@@ -61,7 +61,7 @@ employees:
     name: Инесса
     position: Frontend-разработчик
   - avatar: /img/yakov.jpg
-    description: Создаю сложные алгоритмы быстро и без ошибок
+    description: ''
     isVisible: true
     name: Яков
     position: Python-разработчик
