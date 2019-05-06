@@ -11,15 +11,15 @@ export class TaglineAwards extends PureComponent {
         <TaglineAwardsBlock>
           <Reward
             place={1}
-            title="Золотой сайт : 1 место"
+            title="Золотой сайт — 1 место"
             description="Поддержка малого и среднего бизнеса в России"
           />
           <Reward
             place={3}
-            title="TAGLINE : Бронза"
+            title="TAGLINE — Бронза"
             description="Лучший сервис для digital-маркетинга"
           />
-          <Reward place={3} title="TAGLINE : Бронза" description="Лучший инновационный сервис" />
+          <Reward place={3} title="TAGLINE — Бронза" description="Лучший инновационный сервис" />
         </TaglineAwardsBlock>
       </TaglineAwardsContainer>
     );
