@@ -30,6 +30,7 @@
     "babel-preset-gatsby": "0.1.10",
     "gatsby-image": "^2.0.10",
     "gatsby-plugin-astroturf": "0.2.1",
+    "gatsby-plugin-compile-es6-packages": "^1.1.0",
     "gatsby-plugin-layout": "1.0.14",
     "gatsby-plugin-netlify": "^2.0.6",
     "gatsby-plugin-netlify-cms": "^3.0.15",

@@ -2,7 +2,7 @@ import styled from "astroturf";
 
 export const Figure = styled("figure")`
   position: relative;
-  width: 100%;
+  width: 50%;
   max-width: 27.5714rem;
   margin-bottom: 4.5714rem;
   @media (max-width: 1199px) {

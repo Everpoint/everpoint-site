@@ -7,6 +7,12 @@ module.exports = {
     "gatsby-plugin-postcss",
     "gatsby-plugin-sass",
     {
+      resolve: `gatsby-plugin-compile-es6-packages`,
+      options: {
+        modules: [`astroturf`],
+      },
+    },
+    {
       resolve: `gatsby-source-filesystem`,
       options: {
         path: `${__dirname}/src/data`,
