@@ -56,7 +56,7 @@ export const Img = styled("img")`
 
 export const Content = styled("div")`
   box-sizing: content-box;
-  max-width: 32.1428rem;
+  max-width: 33.4rem;
   display: flex;
   flex-direction: column;
   justify-content: center;

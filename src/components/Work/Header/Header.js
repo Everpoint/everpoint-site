@@ -31,10 +31,10 @@ export const Header = ({ title, onEGOclick }) => {
         <Photo src={photo} alt="photo" />
       </OverflowContainer>
       <Description>
-        Everpoint - это команда талантливых, целеустремлённых и ответственных людей, в которой
-        каждый сотрудник нашел свое место. Мы занимаемся заказной разработкой геосервисов уже более
-        15 лет, а с 2018 года развиваем и собственную веб-ГИС{" "}
-        <DefaultLink onClick={onEGOclick}>EverGIS Online</DefaultLink> - бесплатный инструмент для
+        Everpoint — это команда талантливых, целеустремленных и ответственных людей, в которой
+        каждый сотрудник нашел свое место. Уже более 15 лет мы разрабатываем геосервисы на заказ, а
+        с 2018 года развиваем и собственную веб-ГИС{" "}
+        <DefaultLink onClick={onEGOclick}>EverGIS Online</DefaultLink> — бесплатный инструмент для
         работы с геоданными.
       </Description>
     </HeaderContainer>

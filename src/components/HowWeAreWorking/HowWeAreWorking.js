@@ -11,11 +11,11 @@ export const HowWeAreWorking = ({ items, className }) => {
       <Title>Работа в Everpoint</Title>
       <Paragraph className={styles.howWeAreWorkingParagraph}>
         Более 15 лет мы разрабатываем геосервисы для наших заказчиков, а с 2018 года развиваем и
-        собственную геоинформационную систему EverGIS. Работа у нас - это всегда интересные задачи,
+        собственную геоинформационную систему EverGIS. Работа у нас — это всегда интересные задачи,
         возможность проявить себя и поддержка коллектива. Будем рады видеть у себя в команде таких
         же целеустремленных, активных и любознательных людей!
       </Paragraph>
-      <Title>Для нас важны</Title>
+      <Title>Важные компоненты нашего успеха</Title>
       <Principle items={items} />
       <GoNextLink to="/work" gatsby className={styles.howWeAreWorkingLink}>
         Подробнее о работе в Everpoint
