@@ -3,7 +3,7 @@ import React, { Component } from "react";
 import favicon from "./assets/img/assets/favicon.png";
 
 const siteUrl = "http://www.everpoint.ru";
-const ogImage = `${siteUrl}/img/ogImage.png`;
+const ogImage = `${siteUrl}/img/everpoint-logo.png`;
 
 const pixelFacebook = `
  !function(f,b,e,v,n,t,s)
@@ -94,6 +94,8 @@ class HTML extends Component {
           <meta property="og:url" content={siteUrl} />
           <meta property="og:image" content={ogImage} />
           <meta property="og:image:type" content="image/png" />
+          <meta property="og:image:width" content="438" />
+          <meta property="og:image:height" content="90" />
           <meta
             property="og:description"
             content="Разработчик геоинформационных систем и сервисов."
