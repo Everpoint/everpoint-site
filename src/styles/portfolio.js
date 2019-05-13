@@ -14,9 +14,10 @@ export const LeftSide = styled(Side)``;
 export const Rightside = styled(Side)`
   position: relative;
   width: 100%;
-  height: 100%;
+  height: 51.1428rem;
   max-width: 42.1428rem;
-  max-height: 51.1428rem;
+  max-height: calc(100vh - 10rem);
+  max-height: calc(var(--vh, 1vh) * 100 - 10rem);
   @media (max-width: 1199px) {
     max-width: 32.1428rem;
     max-height: 33.7857rem;

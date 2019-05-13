@@ -2,8 +2,6 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import cn from "classnames";
 
-import { MultiScreenshots } from "./MultiScreenshots";
-
 import { ScreenshotTransitionGroup, Screenshot } from "./styles";
 import {
   screenshotSlideUp,
@@ -18,7 +16,7 @@ export class Screenshoots extends Component {
   };
 
   render() {
-    const { screenshots, isNext, text, status, direction } = this.props;
+    const { screenshots, isNext, text, status, direction, id } = this.props;
     const slideY = direction > 0 ? screenshotSlideUp[status] : screenshotSlideDown[status];
 
     const classNames = [
@@ -28,11 +26,12 @@ export class Screenshoots extends Component {
 
     return (
       <ScreenshotTransitionGroup>
-        {Array.isArray(screenshots) ? (
-          <MultiScreenshots className={cn(...classNames)} alt={text} screenshots={screenshots} />
-        ) : (
-          <Screenshot className={cn(...classNames)} src={screenshots} alt={text} />
-        )}
+        <Screenshot
+          isMobileMsp={id === "mobileMsp"}
+          className={cn(...classNames)}
+          src={screenshots}
+          alt={text}
+        />
       </ScreenshotTransitionGroup>
     );
   }
