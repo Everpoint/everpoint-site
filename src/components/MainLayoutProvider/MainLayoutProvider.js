@@ -130,7 +130,6 @@ export class MainLayoutProviderComponent extends Component {
 
         if (state && state.scrollTo && this.scrollbar) {
           const index = sections.findIndex(section => section.id === state.scrollTo);
-
           let offsetTop = 0;
 
           if (this.lefsideSection) {
@@ -157,9 +156,9 @@ export class MainLayoutProviderComponent extends Component {
               const { height, top } = this.lefsideSection.getBoundingClientRect();
 
               if (direction < 0) {
-                offsetTop = top - 80 - margin / 2;
+                offsetTop = top - 80 - margin * 2;
               } else {
-                offsetTop = vh / 2 + height / 2 - margin / 2;
+                offsetTop = vh / 2 + height / 2 - margin * 2;
               }
             }
 

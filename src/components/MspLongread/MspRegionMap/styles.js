@@ -67,7 +67,7 @@ export const Achievement = styled("div")`
   }
   > p {
     line-height: normal;
-    padding: 0 1rem;
+    padding: 0 1.8rem;
     font-size: 1.1428rem;
     text-align: center;
     margin-bottom: 0;

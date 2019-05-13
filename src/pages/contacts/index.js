@@ -60,7 +60,7 @@ class ContactsBase extends Component {
             <LeftSide>
               <H2 as="h1">{titles && titles.find(({ id }) => id === "contacts").title}</H2>
               <Link as="address" className={styles.address}>
-                127051, Россия, <br /> г. Москва, ул. Трубная, д. 25 к. 1
+                127051, Россия, <br /> г. Москва, ул. Трубная, д. 25, к. 1
               </Link>
               {isMobileOrTablet && <AddressLink>Открыть адрес на карте</AddressLink>}
               <Link href="tel:+74955060774">+7 (495) 506-07-74</Link>
@@ -94,7 +94,7 @@ class ContactsBase extends Component {
             </RightSide>
           </Content>
           <Copyright className={cn(animation(status, direction))} as="footer">
-            © 2019 ООО «Эверпоинт». Все права защищены.
+            © ООО «Эверпоинт», 2019. Все права защищены.
           </Copyright>
         </Main>
       </>

@@ -6,15 +6,12 @@ import geomonitoringX1 from "../assets/img/portfolio/slide-screenshots/geomonito
 import geomonitoringX2 from "../assets/img/portfolio/slide-screenshots/geomonitoring/bank@2x.png";
 import geomonitoringX3 from "../assets/img/portfolio/slide-screenshots/geomonitoring/bank@3x.png";
 import evergisOnlineX1 from "../assets/img/portfolio/slide-screenshots/evergisOnline/EGO_x1.png";
-import evergisOnlineX2 from "../assets/img/portfolio/slide-screenshots/evergisOnline/EGO_x2.png.png";
-import evergisOnlineX3 from "../assets/img/portfolio/slide-screenshots/evergisOnline/EGO_x3.png.png";
+import evergisOnlineX2 from "../assets/img/portfolio/slide-screenshots/evergisOnline/EGO_x2.png";
+import evergisOnlineX3 from "../assets/img/portfolio/slide-screenshots/evergisOnline/EGO_x3.png";
 
-import mobileFirstX1 from "../assets/img/portfolio/slide-screenshots/mobileMsp/phone-1.png";
-import mobileFirstX2 from "../assets/img/portfolio/slide-screenshots/mobileMsp/phone-1@2x.png";
-import mobileSecondX1 from "../assets/img/portfolio/slide-screenshots/mobileMsp/phone-2.png";
-import mobileSecondX2 from "../assets/img/portfolio/slide-screenshots/mobileMsp/phone-2@2x.png";
-import mobileThirdX1 from "../assets/img/portfolio/slide-screenshots/mobileMsp/phone-3.png";
-import mobileThirdX2 from "../assets/img/portfolio/slide-screenshots/mobileMsp/phone-3@2x.png";
+import mobileMspX1 from "../assets/img/portfolio/slide-screenshots/mobileMsp/group-2.png";
+import mobileMspX2 from "../assets/img/portfolio/slide-screenshots/mobileMsp/group-2@2x.png";
+import mobileMspX3 from "../assets/img/portfolio/slide-screenshots/mobileMsp/group-2@3x.png";
 
 import eoPic1X1 from "../assets/img/portfolio/evergisOnline/screenshots/EGO_Удобно и просто.png";
 import eoPic2X1 from "../assets/img/portfolio/evergisOnline/screenshots/pic-2.png";
@@ -104,13 +101,16 @@ export default {
       achievements: [
         {
           amount: "177",
-          text: "Столиц субъектов РФ и городов с населением более 100 тыс. чел.",
+          text: "В стольки городах РФ доступен Бизнес-навигатор МСП",
         },
-        { amount: "103", text: "Концепций бизнеса доступны для расчёта бизнес-плана" },
-        { amount: "650 000", text: "Пользователей воспользовались сервисом за 2.5 года" },
-        { amount: "400 000", text: "Предпринимателей зарегистрированы в бизнес-навигаторе" },
+        { amount: "103", text: "Столько концепций бизнеса доступны для расчета бизнес-плана" },
+        { amount: "650 000", text: "Столько пользователей воспользовались сервисом за 2,5 года" },
+        {
+          amount: "400 000",
+          text: "Столько предпринимателей зарегистрированы в бизнес-навигаторе",
+        },
         { icon: rrIcon, text: "Подключена публичная кадастровая карта Росреестра" },
-        { icon: bankIcon, text: "Бизнес-планы принимаются банками-партнёрами Корпорации МСП" },
+        { icon: bankIcon, text: "Бизнес-планы принимаются банками-партнерами Корпорации МСП" },
       ],
       videos: [
         { title: "Новичок", source: mspVideo1, poster: mspVideo1Poster },
@@ -128,25 +128,13 @@ export default {
       type: "Малый бизнес",
       text: "Мобильный бизнес-навигатор",
       projectBackgroundColor: "#44C3F8",
-      screenshots: [
-        {
-          x1: mobileFirstX1,
-          x2: mobileFirstX2,
-          x3: mobileFirstX2,
-        },
-        {
-          x1: mobileSecondX1,
-          x2: mobileSecondX2,
-          x3: mobileSecondX2,
-        },
-        {
-          x1: mobileThirdX1,
-          x2: mobileThirdX2,
-          x3: mobileThirdX2,
-        },
-      ],
+      screenshots: {
+        x1: mobileMspX1,
+        x2: mobileMspX2,
+        x3: mobileMspX3,
+      },
       description:
-        "Приложение для расчёта бизнес-планов и справочник мер поддержки предпринимателей.",
+        "Приложение для расчета бизнес-планов и справочник мер поддержки предпринимателей.",
       ios: "https://itunes.apple.com/ru/developer/корпорация-мсп/id1253348895?mt=8",
       android: "https://play.google.com/store/apps/developer?id=АО+«Корпорация+«МСП»",
       iosMsp:

@@ -1,6 +1,6 @@
 export const getPixelRatioPropName = () => {
   if (typeof window !== "object") {
-    return;
+    return "x1";
   }
 
   const ratio = window.devicePixelRatio;

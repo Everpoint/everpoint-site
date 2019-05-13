@@ -4,7 +4,7 @@ export const HowWeAreWorkingContainer = styled("div")`
   display: flex;
   flex-direction: column;
   @media (max-width: 991px) {
-    padding: 0.4rem 1.7142rem 0 1.7142rem;
+    padding: 0 1.7142rem 0 1.7142rem;
   }
   @media (max-width: 812px) and (orientation: landscape),
     (max-width: 767px) and (orientation: portrait) {
@@ -17,6 +17,7 @@ export const HowWeAreWorkingContainer = styled("div")`
 export const Title = styled("h4")`
   font-size: 1.2857rem;
   font-weight: 600;
+  margin-bottom: 1.8rem;
   @media (max-width: 812px) and (orientation: landscape),
     (max-width: 767px) and (orientation: portrait) {
     margin-bottom: 1rem;
@@ -38,11 +39,13 @@ export const Paragraph = styled("p")`
 `;
 
 const styles = css`
-  .howWeAreWorkingLink {
+  a.howWeAreWorkingLink {
+    font-size: 1.1428rem;
+    margin-top: 1.6rem;
     align-self: flex-end;
-    @media (max-width: 940px) {
-      align-self: flex-start;
-    }
+  }
+  p.howWeAreWorkingParagraph {
+    margin-bottom: 1.8rem;
   }
 `;
 

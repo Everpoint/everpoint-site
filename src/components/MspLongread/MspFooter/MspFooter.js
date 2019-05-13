@@ -24,7 +24,7 @@ export class MspFooter extends PureComponent {
         <Article>
           <Content>
             <H1 portfolio>
-              Бизнес-навигатор МСП <br /> в вашем телефоне!
+              «Бизнес-навигатор МСП» <br /> в вашем телефоне!
             </H1>
             <GoNextLink to={`/${id}`} gatsby white>
               Подробнее

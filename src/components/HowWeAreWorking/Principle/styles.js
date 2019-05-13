@@ -16,13 +16,23 @@ export const Item = styled("article")`
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: calc(100% / 4);
+  width: calc(100% / 3);
   height: 9.4285rem;
   > span {
     text-align: center;
     white-space: nowrap;
     @media (max-width: 1000px) {
       white-space: normal;
+    }
+  }
+  &.longread {
+    align-items: flex-start;
+    flex-direction: row;
+    width: calc(100% / 2 - 3.5714rem);
+    margin: 0;
+    height: auto;
+    @media (max-width: 991px) {
+      width: calc(100% / 2 - 1.4rem);
     }
   }
 `;
@@ -32,21 +42,38 @@ export const Title = styled(H4)`
   display: flex;
   align-items: center;
   margin-bottom: 0.8rem;
+  font-weight: 600;
+  font-size: 1rem;
+  &.longread {
+    font-size: 1.4285rem;
+    @media (max-width: 1199px) {
+      font-size: 1.2857rem;
+    }
+    @media (max-width: 991px) {
+      font-size: 1.1428rem;
+      margin-bottom: 0;
+    }
+  }
 `;
 
 export const Description = styled("p")`
   font-size: 1.1428rem;
   line-height: 1.5;
+  color: rgba(38, 44, 55, 0.75);
+  @media (max-width: 1199px) {
+    font-size: 1rem;
+    line-height: 1.43;
+  }
 `;
 
 export const Badge = styled("div")`
-  width: 4rem;
-  height: 4rem;
-  box-shadow: 0 0.5714rem 0.5714rem 0 rgba(10, 18, 33, 0.05);
-  background-color: #ffffff;
+  width: 5.1428rem;
+  height: 5.1428rem;
+  box-shadow: 0 0.5714rem 1.1428rem 0 rgba(144, 197, 61, 0.5);
+  background-color: #90c53d;
   background-repeat: no-repeat;
   background-position: center;
-  background-size: 1.7142rem;
+  background-size: 44% 44%;
   border-radius: 50%;
   margin-bottom: 0.5rem;
   flex-shrink: 0;
@@ -57,6 +84,7 @@ export const Badge = styled("div")`
     background-color: transparent;
     box-shadow: none;
     background-size: contain;
+    border-radius: 0;
   }
 `;
 

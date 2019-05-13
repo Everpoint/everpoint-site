@@ -54,13 +54,14 @@ export class DesktopMenu extends Component {
 
     return (
       <Menu>
-        {routes.map(({ text, id, route, outsideLink, sections }) => {
+        {routes.map(({ text, id, route, outsideLink, sections, Icon }) => {
           const item = data.find(item => item.id === id);
           const title = item ? item.title : text;
 
           if (outsideLink)
             return (
-              <LinkContainer key={outsideLink}>
+              <LinkContainer withIcon={Boolean(Icon)} key={outsideLink}>
+                {Icon && <Icon />}
                 <OutsideLink href={outsideLink} target="_blank" onMouseOver={onCloseAdditionalMenu}>
                   {title}
                 </OutsideLink>

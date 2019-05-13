@@ -108,6 +108,7 @@ export class TransitionSlide extends Component {
           }}
         />
         <Screenshoots
+          id={id}
           isNext={nextSlide}
           status={status}
           direction={sectionDirection}

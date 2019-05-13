@@ -209,6 +209,15 @@ export const Screenshot = styled("img")`
     top: auto;
     bottom: 0;
   }
+  &.isMobileMsp {
+    top: 4%;
+    box-shadow: none;
+    border-radius: 0;
+    max-height: 100%;
+    @media (max-width: 1199px) {
+      top: 10%;
+    }
+  }
 `;
 
 export const LongreadBackground = styled("div")`

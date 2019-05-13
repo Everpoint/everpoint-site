@@ -1,7 +1,10 @@
-// import principles from "../assets/principles";
+import principles from "../assets/principles";
 import photo from "../assets/photo";
 
 import portfolio from "./portfolio";
+import developmentCycle from "../assets/developmentCycle";
+import developmentWithinCompany from "../assets/developmentWithinCompany";
+import { ReactComponent as MediumLogo } from '../assets/img/icons/medium.svg';
 
 export const routes = [
   { id: "index", text: "О компании", route: "/" },
@@ -18,25 +21,31 @@ export const routes = [
     text: "Работа у нас",
     route: "/jobs",
     sections: [
-      { id: "employees", text: "Наши сотрудники", items: [], groupName: "Команда" },
-      { id: "vacancy", text: "Вакансии", groupName: "Команда" },
-      // {
-      //   id: "process",
-      //   text: "Рабочий процесс",
-      //   items: principles,
-      //   groupName: "Как мы работаем",
-      // },
+      {
+        id: "process",
+        text: "Рабочий процесс",
+        items: principles,
+        groupName: "Работа у нас",
+        developmentCycle,
+        developmentWithinCompany,
+      },
+      {
+        id: "employees",
+        text: "Наши сотрудники",
+        mobileText: "Наша команда",
+        items: [],
+        groupName: "Работа у нас",
+      },
+      { id: "vacancy", text: "Вакансии", groupName: "Работа у нас" },
       {
         id: "photo",
         text: "Фото",
-        mobileText: "Cотрудники",
         items: photo,
-        // groupName: "Как мы работаем",
-        groupName: "Команда",
+        groupName: "Работа у нас",
       },
     ],
     scrollable: true,
   },
   { id: "contacts", text: "Контакты", route: "/contacts" },
-  { id: "blog", text: "Блог", outsideLink: "https://medium.com/everpoint " },
+  { id: "blog", text: "Блог", outsideLink: "https://medium.com/everpoint", Icon: MediumLogo },
 ];

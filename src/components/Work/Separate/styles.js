@@ -1,43 +1,62 @@
-import styled from "astroturf";
+import styled, { css } from "astroturf";
 import withProps from "recompose/withProps";
 
-export const Svg = styled("svg")`
-  fill: none;
+export const Container = styled("div")`
+  overflow: hidden;
+  position: relative;
+  width: 100%;
+  height: 5.8571rem;
+  svg {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    * {
+      transition: stroke-opacity 400ms ease-in, fill-opacity 400ms ease;
+    }
+  }
 `;
 
-const paths = {
+export const Svg = styled("svg")`
+  display: block;
+  fill: none;
+  margin: 0 auto;
+`;
+
+export const paths = {
   stroke: "#262C37",
   strokeDasharray: "4,4",
   strokeLinecap: "round",
   strokeLinejoin: "round",
-  strokeOpacity: ".25",
-  strokeWidth: "2px",
+  strokeOpacity: 0.25,
+  strokeWidth: 2,
 };
 
-export const FirstLine = withProps(({ height, width }) => ({
+export const Line = withProps(({ width, offset }) => ({
   ...paths,
-  d: `M128 0v${height}h${width}`,
+  d: `M128 1v${Math.min(width, 40)}h${width > 40 ? Math.min(width, 269 - offset) : 0}M${503 +
+    offset} 41h${width > 309 ? Math.min(width - 309, 269 - offset) : 0}v${
+    width > 578 ? Math.min(width - 578, 618) : 0
+  }`,
 }))(styled("path")``);
 
-export const SecondLine = withProps(({ height, width }) => ({
+export const LineOdd = withProps(({ width, offset }) => ({
   ...paths,
-  d: `M503 40h${width}v${height}`,
+  d: `M772 1v${Math.min(width, 40)}h-${width > 40 ? Math.min(width, 270 - offset) : 0}M${397 -
+    offset} 41h-${width > 309 ? Math.min(width - 309, 269 - offset) : 0}v${
+    width > 578 ? Math.min(width - 578, 618) : 0
+  }`,
 }))(styled("path")``);
 
-export const LightBulb = withProps(({ strokeOpacity }) => ({
-  ...paths,
-  strokeOpacity,
-  d:
-    "M444.2 76h-4.272V57.79c0-1.132-.683-2.155-1.742-2.617-10.17-4.435-17.246-14.418-17.186-26.01.08-15.347 12.866-27.947 28.586-28.16C465.792.783 479 13.54 479 29.31c0 11.527-7.056 21.443-17.182 25.86-1.06.463-1.745 1.486-1.745 2.62V76H455.8l-2.614 3.634c-.22.229-.59.366-.987.366H447.8c-.397 0-.767-.137-.988-.366L444.2 76z",
-}))(styled("path")`
-  transition: stroke-opacity 500ms ease-in;
-`);
+const styles = css`
+  .isHidden {
+    path {
+      stroke-opacity: 0;
+    }
+    circle {
+      fill-opacity: 0;
+    }
+  }
+`;
 
-export const Filament = withProps(({ strokeOpacity }) => ({
-  ...paths,
-  strokeDasharray: "0",
-  strokeOpacity,
-  d: "M444 32l3.223-3.711L450.447 32l3.473-4 3.08 3.546",
-}))(styled("path")`
-  transition: stroke-opacity 500ms ease-in;
-`);
+export default styles;

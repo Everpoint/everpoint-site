@@ -31,7 +31,7 @@ export const Figure = styled("figure")`
   }
   p {
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     padding: 1.7142rem 1rem 0 1rem;
     margin: 0;
     flex-grow: 1;

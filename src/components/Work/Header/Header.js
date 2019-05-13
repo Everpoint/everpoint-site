@@ -1,12 +1,12 @@
 import React from "react";
 
-import { OutsideLink } from "../../../components/OutsideLink/OutsideLink";
+import { DefaultLink } from "../../../components/Typography/Links";
 import { Section } from "../../../components/Elements/Section";
 import { Article } from "../../../components/Elements/Article";
 
-import photo from "../../../assets/img/team-members-photos/11.png";
+import photo from "../../../assets/img/team-members-photos/work.png";
 
-import styles, {
+import {
   HeaderContainer,
   OverflowContainer,
   Photo,
@@ -16,7 +16,7 @@ import styles, {
   Description,
 } from "./styles";
 
-export const Header = ({ title }) => {
+export const Header = ({ title, onEGOclick }) => {
   return (
     <HeaderContainer>
       <OverflowContainer>
@@ -31,11 +31,11 @@ export const Header = ({ title }) => {
         <Photo src={photo} alt="photo" />
       </OverflowContainer>
       <Description>
-        Everpoint - это команда талантливых, целеустремлённых и ответственных людей, в которой
-        каждый сотрудник нашел свое место. Мы занимаемся заказной разработкой геосервисов уже более
-        15 лет, а с 2018 года развиваем и собственную веб-ГИС{" "}
-        <OutsideLink className={styles.link}>EverGIS Online</OutsideLink> - бесплатный инструмент
-        для работы с геоданными.
+        Everpoint — это команда талантливых, целеустремленных и ответственных людей, в которой
+        каждый сотрудник нашел свое место. Уже более 15 лет мы разрабатываем геосервисы на заказ, а
+        с 2018 года развиваем и собственную веб-ГИС{" "}
+        <DefaultLink onClick={onEGOclick}>EverGIS Online</DefaultLink> — бесплатный инструмент для
+        работы с геоданными.
       </Description>
     </HeaderContainer>
   );

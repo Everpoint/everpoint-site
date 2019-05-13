@@ -37,7 +37,11 @@ export class AdditionalMenu extends PureComponent {
       <Menu leftSide={leftSide} className={cn(className, { [animation.fadeIn]: fadeIn })}>
         {Object.keys(grouped).map(groupName => (
           <MenuList key={groupName}>
-            {leftSide ? <H2>{groupName}</H2> : <ListHeader>{groupName}</ListHeader>}
+            {leftSide ? (
+              <H2>{groupName}</H2>
+            ) : Object.keys(grouped).length > 1 ? (
+              <ListHeader>{groupName}</ListHeader>
+            ) : null}
             {grouped[groupName].map(item => (
               <ListItem key={item.id}>
                 <LinkComponent
