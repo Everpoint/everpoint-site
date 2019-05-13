@@ -77,11 +77,6 @@ export const ListItem = styled("li")`
   }
 `;
 
-export const SecondLevelMenu = styled("menu")`
-  margin: 0;
-  padding: 0;
-`;
-
 export const ListHeader = styled("h2")`
   text-transform: uppercase;
   color: rgba(38, 44, 55, 0.25);

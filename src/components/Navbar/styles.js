@@ -237,6 +237,9 @@ export const LinkContainer = styled("li")`
     a {
       padding-left: 2.4rem;
     }
+    @media (max-width: 991px) {
+      margin-left: 0;
+    }
     @media (hover: hover) {
       &:hover {
         a {
