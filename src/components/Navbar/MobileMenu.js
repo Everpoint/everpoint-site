@@ -20,13 +20,14 @@ export class MobileMenu extends PureComponent {
 
     return (
       <MobileMenuList className={animation.fadeIn}>
-        {routes.map(({ text, id, route, outsideLink }) => {
+        {routes.map(({ text, id, route, outsideLink, Icon }) => {
           const item = data.find(item => item.id === id);
           const title = item ? item.title : text;
 
           if (outsideLink)
             return (
-              <LinkContainer key={outsideLink}>
+              <LinkContainer withIcon={Boolean(Icon)} key={outsideLink}>
+                {Icon && <Icon />}
                 <OutsideLink href={outsideLink} target="_blank">
                   {title}
                 </OutsideLink>

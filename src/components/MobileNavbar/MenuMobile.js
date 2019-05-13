@@ -7,10 +7,15 @@ import { Link as OutsideLink } from "../Atoms/Atoms";
 export const MenuMobile = ({ routes, isOpen, scrollTo, titles, isMobile }) => {
   return (
     <MobileMenu isOpen={isOpen} isMobile={isMobile}>
-      {routes.map(({ text, id, outsideLink }) => {
+      {routes.map(({ text, id, outsideLink, Icon }) => {
         const item = titles.find(item => item.id === id);
         return (
-          <LinkContainer key={id} onClick={!outsideLink ? () => scrollTo(id) : void 0}>
+          <LinkContainer
+            withIcon={Boolean(Icon)}
+            key={id}
+            onClick={!outsideLink ? () => scrollTo(id) : void 0}
+          >
+            {Icon && <Icon />}
             <OutsideLink href={outsideLink} target="_blank">
               {(item && item.title) || text}
             </OutsideLink>
