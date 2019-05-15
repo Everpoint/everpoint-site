@@ -106,7 +106,6 @@ class EvergisOnline extends Component {
           <Section>
             <Article>
               <Paragraph>
-                {/*<OutsideLink>EverGIS Online</OutsideLink>*/}
                 EverGIS Online — это картографический сервис, который позволяет оценить местность по
                 различным параметрам. Он будет полезен тем, кто хочет открыть бизнес и планирует
                 провести экономический анализ территории в масштабах района, города или целой

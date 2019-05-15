@@ -12,7 +12,7 @@ export class HeaderRightSide extends Component {
 
   state = {
     transitionEnd: false,
-  }
+  };
 
   onTransitionEnd = () => this.setState({ transitionEnd: true });
 
