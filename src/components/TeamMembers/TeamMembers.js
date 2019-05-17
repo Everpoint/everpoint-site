@@ -55,7 +55,7 @@ export class TeamMembers extends PureComponent {
   render() {
     const { cardHeight, photoHeight } = this.state;
     const margin = 30;
-    const { items, id } = this.props;
+    const { items, id, preview } = this.props;
     const isVacancy = id === "vacancy";
     const isPhoto = id === "photo";
     const data = getColumns({ items });
@@ -80,7 +80,7 @@ export class TeamMembers extends PureComponent {
     }
 
     return (
-      <TeamMembersContainer oneItem={data.length <= 1} style={{ height: containerHeight + "px" }}>
+      <TeamMembersContainer preview={preview} oneItem={data.length <= 1} style={{ height: containerHeight + "px" }}>
         {noVacancies ? (
           <NoVacancyCard />
         ) : (

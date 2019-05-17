@@ -44,6 +44,11 @@ export const TeamMembersContainer = styled("div")`
       margin-right: 0;
     }
   }
+  &.preview {
+    &:nth-of-type(1) {
+      transform: none;
+    }
+  }
 `;
 
 export const NoVacancyDescription = styled("p")`
