@@ -1,11 +1,5 @@
 import React, { Component } from "react";
 
-import favicon from "./assets/img/assets/favicon.png";
-import favicon144 from "./assets/img/assets/favicon-144.png";
-import favicon114 from "./assets/img/assets/favicon-114.png";
-import favicon72 from "./assets/img/assets/favicon-72.png";
-import favicon57 from "./assets/img/assets/favicon-57.png";
-
 const siteUrl = "http://www.everpoint.ru";
 const ogImage = `${siteUrl}/img/everpoint-logo.png`;
 
@@ -83,13 +77,6 @@ class HTML extends Component {
           <meta charSet="utf-8" />
           <meta httpEquiv="x-ua-compatible" content="ie=edge" />
           <title>Everpoint</title>
-          <link rel="shortcut icon" href="./img/favicon.ico" type="image/x-icon" />
-          <link rel="icon" href="./img/favicon.ico" type="image/x-icon" />
-          <link rel="apple-touch-icon" href={favicon} />
-          <link rel="apple-touch-icon-precomposed" sizes="144x144" href={favicon144} />
-          <link rel="apple-touch-icon-precomposed" sizes="114x114" href={favicon114} />
-          <link rel="apple-touch-icon-precomposed" sizes="72x72" href={favicon72} />
-          <link rel="apple-touch-icon-precomposed" href={favicon57} />
           <link rel="canonical" hrefLang="ru" href={siteUrl} />
           <link
             href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i&amp;subset=cyrillic-ext"
