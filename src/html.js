@@ -1,6 +1,10 @@
 import React, { Component } from "react";
 
-import favicon from "./assets/img/assets/favicon.png";
+import favicon from "./assets/img/assets/favicon.ico";
+import favicon144 from "./assets/img/assets/favicon-144.png";
+import favicon114 from "./assets/img/assets/favicon-114.png";
+import favicon72 from "./assets/img/assets/favicon-72.png";
+import favicon57 from "./assets/img/assets/favicon-57.png";
 
 const siteUrl = "http://www.everpoint.ru";
 const ogImage = `${siteUrl}/img/everpoint-logo.png`;
@@ -79,7 +83,12 @@ class HTML extends Component {
           <meta charSet="utf-8" />
           <meta httpEquiv="x-ua-compatible" content="ie=edge" />
           <title>Everpoint</title>
-          <link rel="icon" type="image/png" href={favicon} />
+          <link rel="icon" type="image/x-icon" href={favicon} />
+          <link rel="apple-touch-icon-precomposed" sizes="144x144" href={favicon144} />
+          <link rel="apple-touch-icon-precomposed" sizes="114x114" href={favicon114} />
+          <link rel="apple-touch-icon-precomposed" sizes="72x72" href={favicon72} />
+          <link rel="apple-touch-icon-precomposed" href={favicon57} />
+          <link rel="canonical" hrefLang="ru" href={siteUrl} />
           <link
             href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i&amp;subset=cyrillic-ext"
             rel="stylesheet"
@@ -89,24 +98,18 @@ class HTML extends Component {
             name="keywords"
             content="GIS, LOCATION INTELLIGENCE, MAPS, DATA ANALYTICS, DATA VISUALIZATION"
           />
-          <meta name="description" content="Разработчик геоинформационных систем и сервисов." />
+          <meta name="description" content="Геосервисы для принятия решений" />
           <meta property="og:title" content="Everpoint" />
           <meta property="og:url" content={siteUrl} />
           <meta property="og:image" content={ogImage} />
           <meta property="og:image:type" content="image/png" />
-          <meta property="og:image:width" content="438" />
-          <meta property="og:image:height" content="90" />
-          <meta
-            property="og:description"
-            content="Разработчик геоинформационных систем и сервисов."
-          />
+          <meta property="og:image:width" content="400" />
+          <meta property="og:image:height" content="210" />
+          <meta property="og:description" content="Геосервисы для принятия решений" />
           <meta property="og:site_name" content="Everpoint" />
           <meta property="twitter:title" content="Everpoint" />
           <meta property="twitter:image:src" content={ogImage} />
-          <meta
-            property="twitter:description"
-            content="Разработчик геоинформационных систем и сервисов."
-          />
+          <meta property="twitter:description" content="Геосервисы для принятия решений" />
           <meta property="og:type" content="website" />
           {headComponents}
           <script
