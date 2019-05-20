@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 
-import favicon from "./assets/img/assets/favicon.ico";
+import favicon from "./assets/img/assets/favicon.png";
 import favicon144 from "./assets/img/assets/favicon-144.png";
 import favicon114 from "./assets/img/assets/favicon-114.png";
 import favicon72 from "./assets/img/assets/favicon-72.png";
@@ -83,7 +83,7 @@ class HTML extends Component {
           <meta charSet="utf-8" />
           <meta httpEquiv="x-ua-compatible" content="ie=edge" />
           <title>Everpoint</title>
-          <link rel="icon" type="image/x-icon" href={favicon} />
+          <link rel="icon" type="image/png" href={favicon} />
           <link rel="apple-touch-icon-precomposed" sizes="144x144" href={favicon144} />
           <link rel="apple-touch-icon-precomposed" sizes="114x114" href={favicon114} />
           <link rel="apple-touch-icon-precomposed" sizes="72x72" href={favicon72} />
