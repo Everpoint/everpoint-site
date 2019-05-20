@@ -83,8 +83,8 @@ class HTML extends Component {
           <meta charSet="utf-8" />
           <meta httpEquiv="x-ua-compatible" content="ie=edge" />
           <title>Everpoint</title>
-          <link rel="shortcut icon" href={`${siteUrl}/img/favicon.ico`} type="image/x-icon" />
-          <link rel="icon" href={`${siteUrl}/img/favicon.ico`} type="image/x-icon" />
+          <link rel="shortcut icon" href="./img/favicon.ico" type="image/x-icon" />
+          <link rel="icon" href="./img/favicon.ico" type="image/x-icon" />
           <link rel="apple-touch-icon" href={favicon} />
           <link rel="apple-touch-icon-precomposed" sizes="144x144" href={favicon144} />
           <link rel="apple-touch-icon-precomposed" sizes="114x114" href={favicon114} />
