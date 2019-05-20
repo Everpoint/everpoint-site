@@ -83,7 +83,9 @@ class HTML extends Component {
           <meta charSet="utf-8" />
           <meta httpEquiv="x-ua-compatible" content="ie=edge" />
           <title>Everpoint</title>
-          <link rel="icon" type="image/png" href={favicon} />
+          <link rel="shortcut icon" href={`${siteUrl}/img/favicon.ico`} type="image/x-icon" />
+          <link rel="icon" href={`${siteUrl}/img/favicon.ico`} type="image/x-icon" />
+          <link rel="apple-touch-icon" href={favicon} />
           <link rel="apple-touch-icon-precomposed" sizes="144x144" href={favicon144} />
           <link rel="apple-touch-icon-precomposed" sizes="114x114" href={favicon114} />
           <link rel="apple-touch-icon-precomposed" sizes="72x72" href={favicon72} />
@@ -96,7 +98,7 @@ class HTML extends Component {
           <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
           <meta
             name="keywords"
-            content="GIS, LOCATION INTELLIGENCE, MAPS, DATA ANALYTICS, DATA VISUALIZATION"
+            content="ГИС, everpoint, карты, бизнес навигатор, evergis, геосервисы, геомониторинг недвижимости, интерактивные карты"
           />
           <meta name="description" content="Геосервисы для принятия решений" />
           <meta property="og:title" content="Everpoint" />
