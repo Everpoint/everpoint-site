@@ -60,6 +60,11 @@ employees:
     isVisible: true
     name: Инесса
     position: Frontend-разработчик
+  - avatar: /img/natalya.png
+    description: Виртуозно свожу дебет с кредитом
+    isVisible: true
+    name: Наталья
+    position: Главный бухгалтер
   - avatar: /img/yakov.jpg
     description: ''
     isVisible: true
@@ -70,15 +75,10 @@ employees:
     isVisible: true
     name: Борис
     position: 'ГИС-специалист, системный администратор'
-  - avatar: /img/natalya.png
-    description: Виртуозно свожу дебет с кредитом
-    isVisible: true
-    name: Наталья
-    position: Главный бухгалтер
-  - avatar: /img/yevgeniya.jpg
+  - avatar: /img/image-from-ios.jpg
     description: Создаю комфорт и уют в офисе
-    isVisible: false
-    name: Евгения
+    isVisible: true
+    name: Варвара
     position: Офис-менеджер
 ---
 
