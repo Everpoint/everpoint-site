@@ -65,6 +65,11 @@ employees:
     isVisible: true
     name: Яков
     position: Python-разработчик
+  - avatar: /img/boris.jpg
+    description: Боец невидимого фронта
+    isVisible: true
+    name: Борис
+    position: 'ГИС-специалист, системный администратор'
   - avatar: /img/natalya.png
     description: Виртуозно свожу дебет с кредитом
     isVisible: true
@@ -72,13 +77,8 @@ employees:
     position: Главный бухгалтер
   - avatar: /img/yevgeniya.jpg
     description: Создаю комфорт и уют в офисе
-    isVisible: true
+    isVisible: false
     name: Евгения
     position: Офис-менеджер
-  - avatar: /img/boris.jpg
-    description: Боец невидимого фронта
-    isVisible: true
-    name: Борис
-    position: 'ГИС-специалист, системный администратор'
 ---
 
