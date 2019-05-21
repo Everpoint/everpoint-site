@@ -1,6 +1,6 @@
 module.exports = {
   siteMetadata: {
-    title: "everpoint.ru",
+    title: "Everpoint",
   },
   plugins: [
     "gatsby-plugin-react-helmet",
@@ -22,7 +22,7 @@ module.exports = {
     {
       resolve: `gatsby-plugin-favicon`,
       options: {
-        logo: "./src/assets/img/assets/favicon.png",
+        logo: "./static/img/favicon.png",
 
         // WebApp Manifest Configuration
         appName: null, // Inferred with your package.json
