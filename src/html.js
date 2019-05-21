@@ -92,8 +92,6 @@ class HTML extends Component {
           <meta property="og:url" content={siteUrl} />
           <meta property="og:image" content={ogImage} />
           <meta property="og:image:type" content="image/png" />
-          <meta property="og:image:width" content="400" />
-          <meta property="og:image:height" content="210" />
           <meta property="og:description" content="Геосервисы для принятия решений" />
           <meta property="og:site_name" content="Everpoint" />
           <meta property="twitter:title" content="Everpoint" />
