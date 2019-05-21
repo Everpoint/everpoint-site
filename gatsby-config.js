@@ -1,6 +1,6 @@
 module.exports = {
   siteMetadata: {
-    title: "Everpoint-site",
+    title: "everpoint.ru",
   },
   plugins: [
     "gatsby-plugin-react-helmet",
