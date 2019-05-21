@@ -35,9 +35,9 @@ employees:
   - x1: /img/4-volodin.jpg
     x2: /img/4-volodin@2x.jpg
     x3: /img/4-volodin@3x.jpg
-  - x1: /img/5-kamneva.jpg
-    x2: /img/5-kamneva@2x.jpg
-    x3: /img/5-kamneva@3x.jpg
+  - x1: /img/varvara.jpg
+    x2: /img/varvara-2x.jpg
+    x3: /img/varvara-3x.jpg
   - x1: /img/6-makeeva.jpg
     x2: /img/6-makeeva@2x.jpg
     x3: /img/6-makeeva@3x.jpg
