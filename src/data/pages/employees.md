@@ -76,7 +76,7 @@ employees:
     name: Борис
     position: 'ГИС-специалист, системный администратор'
   - avatar: /img/image-from-ios.jpg
-    description: Создаю комфорт и уют в офисе
+    description: ''
     isVisible: true
     name: Варвара
     position: Офис-менеджер
