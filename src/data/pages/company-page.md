@@ -50,6 +50,9 @@ employees:
   - x1: /img/9-bavshina.jpg
     x2: /img/9-bavshina@2x.jpg
     x3: /img/9-bavshina@3x.jpg
+  - x1: /img/20-protasov.jpg
+    x2: /img/20-protasov-2x.jpg
+    x3: /img/20-protasov-3x.jpg
 aboutUs:
   aboutUsDescription: >-
     <p>Everpoint — команда профессионалов с большим опытом разработки
