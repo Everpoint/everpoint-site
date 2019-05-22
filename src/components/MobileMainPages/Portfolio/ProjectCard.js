@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 
 import { GoNextLink } from "../../../components/GoNextLink/GoNextLink";
-import { Card, MultiScreenshot, Screenshot, Content, ProjectName, Description } from "./styles";
+import { Card, Screenshot, Content, ProjectName, Description } from "./styles";
 
 export const ProjectCard = ({
   projectBackgroundColor,
@@ -20,15 +20,7 @@ export const ProjectCard = ({
         background: projectBackgroundColor,
       }}
     >
-      {Array.isArray(screenshots) ? (
-        <MultiScreenshot>
-          {screenshots.map((screen, index) => (
-            <Screenshot key={`${index}-screen`} src={screen[ratio]} />
-          ))}
-        </MultiScreenshot>
-      ) : (
-        <Screenshot src={screenshots[ratio]} />
-      )}
+      <Screenshot src={screenshots[ratio]} mobileMsp={id === "mobileMsp"} />
       <Content>
         <ProjectName>{text}</ProjectName>
         <Description>

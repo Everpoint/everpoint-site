@@ -31,6 +31,13 @@ export const Screenshot = styled("img")`
   height: 11rem;
   box-shadow: 1.1428rem 1.1428rem 2.2857rem 0 rgba(50, 57, 69, 0.25);
   border-radius: 0.2857rem;
+  &.mobileMsp {
+    height: 12.4rem;
+    box-shadow: none;
+    border-radius: 0;
+    top: 1.2142rem;
+    left: 1.2142rem;
+  }
 `;
 
 export const Content = styled("div")``;
@@ -40,36 +47,3 @@ export const ProjectName = styled("h4")`
 `;
 
 export const Description = styled(DescriptionUI)``;
-
-export const MultiScreenshot = styled("div")`
-  display: flex;
-  width: 100%;
-  height: 12rem;
-  img {
-    position: relative;
-    box-shadow: none;
-    border-radius: 0;
-    width: auto;
-    max-width: none;
-    top: 0;
-    left: 0;
-    transform: translate(-10%, -8%);
-    &:nth-of-type(1) {
-      height: 12rem;
-      z-index: 3;
-      top: 0;
-    }
-    &:nth-of-type(2) {
-      top: 0.65rem;
-      left: -1.2rem;
-      z-index: 2;
-      height: calc(12rem * 0.9);
-    }
-    &:nth-of-type(3) {
-      top: 1.2rem;
-      left: -2.8rem;
-      z-index: 1;
-      height: calc(12rem * 0.8);
-    }
-  }
-`;
