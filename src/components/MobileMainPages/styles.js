@@ -27,6 +27,7 @@ export const Card = styled("article")`
   width: 19.5714rem;
   flex-grow: 1;
   flex-shrink: 0;
+  margin-bottom: 0.8rem;
   &:first-of-type {
     margin-left: 1rem;
   }
