@@ -25,21 +25,26 @@ employees:
     isVisible: true
     name: Максим
     position: 'Архитектор, техлид backend'
-  - avatar: /img/ekaterina.jpg
-    description: 'Мастер на все руки, только код не пишу'
-    isVisible: true
-    name: Екатерина
-    position: Бизнес-аналитик
   - avatar: /img/anton.jpg
     description: Превращаю абстрактные идеи в конкретные ТЗ
     isVisible: true
     name: Антон
     position: UX/UI-дизайнер
+  - avatar: /img/ekaterina.jpg
+    description: 'Мастер на все руки, только код не пишу'
+    isVisible: true
+    name: Екатерина
+    position: Бизнес-аналитик
   - avatar: /img/pavel.jpg
     description: Главный по серверу EverGIS
     isVisible: true
     name: Павел
     position: Backend-разработчик
+  - avatar: /img/yakov.jpg
+    description: ''
+    isVisible: true
+    name: Яков
+    position: Python-разработчик
   - avatar: /img/mariana.jpg
     description: 'Никогда не откладываю на завтра то, что можно поручить кому-то сегодня'
     isVisible: true
@@ -60,16 +65,15 @@ employees:
     isVisible: true
     name: Инесса
     position: Frontend-разработчик
+  - avatar: /img/kirill.jpg
+    isVisible: true
+    name: Кирилл
+    position: Frontend-разработчик
   - avatar: /img/natalya.png
     description: Виртуозно свожу дебет с кредитом
     isVisible: true
     name: Наталья
     position: Главный бухгалтер
-  - avatar: /img/yakov.jpg
-    description: ''
-    isVisible: true
-    name: Яков
-    position: Python-разработчик
   - avatar: /img/boris.jpg
     description: Боец невидимого фронта
     isVisible: true
@@ -80,9 +84,5 @@ employees:
     isVisible: true
     name: Варвара
     position: Офис-менеджер
-  - avatar: /img/kirill.jpg
-    isVisible: true
-    name: Кирилл
-    position: Frontend-разработчик
 ---
 
