@@ -80,5 +80,9 @@ employees:
     isVisible: true
     name: Варвара
     position: Офис-менеджер
+  - avatar: /img/kirill.jpg
+    isVisible: true
+    name: Кирилл
+    position: Frontend-разработчик
 ---
 
