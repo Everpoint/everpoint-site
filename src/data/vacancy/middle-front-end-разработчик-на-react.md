@@ -1,6 +1,6 @@
 ---
 templateKey: vacancy
-isVisible: true
+isVisible: false
 name: Middle frontend-разработчик на React
 avatar: /img/developer.svg
 themeColor: '#00b27b'
