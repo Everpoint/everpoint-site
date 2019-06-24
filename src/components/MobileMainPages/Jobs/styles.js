@@ -32,7 +32,7 @@ export const Row = styled("div")`
   margin-bottom: 0.5rem;
   &:last-of-type {
     margin-left: calc(11.4285rem / 2);
-    margin-bottom: 0;
+    margin-bottom: 0.8rem;
   }
 `;
 

@@ -79,5 +79,17 @@ export const RightSide = styled(Section)`
         }
       }
     }
+    > p {
+      margin-bottom: 0;
+      @media (max-width: 812px) and (orientation: landscape) {
+        padding: 0 7rem;
+      }
+      br {
+        display: none;
+        @media (max-width: 767px) and (orientation: portrait) {
+          display: block;
+        }
+      }
+    }
   }
 `;

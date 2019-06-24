@@ -27,5 +27,11 @@ export const injectGlobals = () => {
         height: 100%;
       }
     }
+    :global(#__replain_widget) {
+      @media (max-width: 767px) and (orientation: portrait) {
+        right: 8px !important;
+        bottom: 8px !important;
+      }
+    }
   `;
 };
