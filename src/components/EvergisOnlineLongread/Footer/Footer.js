@@ -16,7 +16,17 @@ export const Footer = () => {
       <RightSide>
         <figure>
           Сервис работает в тестовом режиме. Хотите узнать больше и стать одним из первых
-          пользователей EverGIS Online, напишите нам в чат, мы предоставим тестовый доступ!
+          пользователей EverGIS Online? <br /> <br />
+          <p>
+            <a
+              href="https://docs.google.com/forms/d/e/1FAIpQLSeIX2ahQzW5VRAe8r4Yzm-9tIjETVhuo0-dO5_TwaMPH4TxpA/viewform"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Заполните анкету
+            </a>{" "}
+            <br />и поучаствуйте в <br /> юзабилити-тестировании!
+          </p>
         </figure>
         {/*<figure>*/}
         {/*  Хотите узнать больше о возможностях сервиса и протестировать его на ваших реальных*/}

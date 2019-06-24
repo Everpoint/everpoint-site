@@ -9,6 +9,7 @@ export const format = date => {
 
     return `${zeroToDay}.${zeroToMonth}${monthIndex + 1}.${year}`;
   } else {
+    console.error(date);
     return "Invalid date";
   }
 };
