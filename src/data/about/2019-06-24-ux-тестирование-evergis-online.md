@@ -9,6 +9,6 @@ description: >-
 link: >-
   https://medium.com/everpoint/приглашаем-протестировать-новый-сервис-3722877c9099 
 logo: /img/m.png
-isVisible: true
+isVisible: false
 ---
 
