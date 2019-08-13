@@ -59,3 +59,7 @@ export const Figure = styled("figure")`
     }
   }
 `;
+
+export const IconWrapper = styled("div")`
+  height: 40px;
+`;
