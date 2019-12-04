@@ -45,6 +45,11 @@ employees:
     isVisible: true
     name: Яков
     position: Python-разработчик
+  - avatar: /img/timofey_4-12-19.jpg
+    description: Перевожу идеи в код
+    isVisible: true
+    name: Тимофей
+    position: Python-разработчик
   - avatar: /img/mariana.jpg
     description: 'Никогда не откладываю на завтра то, что можно поручить кому-то сегодня'
     isVisible: true
@@ -55,6 +60,16 @@ employees:
     isVisible: true
     name: Евгений
     position: Backend-разработчик
+  - avatar: /img/nastya_4-12-19.jpg
+    description: Превращаю пространственные данные в карты
+    isVisible: true
+    name: Настя
+    position: ГИС - специалист
+  - avatar: /img/oleg_4-12-19.jpg
+    description: 'Собираю, анализирую и визуализирую пространственные данные'
+    isVisible: true
+    name: Олег
+    position: ГИС - специалист
   - avatar: /img/igor.jpg
     description: 'CSS-архиепископ, гуру каскадного программирования'
     isVisible: true
@@ -74,7 +89,7 @@ employees:
     isVisible: true
     name: Наталья
     position: Главный бухгалтер
-  - avatar: /img/boris.jpg
+  - avatar: /img/boris_4-12-19.jpg
     description: Боец невидимого фронта
     isVisible: true
     name: Борис
