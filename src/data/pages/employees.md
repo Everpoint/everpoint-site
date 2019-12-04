@@ -60,6 +60,11 @@ employees:
     isVisible: true
     name: Евгений
     position: Backend-разработчик
+  - avatar: /img/anvar_4_12-19.jpg
+    description: Кодирую коды
+    isVisible: true
+    name: Анвар
+    position: Python - разработчик
   - avatar: /img/nastya_4-12-19.jpg
     description: Превращаю пространственные данные в карты
     isVisible: true
