@@ -17,7 +17,7 @@ employees:
     position: 'Python-разработчик, ГИС-специалист'
   - avatar: /img/timofey.jpg
     description: Регулярно переписываю все на новый фреймворк
-    isVisible: true
+    isVisible: false
     name: Тимофей
     position: Техлид frontend
   - avatar: /img/maksim.jpg
@@ -32,7 +32,7 @@ employees:
     position: UX/UI-дизайнер
   - avatar: /img/ekaterina.jpg
     description: 'Мастер на все руки, только код не пишу'
-    isVisible: true
+    isVisible: false
     name: Екатерина
     position: Бизнес-аналитик
   - avatar: /img/pavel.jpg
@@ -42,7 +42,7 @@ employees:
     position: Backend-разработчик
   - avatar: /img/yakov.jpg
     description: ''
-    isVisible: true
+    isVisible: false
     name: Яков
     position: Python-разработчик
   - avatar: /img/timofey_4-12-19.jpg
@@ -52,7 +52,7 @@ employees:
     position: Python-разработчик
   - avatar: /img/mariana.jpg
     description: 'Никогда не откладываю на завтра то, что можно поручить кому-то сегодня'
-    isVisible: true
+    isVisible: false
     name: Марьяна
     position: Менеджер проектов
   - avatar: /img/yevgeniy.jpg
@@ -95,7 +95,7 @@ employees:
     name: Борис
     position: 'ГИС-специалист, системный администратор'
   - avatar: /img/image-from-ios.jpg
-    description: ''
+    description: 'Мастерица на все руки '
     isVisible: true
     name: Варвара
     position: Офис-менеджер
