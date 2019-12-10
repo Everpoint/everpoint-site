@@ -65,7 +65,7 @@ employees:
     isVisible: true
     name: Анвар
     position: Python - разработчик
-  - avatar: /img/nastya_4-12-19.jpg
+  - avatar: /img/nastya_10-12-19.jpg
     description: Превращаю пространственные данные в карты
     isVisible: true
     name: Настя
