@@ -1,10 +1,11 @@
 import principles from "../assets/principles";
 import photo from "../assets/photo";
 
+import { Sk } from '../components/Sk/Sk';
 import portfolio from "./portfolio";
 import developmentCycle from "../assets/developmentCycle";
 import developmentWithinCompany from "../assets/developmentWithinCompany";
-import { ReactComponent as MediumLogo } from '../assets/img/icons/medium.svg';
+import { ReactComponent as MediumLogo } from "../assets/img/icons/medium.svg";
 
 export const routes = [
   { id: "index", text: "О компании", route: "/" },
@@ -48,4 +49,5 @@ export const routes = [
   },
   { id: "contacts", text: "Контакты", route: "/contacts" },
   { id: "blog", text: "Блог", outsideLink: "https://medium.com/everpoint", Icon: MediumLogo },
+  { id: "sky", outsideLink: "http://sk.ru/", Element: Sk },
 ];

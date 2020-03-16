@@ -7,7 +7,7 @@ import { Link as OutsideLink } from "../Atoms/Atoms";
 export const MenuMobile = ({ routes, isOpen, scrollTo, titles, isMobile }) => {
   return (
     <MobileMenu isOpen={isOpen} isMobile={isMobile}>
-      {routes.map(({ text, id, outsideLink, Icon }) => {
+      {routes.map(({ text, id, outsideLink, Icon, Element }) => {
         const item = titles.find(item => item.id === id);
         return (
           <LinkContainer
@@ -17,6 +17,7 @@ export const MenuMobile = ({ routes, isOpen, scrollTo, titles, isMobile }) => {
           >
             {Icon && <Icon />}
             <OutsideLink href={outsideLink} target="_blank">
+              {Element && <Element />}
               {(item && item.title) || text}
             </OutsideLink>
           </LinkContainer>

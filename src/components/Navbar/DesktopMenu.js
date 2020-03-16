@@ -54,7 +54,7 @@ export class DesktopMenu extends Component {
 
     return (
       <Menu>
-        {routes.map(({ text, id, route, outsideLink, sections, Icon }) => {
+        {routes.map(({ text, id, route, outsideLink, sections, Icon, Element }) => {
           const item = data.find(item => item.id === id);
           const title = item ? item.title : text;
 
@@ -63,6 +63,7 @@ export class DesktopMenu extends Component {
               <LinkContainer withIcon={Boolean(Icon)} key={outsideLink}>
                 {Icon && <Icon />}
                 <OutsideLink href={outsideLink} target="_blank" onMouseOver={onCloseAdditionalMenu}>
+                  {Element && <Element />}
                   {title}
                 </OutsideLink>
               </LinkContainer>

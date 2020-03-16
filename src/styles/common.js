@@ -6,8 +6,8 @@ export const common = css`
     padding-left: 6.4285rem;
     padding-right: 6.4285rem;
     @media (max-width: 1199px) {
-      padding-left: 3.2857rem;
-      padding-right: 3.2857rem;
+      padding-left: 2.8rem;
+      padding-right: 2.8rem;
     }
     @media (max-width: 991px) {
       padding-left: 2.2857rem;
