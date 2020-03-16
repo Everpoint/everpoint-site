@@ -10,7 +10,7 @@ export const Main = styled("main")`
   align-items: center;
   margin: 0 auto;
   @media (max-width: 1199px) {
-    padding: 5.9285rem 3.2857rem 0 3.2857rem;
+    padding: 5.9285rem 2.8rem 0 2.8rem;
   }
   @media (max-width: 991px) {
     padding: 5.7142rem 2.2857rem 0 2.2857rem;

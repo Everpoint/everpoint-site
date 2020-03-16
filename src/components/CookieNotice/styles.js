@@ -7,7 +7,7 @@ export const CookieNoticeContainer = styled("div")`
   display: flex;
   align-items: center;
   color: #fff;
-  width: calc(100% - 3.2857rem * 2);
+  width: calc(100% - 2.8rem * 2);
   max-width: 68rem;
   bottom: 1.7142rem;
   left: 50%;
