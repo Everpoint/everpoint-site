@@ -1,12 +1,12 @@
-import CMS from "netlify-cms";
+import CMS from "netlify-cms-app";
 import * as ColorWidget from "netlify-cms-widget-color";
 
 import preview from "../assets/preview.scss";
 import AboutPreview from "./preview-templates/AboutPagePreview";
 import VacancyLongreadPreview from "./preview-templates/VacancyLongreadPreview";
 import PoliticsPagePreview from "./preview-templates/PoliticsPagePreview";
-import CompanyPagePreview from './preview-templates/CompanyPagePreview';
-import OurEmployeesPreview from './preview-templates/OurEmployeesPreview';
+import CompanyPagePreview from "./preview-templates/CompanyPagePreview";
+import OurEmployeesPreview from "./preview-templates/OurEmployeesPreview";
 import { injectGlobals } from "../components/injectGlobals";
 
 injectGlobals();
