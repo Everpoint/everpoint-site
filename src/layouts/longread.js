@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import Helmet from "react-helmet";
+import { Helmet } from "react-helmet";
 import cn from "classnames";
 
 import { isMobile, isTablet } from "../utils/browser";
@@ -32,7 +32,7 @@ export class LongreadLayout extends Component {
         parentId: "jobs",
         childrenId: "vacancy",
       });
-      const isPortfolioLongread = projects.some(project =>
+      const isPortfolioLongread = projects.some((project) =>
         project.includes(location.pathname.replace(/\//g, "")),
       );
       const isVacancyPage = location.pathname.includes("vacancy");
@@ -40,7 +40,7 @@ export class LongreadLayout extends Component {
       if (isPortfolioLongread && projects) {
         state.pages = projects;
       } else if (isVacancyPage && vacancy && vacancy.items) {
-        state.pages = vacancy.items.map(item => item.longreadLink);
+        state.pages = vacancy.items.map((item) => item.longreadLink);
       }
     }
 
@@ -67,7 +67,7 @@ export class LongreadLayout extends Component {
     const { location } = this.props;
 
     if (prevLocation.pathname !== location.pathname || prevPages.length !== pages.length) {
-      const currentPage = pages.findIndex(page => {
+      const currentPage = pages.findIndex((page) => {
         const isVacancyPage = location.pathname.includes("vacancy");
         const pathname = decodeURI(location.pathname);
         return isVacancyPage ? page.includes(pathname) : page.includes(pathname.split("/")[1]);
@@ -77,7 +77,7 @@ export class LongreadLayout extends Component {
     }
   }
 
-  goBack = e => {
+  goBack = (e) => {
     const { routes } = this.state;
     const { location, navigate } = this.props;
     e.preventDefault();
