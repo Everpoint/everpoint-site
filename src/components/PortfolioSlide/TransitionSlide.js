@@ -93,8 +93,10 @@ export class TransitionSlide extends Component {
         onClick={goToLongread}
         ref={onContainerRef}
         onMouseOver={() => this.setState({ hovered: true })}
+        onFocus={() => this.setState({ hovered: true })}
         onMouseOut={() => this.setState({ hovered: false })}
-        onTransitionEnd={e => {
+        onBlur={() => this.setState({ hovered: false })}
+        onTransitionEnd={(e) => {
           if (e.propertyName === "transform" && e.elapsedTime >= 0.4) {
             onResize();
             onExited();
