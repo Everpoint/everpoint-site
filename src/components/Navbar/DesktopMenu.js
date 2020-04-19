@@ -55,14 +55,19 @@ export class DesktopMenu extends Component {
     return (
       <Menu>
         {routes.map(({ text, id, route, outsideLink, sections, Icon, Element }) => {
-          const item = data.find(item => item.id === id);
+          const item = data.find((item) => item.id === id);
           const title = item ? item.title : text;
 
           if (outsideLink)
             return (
               <LinkContainer withIcon={Boolean(Icon)} key={outsideLink}>
                 {Icon && <Icon />}
-                <OutsideLink href={outsideLink} target="_blank" onMouseOver={onCloseAdditionalMenu}>
+                <OutsideLink
+                  href={outsideLink}
+                  target="_blank"
+                  onMouseOver={onCloseAdditionalMenu}
+                  onFocus={onCloseAdditionalMenu}
+                >
                   {Element && <Element />}
                   {title}
                 </OutsideLink>
@@ -73,6 +78,7 @@ export class DesktopMenu extends Component {
             <LinkContainer key={id}>
               <Link
                 onMouseOver={sections ? () => onOpenAdditionalMenu(id) : onCloseAdditionalMenu}
+                onFocus={sections ? () => onOpenAdditionalMenu(id) : onCloseAdditionalMenu}
                 to={route}
                 className={cn({
                   [styles.activeLink]: location.pathname.includes(route) && route !== "/",
@@ -80,7 +86,7 @@ export class DesktopMenu extends Component {
                     !sections && currentRoute && currentRoute.id === id,
                 })}
                 activeClassName={styles.activeLink}
-                onClick={event =>
+                onClick={(event) =>
                   onNavLinkClick({
                     transitionEnd: false,
                     id,
