@@ -11,7 +11,9 @@ collections:
     label: "Сми о нас"
     widget: "string"
     folder: "src/data/about"
+    summary: "{{title}} - {{day}}/{{month}}/{{year}} На главной - {{isVisible}}"
     slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    sortableFields: ["isVisible", "title", "date"]
     create: true
     fields:
       - {label: "Template Key", name: "templateKey", widget: "hidden", default: "about"}
