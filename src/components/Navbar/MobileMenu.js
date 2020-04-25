@@ -20,8 +20,8 @@ export class MobileMenu extends PureComponent {
 
     return (
       <MobileMenuList className={animation.fadeIn}>
-        {routes.map(({ text, id, route, outsideLink, Icon }) => {
-          const item = data.find(item => item.id === id);
+        {routes.map(({ text, id, route, outsideLink, Icon, Element }) => {
+          const item = data.find((item) => item.id === id);
           const title = item ? item.title : text;
 
           if (outsideLink)
@@ -30,6 +30,7 @@ export class MobileMenu extends PureComponent {
                 {Icon && <Icon />}
                 <OutsideLink href={outsideLink} target="_blank">
                   {title}
+                  {Element && <Element />}
                 </OutsideLink>
               </LinkContainer>
             );
@@ -42,7 +43,7 @@ export class MobileMenu extends PureComponent {
                   [styles.mobileActiveLink]: location.pathname.includes(route) && route !== "/",
                 })}
                 activeClassName={styles.activeLink}
-                onClick={event =>
+                onClick={(event) =>
                   onNavLinkClick({
                     transitionEnd: false,
                     id,
